@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="tobedelete" owner="U3306" acl="private" lastModified="2011-03-19T04:18:58" created="2011-03-19T04:18:58" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><node id="id_start" type="start" title="Start" name="Start" x="27" y="213">
+ <next targetID="id_apply_leaving"/></node><node id="id_end" type="end" title="End" name="End" x="738" y="213">
+ <next targetID="id_end"/></node><node id="id_apply_leaving" type="task" title="Apply Leaving" name="Apply Leaving"  acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <attachment type="int" label="Leave days" attname="days" value=""/><taskto type="role" whom="starter"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_reason"/></node><node id="id_reason" type="task" title="Give Reason" name="Give Reason"><attachment type="String" label="Leave reason" attname="reason" value=""/><taskto type="role" whom="starter"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_script"/>
+ </node><node id='id_script' type='script'><script>JAVA:com.lkh.cflow.test.MyLinker</script><next option='long' targetID='id_long'/><next option='short' targetID='id_short'/></node><node id='id_long' type='task' name='LONG'><taskto type="RefertoNode" whom="id_apply_leaving"/><next targetID='id_end'/></node><node id='id_short' type='task' name='SHORT'><taskto type="RefertoNode" whom="id_apply_leaving"/><next targetID='id_end'/></node></cf:workflow>

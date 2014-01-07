@@ -1,0 +1,32 @@
+<process id="0a1bce72416241a1b57cc3de0d400047" wftid="0a1bce72416241a1b57cc3de0d400047" origin="bd069315979d4eec95afa71919390f75" roundid="002dd9da432840f282ce1077a7765442" startat="2012-11-28T21:09:53.605+08:00" status="finished" startby="peixin.baipx" teamid="" wftname="v1" lastError="|(reason=go home) value type (text) is unsupported, returned empty string" endat="2012-11-28T21:09:54.577+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="7EBD6CB5-42D0-C653-4DE6-EAF5D9D869D1" sessid="1bfabbc78f3e4628bedbc4710df698cf" roundid="002dd9da432840f282ce1077a7765442" createdAt="2012-11-28T21:09:53.722+08:00" completedAt="2012-11-28T21:09:53.722+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="002dd9da432840f282ce1077a7765442" sessid="c04f2d24ae91420cbc5e6b99f5d521db" name="Leaving Application" title="This demo shows how to integrate with a WEB resource the WEB resource normally is a Servlet running on any web server.[br] This demo does not provide a default URL, you must use your own, see MWF tutorial hwo to write a Servlet to integrate with MWF" type="task" nodeid="12EDDD5E-4646-3A8A-7DC9-EAF60250705D" createdAt="2012-11-28T21:09:53.722+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="" completedAt="2012-11-28T21:09:53.985+08:00" completedBy="peixin.baipx" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_finished"/>
+    <attachment type="int" label="Leave Days" attname="days" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="Leave Reason" attname="reason" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="peixin.baipx" timestamp="2012-11-28T21:09:53.836+08:00" option="">
+      <attachment usrid="peixin.baipx" attname="days" value="20" type="int" label="Leave Days"/>
+      <attachment usrid="peixin.baipx" attname="reason" value="test value to change back to process attachment." type="text" label="Leave Reason"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="14D169BC-F935-982E-AD17-EAF96CB21650" sessid="a4f1e566c7294086a80c9617eeeb34c2" roundid="002dd9da432840f282ce1077a7765442" createdAt="2012-11-28T21:09:54.053+08:00" completedAt="2012-11-28T21:09:54.053+08:00" status="finished" decision="long" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="peixin.baipx" timestamp="2012-11-28T21:09:54.053+08:00" option="long">
+      <attachment usrid="peixin.baipx" attname="ignored" value="this will be ignored." type="string" label="ignored"/>
+    </log>
+  </work>
+  <work roundid="002dd9da432840f282ce1077a7765442" sessid="a15424ea755947548da15eeb4eee5713" name="Long Leave" title="Your leaving is long" type="task" nodeid="A2D19FEC-953A-BAE7-A270-EAF99089E7D8" createdAt="2012-11-28T21:09:54.055+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="" completedAt="2012-11-28T21:09:54.421+08:00" completedBy="peixin.baipx" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_finished"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="peixin.baipx" timestamp="2012-11-28T21:09:54.202+08:00" option=""/>
+  </work>
+  <work title="End Point" type="end" nodeid="0108D032-64BC-52C4-EB08-EAF5D9DC36B9" sessid="543f500976b644329b39d47adeeebcd2" roundid="002dd9da432840f282ce1077a7765442" createdAt="2012-11-28T21:09:54.671+08:00" completedAt="2012-11-28T21:09:54.671+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns=""/>
+</process>

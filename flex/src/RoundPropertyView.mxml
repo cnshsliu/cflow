@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="800" height="500" xmlns:ns1="*" xmlns:ns2="com.lkh.*" horizontalAlign="center" verticalAlign="middle">
+	<ns1:RoundPropertyForm id='round_form' label="RoundProperty" width="80%" height="80%" backgroundColor="#F7FDFD" borderStyle="none">
+	</ns1:RoundPropertyForm>
+</mx:VBox>

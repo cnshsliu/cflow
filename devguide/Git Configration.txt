@@ -1,0 +1,17 @@
+安装GIT时，不要选择putty, 而是使用git自带的ssh, 保证环境变量中的GIT_SSH指向这个ssh
+
+参考 https://help.github.com/articles/generating-ssh-keys
+在~/.ssh/下生成密钥
+并将id_rsa.pub内容复制后，粘贴在远端服务器~/.ssh/authorized_keys2中
+
+注意.git/config文件中url的格式。(@之前的git是Linux上的用户名）
+[remote "origin"]
+	url = ssh://git@42.121.15.25/home/git/testa
+	fetch = +refs/heads/*:refs/remotes/origin/*
+
+
+在Unix上建立git用户
+useradd -d /home/git -U git
+passwd git
+
+Git的使用：http://www.yuexuan.org/?p=1159

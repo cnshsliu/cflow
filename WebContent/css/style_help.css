@@ -1,0 +1,10 @@
+@import url('reset.css');
+@import url('text.css');
+@import url('960.css');
+@import url('grid.css');
+@import url('layout.css');
+
+a { color: #3E4F90;}
+a:hover { text-decoration:underline;}
+body {background: #FFF; margin:10px; }
+

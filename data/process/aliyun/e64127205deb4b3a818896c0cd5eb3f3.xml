@@ -1,0 +1,74 @@
+<process id="e64127205deb4b3a818896c0cd5eb3f3" wftid="e64127205deb4b3a818896c0cd5eb3f3" origin="3a347ab442164ccf88663ad4070acebf" roundid="9bd8d164e8274a55bb1583abc3b797c4" startat="2012-11-28T21:09:53.430+08:00" status="canceled" startby="peixin.baipx" teamid="6993b683e42b47c3a78ea808da80f184" wftname="v1" lastError="|(memo=thanks) value type (text) is unsupported, returned empty string|(service=VM) value type (text) is unsupported, returned empty string|(due=2012-12-31) value type (text) is unsupported, returned empty string|(eventpurpose=sell 1000) value type (text) is unsupported, returned empty string|(purpose=Promotion) value type (text) is unsupported, returned empty string|(eventrule=rule) value type (text) is unsupported, returned empty string|(eventdate=2012-11-15) value type (text) is unsupported, returned empty string|(1stapproveComment=allen-Okay) value type (text) is unsupported, returned empty string" endat="2012-11-28T21:24:30.615+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="5CC4CFA1-6533-45D5-94AD-59F4A2A296DC" sessid="eca20f21c65f49b3851a6f0915900267" roundid="9bd8d164e8274a55bb1583abc3b797c4" createdAt="2012-11-28T21:09:53.530+08:00" completedAt="2012-11-28T21:09:53.530+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="9bd8d164e8274a55bb1583abc3b797c4" sessid="4fdb20f73db0410cb9f34f5af1dd27e6" name="Voucher Application" title="Please input voucher details" type="task" nodeid="F3518383-8E11-E6D2-A536-59F4CA5D114B" createdAt="2012-11-28T21:09:53.530+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="VoucharApply1" decision="" completedAt="2012-11-28T21:09:53.764+08:00" completedBy="peixin.baipx" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_finished"/>
+    <attachment type="text" label="项目名称" attname="project" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="用途" attname="purpose" value="" usrid="SYSTEM"/>
+    <attachment type="int" label="数量" attname="number" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="到期时间" attname="due" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="活动目标" attname="eventpurpose" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="活动规则" attname="eventrule" value="" usrid="SYSTEM"/>
+    <attachment type="url" label="附件地址" attname="atturl" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="备注" attname="memo" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="活动时间" attname="eventdate" value="" usrid="SYSTEM"/>
+    <attachment type="int" label="金额" attname="figure" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="所属应用" attname="service" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="peixin.baipx" timestamp="2012-11-28T21:09:53.673+08:00" option="">
+      <attachment usrid="peixin.baipx" attname="figure" value="100" type="int" label="金额"/>
+      <attachment usrid="peixin.baipx" attname="memo" value="thanks" type="text" label="备注"/>
+      <attachment usrid="peixin.baipx" attname="service" value="VM" type="text" label="所属应用"/>
+      <attachment usrid="peixin.baipx" attname="due" value="2012-12-31" type="text" label="到期时间"/>
+      <attachment usrid="peixin.baipx" attname="eventpurpose" value="sell 1000" type="text" label="活动目标"/>
+      <attachment usrid="peixin.baipx" attname="number" value="100" type="int" label="数量"/>
+      <attachment usrid="peixin.baipx" attname="purpose" value="Promotion" type="text" label="用途"/>
+      <attachment usrid="peixin.baipx" attname="eventrule" value="rule" type="text" label="活动规则"/>
+      <attachment usrid="peixin.baipx" attname="eventdate" value="2012-11-15" type="text" label="活动时间"/>
+      <attachment usrid="peixin.baipx" attname="projectName" value="myProject" type="string" label="projectName"/>
+      <attachment usrid="peixin.baipx" attname="atturl" value="http://www" type="url" label="附件地址"/>
+    </log>
+  </work>
+  <work roundid="9bd8d164e8274a55bb1583abc3b797c4" sessid="92e35576c10d4fabadbd8aaa4b9f2b01" name="Voucher waiting for your approval" title="Please decide whether to approve or not" type="task" nodeid="A1878F04-2D3D-3D88-E3DA-59F5FBB94E2F" createdAt="2012-11-28T21:09:53.819+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="VoucharApply1" decision="Approve" completedAt="2012-11-28T21:09:54.075+08:00" completedBy="allen" xmlns="">
+    <taskto type="person" whom="allen" status="task_finished"/>
+    <attachment type="text" label="Your Comment" attname="1stapproveComment" value="" usrid="SYSTEM"/>
+    <options>
+      <option>Reject</option>
+      <option>Approve</option>
+    </options>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="allen" timestamp="2012-11-28T21:09:53.971+08:00" option="Approve">
+      <attachment usrid="allen" attname="1stapproveComment" value="allen-Okay" type="text" label="Your Comment"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="40BFA565-C336-48A6-CEFF-1C5ED593E03F" sessid="d6750b7859554f12b0c8b54b7875a6e0" roundid="9bd8d164e8274a55bb1583abc3b797c4" createdAt="2012-11-28T21:09:54.124+08:00" completedAt="2012-11-28T21:09:54.124+08:00" status="finished" decision="lt50000" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="allen" timestamp="2012-11-28T21:09:54.124+08:00" option="lt50000"/>
+  </work>
+  <work title="OR" type="or" nodeid="6262360D-FC8D-A9EC-5A20-1C610BE6569E" sessid="4bb019002c9e4768a26e6564ed70d90d" roundid="9bd8d164e8274a55bb1583abc3b797c4" createdAt="2012-11-28T21:09:54.132+08:00" completedAt="2012-11-28T21:09:54.133+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="9bd8d164e8274a55bb1583abc3b797c4" sessid="993f23c86a994265b2ba0d8e81bbcc96" name="Please generate voucher number" title="Please generate voucher number, and input these numbers" type="task" nodeid="81F3304B-946E-C05B-48B7-F881466EC603" createdAt="2012-11-28T21:09:54.133+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="VoucharApply1" decision="" completedAt="2012-11-28T21:09:54.639+08:00" completedBy="huali.shihl" xmlns="">
+    <taskto type="person" whom="huali.shihl" status="task_finished"/>
+    <attachment type="text" label="voucherNumbers" attname="voucherNumber" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="huali.shihl" timestamp="2012-11-28T21:09:54.402+08:00" option="">
+      <attachment usrid="huali.shihl" attname="voucherNumber" value="huali.shihl-100-1000" type="text" label="voucherNumbers"/>
+    </log>
+  </work>
+  <work roundid="9bd8d164e8274a55bb1583abc3b797c4" sessid="312e5067a5cb41de92ef20fccb3fd0f4" name="Voucher generated" title="Your voucher was generated. you may deliver it to your customer now" type="task" nodeid="13396B62-1365-BBB3-099C-F8821813A5CB" createdAt="2012-11-28T21:09:54.744+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="VoucharApply1" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_running"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns="">
+    <role name="1stApprover" value="allen"/>
+    <role name="finalApprover" value="cjp1957"/>
+    <role name="opLead" value="huali.shihl"/>
+    <role name="opDirector" value="nick.yixy"/>
+  </team>
+</process>

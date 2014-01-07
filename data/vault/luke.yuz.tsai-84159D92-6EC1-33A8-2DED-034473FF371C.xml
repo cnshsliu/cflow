@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="testBBCode" owner="luke.yuz.tsai" acl="private" lastModified="2010-11-01T15:06:17" created="2010-11-01T15:06:17" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="D7863580-78C6-8FA3-A123-034473F77AAB" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="27" y="204" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="AAD82FF9-76A9-2C57-0BD6-034499D3DB59"/>
+  </node>
+  <node id="274553C7-4842-72A1-FEF5-034473FCF42B" type="end" title="End" name="End" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="748" y="204" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="274553C7-4842-72A1-FEF5-034473FCF42B"/>
+  </node>
+  <node id="AAD82FF9-76A9-2C57-0BD6-034499D3DB59" type="task" title="[h3]Hello, this is my test[/h3]&#xD;[img]http://www.lokoho.com/cflow/images/logo.png[/img]" name="bbCode测试节点" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="184" y="138" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="274553C7-4842-72A1-FEF5-034473FCF42B"/>
+  </node>
+</cf:workflow>

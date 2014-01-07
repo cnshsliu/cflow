@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="index" owner="cnshsliu@gmail.com" acl="private" lastModified="2011-03-05T13:26:41" created="2011-03-05T13:26:41" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="B0574A72-5E7B-DDAB-93A0-8471A434C2B9" type="start" title="Start" name="Start" x="27" y="213">
+    <next targetID="0B0BAA77-6026-2FFA-7C66-8477D4CDCF16"/>
+  </node>
+  <node id="F684C942-DB70-2020-125E-8471A434882E" type="end" title="End" name="End" x="708" y="213">
+    <next targetID="F684C942-DB70-2020-125E-8471A434882E"/>
+  </node>
+  <node id="0B0BAA77-6026-2FFA-7C66-8477D4CDCF16" type="task" title="Work description" name="First Task to do" x="138" y="213" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="20EE2C06-FC53-3864-D65F-84794A858195"/>
+  </node>
+  <node id="20EE2C06-FC53-3864-D65F-84794A858195" type="task" title="Second Task" name="Send Task" x="360" y="214" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="F684C942-DB70-2020-125E-8471A434882E"/>
+  </node>
+</cf:workflow>

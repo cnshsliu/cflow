@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="tobedelete" owner="U3306" acl="private" lastModified="2012-08-02T22:01:51" created="2012-08-02T22:01:51" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="id_start" type="start" title="Start" name="Start" x="27" y="213">
+    <next targetID="id_apply_leaving"/>
+  </node>
+  <node id="id_end" type="end" title="End" name="End" x="553" y="179">
+    <next targetID="id_end"/>
+  </node>
+  <node id="id_apply_leaving" type="task" title="Apply Leaving" name="Apply Leaving" x="100" y="186" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="int" label="Leave days" attname="days" value=""/>
+    <attachment type="String" label="Leave Reason" attname="reason" value=""/>
+    <next targetID="id_script"/>
+  </node>
+  <node id="id_script" type="script" title="null" name="" x="245" y="195">
+    <script>URL:http://localhost:8080/cflow/TestScriptWeb</script>
+    <next option="long" targetID="id_long"/>
+    <next option="short" targetID="id_short"/>
+  </node>
+  <node id="id_long" type="task" title="null" name="LONG" x="446" y="152" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="null">
+    <taskto type="RefertoNode" whom="id_apply_leaving"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="id_end"/>
+  </node>
+  <node id="id_short" type="task" title="null" name="SHORT" x="463" y="240" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="null">
+    <taskto type="RefertoNode" whom="id_apply_leaving"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="id_end"/>
+  </node>
+</cf:workflow>

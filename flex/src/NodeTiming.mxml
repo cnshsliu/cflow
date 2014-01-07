@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:ns1="com.lkh.*">
+<mx:Script>
+		<![CDATA[
+			import com.lkh.Attachment;
+		import mx.controls.Alert;
+		import mx.events.DynamicEvent;
+			[Bindable]
+			public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+  		]]>
+</mx:Script>
+<mx:VBox width="340"  x="137" y="10">
+	<mx:Label x="189" y="56" text="The task must be completed within "/>
+	<mx:HBox width="100%">
+		<ns1:TimerControl id="tc">
+		</ns1:TimerControl>
+	</mx:HBox>
+	<mx:RadioButton value = "{Node.TIMING_TYPE_TASK}" label="after task started" groupName="timingType" selected="true"/>
+	<mx:RadioButtonGroup id="timingType"/>
+	<mx:RadioButton x="189" y="127"  value="{Node.TIMING_TYPE_PROCESS}" label="after process started" groupName="timingType"/>
+	
+</mx:VBox>
+
+</mx:Canvas>

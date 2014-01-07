@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Step 1-2-3" owner="U3306" acl="private" lastModified="2012-08-22T18:47:26" created="2012-08-22T18:47:26" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="C55C35E9-B7B5-BDAB-B19E-4DEEECD1E02A" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="687354A8-38F8-5317-BEA8-4DEEF79613C2"/>
+  </node>
+  <node id="7937AD15-F8E8-E26B-5ABE-4DEEECD3E4D5" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="7937AD15-F8E8-E26B-5ABE-4DEEECD3E4D5"/>
+  </node>
+  <node id="687354A8-38F8-5317-BEA8-4DEEF79613C2" type="task" title="This example workflow have 3 steps, this is the step 1.[br]Click the Done button to finish this task." name="Step 1" x="144" y="124" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="B21DEC40-1F42-B964-928A-4DF0BE5ADA11"/>
+  </node>
+  <node id="B21DEC40-1F42-B964-928A-4DF0BE5ADA11" type="task" title="This example workflow have 3 steps, this is the step 2." name="Step 2" x="329" y="126" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="E39B5009-5373-8345-C5C8-4DF0D6333F4A"/>
+  </node>
+  <node id="E39B5009-5373-8345-C5C8-4DF0D6333F4A" type="task" title="This example workflow have 3 steps, this is the step 3." name="Step 3" x="513" y="126" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="7937AD15-F8E8-E26B-5ABE-4DEEECD3E4D5"/>
+  </node>
+</cf:workflow>

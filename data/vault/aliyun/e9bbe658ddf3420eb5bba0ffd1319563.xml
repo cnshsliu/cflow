@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="图片自动加工" owner="aliyun" acl="private" lastModified="2012-11-27T14:16:23" created="2012-11-27T14:16:23" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="Reviewer"/>
+  <node id="9D3E03C9-FFAF-6165-2540-26836E955F8B" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="3BDC9572-CBCA-9790-825F-26837C09A2E6"/>
+  </node>
+  <node id="85B7C3C0-BF63-7E77-740B-26836E9844FA" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="85B7C3C0-BF63-7E77-740B-26836E9844FA"/>
+  </node>
+  <node id="3BDC9572-CBCA-9790-825F-26837C09A2E6" type="task" title="图片已完成自动加水印，请查看结果，并选择是否开始发送给供应商进行处理" name="图片水印已添加" x="291" y="182" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="Reviewer"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="85B7C3C0-BF63-7E77-740B-26836E9844FA"/>
+  </node>
+</cf:workflow>

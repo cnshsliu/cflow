@@ -1,0 +1,70 @@
+<process id="2c06e04de8704fa794f3365cee95211b" wftid="2c06e04de8704fa794f3365cee95211b" origin="6d85b9af924a497a87fa008665826c2e" roundid="c409429d768f42209a31a790ff4f326a" startat="2012-11-29T11:37:16.308+08:00" status="canceled" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="ddd" endat="2012-11-30T01:08:43.614+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="22B1B747-726B-5ED4-17F2-4A3A8624C423" sessid="ce998e730a49424d8f6a835944fd70f3" roundid="fbaaa4ff58484b5fa769d06b6f98683c" createdAt="2012-11-29T11:37:17.679+08:00" completedAt="2012-11-29T11:37:17.679+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="fbaaa4ff58484b5fa769d06b6f98683c" sessid="e8adc4e95d8e4564b4780f7666fa65ad" name="Task1" title="Task1" type="task" nodeid="AF1A12A2-CB0A-683A-DFC2-4A3A8F5D6BFF" createdAt="2012-11-29T11:37:17.696+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="Continue" completedAt="2012-11-29T11:37:34.842+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="text" label="person" attname="person" value="" usrid="SYSTEM"/>
+    <options>
+      <option>Continue</option>
+      <option>Finish</option>
+    </options>
+    <mpcdc/>
+    <oec/>
+    <log usrid="aliyun" timestamp="2012-11-29T11:37:34.735+08:00" option="Continue">
+      <attachment usrid="aliyun" attname="person" value="r1" type="text" label="person"/>
+      <attachment usrid="aliyun" attname="option_1" value="Continue" type="string" label="option_1"/>
+    </log>
+  </work>
+  <work title="ROUND" type="round" nodeid="B0AF301C-E79D-D0E0-43C1-4A3AEBB00D88" sessid="622ecc5260854d72b7c5d90691b5b42a" roundid="add3e4dbbf92449a90f0e1522b9ddd31" createdAt="2012-11-29T11:37:34.869+08:00" completedAt="2012-11-29T11:37:34.869+08:00" repeatthresholdtype="NOREPEAT" repeatthreshold="" repeatcron="" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="OR" type="or" nodeid="6C3297C8-DC51-EAA7-9DA9-4A3B155DC041" sessid="c40e636c70754fd59033e9efc3eddef4" roundid="add3e4dbbf92449a90f0e1522b9ddd31" createdAt="2012-11-29T11:37:34.880+08:00" completedAt="2012-11-29T11:37:34.880+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="Script" type="script" nodeid="EC76EFC8-E82C-4C6A-818D-4A3C48E5A654" sessid="9466917997b143cfbce64dc2e366d75d" roundid="add3e4dbbf92449a90f0e1522b9ddd31" createdAt="2012-11-29T11:37:35.495+08:00" completedAt="2012-11-29T11:37:35.495+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-29T11:37:35.495+08:00" option="DEFAULT">
+      <attachment usrid="aliyun" attname="count" value="32" type="int" label="count"/>
+    </log>
+  </work>
+  <work roundid="add3e4dbbf92449a90f0e1522b9ddd31" sessid="944aa10a26ba451a9d1ce0e3be1c1951" name="Task1" title="Task1" type="task" nodeid="AF1A12A2-CB0A-683A-DFC2-4A3A8F5D6BFF" createdAt="2012-11-29T11:37:35.497+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="Continue" completedAt="2012-11-29T11:37:44.371+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="text" label="person" attname="person" value="" usrid="SYSTEM"/>
+    <options>
+      <option>Continue</option>
+      <option>Finish</option>
+    </options>
+    <mpcdc/>
+    <oec/>
+    <log usrid="aliyun" timestamp="2012-11-29T11:37:44.234+08:00" option="Continue">
+      <attachment usrid="aliyun" attname="person" value="r2" type="text" label="person"/>
+      <attachment usrid="aliyun" attname="option_1" value="Continue" type="string" label="option_1"/>
+    </log>
+  </work>
+  <work title="ROUND" type="round" nodeid="B0AF301C-E79D-D0E0-43C1-4A3AEBB00D88" sessid="bf0facd8e91d46caae43a36ce125ec39" roundid="c409429d768f42209a31a790ff4f326a" createdAt="2012-11-29T11:37:44.401+08:00" completedAt="2012-11-29T11:37:44.401+08:00" repeatthresholdtype="NOREPEAT" repeatthreshold="" repeatcron="" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="OR" type="or" nodeid="6C3297C8-DC51-EAA7-9DA9-4A3B155DC041" sessid="d3fe590786054a23a5a455a81bcdc282" roundid="c409429d768f42209a31a790ff4f326a" createdAt="2012-11-29T11:37:44.405+08:00" completedAt="2012-11-29T11:37:44.405+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="Script" type="script" nodeid="EC76EFC8-E82C-4C6A-818D-4A3C48E5A654" sessid="77b77a8704e542a7b0cb8a5f6e18fd6e" roundid="c409429d768f42209a31a790ff4f326a" createdAt="2012-11-29T11:37:44.425+08:00" completedAt="2012-11-29T11:37:44.426+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-29T11:37:44.426+08:00" option="DEFAULT">
+      <attachment usrid="aliyun" attname="count" value="32" type="int" label="count"/>
+    </log>
+  </work>
+  <work roundid="c409429d768f42209a31a790ff4f326a" sessid="b39d4b5bf2614d61a133f332058581a9" name="Task1" title="Task1" type="task" nodeid="AF1A12A2-CB0A-683A-DFC2-4A3A8F5D6BFF" createdAt="2012-11-29T11:37:44.432+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_running"/>
+    <attachment type="text" label="person" attname="person" value="" usrid="SYSTEM"/>
+    <options>
+      <option>Continue</option>
+      <option>Finish</option>
+    </options>
+    <mpcdc/>
+    <oec/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

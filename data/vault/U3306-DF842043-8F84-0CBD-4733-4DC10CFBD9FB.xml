@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Step123" owner="U3306" acl="private" lastModified="2012-08-22T17:57:23" created="2012-08-22T17:57:23" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="3B8B58AD-CABF-D889-1549-4DC10CF7EC7C" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="0BE88118-F1DA-FA57-A8C4-4DC119DF3406"/>
+  </node>
+  <node id="68A1DA80-8014-5A69-97E5-4DC10CFA12FB" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="68A1DA80-8014-5A69-97E5-4DC10CFA12FB"/>
+  </node>
+  <node id="0BE88118-F1DA-FA57-A8C4-4DC119DF3406" type="task" title="This workflow has three simple steps. This is the step ONE. &lt;BR>&#xD;Complete this to go to step TWO." name="Step 1" x="176" y="213" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="5C9F6437-61F0-5F61-515E-4DC2402F3427"/>
+  </node>
+  <node id="5C9F6437-61F0-5F61-515E-4DC2402F3427" type="task" title="Step 2" name="Step 2" x="346" y="193" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="9823D5C8-477F-F857-5131-4DC270C180CF"/>
+  </node>
+  <node id="9823D5C8-477F-F857-5131-4DC270C180CF" type="task" title="Task" name="Step 3" x="517" y="193" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="68A1DA80-8014-5A69-97E5-4DC10CFA12FB"/>
+  </node>
+</cf:workflow>

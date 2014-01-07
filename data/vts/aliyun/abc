@@ -1,0 +1,24 @@
+HashMap<Strin, int> varLenRule = new HashMap();
+
+varLenRule.put("DEVID", 24);
+varLenRule.put("DEVNAME",  40);
+varLenRule.put("PASSWORD", 20);
+varLenRule.put("EMAIL", 50);
+varLenRule.put("TZID", 9);
+varLenRule.put("LANG", 8);
+varLenRule.put("PRCID", 40);
+varLenRule.put("NODEID", 40);
+varLenRule.put("STARTBY", 40);
+varLenRule.put("INSTANCENAME",  40);
+varLenRule.put("DELEGATER", 40);
+varLenRule.put("DELEGATEE", 40);
+varLenRule.put("SESSID", 40);
+varLenRule.put("VTNAME", 40);
+varLenRule.put("IDENTITY", 40);
+varLenRule.put("USERNAME",  40);
+varLenRule.put("NOTIFY", 9);
+varLenRule.put("WFTNAME", 40);
+varLenRule.put("TEAMNAME", 40);
+varLenRule.put("TEAMMEMO", 40);
+
+

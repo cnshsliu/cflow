@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Department Weekly Report" owner="U3306" acl="private" lastModified="2010-11-18T00:42:46" created="2010-11-18T00:42:46" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="My Workmates"/>
+  <role name="My Manager"/>
+  <node id="3B85B7C9-9CBB-78E6-4AA9-41F22813E11D" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="27" y="211" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="BE93EFB3-CEC6-433B-BA48-41F22FB9871F"/>
+  </node>
+  <node id="03E18792-3F1E-FB74-746E-41F228167A01" type="end" title="End" name="End" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="748" y="211" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="03E18792-3F1E-FB74-746E-41F228167A01"/>
+  </node>
+  <node id="BE93EFB3-CEC6-433B-BA48-41F22FB9871F" type="task" title="Send reminder emaill to my colleagues" name="Send reminder email" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="133" y="177" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="93E84F1D-E920-CB44-4682-41F4C85260AB"/>
+    <postactions>
+      <sendmail subject="Please send your weekly report">
+        <mailto type="role" whom="My Colleagues"/>
+        <message>Please send your weekly report</message>
+      </sendmail>
+    </postactions>
+  </node>
+  <node id="B38C3421-54F6-29CA-2AC2-41F376A270F9" type="task" title="Collect all weekly report from my colleagues" name="Collect Weekly Report" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="322" y="215" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="8E78FCB6-5AFC-B105-F54B-41F41CA1D9C9"/>
+  </node>
+  <node id="8E78FCB6-5AFC-B105-F54B-41F41CA1D9C9" type="task" title="Combile individual weekly report to make department weekly report" name="Combine Weekly Report" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="384" y="115" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="5A42B416-264A-22F6-E224-41F5578719C4"/>
+  </node>
+  <node id="93E84F1D-E920-CB44-4682-41F4C85260AB" type="task" title="Please write your weekly report and send to coordinator" name="Write weekly report" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="256" y="140" mpsm="2">
+    <taskto type="role" whom="My Workmates"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="B38C3421-54F6-29CA-2AC2-41F376A270F9"/>
+  </node>
+  <node id="5A42B416-264A-22F6-E224-41F5578719C4" type="task" title="Please send out weekly report to manager" name="Send out weekly report" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="532" y="130" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="490659F0-E6B1-A25A-1C05-41FA7E33C2B6"/>
+  </node>
+  <node id="490659F0-E6B1-A25A-1C05-41FA7E33C2B6" type="task" title="Task" name="Please review weekly report" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="true" roleToChange="all" x="623" y="222" mpsm="1">
+    <taskto type="role" whom="My Manager"/>
+    <mpcdc/>
+    <oec/>
+    <attachment type="text" label="Your Comments" attname="comment" value=""/>
+    <next targetID="03E18792-3F1E-FB74-746E-41F228167A01"/>
+  </node>
+</cf:workflow>

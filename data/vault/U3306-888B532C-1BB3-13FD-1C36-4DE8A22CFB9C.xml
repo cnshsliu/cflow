@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="dddd" owner="U3306" acl="private" lastModified="2012-08-22T18:37:44" created="2012-08-22T18:37:44" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="A7C0F41B-58A6-CC35-FC36-4DE8A22C71F6" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="EE35D07B-4F9C-FABE-DD6B-4DE8A89283C5"/>
+  </node>
+  <node id="69F6124F-932D-B0EB-A2A8-4DE8A22C1567" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="69F6124F-932D-B0EB-A2A8-4DE8A22C1567"/>
+  </node>
+  <node id="EE35D07B-4F9C-FABE-DD6B-4DE8A89283C5" type="task" title="Task" name="Task" x="316" y="154" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="69F6124F-932D-B0EB-A2A8-4DE8A22C1567"/>
+  </node>
+</cf:workflow>

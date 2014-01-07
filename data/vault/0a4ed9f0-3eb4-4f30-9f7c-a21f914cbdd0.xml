@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="tobedelete" owner="U3306" acl="private" lastModified="2011-03-19T04:18:58" created="2011-03-19T04:18:58" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><node id="id_start" type="start" title="Start" name="Start" x="27" y="213">
+ <next targetID="id_1"/></node><node id="id_end" type="end" title="End" name="End" x="738" y="213">
+ <next targetID="id_end"/></node><node id="id_1" type="task" title="Apply Leaving" name="Apply Leaving" x="356" y="203" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="role" whom="starter"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_2"/>
+ </node><node id="id_2" type="task" title="Approve Leaving" name="Approve Leaving" x="356" y="203" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="role" whom="Approver"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_3"/>
+ </node><node id="id_3" type="task" title="Auditor Leaving" name="Auditor Leaving" x="356" y="203" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="role" whom="Auditor"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_4"/>
+ </node><node id="id_4" type="task" title="Approver Check Result" name="Approver Check Result" x="356" y="203" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="RefertoNode" whom="id_2"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_5"/>
+ </node><node id="id_5" type="task" title="Starter Check Result" name="Starter Check Result" x="356" y="203" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="RefertoNode" whom="id_1"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_6"/>
+ </node><node id="id_6" type="task" title="Approve Leaving" name="Approve Leaving" x="356" y="203" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="person" whom="U3307"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_end"/>
+ </node></cf:workflow>

@@ -1,0 +1,92 @@
+<process id="3d65dcb9455a44499b0df6426cb786d0" wftid="3d65dcb9455a44499b0df6426cb786d0" origin="8cbc25a397fa442d849a0d2d4a2f37fd" roundid="30cceb15299743db8534a300e2d51063" startat="2012-11-27T11:15:08.074+08:00" status="finished" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="5555" lastError="|(methodG1=优惠券) value type (text) is unsupported, returned empty string|(methodG2=商品优惠) value type (text) is unsupported, returned empty string|(methodG1=优惠券) value type (text) is unsupported, returned empty string|(methodG2=商品优惠) value type (text) is unsupported, returned empty string|(methodG1=优惠券) value type (text) is unsupported, returned empty string|(methodG2=商品优惠) value type (text) is unsupported, returned empty string|(methodG1=优惠券) value type (text) is unsupported, returned empty string|(methodG2=商品优惠) value type (text) is unsupported, returned empty string|(methodG1=优惠券) value type (text) is unsupported, returned empty string|(methodG2=商品优惠) value type (text) is unsupported, returned empty string|(methodG1=优惠券) value type (text) is unsupported, returned empty string|(methodG2=商品优惠) value type (text) is unsupported, returned empty string" endat="2012-11-27T11:46:26.392+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="2F6D94A0-3B3A-6AF9-63D1-17BFA22CDD18" sessid="4c97fab6da31404ca6a1e1aee7c3ddb8" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:15:08.137+08:00" completedAt="2012-11-27T11:15:08.137+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="30cceb15299743db8534a300e2d51063" sessid="735062cc1caa409ea2d538e7dfc90bbd" name="选择购买月份" title="请选择购买月份" type="task" nodeid="A5ECFB84-6135-58B4-C9C9-17BFADE759CE" createdAt="2012-11-27T11:15:08.139+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="demo_sj_month" decision="" completedAt="2012-11-27T11:15:16.582+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="int" label="月份" attname="month" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-27T11:15:16.529+08:00" option="">
+      <attachment usrid="aliyun" attname="month" value="2" type="int" label="月份"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="6D557A56-CCCB-13DB-8E4E-17C102707D85" sessid="83350bf49ec740e59bc62bdbae1313ef" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:21:27.223+08:00" completedAt="2012-11-27T11:21:27.223+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T11:21:27.223+08:00" option="DEFAULT">
+      <attachment usrid="aliyun" attname="usersG2" value="���L,���M,���N" type="string" label="usersG2"/>
+      <attachment usrid="aliyun" attname="usersG1" value="���A,���B,���C" type="string" label="usersG1"/>
+    </log>
+  </work>
+  <work roundid="30cceb15299743db8534a300e2d51063" sessid="557bcdfe4ec14595bbba21d6c0f0f5e0" name="选择营销方式" title="买家已筛选，请选择营销方式" type="task" nodeid="602AFDD7-1E3D-55BB-1E30-17C9C38BCEB2" createdAt="2012-11-27T11:21:27.225+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="demo_sj_method" decision="" completedAt="2012-11-27T11:22:01.747+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="text" label="组2买家营销方式" attname="methodG2" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="组1买家营销方式" attname="methodG1" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-27T11:22:01.673+08:00" option="">
+      <attachment usrid="aliyun" attname="methodG1" value="优惠券" type="text" label="组1买家营销方式"/>
+      <attachment usrid="aliyun" attname="methodG2" value="商品优惠" type="text" label="组2买家营销方式"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="E9C3D321-76A7-FB68-BD4F-17CCD1ACFC71" sessid="9be951d109c642a29833fc93fbc880c1" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:08.495+08:00" completedAt="2012-11-27T11:23:08.495+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T11:23:08.496+08:00" option="DEFAULT">
+      <attachment usrid="aliyun" attname="checkRound" value="3" type="int" label="checkRound"/>
+      <attachment usrid="aliyun" attname="msg" value="��Ӫ���Ѱ���ѡ�����Զ�ִ��:&lt;BR>�����A,���B,���C����&lt;BR>�����L,���M,���N����" type="string" label="msg"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="F42214E0-DA65-CD92-1369-17D03DE2C982" sessid="bf70638871554124b8148dd868b02cc5" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:11.281+08:00" completedAt="2012-11-27T11:23:11.281+08:00" status="finished" decision="loop" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T11:23:11.282+08:00" option="loop"/>
+  </work>
+  <work title="OR" type="or" nodeid="45E3F3DF-0DE8-54B9-5C50-17D20A2835BA" sessid="c65b397bf9b54dcb8bb7b1832b7d65a6" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:11.284+08:00" completedAt="2012-11-27T11:23:11.284+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="OR" type="or" nodeid="A9EE72CB-99D7-E7B5-935E-17D9DD33A612" sessid="69e5511b43b7452597c0f16505c52e76" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:11.287+08:00" completedAt="2012-11-27T11:23:11.287+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="Script" type="script" nodeid="F42214E0-DA65-CD92-1369-17D03DE2C982" sessid="648f3a5389514945a9ec7e7e14a3bc3e" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:15.790+08:00" completedAt="2012-11-27T11:23:15.790+08:00" status="finished" decision="loop" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T11:23:15.790+08:00" option="loop"/>
+  </work>
+  <work title="OR" type="or" nodeid="45E3F3DF-0DE8-54B9-5C50-17D20A2835BA" sessid="5296fb80cdbe4a6f8e9e24ca01e6c683" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:15.793+08:00" completedAt="2012-11-27T11:23:15.793+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="OR" type="or" nodeid="A9EE72CB-99D7-E7B5-935E-17D9DD33A612" sessid="20685cc9cba7448bb87bfed8cada2951" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:15.795+08:00" completedAt="2012-11-27T11:23:15.795+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="Script" type="script" nodeid="F42214E0-DA65-CD92-1369-17D03DE2C982" sessid="1147f25ff25544b0a226f4c4cd87492e" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:17.548+08:00" completedAt="2012-11-27T11:23:17.548+08:00" status="finished" decision="loop" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T11:23:17.548+08:00" option="loop"/>
+  </work>
+  <work title="OR" type="or" nodeid="45E3F3DF-0DE8-54B9-5C50-17D20A2835BA" sessid="6ea7d6a1289d484985aed49948f84f62" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:17.556+08:00" completedAt="2012-11-27T11:23:17.556+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="OR" type="or" nodeid="A9EE72CB-99D7-E7B5-935E-17D9DD33A612" sessid="e8afe995da7a401b828626df9e424f53" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:17.559+08:00" completedAt="2012-11-27T11:23:17.559+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work title="Script" type="script" nodeid="F42214E0-DA65-CD92-1369-17D03DE2C982" sessid="836b951afb84404c90c32a796a69997e" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:17.717+08:00" completedAt="2012-11-27T11:23:17.717+08:00" status="finished" decision="done" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T11:23:17.717+08:00" option="done"/>
+  </work>
+  <work title="Script" type="script" nodeid="3FB2F864-43E4-28EB-7426-17D447D5BB05" sessid="8b1298ee13ae43d387e99144455128a3" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:23:17.907+08:00" completedAt="2012-11-27T11:23:17.907+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T11:23:17.908+08:00" option="DEFAULT">
+      <attachment usrid="aliyun" attname="analysisResult1" value=" ���������----����������ʡ��" type="string" label="analysisResult1"/>
+      <attachment usrid="aliyun" attname="analysisResult2" value=" �������±�----�������в�ʡ��" type="string" label="analysisResult2"/>
+    </log>
+  </work>
+  <work roundid="30cceb15299743db8534a300e2d51063" sessid="d67997313d1947bf8800058224e7baa2" name="分析结果" title="请查看分析结果" type="task" nodeid="7DDD0926-3CD0-0545-946F-17D233523791" createdAt="2012-11-27T11:23:17.909+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="demo_sj_result" decision="" completedAt="2012-11-27T11:46:26.341+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-27T11:46:26.240+08:00" option=""/>
+  </work>
+  <work title="End Point" type="end" nodeid="0014621F-90F7-FE2E-6663-17BFA230F0CC" sessid="fc65feb50710464ebb631a3f287e1e47" roundid="30cceb15299743db8534a300e2d51063" createdAt="2012-11-27T11:46:26.428+08:00" completedAt="2012-11-27T11:46:26.428+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cflow-config>
+	<host>localhost:8080</host>
+	<!-- 邮件相关定义 -->
+	<mail>
+		<!-- 缺省邮件发送者 -->
+		<mailFrom>cflowadmin@lokoho.com</mailFrom>
+		<!-- 邮件发送服务器 -->
+		<smtpHost>s155.eatj.com</smtpHost>
+		<!-- SMTP验证用户名 -->
+		<smtpAuthUser>liukehong</smtpAuthUser>
+		<!-- SMTP验证用户密码 -->
+		<smtpAuthPassword>psammead</smtpAuthPassword>
+	</mail>
+	<!-- 短消息相关配置 -->
+	<sms>
+	</sms>
+	<!-- 存储相关配置 -->
+	<storage>
+		<!-- 工作流模板在服务器上的存储目录 -->
+		<wftVault>C:\cflow\vault</wftVault>
+		<!-- 工作流引擎在服务器上的存储目录 -->
+		<prcVault>C:\cflow\process</prcVault>
+		<workVault>C:\cflow\work</workVault>
+		<snapshotVault>C:\cflow\snapshot</snapshotVault>
+		<model>C:\cflow\model</model>
+	</storage>
+	<path>
+		<snapshot>http://localhost/cflowsnapshot</snapshot>
+	</path>
+	<!-- 数据库相关配置 -->
+	<database>
+		<!-- 数据库连接URL -->
+		<url>jdbc:mysql://localhost:3306/liukehong?autoReconnect=true</url>
+		<!-- 数据库连接用户名 -->
+		<user>liukehong</user>
+		<!-- 数据库连接用户密码 -->
+		<password>psammead</password>
+	</database>
+	<!-- Qaurtz任务调度器相关配置 -->
+	<quartz>
+		<!-- Quartz本身的配置文件位置 -->
+		<propertyFile>C:\cflow\my_quartz.properties</propertyFile>
+		<!-- 在Tomcat关闭时是否关闭Quartz -->
+		<shutdownOnUnload>true</shutdownOnUnload>
+		<!-- 是否在启动时启动调度器 -->
+		<startSchedulerOnLoad>true</startSchedulerOnLoad>
+		<!-- 延迟启动时间 -->
+		<startDelaySeconds>10</startDelaySeconds>
+	</quartz>
+	<page>
+		<doTask>
+			<post>/cflow/Worklist.jsp</post>
+			<error>/cflow/doTaskErr.jsp</error>
+		</doTask>
+		<login>/cflow/Login.jsp</login>
+		<enterprise>
+			<doTask>
+				<post>/cflow/ent_Worklist.jsp</post>
+				<error>/cflow/ent_doTaskErr.jsp</error>
+			</doTask>
+			<login>/cflow/ent_Login.jsp</login>
+		</enterprise>
+	</page>
+	<message>
+		<composer>com.gsh.test.MyComposer</composer>
+	</message>
+	<mates>
+		<from>org</from>
+		<!-- org or team -->
+	</mates>
+	<timer>
+		<threshold>
+			<!-- 24小时以后到期为绿色 -->
+			<green>1440</green>
+			<!-- 5分钟后到期为黄色 -->
+			<yellow>5</yellow>
+		</threshold>
+	</timer>
+	<attachment>
+		<lowIndex>100</lowIndex>
+		<highIndex>200</highIndex>
+	</attachment>
+	<appConntext>mobile</appConntext>
+	<process>
+		<oec>
+			<optionOnError>DEFAULT</optionOnError>
+		</oec>
+		<cdc>
+			<finishOnError>true</finishOnError>
+		</cdc>
+	</process>
+	<worklist>
+		<autorefresh>true</autorefresh>
+		<useframe>true</useframe>
+	</worklist>
+	<calendar>
+		<dateFormat>yyyy-MM-dd HH:mm</dateFormat>
+		<defaultTimeZone>GMT+08:00</defaultTimeZone>
+	</calendar>
+	<default>
+		<roles>USER/DEFAULT_ROLE/My Manager/My Colleagues</roles>
+	</default>
+	<scriptsafe>
+		<wftid>Tutorial001/Tutorial002</wftid>
+	</scriptsafe>
+	
+</cflow-config>
+

@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:ns1="*">
+<mx:Script>
+	<![CDATA[
+		import com.lkh.NameTag;
+		import com.lkh.NodeInfo;
+		import com.lkh.Attachment;
+		import com.lkh.RobotAction;
+		import mx.collections.ArrayCollection;
+		import mx.managers.PopUpManager;
+		import mx.controls.Alert;
+		
+		[Bindable]
+		public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+		
+		public var tab0Loaded:Boolean = false;
+		public var tab1Loaded:Boolean = false;
+		public var tab2Loaded:Boolean = false;
+		public var tab3Loaded:Boolean = false;
+		public var tab4Loaded:Boolean = false;
+		public var tab5Loaded:Boolean = false;
+		public var tab6Loaded:Boolean = false;
+		private var toggleStatus:Boolean = false;
+		private var backupHeightTab:int = 0;
+		private var backupHeightText:int = 0;
+		private var backupHeightBox:int = 0;
+		
+		public function setUseMode(usemode:int):void{
+			if(usemode == 1){
+				if(tab.contains(form))
+					tab.removeChild(form);
+				if(tab.contains(attachments))
+					tab.removeChild(attachments);
+			}
+		}
+		
+		
+		public function resetLoad():void{
+			tab0Loaded = false;
+			tab1Loaded = false;
+			tab2Loaded = false;
+			tab3Loaded = false;
+			tab4Loaded = false;
+			tab5Loaded = false;
+			tab6Loaded = false;
+		}
+		
+		
+		
+		public function propertyOk(event:MouseEvent):void{
+			if(designer.canvas.selNode != null){
+				if(designer.canvas.selNode.confirmed == false)
+					designer.canvas.selNode.confirmed = true;
+			}
+			if(designer.canvas.dataModel.editable){
+				var tmp = doer.taskto.text;
+				tmp = com.lkh.StringUtil.trim(tmp);
+				doer.taskto.text = tmp;
+				
+				if(doer.tasktotype.selectedValue.toString() == Node.TASKTO_TYPE_ROLE)
+				{
+					if(doer.taskto.text == "")
+						doer.taskto.text = "starter";
+				}else if(doer.tasktotype.selectedValue.toString() == Node.TASKTO_TYPE_PERSON)
+				{
+					if(doer.taskto.text == "" || doer.taskto.text == "starter")
+					{
+						doer.tasktotype.selectedValue = Node.TASKTO_TYPE_ROLE;
+						doer.taskto.text = "starter";
+					}
+				}
+				if(designer.canvas.selNode != null){
+					recordData();
+				}	
+				resetLoad();
+				PopUpManager.removePopUp(designer.taskPropView);
+				designer.canvas.updateCanvas();
+			}else{
+				resetLoad();
+				if(designer.canvas.selNode != null){
+					designer.canvas.selNode.restoreAttachments();
+				}
+				PopUpManager.removePopUp(designer.taskPropView);
+			}
+			designer.loadHelp("NEW_TASK_PLACED");
+			
+			
+		}
+		public function propertyCancel(event:MouseEvent):void{
+			resetLoad();
+			if(designer.canvas.selNode != null){
+				designer.canvas.selNode.restoreAttachments();
+				if(designer.canvas.selNode.confirmed == false){
+					designer.canvas.deleteNode (designer.canvas.selNode);
+				}
+			}
+			PopUpManager.removePopUp(designer.taskPropView);
+			designer.loadHelp("NEW_TASK_CANCELED");
+		}
+		
+		public function recordData():void{
+			var rAction:RobotAction;
+			try{
+					if(nodeTitle.text == "")
+						nodeTitle.text = nodename.text;
+					designer.canvas.selNode.dlabel.text = nodename.text;
+					designer.canvas.selNode.plabel.text = "";
+					designer.canvas.selNode.title = nodeTitle.text;
+					designer.canvas.selNode.acquirable = doer.acquirable.selected;
+					designer.canvas.selNode.acqThreshold = int(doer.acqThreshold.text);
+					if(designer.canvas.selNode.acqThreshold < 1){
+						designer.canvas.selNode.acqThreshold = 1;
+					}
+					if(doer.tasktotype.selectedValue != null){
+						designer.canvas.selNode.tasktoType = doer.tasktotype.selectedValue.toString();
+						if(designer.canvas.selNode.tasktoType == Node.TASKTO_TYPE_ROLE){
+								designer.canvas.selNode.tasktoType = Node.TASKTO_TYPE_ROLE;
+								//designer.canvas.selNode.taskto = doer.roles.selectedItem.name;
+								designer.canvas.selNode.taskto = doer.taskto.text;
+								//designer.canvas.selNode.plabel.text = "R:" + doer.roles.selectedItem.name;
+								if(doer.taskto.text == "starter")
+									designer.canvas.selNode.plabel.text = "";
+								else
+									designer.canvas.selNode.plabel.text = "R:" + doer.taskto.text;
+						}else if(designer.canvas.selNode.tasktoType == Node.TASKTO_TYPE_PERSON){
+								designer.canvas.selNode.tasktoType = Node.TASKTO_TYPE_PERSON;
+								designer.canvas.selNode.taskto = doer.taskto.text;
+								designer.canvas.selNode.plabel.text = "U:" + doer.taskto.text;
+								/*
+								designer.canvas.selNode.taskto = "";
+								designer.canvas.selNode.plabel.text = "U:";
+								var tagCount = doer.tagContainer.getChildren().length;
+								for(var i=0; i<tagCount; i++){
+									if(i>0){
+										designer.canvas.selNode.taskto += ",";
+										designer.canvas.selNode.plabel.text += ",";
+									}
+									var theTag:NameTag = NameTag(doer.tagContainer.getChildAt(i));
+									designer.canvas.selNode.taskto += theTag.tag_id;
+									designer.canvas.selNode.plabel.text += theTag.tag_name;
+								}
+								*/
+						}else{
+							designer.canvas.selNode.taskto = (doer.allnodeids.selectedItem as NodeInfo).nodeid;
+						}
+					}
+					if(doer.allowRoleChange.selected){
+						designer.canvas.selNode.allowRoleChange = true;
+						if(doer.roleChangeType.selectedValue == "all")
+							designer.canvas.selNode.roleToChange = "all";
+						else
+							designer.canvas.selNode.roleToChange = doer.roleToChange.text;
+					}else{
+						designer.canvas.selNode.allowRoleChange = false;
+					}
+					
+					designer.canvas.selNode.exceptme.removeAll();
+					var tArr:Array = doer.nodepicker.getSelectedArray();
+					for(var i:int=0; i<tArr.length; i++){
+						var nodeinfo:NodeInfo = tArr[i];
+						designer.canvas.selNode.exceptme.addItem(nodeinfo.nodeid);
+					}
+					
+					
+					//set decision
+					designer.canvas.selNode.mpsm = decision.decisionType.selectedValue.toString();
+					designer.canvas.selNode.mpcdc = decision.mpcdc.text;
+					designer.canvas.selNode.oec = decision.oec.text;
+					//Set preactions
+					/*if(preaction != null && preaction.actionType.selectedValue != null){
+						if(preaction.actionType.selectedValue == Node.ACTION_NONE){
+							designer.canvas.selNode.preActions.removeAll();
+						}else{
+							rAction = new RobotAction();
+							rAction.name=preaction.actionType.selectedValue.toString();
+							rAction.subject = preaction.subject.text;
+							rAction.message = preaction.message.text;
+							rAction.mailtoType = "role";
+							rAction.mailto = preaction.participate.roles.selectedItem.name;
+							rAction.smstoType = rAction.mailtoType;
+							rAction.smsto = rAction.mailto;
+							designer.canvas.selNode.preActions.removeAll();
+							designer.canvas.selNode.preActions.addItem(rAction);	
+						}
+					}
+					
+					if(postaction != null && postaction.actionType.selectedValue != null){
+						if(postaction.actionType.selectedValue == Node.ACTION_NONE){
+							designer.canvas.selNode.postActions.removeAll();
+						}else{
+							rAction = new RobotAction();
+							rAction.name=postaction.actionType.selectedValue.toString();;
+							rAction.subject = postaction.subject.text;
+							rAction.message = postaction.message.text;
+							rAction.mailtoType = "role";
+							rAction.mailto = postaction.participate.roles.selectedItem.name;
+							rAction.smstoType = rAction.mailtoType;
+							rAction.smsto = rAction.mailto;
+							designer.canvas.selNode.postActions.removeAll();
+							designer.canvas.selNode.postActions.addItem(rAction);	
+						}
+					}*/
+					
+					if(timing != null && timing.timingType.selectedValue != null){
+						if(timing.tc.isSet()){
+							designer.canvas.selNode.timerData = timing.tc.getTimerData();
+							designer.canvas.selNode.timeingType = timing.timingType.selectedValue.toString();
+						}
+					}
+					
+					
+					if(attachments != null){
+						for(var i:int=0; i<designer.canvas.selNode.attachments.length; ){
+							if((designer.canvas.selNode.attachments.getItemAt(i) as Attachment).attname.length == 0){
+								designer.canvas.selNode.attachments.removeItemAt(i);
+							}else{
+								if((designer.canvas.selNode.attachments.getItemAt(i) as Attachment).label.length == 0)
+									(designer.canvas.selNode.attachments.getItemAt(i) as Attachment).label = 
+									(designer.canvas.selNode.attachments.getItemAt(i) as Attachment).attname;
+								i++;
+							}
+						}
+					}
+					
+					if(form != null){
+						designer.canvas.selNode.form = form.formUrl.text;
+					}
+			}catch(e:Error){
+				trace(e.message);
+			}
+		}
+		
+		
+		public function tabChange(event:Event, en:String="hello"):void{
+			if(designer.canvas.selNode != null){
+					recordData();
+			}	
+			if(tab.selectedIndex == 0)
+				tab0Loaded = false;
+			else if(tab.selectedIndex == 1)
+				tab1Loaded = false;
+			else if(tab.selectedIndex == 2)
+				tab2Loaded = false;
+			else if(tab.selectedIndex == 3)
+				tab3Loaded = false;
+			else if(tab.selectedIndex == 4)
+				tab4Loaded = false;
+			else if(tab.selectedIndex == 5)
+				tab5Loaded = false;
+			else if(tab.selectedIndex == 6)
+				tab6Loaded = false;
+		}
+		
+		
+		
+		public function tab0Update(event:Event):void{
+			var i:int=-1;
+  			var rAction:RobotAction;
+			if(tab0Loaded || designer.canvas.selNode == null)
+				return;
+
+			var allTasks:ArrayCollection= new ArrayCollection();
+			if(designer.canvas.selNode.tasktoType == Node.TASKTO_TYPE_ROLE){
+				doer.tasktotype.selectedValue = Node.TASKTO_TYPE_ROLE;
+				doer.taskto.text = designer.canvas.selNode.taskto;
+				/*
+				doer.tasktoVS.selectedIndex = 1;
+				doer.setRoleList(designer.canvas.selNode.tasktoType,
+					designer.canvas.selNode.taskto);
+				doer.user.text = "";
+				doer.friendList.visible = false;
+				*/
+			}else if(designer.canvas.selNode.tasktoType == Node.TASKTO_TYPE_PERSON){
+				doer.tasktotype.selectedValue = Node.TASKTO_TYPE_PERSON;
+				doer.taskto.text = designer.canvas.selNode.taskto;
+				/*
+				doer.tasktoVS.selectedIndex = 0;
+				doer.showNameTagsFromIdList(designer.canvas.selNode.taskto);
+				doer.user.text = "";
+				doer.friendList.visible = false;
+				*/
+			}else{
+				doer.tasktotype.selectedValue = Node.TASKTO_TYPE_REFER;
+				doer.updateRefers(designer.canvas.selNode.taskto);
+				/*
+				doer.user.text = "";
+				doer.friendList.visible = false;
+				*/
+			}
+			doer.acquirable.selected = designer.canvas.selNode.acquirable;
+			doer.acqThreshold.text = String(designer.canvas.selNode.acqThreshold);
+			if(int(doer.acqThreshold.text)<1){
+				doer.acqThreshold.text = "1";
+			}
+			
+			doer.roleToChange.text = "";
+			doer.roleChangeType.selectedValue = "all";
+			doer.allowRoleChange.selected = designer.canvas.selNode.allowRoleChange;
+			if(doer.allowRoleChange.selected){
+				if(designer.canvas.selNode.roleToChange == "all"){
+					doer.roleChangeType.selectedValue = "all";
+				}else{
+					doer.roleChangeType.selectedValue = "string";
+					doer.roleToChange.text = designer.canvas.selNode.roleToChange;
+				}
+			}
+
+			for(var i:int=0; i<designer.canvas.dataModel.nodes.length; i++){
+				var aNode:Node = designer.canvas.dataModel.nodes.getItemAt(i) as Node;
+				if(aNode.type == Node.NODE_TASK){
+						if(aNode.nodeid == designer.canvas.selNode.nodeid)
+							continue;
+					if(designer.canvas.selNode.exceptme.contains(aNode.nodeid)){
+						allTasks.addItem(new NodeInfo(aNode.dlabel.text, aNode.nodeid, true));
+					}
+					else{
+						allTasks.addItem(new NodeInfo(aNode.dlabel.text, aNode.nodeid, false));
+					}
+				}
+			}
+			doer.nodepicker.update(allTasks.source);
+			tab0Loaded = true;
+		}
+		
+		public function tab1Update(event:Event):void{
+			if(tab1Loaded || designer.canvas.selNode == null)
+				return;
+			decision.decisionType.selectedValue = designer.canvas.selNode.mpsm;
+			if(designer.canvas.selNode.mpcdc == null || designer.canvas.selNode.mpcdc == "null")
+				decision.mpcdc.text = "";
+			else
+				decision.mpcdc.text = designer.canvas.selNode.mpcdc;
+			if(designer.canvas.selNode.oec == null || designer.canvas.selNode.oec == "null")
+				decision.oec.text = "";
+			else
+				decision.oec.text = designer.canvas.selNode.oec;
+			tab1Loaded = true;	
+		}
+		
+		public function tab2Update(event:Event):void{
+			var i:int=-1;
+  			var rAction:RobotAction;
+			 if(tab2Loaded || designer.canvas.selNode == null)
+			 	return;
+ /*
+			if(designer.canvas.selNode.preActions.length == 0){
+				preaction.actionType.selectedValue = Node.ACTION_NONE;
+				preaction.participate.reset();
+				preaction.subject.text = "";
+				preaction.message.text = "";
+			}else{
+				rAction = designer.canvas.selNode.preActions.getItemAt(0) as RobotAction;
+				preaction.actionType.selectedValue = rAction.name;
+				preaction.subject.text = rAction.subject;
+				preaction.message.text = rAction.message;
+				preaction.participate.updateParticipate(rAction.mailtoType, rAction.mailto);
+			}*/
+			tab2Loaded = true;
+		}
+		public function tab3Update(event:Event):void{
+			var i:int=-1;
+  			var rAction:RobotAction;
+			if(tab3Loaded || designer.canvas.selNode == null)
+				return;
+			/*if(designer.canvas.selNode.postActions.length == 0){
+				postaction.actionType.selectedValue = Node.ACTION_NONE;
+				postaction.participate.reset();
+				postaction.subject.text = "";
+				postaction.message.text = "";
+			}else{
+				rAction = designer.canvas.selNode.postActions.getItemAt(0) as RobotAction;
+				postaction.actionType.selectedValue = rAction.name;
+				postaction.subject.text = rAction.subject;
+				postaction.message.text = rAction.message;
+				postaction.participate.updateParticipate(rAction.mailtoType, rAction.mailto);
+			}*/
+			tab3Loaded = true;
+		}
+		
+		public function tab4Update(event:Event):void{
+			if(tab4Loaded || designer.canvas.selNode == null)
+				return;
+			timing.tc.yy.value = designer.canvas.selNode.timerData.yy;
+			timing.tc.mm.value = designer.canvas.selNode.timerData.mm;
+			timing.tc.dd.value = designer.canvas.selNode.timerData.dd;
+			timing.tc.hh.value = designer.canvas.selNode.timerData.hh;
+			timing.tc.mi.value = designer.canvas.selNode.timerData.mi;
+			timing.timingType.selectedValue = designer.canvas.selNode.timeingType;
+			tab4Loaded = true;	
+		}
+		
+		public function tab5Update(event:Event):void{
+			tab5Loaded = true;	
+		}
+		public function tab6Update(event:Event):void{
+			if(tab6Loaded || designer.canvas.selNode == null)
+				return;
+			form.formUrl.text = designer.canvas.selNode.form;
+			tab6Loaded = true;
+		}
+		
+		public function onClickToggleSize():void{
+			if(toggleStatus==false){
+				backupHeightTab = tab.height;
+				backupHeightBox = inputBox.height;
+				backupHeightText = nodeTitle.height;
+				
+				tab.height = 0;
+				inputBox.height = backupHeightTab;
+				nodeTitle.height = inputBox.height;
+				
+				tab.visible = false;
+				sizeToggleButton.label = "Min";
+				toggleStatus = true;
+			}else{
+				inputBox.height = backupHeightBox;
+				nodeTitle.height = backupHeightText;
+				tab.height = backupHeightTab;
+				
+				tab.visible = true;
+				sizeToggleButton.label = "Max";
+				toggleStatus = false;
+			}
+		}
+		
+		public function setHelp(url:String){
+		var htmlText:String = "<a href='" + url + "' target='_blank'><font color='blue'>Help</font></a>";
+			helpLink.htmlText = htmlText;
+			
+		}
+	]]>
+</mx:Script>
+	<mx:HBox>
+		<mx:FormItem label="Work name" fontWeight="bold" fontSize="16">
+			<mx:TextInput id="nodename" text="{designer.canvas.selNode.dlabel.text}" editable="{designer.canvas.dataModel.editable}" fontWeight="normal" fontSize="16" maxChars="40"/>
+		</mx:FormItem>
+		<mx:CheckBox id="allowDelegate" selected="{designer.canvas.selNode.allowDelegate}" change="onChangeAllowDelegate(event);" label="Delegatable">
+			<mx:Script>
+		                            <![CDATA[
+		                                private function onChangeAllowDelegate(evt:Event):void {
+		                                    designer.canvas.selNode.allowDelegate = allowDelegate.selected;
+		                                }
+		                                
+		                            ]]>
+		            </mx:Script>
+		</mx:CheckBox>
+		<mx:CheckBox id="allowAdhoc" selected="{designer.canvas.selNode.allowAdhoc}" change="onChangeAllowAdhoc(event);" label="Allow Adhoc">
+			<mx:Script>
+		                            <![CDATA[
+		                                private function onChangeAllowAdhoc(evt:Event):void {
+		                                    designer.canvas.selNode.allowAdhoc = allowAdhoc.selected;
+		                                }
+		                                
+		                            ]]>
+		            </mx:Script>
+		</mx:CheckBox>
+		<mx:Text id="helpLink" htmlText="Help" color="#503FF2" fontStyle="italic" textDecoration="underline"></mx:Text>
+	</mx:HBox>
+	<mx:HBox id="inputBox" width="100%">
+	<mx:FormItem label="Work Instruction" width="100%" fontWeight="bold">
+		<mx:TextArea width="100%" height="100%" id="nodeTitle" text="{designer.canvas.selNode.title}" editable="{designer.canvas.dataModel.editable}" fontWeight="normal"/>
+	</mx:FormItem>
+	<mx:Button id="sizeToggleButton" label="Max" click="onClickToggleSize()"/>
+	</mx:HBox>
+	<mx:ViewStack id="toolbarViewStack"  width="100%"  creationPolicy="all">
+		<mx:TabNavigator id="tab" width="100%" change="tabChange(event)"  creationPolicy="all" updateComplete="tabChange(event)">
+				<ns1:NodeDoer id='doer' label="Doers"  borderStyle="solid" width="100%" height="300" updateComplete="tab0Update(event)">
+				</ns1:NodeDoer>
+				<ns1:Decision id='decision' label="Done Decision"  borderStyle="solid" width="100%" height="100%" updateComplete="tab1Update(event)">
+				</ns1:Decision>
+				<!-- ns1:NodeActions id="preaction"  label="Pre-actions"  borderStyle="solid" width="100%" height="100%"  updateComplete="tab2Update(event)">
+				</ns1:NodeActions>
+				<ns1:NodeActions id="postaction"  label="Post-actions"  borderStyle="solid" width="100%" height="100%" updateComplete="tab3Update(event)">
+				</ns1:NodeActions -->
+				<ns1:NodeTiming id="timing"  label="Timing"  borderStyle="solid" width="100%" height="100%"  updateComplete="tab4Update(event)">
+				</ns1:NodeTiming>
+				<ns1:NodeAttachments id="attachments"  label="Attachments"  borderStyle="solid" width="100%" height="100%"  updateComplete="tab5Update(event)">
+				</ns1:NodeAttachments>
+				<ns1:NodeForm id="form"  label="Form"  borderStyle="solid" width="100%" height="100%"  updateComplete="tab6Update(event)">
+				</ns1:NodeForm>
+		</mx:TabNavigator>
+	</mx:ViewStack>
+
+		
+	<mx:HBox width="100%">
+		<mx:Button label="Ok" id="okBtn" click="propertyOk(event)"/>
+		<mx:Button label="Cancel" id="cancelBtn" click="propertyCancel(event)"  visible="{designer.canvas.dataModel.editable}"/>
+	</mx:HBox>
+</mx:Form>

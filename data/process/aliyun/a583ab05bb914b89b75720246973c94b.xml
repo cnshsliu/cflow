@@ -1,0 +1,50 @@
+<process id="a583ab05bb914b89b75720246973c94b" wftid="a583ab05bb914b89b75720246973c94b" origin="3a347ab442164ccf88663ad4070acebf" roundid="7edaa7dff68b4f428d93335d6218b026" startat="2012-11-30T05:48:43.799+08:00" status="running" startby="peixin.baipx" teamid="6993b683e42b47c3a78ea808da80f184" wftname="v1" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="5CC4CFA1-6533-45D5-94AD-59F4A2A296DC" sessid="040eab6b934848698f3392c24743e121" roundid="7edaa7dff68b4f428d93335d6218b026" createdAt="2012-11-30T05:48:43.929+08:00" completedAt="2012-11-30T05:48:43.929+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="7edaa7dff68b4f428d93335d6218b026" sessid="33f32c5bc3b147e7aeba9d48bf4f54f1" name="Voucher Application" title="Please input voucher details" type="task" nodeid="F3518383-8E11-E6D2-A536-59F4CA5D114B" createdAt="2012-11-30T05:48:43.930+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="VoucharApply1" decision="" completedAt="2012-11-30T05:48:44.171+08:00" completedBy="peixin.baipx" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_finished"/>
+    <attachment type="text" label="项目名称" attname="project" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="用途" attname="purpose" value="" usrid="SYSTEM"/>
+    <attachment type="int" label="数量" attname="number" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="到期时间" attname="due" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="活动目标" attname="eventpurpose" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="活动规则" attname="eventrule" value="" usrid="SYSTEM"/>
+    <attachment type="url" label="附件地址" attname="atturl" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="备注" attname="memo" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="活动时间" attname="eventdate" value="" usrid="SYSTEM"/>
+    <attachment type="int" label="金额" attname="figure" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="所属应用" attname="service" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="peixin.baipx" timestamp="2012-11-30T05:48:44.030+08:00" option="">
+      <attachment usrid="peixin.baipx" attname="figure" value="100" type="int" label="金额"/>
+      <attachment usrid="peixin.baipx" attname="memo" value="thanks" type="text" label="备注"/>
+      <attachment usrid="peixin.baipx" attname="service" value="VM" type="text" label="所属应用"/>
+      <attachment usrid="peixin.baipx" attname="due" value="2012-12-31" type="text" label="到期时间"/>
+      <attachment usrid="peixin.baipx" attname="eventpurpose" value="sell 1000" type="text" label="活动目标"/>
+      <attachment usrid="peixin.baipx" attname="number" value="100" type="int" label="数量"/>
+      <attachment usrid="peixin.baipx" attname="purpose" value="Promotion" type="text" label="用途"/>
+      <attachment usrid="peixin.baipx" attname="eventrule" value="rule" type="text" label="活动规则"/>
+      <attachment usrid="peixin.baipx" attname="eventdate" value="2012-11-15" type="text" label="活动时间"/>
+      <attachment usrid="peixin.baipx" attname="projectName" value="myProject" type="string" label="projectName"/>
+      <attachment usrid="peixin.baipx" attname="atturl" value="http://www" type="url" label="附件地址"/>
+    </log>
+  </work>
+  <work roundid="7edaa7dff68b4f428d93335d6218b026" sessid="7b88b6b1fb5c4a1f801c42b46ff29ddf" name="Voucher waiting for your approval" title="Please decide whether to approve or not" type="task" nodeid="A1878F04-2D3D-3D88-E3DA-59F5FBB94E2F" createdAt="2012-11-30T05:48:44.210+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="VoucharApply1" xmlns="">
+    <taskto type="person" whom="allen" status="task_running"/>
+    <attachment type="text" label="Your Comment" attname="1stapproveComment" value="" usrid="SYSTEM"/>
+    <options>
+      <option>Reject</option>
+      <option>Approve</option>
+    </options>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns="">
+    <role name="1stApprover" value="allen"/>
+    <role name="finalApprover" value="cjp1957"/>
+    <role name="opLead" value="huali.shihl"/>
+    <role name="opDirector" value="nick.yixy"/>
+  </team>
+</process>

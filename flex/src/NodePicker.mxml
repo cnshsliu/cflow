@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel  xmlns:ns1="*" xmlns:ns2="com.lkh.*"  xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="300" title="Nodes"
+            status="{arrColl.length} total"
+             creationComplete="init()"
+            styleName="opaquePanel">
+	<mx:Script>
+        <![CDATA[
+            import mx.events.CollectionEvent;
+            import mx.utils.ObjectUtil;
+            import com.lkh.NodeInfo;
+            
+            [Bindable]
+			public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+			[Bindable]
+			public var countSelected = 0;
+ 
+            private function init():void {
+                arrColl.dispatchEvent(new CollectionEvent(CollectionEvent.COLLECTION_CHANGE));
+            }
+            public function update(arr1:Array):void{
+            	arr = arr1;
+            }
+ 
+            private function arrColl_collectionChange(evt:CollectionEvent):void {
+                try {
+                    var tArr:Array = arrColl.source.filter(selectedOnly);
+                    lbl.text = tArr.length.toString() + " item(s) selected";
+                } catch (err:Error) {
+                    // ignore.
+                }
+            }
+ 
+            private function selectedOnly(item:NodeInfo, idx:uint, arr:Array):Boolean {
+                return item.isSelected;
+            }
+            
+            public function getSelectedArray():Array{
+            	var tArr:Array = arrColl.source.filter(selectedOnly);
+            	return tArr;
+            }
+        ]]>
+    </mx:Script>
+	<mx:Array id="arr">
+        
+    </mx:Array>
+ 
+    <mx:ArrayCollection id="arrColl"
+            source="{arr}"
+            collectionChange="arrColl_collectionChange(event);" />
+    <mx:VBox width="100%" >
+	<mx:List id="list"
+                dataProvider="{arrColl}"
+                alternatingItemColors="[#EEEEEE, white]"
+                width="100%"
+                rowCount="8">
+            <mx:itemRenderer>
+                <mx:Component>
+                    <mx:CheckBox selectedField="isSelected"
+                            change="onChange(event);">
+                        <mx:Script>
+                            <![CDATA[
+                                private function onChange(evt:Event):void {
+                                    data.isSelected = !data.isSelected;
+                                }
+                            ]]>
+                        </mx:Script>
+                    </mx:CheckBox>
+                </mx:Component>
+            </mx:itemRenderer>
+        </mx:List>
+        <mx:Label id="lbl" />
+    </mx:VBox>
+</mx:Panel>

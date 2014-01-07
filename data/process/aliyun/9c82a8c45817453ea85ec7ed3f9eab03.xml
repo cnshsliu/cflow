@@ -1,0 +1,31 @@
+<process id="9c82a8c45817453ea85ec7ed3f9eab03" wftid="9c82a8c45817453ea85ec7ed3f9eab03" origin="8cbc25a397fa442d849a0d2d4a2f37fd" roundid="298b8c236a56464f9958a78c377d3a67" startat="2012-11-27T11:47:18.784+08:00" status="canceled" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="55555555" endat="2012-11-27T14:03:26.013+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="2F6D94A0-3B3A-6AF9-63D1-17BFA22CDD18" sessid="1b737285315a410f854e477b3c663d05" roundid="298b8c236a56464f9958a78c377d3a67" createdAt="2012-11-27T11:47:18.878+08:00" completedAt="2012-11-27T11:47:18.878+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="298b8c236a56464f9958a78c377d3a67" sessid="8076596c08084c29a8ecb3701c8dc3dc" name="选择购买月份" title="请选择购买月份" type="task" nodeid="A5ECFB84-6135-58B4-C9C9-17BFADE759CE" createdAt="2012-11-27T11:47:18.879+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="demo_sj_month" decision="" completedAt="2012-11-27T11:47:25.933+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="int" label="月份" attname="month" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-27T11:47:25.859+08:00" option="">
+      <attachment usrid="aliyun" attname="month" value="2" type="int" label="月份"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="6D557A56-CCCB-13DB-8E4E-17C102707D85" sessid="fb43082c57be4d739de3be27b9839ab7" roundid="298b8c236a56464f9958a78c377d3a67" createdAt="2012-11-27T11:47:39.415+08:00" completedAt="2012-11-27T11:47:39.415+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T11:47:39.416+08:00" option="DEFAULT">
+      <attachment usrid="aliyun" attname="usersG2" value="���L,���M,���N" type="string" label="usersG2"/>
+      <attachment usrid="aliyun" attname="usersG1" value="���A,���B,���C" type="string" label="usersG1"/>
+    </log>
+  </work>
+  <work roundid="298b8c236a56464f9958a78c377d3a67" sessid="d354525677a0443c8a205c4e38ebc342" name="选择营销方式" title="买家已筛选，请选择营销方式" type="task" nodeid="602AFDD7-1E3D-55BB-1E30-17C9C38BCEB2" createdAt="2012-11-27T11:47:39.419+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="demo_sj_method" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_running"/>
+    <attachment type="text" label="组2买家营销方式" attname="methodG2" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="组1买家营销方式" attname="methodG1" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

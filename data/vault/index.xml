@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Workflow Template" owner="cnshsliu@gmail.com" acl="private" lastModified="2011-03-19T12:37:22" created="2011-03-19T12:37:22" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="BD7204EE-7CB5-3EC6-8246-CC63F5EF7899" type="start" title="Start" name="Start" x="27" y="213">
+    <next targetID="BC56E5FA-6F17-425E-DF86-CC63FE8E9EE4"/>
+  </node>
+  <node id="742F3A6B-286F-72BC-4AEE-CC63F5F2D55F" type="end" title="End" name="End" x="559" y="210">
+    <next targetID="742F3A6B-286F-72BC-4AEE-CC63F5F2D55F"/>
+  </node>
+  <node id="BC56E5FA-6F17-425E-DF86-CC63FE8E9EE4" type="task" title="Task 1 Instruction" name="Task 1" x="174" y="214" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="25A115D6-BD09-4922-5E58-CC64A8404F22"/>
+    <next targetID="09FA1A0D-7EB4-F6F7-BC82-CC65AEAFF1DB"/>
+  </node>
+  <node id="25A115D6-BD09-4922-5E58-CC64A8404F22" type="task" title="Task 2 Instruction" name="Task 2" x="252" y="138" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="DECA5383-F786-9519-AEAE-CC6672419510"/>
+  </node>
+  <node id="09FA1A0D-7EB4-F6F7-BC82-CC65AEAFF1DB" type="task" title="Task 3 Instruction" name="Task 3" x="248" y="285" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="DECA5383-F786-9519-AEAE-CC6672419510"/>
+  </node>
+  <node id="6FB55F92-BFFA-C400-6CFE-CC66085C96CB" type="task" title="Task 4 Instruction" name="Task 4" x="436" y="212" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="742F3A6B-286F-72BC-4AEE-CC63F5F2D55F"/>
+  </node>
+  <node id="DECA5383-F786-9519-AEAE-CC6672419510" type="and" title="AND" name="AND" x="324" y="215">
+    <next targetID="6FB55F92-BFFA-C400-6CFE-CC66085C96CB"/>
+  </node>
+</cf:workflow>

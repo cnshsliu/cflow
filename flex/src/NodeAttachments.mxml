@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="completeHandler(event)">
+	<mx:Script>
+		<![CDATA[
+			import com.lkh.Attachment;
+		import mx.controls.Alert;
+		import mx.events.DynamicEvent;
+			[Bindable]
+			public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+			
+			
+				protected function deleteItemButtonWasClickedHandler(event : DynamicEvent) : void {
+					var i:int = designer.canvas.selNode.attachments.getItemIndex(attGrid.selectedItem);
+					designer.canvas.selNode.attachments.removeItemAt(i);
+				} 
+				
+				protected function newItemButtonWasClickedHandler(event : DynamicEvent) : void {
+					designer.canvas.selNode.attachments.addItemAt(new Attachment("text", "", "", ""), attGrid.selectedIndex);
+				} 
+				
+				public function completeHandler(event:Event):void{
+					addEventListener("deleteItemButtonWasClicked", deleteItemButtonWasClickedHandler);
+					addEventListener("newItemButtonWasClicked", newItemButtonWasClickedHandler);  
+				}
+				
+				public function addNewRow(event:MouseEvent):void{
+					var att:Attachment = new Attachment("text", "", "", "");
+					var insertAt:int = attGrid.selectedIndex;
+					if(insertAt<0) insertAt = 0;
+					designer.canvas.selNode.attachments.addItemAt(att, insertAt);
+				}
+    			
+    		]]>
+    	</mx:Script>
+		<mx:Component id="deleteItemButton">
+		  <mx:HBox horizontalAlign="center">
+		    <mx:Script><![CDATA[
+			import mx.events.DynamicEvent;
+		    protected function redispatch(sourceEvent : Event) : void {
+		      var newEvent : DynamicEvent = new DynamicEvent("deleteItemButtonWasClicked", true);
+		      newEvent["sourceEvent"] = sourceEvent;
+		      dispatchEvent(newEvent);
+		    }
+		
+		    ]]></mx:Script>
+		    <mx:Button label="X" click="redispatch(event)" width="20" paddingLeft="0" paddingRight="0"/>
+		  </mx:HBox>
+		</mx:Component> 
+		<mx:Component id="newItemButton">
+		  <mx:HBox horizontalAlign="center">
+		    <mx:Script><![CDATA[
+			import mx.events.DynamicEvent;
+		    protected function redispatch(sourceEvent : Event) : void {
+		      var newEvent : DynamicEvent = new DynamicEvent("newItemButtonWasClicked", true);
+		      newEvent["sourceEvent"] = sourceEvent;
+		      dispatchEvent(newEvent);
+		    }
+		
+		    ]]></mx:Script>
+		    <mx:Button label="N" click="redispatch(event)" width="20" paddingLeft="0" paddingRight="0"/>
+		  </mx:HBox>
+		</mx:Component> 
+	<mx:Component id="inlineEditor">
+        <mx:ComboBox>
+            <mx:dataProvider>
+                <mx:String>text</mx:String>
+                <mx:String>url</mx:String>
+                <mx:String>int</mx:String>
+                <mx:String>float</mx:String>
+            </mx:dataProvider>
+        </mx:ComboBox>
+    </mx:Component>
+    <mx:HBox width="100%" height="100%">
+	<mx:DataGrid width="100%" height="100%" id="attGrid" editable="true" showHeaders="true" dataProvider="{designer.canvas.selNode.attachments}" doubleClickEnabled="true" doubleClick="addNewRow(event)">
+		<mx:columns>
+			<mx:DataGridColumn headerText="" editable = "false" itemRenderer="{newItemButton}" width="20"/>
+			<mx:DataGridColumn headerText="" editable = "false" itemRenderer="{deleteItemButton}" width="20"/>
+			<mx:DataGridColumn headerText="Type" dataField="type" editable="true" itemEditor="{inlineEditor}" width="50"/>
+			<mx:DataGridColumn headerText="Name" dataField="attname" editable="true"/>
+			<mx:DataGridColumn headerText="Title" dataField="label" editable="true" />
+			<mx:DataGridColumn headerText="Value" dataField="value" editable="true"  />
+		</mx:columns>
+	</mx:DataGrid>
+	    	
+    </mx:HBox>
+
+</mx:Canvas>

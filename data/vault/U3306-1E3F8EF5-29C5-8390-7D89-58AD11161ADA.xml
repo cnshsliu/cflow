@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Email Test" owner="U3306" acl="private" lastModified="2010-10-03T03:56:46" created="2010-10-03T03:56:46" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="Observer"/>
+  <node id="7A716DA7-BA54-9C46-C8E4-58AD11021450" type="start" title="Start" name="Start" x="27" y="204">
+    <next targetID="6D023037-B817-F800-C9E7-58AD1E6D3D2C"/>
+  </node>
+  <node id="24615B7E-316D-0851-715E-58AD1116FCAA" type="end" title="End" name="End" x="748" y="204">
+    <next targetID="24615B7E-316D-0851-715E-58AD1116FCAA"/>
+  </node>
+  <node id="6D023037-B817-F800-C9E7-58AD1E6D3D2C" type="task" title="Task" name="Task" x="138" y="194">
+    <taskto type="role" whom="Observer"/>
+    <preactions>
+      <sendmail subject="">
+        <mailto type="role" whom="Approver"/>
+        <message/>
+      </sendmail>
+    </preactions>
+    <next targetID="39165E9D-CAC3-C8B3-20DD-58AD2B38F1F2"/>
+    <postactions>
+      <sendmail subject="">
+        <mailto type="role" whom="Submitter"/>
+        <message/>
+      </sendmail>
+    </postactions>
+  </node>
+  <node id="39165E9D-CAC3-C8B3-20DD-58AD2B38F1F2" type="notify" title="Notify" name="Notify" x="274" y="192">
+    <sendmail subject="riaSubject">
+      <mailto type="role" whom="starter"/>
+      <message>riaMessage</message>
+    </sendmail>
+    <next targetID="24615B7E-316D-0851-715E-58AD1116FCAA"/>
+  </node>
+</cf:workflow>

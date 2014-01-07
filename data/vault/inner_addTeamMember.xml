@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="addTeamMember" owner="cnshsliu@gmail.com" acl="private" lastModified="2011-03-01T17:56:29" created="2011-03-01T17:56:29" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="E41809A5-AD34-61D7-EA48-70CDDD5868F1" type="start" title="Start" name="Start" x="27" y="213">
+    <next targetID="F33162B0-1352-F090-1ED4-70CE1007C6D1"/>
+  </node>
+  <node id="44E774D1-2CBA-E460-3B52-70CDDD5C2A2D" type="end" title="End" name="End" x="708" y="213">
+    <next targetID="44E774D1-2CBA-E460-3B52-70CDDD5C2A2D"/>
+  </node>
+  <node id="F33162B0-1352-F090-1ED4-70CE1007C6D1" type="task" title="$teamOwner$ added you to his/her team: $teamName$" name="Team Member added" x="276" y="193" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="person" whom="CTX.receiver"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="44E774D1-2CBA-E460-3B52-70CDDD5C2A2D"/>
+  </node>
+</cf:workflow>

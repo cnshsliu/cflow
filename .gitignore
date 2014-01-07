@@ -1,0 +1,7 @@
+flex/bin-debug
+flex/bin-release
+build
+build/classes
+cflow.war
+remote_tomcat_app
+*.swp

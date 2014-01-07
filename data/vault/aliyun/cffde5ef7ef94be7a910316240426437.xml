@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="aaaa" owner="aliyun" acl="private" lastModified="2012-12-06T02:22:32" created="2012-12-06T02:22:32" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="9BAF753D-9875-F593-1264-6C29F1B573AB" type="start" title="Start" name="Start" x="28" y="238">
+    <next targetID="47FF4CE7-8924-E6E7-348C-6C2A10A6BF99" joints=""/>
+  </node>
+  <node id="6B8224B6-AC60-B2C2-C506-6C29F1BA50E5" type="end" title="End" name="End" x="708" y="238">
+    <next targetID="6B8224B6-AC60-B2C2-C506-6C29F1BA50E5"/>
+  </node>
+  <node id="47FF4CE7-8924-E6E7-348C-6C2A10A6BF99" type="task" title="Task" name="Task" x="308" y="150" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="6B8224B6-AC60-B2C2-C506-6C29F1BA50E5" joints=""/>
+    <next targetID="22CE3B1D-5930-E80F-3EC7-6C4502C578AB" joints="380:70"/>
+  </node>
+  <node id="22CE3B1D-5930-E80F-3EC7-6C4502C578AB" type="task" title="Task" name="Task" x="493" y="108" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="6B8224B6-AC60-B2C2-C506-6C29F1BA50E5" joints=""/>
+  </node>
+</cf:workflow>

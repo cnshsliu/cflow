@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:ns1="com.lkh.*">
+<mx:Script>
+		<![CDATA[
+			import com.lkh.Attachment;
+		import mx.controls.Alert;
+		import mx.events.DynamicEvent;
+			[Bindable]
+			public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+  		]]>
+</mx:Script>
+<mx:VBox width="407"  x="134" y="19" height="204">
+	<mx:Label x="189" y="56" text="Cusotmized Form for this task (keep blank to use the default)"/>
+	<mx:HBox width="100%">
+		<mx:TextInput width="398" id="formUrl"/>
+	</mx:HBox>
+	<mx:RadioButtonGroup id="timingType"/>
+	
+</mx:VBox>
+
+</mx:Canvas>

@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<!-- templating/myComponents/MyTemplateComponent.mxml -->
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"  horizontalAlign="center"
+    initialize="init();"  horizontalScrollPolicy="off" verticalScrollPolicy="off">
+    <mx:Metadata>
+        [Event(name="NodeClicked", type="flash.events.Event")]
+    </mx:Metadata>
+	<mx:Style>
+		.taskSub {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/sub.png");
+			over-skin: Embed(source="assets/sub_over.png");
+			down-skin: Embed(source="assets/sub.png");
+			disabled-skin: Embed(source="assets/sub.png");
+		}
+		.taskNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/task.png");
+			over-skin: Embed(source="assets/task_over.png");
+			down-skin: Embed(source="assets/task.png");
+			disabled-skin: Embed(source="assets/task.png");
+		}
+		.notifyNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/notify.png");
+			over-skin: Embed(source="assets/notify_over.png");
+			down-skin: Embed(source="assets/notify.png");
+			disabled-skin: Embed(source="assets/notify.png");
+		}
+		.startNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/start.png");
+			over-skin: Embed(source="assets/start_over.png");
+			down-skin: Embed(source="assets/start.png");
+			disabled-skin: Embed(source="assets/start.png");
+		}
+		.endNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/end.png");
+			over-skin: Embed(source="assets/end_over.png");
+			down-skin: Embed(source="assets/end.png");
+			disabled-skin: Embed(source="assets/end.png");
+		}
+		.scriptNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/script.png");
+			over-skin: Embed(source="assets/script_over.png");
+			down-skin: Embed(source="assets/script.png");
+			disabled-skin: Embed(source="assets/script.png");
+		}
+		.timerNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/timer.png");
+			over-skin: Embed(source="assets/timer_over.png");
+			down-skin: Embed(source="assets/timer.png");
+			disabled-skin: Embed(source="assets/timer.png");
+		}
+		.andNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/and.png");
+			over-skin: Embed(source="assets/and_over.png");
+			down-skin: Embed(source="assets/and.png");
+			disabled-skin: Embed(source="assets/and.png");
+		}
+		.orNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/or.png");
+			over-skin: Embed(source="assets/or_over.png");
+			down-skin: Embed(source="assets/or.png");
+			disabled-skin: Embed(source="assets/or.png");
+		}
+		.roundNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/round.png");
+			over-skin: Embed(source="assets/round_over.png");
+			down-skin: Embed(source="assets/round.png");
+			disabled-skin: Embed(source="assets/round.png");
+		}
+		.groundNode {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/ground.png");
+			over-skin: Embed(source="assets/ground_over.png");
+			down-skin: Embed(source="assets/ground.png");
+			disabled-skin: Embed(source="assets/ground.png");
+		}
+		.node{
+			background-color: #FF0000;
+		}
+	</mx:Style>
+
+    <mx:Script>
+        <![CDATA[
+        	import com.lkh.TimerData;
+        	import mx.utils.UIDUtil;
+        	import com.lkh.Attachment;
+        	import mx.collections.ArrayCollection;
+        	import com.lkh.RobotAction;
+        	import com.lkh.extInputBorderlessSkin;
+        
+            import mx.containers.HBox;
+            import mx.controls.Button;
+            import mx.controls.Label;
+            import mx.core.BitmapAsset;
+            import mx.core.Application;
+
+			public static var NODE_START:String="start";
+			public static var NODE_END:String="end";
+			public static var NODE_TASK:String="task";;
+			public static var NODE_NOTIFY:String="notify";;
+			public static var NODE_TIMER:String="timer";;
+			public static var NODE_SCRIPT:String = "script";
+			public static var NODE_AND:String = "and";
+			public static var NODE_OR:String = "or";
+			public static var NODE_ROUND:String = "round";
+			public static var NODE_GROUND:String = "ground";
+			public static var NODE_SUB:String="sub";
+		
+			[Bindable]
+			public static var TASKTO_TYPE_ROLE:String = "role";
+			[Bindable]
+			public static var TASKTO_TYPE_PERSON:String = "person";
+			[Bindable]
+			public static var TASKTO_TYPE_GROUP:String = "group";
+			[Bindable]
+			public static var TASKTO_STARTER:String = "starter";
+			[Bindable]
+			public static var TASKTO_TYPE_REFER:String = "RefertoNode";
+			[Bindable]
+			public static var TIMING_TYPE_PROCESS:String = "process";
+			[Bindable]
+			public static var TIMING_TYPE_TASK:String = "task";
+			[Bindable]
+			public static var ACTION_NONE:String = "none";
+			[Bindable]
+			public static var ACTION_SENDMAIL:String = "sendmail";
+			[Bindable]
+			public static var ACTION_SENDSMS:String = "sendsms";
+               
+            // Define a property for the top component.
+            public var nodeid:String = null;
+            public var confirmed:Boolean = true;
+
+	    public var task_status:String = null;
+	    public var task_decision:String = null;
+
+            public var type:String = NODE_TASK;
+            public var tasktoType:String = TASKTO_TYPE_ROLE;
+            public var taskto:String = TASKTO_STARTER;
+            public var button:Button=new Button();
+            public var preActions:ArrayCollection = new ArrayCollection();
+            public var postActions:ArrayCollection = new ArrayCollection();
+            public var exceptme:ArrayCollection = new ArrayCollection();
+            public var notifyAction:RobotAction = new RobotAction();
+            public var timeingType:String = TIMING_TYPE_PROCESS;
+            public var allowedTime:int = -1;
+            public var dirty:Boolean = false;
+            [Bindable]
+	    	public var subWftUID:String = "";
+            [Bindable]
+	    	public var subWftWG:String = "";
+	    	[Bindable]
+            public var attachments:ArrayCollection = new ArrayCollection();
+            private var tmpAttachments:ArrayCollection = new ArrayCollection();
+            [Bindable]
+            public var script:String="";
+            [Bindable]
+            public var mpcdc:String="";
+            [Bindable]
+            public var oec:String="";
+            [Bindable]
+            public var mpsm:String="";
+            [Bindable]
+            public var allowRoleChange:Boolean=false;
+            [Bindable]
+            public var allowDelegate:Boolean=false;
+            [Bindable]
+            public var allowAdhoc:Boolean=false;
+            [Bindable]
+            public var roleToChange:String="all";
+            [Bindable]
+            public var acquirable:Boolean = false;
+            [Bindable]
+            public var acqThreshold:int = 1;
+            public var timerData:TimerData = new TimerData;
+            private var tmpTimerData:TimerData = new TimerData;
+            private var tmpScript:String="";
+	    	private var tmpSubWftUID:String="";
+	    	
+	    	
+	    	[Bindable]
+            public var repeatThresholdType:String="NOREPEAT";
+	    	[Bindable]
+            public var repeatThreshold:String="";
+            [Bindable]
+			public var repeatCron:String = "";            
+            
+            
+            [Bindable]
+            public var title:String = "";
+            [Bindable]
+            public var form:String = "";
+            [Bindable]
+            public var dlabel:Label=new Label();
+            [Bindable]
+            public var plabel:Label = new Label();
+		    // Handle events that are dispatched by the children.
+			
+		    public function backupSubWftUID():void{
+				tmpSubWftUID = subWftUID;
+			}
+			public function restoreSubWftUID():void{
+				subWftUID = tmpSubWftUID;
+			}
+			public function backupTimer():void{
+				tmpTimerData = timerData;
+			}
+			public function restoreTimer():void{
+				timerData = tmpTimerData;
+			}
+			public function backupScript():void{
+				tmpScript = script;
+			}
+			public function restoreScript():void{
+				script = tmpScript;
+			}
+			public function backupAttachments():void{
+				tmpAttachments = new ArrayCollection(attachments.toArray());
+			}
+			public function restoreAttachments():void{
+				attachments = new ArrayCollection(tmpAttachments.toArray());
+			}
+			public function mouseOverNode(event:MouseEvent):void{
+				Application.application.canvas.mouseOverNode = this;
+			}
+			public function mouseOutNode(event:MouseEvent):void{
+				Application.application.canvas.mouseOverNode = null;
+			}
+			public function isTimeingSet():Boolean{
+				if(timerData.yy > 0 || timerData.mm > 0 || timerData.dd > 0 || timerData.hh > 0 || timerData.mi > 0){
+					return true;
+				}else{
+					return false;
+				}
+			}
+            private function init():void {
+            	if(nodeid == null)
+            		nodeid = mx.utils.UIDUtil.createUID();
+            	button.width=24;
+            	button.height=24;
+
+
+//            	button.addEventListener(MouseEvent.CLICK, nodeClickEvent);
+                addChild(button);
+                if(this.type == NODE_TASK || this.type == NODE_SCRIPT){
+		            dlabel.mouseEnabled = false;
+		            plabel.mouseEnabled = false;
+		        	addChild(dlabel);
+		        	addChild(plabel);
+                }
+                button.addEventListener(MouseEvent.MOUSE_OVER, mouseOverNode);
+                button.addEventListener(MouseEvent.MOUSE_OUT, mouseOutNode);
+                setStyle("verticalGap", 0);
+               resetSize();
+
+            }
+            
+            public function resetSize():void{
+            	 var lmDlabel:TextLineMetrics = measureText(dlabel.text);
+            	 var lmPlabel:TextLineMetrics = measureText(plabel.text);
+                measuredWidth = measuredMinWidth = 
+                Math.max(lmDlabel.width, lmPlabel.width, button.width);
+                measuredHeight = measuredMinHeight = button.height + lmDlabel.height + lmPlabel.height;
+                this.setActualSize(measuredWidth, measuredHeight);
+            }
+        ]]>
+    </mx:Script>
+</mx:VBox>
+

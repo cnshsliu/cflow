@@ -1,0 +1,26 @@
+<process id="a12f0ddf49c04fa1a5ffd9765a94bf75" wftid="a12f0ddf49c04fa1a5ffd9765a94bf75" roundid="8d28e98528294073aa42c7efeeb28f19" startat="2012-11-25T01:59:47.311+08:00" status="finished" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="1111" lastError="Routing option (onerror) not found, set to onerror" endat="2012-11-25T02:00:07.166+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="2F6D94A0-3B3A-6AF9-63D1-17BFA22CDD18" sessid="2e376e4496904760a3fd5dcef835ccb2" roundid="8d28e98528294073aa42c7efeeb28f19" createdAt="2012-11-25T01:59:48.330+08:00" completedAt="2012-11-25T01:59:48.330+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="8d28e98528294073aa42c7efeeb28f19" sessid="c382f065e21442f7bdb600fae4bb2116" name="选择购买月份" title="请选择购买月份" type="task" nodeid="A5ECFB84-6135-58B4-C9C9-17BFADE759CE" createdAt="2012-11-25T01:59:48.355+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="demo_sj_month" decision="" completedAt="2012-11-25T01:59:54.451+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="int" label="月份" attname="month" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-25T01:59:54.374+08:00" option="">
+      <attachment usrid="aliyun" attname="month" value="2" type="int" label="月份"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="6D557A56-CCCB-13DB-8E4E-17C102707D85" sessid="e95b91a949df4a00b5c5ee1505ebee8e" roundid="8d28e98528294073aa42c7efeeb28f19" createdAt="2012-11-25T02:00:07.163+08:00" completedAt="2012-11-25T02:00:07.163+08:00" status="finished" decision="onerror" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-25T02:00:07.163+08:00" option="onerror">
+      <attachment usrid="aliyun" attname="error" value="Parse script return value exception.JS:[check your Javascript code]" type="string" label="error"/>
+    </log>
+  </work>
+  <work title="End Point" type="end" nodeid="0014621F-90F7-FE2E-6663-17BFA230F0CC" sessid="199868fcd0724e588b75737dce5c3827" roundid="8d28e98528294073aa42c7efeeb28f19" createdAt="2012-11-25T02:00:07.217+08:00" completedAt="2012-11-25T02:00:07.217+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

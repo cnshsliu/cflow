@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style_help.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/code.css">
+<title>无标题文档</title>
+</head>
+
+<body><a href="../index.html">Home > <a href="help_and_tutorials.html">Help</a>
+<h1>MWF How-tos</h1>
+<h2>How to see what you have  in your templates library</h2>
+<p> Use demo site: Click &quot;Template Library&quot; in the menu</p>
+<p>Use API: <a href="mwf_api.html#get_all_templates">Get all Templates</a></p>
+
+<h2>How to start a workflow.</h2>
+<p> Use demo site: Click &quot;Start&quot; link after a template name</p>
+<p> Use API: <a href="mwf_api.html#start_a_workflow_process">Start a workflow process</a></p>
+<h2>How to check worklist</h2>
+<p>Use demo site: Click &quot;Work list&quot; in the menu</p>
+<p>Use API: <a href="mwf_api.html#get_worklist">Get worklist</a></p>
+
+<h2>Do a task</h2>
+<p>Use demo site: In the worklist, select a task, then click &quot;Done&quot; button</p>
+<p>Use API: <a href="mwf_api.html#do_a_task">Do a task</a></p>
+
+<h2>Monitor Processes</h2>
+<p>Use demo site's  process monitor: Click &quot;Workflow Processes&quot; in the menu, click &quot;View&quot; link</p>
+<p>Use API:<a href="mwf_api.html#get_task_information"> <br />
+Get task information</a><br /> 
+<a href="mwf_api.html#get_processes_by_status">Get processes by status</a> <br />
+<a href="mwf_api.html#get_process_variables">Get process variables</a> <a href="mwf_api.html#get_process_information"><br />
+Get process information</a></p>
+<p>&nbsp;</p>
+<h2>How to customize  task form</h2>
+  MWF API give you  all the taks context information.<br />
+  With JavaScript<br />
+<textarea rows=10 cols=80>function getTask(){
+		  var req = new Request.JSON({
+		  url: '/cflow/rest/task?tid=TID&&acsk=ACCESSKEY',
+			method: 'get',
+			onSuccess: function(json){ showTask(json); },
+			onFailure: function(){ $('result').set('text', 'The request failed.'); }
+		  });
+		  req.send();
+	}</textarea>
+<p> With Java</p>
+<textarea rows=10 cols=80>
+MWFClient.getTask(String accessKey, String tid);
+</textarea>
+<br />
+  You decide how  these context are displayed. Use an template engine such like Velocity is  suggested.<br />
+  You may need to  dispaly different task with different form, you may use task name or  customization tag to differenciate different tasks.</p>
+<p>&nbsp;</p>
+<h2>How to integrate  with other applications.</h2>
+  You need a SCRIPT  node in your template to integrate with other applications.
+  1. Call an remote  WebService
+  The script codes should be start with URL: which followed by webservice url, for example:
+  URL:http://xyz.com/cflow/TestScriptWeb
+  TestScriptWeb return a JSONObject, MWF get value of "RETURN" key  and use this value to determine next routine. You may also put other keys in the returned JSONObject, if a key has the same name as a process variable, MWF will change the process variable's value to what you give in the JSONObject.
+
+  MWF pass process context information to Web Service, In your  webservice, you can read these information, See an example below:
+  <textarea rows=20 cols=80>
+
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF8");
+		String ctx_string = request.getParameter("CTX");
+		JSONParser parser = new JSONParser();
+		JSONObject ctx;
+		String ret = "";
+		try {
+			ctx = (JSONObject) parser.parse(ctx_string);
+
+			JSONObject attachments = (JSONObject) ctx.get("ATTACHMENTS");
+			// Get variable value from attachments
+			String days = (String) attachments.get("days");
+			int idays = Integer.valueOf(days).intValue();
+			if (idays > 10)
+				ret = "long";
+			else
+				ret = "short";
+		} catch (ParseException e) {
+			ret = "error";
+			e.printStackTrace();
+		}
+		JSONObject retObj = new JSONObject();
+		//RETURN value will determine process next rountine.
+		retObj.put("RETURN", ret);
+		//You may change a context value.
+		// reason is a varialbe defined in workflow template, next code will change it's value in the running process.
+		retObj.put("reason", "test value to change back to process attachment.");
+		// ignored is not defined in template, so it will be ignored.
+		retObj.put("ignored", "this will be ignored.");
+
+		ret = retObj.toJSONString();
+		response.getWriter().print(ret);
+		response.getWriter().flush();
+		response.flushBuffer();
+	}
+  </textarea>
+  2. With local Java calling
+  This method  require you run MWF on your own server, so you can put your business  application JARs into MWF classpath.
+  Your class must implement "com.lkh.cflow.Adapter" interface, the linkProxy must be defined.
+  <textarea rows=20 cols=80>
+package com.lkh.cflow.test;
+
+import org.json.simple.JSONObject;
+
+import com.lkh.cflow.Adapter;
+
+public class MyLinker implements Linker {
+
+	@Override
+	public String linkProxy(JSONObject ctx) {
+		// Get attachments from ctx
+		JSONObject attachments = (JSONObject) ctx.get("ATTACHMENTS");
+		// Get process variables from attachments
+		String days = (String) attachments.get("days");
+		int idays = Integer.valueOf(days).intValue();
+
+		String ret = "";
+		if (idays > 10)
+			ret = "long";
+		else
+			ret = "short";
+
+		//Return value is put into RETURN
+		JSONObject retObj = new JSONObject();
+		retObj.put("RETURN", ret);
+		// reason is a process variable, it's value will be changed.
+		retObj.put("reason", "test value to change back to process attachment.");
+		// ignored  is not a process variable, it's value will be ignored.
+		retObj.put("ignored", "this will be ignored.");
+
+		ret = retObj.toJSONString();
+		return ret;
+	}
+}
+<p> MWF take the return value of RETURN as  the  result of SCRIPT node. It then can be used to decide process route. For  example, next workflow use an SCRIPT node to caculate the credit of a customer,  then decide the approval path based on the credit level.</p>
+  2. With JavaScript
+  If the script codes do not start with URL: and JAVA:, then it will be inteprated as JavaScript code, like this:
+	if(days>10) return 'long'; else return 'short';
+  In the above example, "days" is a process variable, you don't need to define it, WMF will pass it to JavaScript automatically.
+  ...</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>How to assign  works to people.</h2>
+  MWF will dispath  all works of a workflow to whom start the workflow process (the STARTER),  unless these works are assigned to other people (the DOERS) explicitely. Doers  can be MWF user(s) or roles, if the doer is an role, MWF will firstly get the  role participation from the team (a TEAM defines role-user mapping), then  dispatch tasks to these users. If mapping failed(for example, the specified  role has no mapping in the specified TEAM, the task will be delivered to  STARTER)<br />
+  The following task  will be done by user: john and Ari.<br />
+  Picture.<br />
+  The following show  a task will be done by roles : Approver.</p>
+<p>TeamA map role  Approver to Steve and John</p>
+<p>Then, if the  workflow is started with teamA. Steve and John will get the work  &quot;Approve&quot; in their worklist.</p>
+<p>Related API:<br />
+  Create a team<br />
+  Add role-user  mapping to team(link to anchor)<br />
+  Start a workflow  with team.</p>
+<h2>How to delegate</h2>
+<p>Related API</p>
+<p>&nbsp;</p>
+<h2>How to control  task completedness when there are multiple doers for one task.</h2>
+  Any doer done,  then done.<br />
+  Any doer complete  the task, then the task will be removed from other doers worklist, process move  forward.</p>
+<p>All doer done,  then done.<br />
+  Process will  move forward only when every doer complete  their task.</p>
+<p>Workflow designer  can embed codes to caculate the task result depend on every doer's input, for  example, you may design a voting task like this:<br />
+  ....</p>
+<h2>How to occupy a  work.</h2>
+  Occupying a task  means that when one doer occupy a task, this task will be removed from other  doers' worklist. <br />
+  A task is  occupiable only when mark it's attribute &quot;..&quot;. To &quot;true&quot;,  default is false.</p>
+<p>&nbsp;</p>
+<h2>How to create new org</h2>
+<h2>Add users to an  org</h2>
+  API</p>
+</body>
+</html>

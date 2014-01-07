@@ -1,0 +1,145 @@
+
+Q: 怎样建立数据库并导入实例数据
+A:
+	C:\> mysql -u root mysql> create database DATABASE;
+	mysql> create user USER identified by 'PASSWORD'; 
+	mysql > grant all privileges on DATABASE.* to USER; 
+	mysql > exit; 
+	C:\> mysql -u USER -pPASSWORD DATABASE  <SQL \liukehong.sql
+
+
+Q: 怎样定制邮件发送内容？
+A: 
+	CFlow的工作项的preaction， postaction以及notification节点均可用于发送邮件（目前， 发送短信尚未实现），
+开发者可以通过以下方法定制邮件的内容：
+	1. 编写类实现com.lkh.cflow.messager.MessageComposer接口， 在该类中，
+		public String getMessageHTML()  提供邮件的HTML格式定制正文内容 
+		public String getMessageSubject() 提供邮件的定制标题
+		public String getMessageText() 提供邮件的文本格式定制正文内容
+		public boolean includeDefaultMessage() 是否包括流程模板中的邮件内容
+		public void initContext(DbAdmin dbadmin, String prcid, ProcessType prc,	Workflow theWf, Node theNode, HashMap
+<String , String>roleAssignMap, String usrid) 可以将这些进程运行状态数据用于邮件定制内容的生成 可参考
+
+		com.gsh.test.MyComposer.java中的代码
+	 2. 配置项，如果是Windows,修改configruation_win.xml, 如果是Linux系统，修改configuration_unix.xml, 添加：
+        <message><composer>CLASSNAME</composer></message>
+                       如：
+		<message><composer>com.gsh.test.MyComposer</composer></message>
+
+Q: 什么是mailTrap配置项
+A: 
+	mailTrap定义一个邮箱地址，在CFlow运行过程中，由于某种原因导致找不到邮件发送地址时，就把邮件发送到 mailTrap所定义的地址。
+	观察这个邮箱中受到邮件的情况，有助于发现程序中的错误
+
+ Q: CFlow中数据库连接池如何保证
+ A:
+	在进行数据库操作时，必须使用如下方法来获得并释放数据库连接
+	1. 在JSP或Servlet中，首先获得session,
+		然后对session加并行锁, 在并行块中检查获得DbAdmin,
+		并保证DbAdmin在Session中。使用dbadmin中封装的方法，或者直接使用dbadmin获得数据库连接
+		最后在finally块中执行dbadmin.reset(); 
+		synchronized(session){ 
+			DbAdmin dbadmin =(DbAdmin)session.getAttribute("dbadmin"); 
+			dbadmin.keepConnection(true);
+			try{ 
+				//调用dbadmin方法
+				 dbadmin.finalizeUser(String usrid, String ticket)；
+
+				//使用dbadmin的数据库连接 
+				Connection con = dbadmin.getConnection(); 
+				Statement st = con.createStatement(); 
+				... 
+			}finally{ 
+				dbadmin.reset(); 
+			} 
+		} 
+	2.	在java中新建DbAdmin对象，对Dbadmin对象加并行锁，其它与1相同 
+	
+Q: CFlow的用户与角色是怎样匹配的
+A:
+	进程启动之初，先从模板中取所有用到的角色，然后，根据启动进程时所选择的组，到组中取查找每个角色的对应用户名， 将进程中该角色与该用户对应起来；
+	如果组中没有定义这个角色，则该角色装配到进程启动者。 
+
+Q: 如何在工作项界面中添加其他定制参数
+A:
+	工作项界面JSP文件可以进行定制，需要用户输入，而且需要记录到进程中的数据，只需按如下例子处理即可。 
+	Test1:
+	<input type="hidden" name="attname_100" value="Test1">
+	<input type="text" name="attvalue_100" value="">
+	Test2:
+	<input type="hidden" name="attname_101" value="Test2">
+	<input type="text" name="attvalue_101" value="">
+	需要记录的变量的名字必须使用hidden字段的方法来传递，hidden字段的名字则以attname_开头，后面的数字从attachment.lowIndex到attachment.highIndex.
+	这两个值缺省为100， 和200。 用于输入变量值的输入域必须相应地以attvalue_index方式来命名，可以是任意HTML
+	FORM支持的输入域。 
+	
+Q: 如何用其它网页来替换CFlow缺省的工作界面？ 
+A: 
+	1) 修改 Worklist_part.jsp，
+		对每个工作项的操作指向定制的MyTaskPage.jsp 
+	2) MyTaskPage.jsp之后可以有任意多个页面，但最后一个，必须向/cflow/doTask提交数据, 如下所示
+		MyTaskPage.jsp ->the2nd.jsp->the3rd_Servet->...->theLast.jsp->/cflow/doTask 
+	3) prcid,nodeid, workName三个参数必须一直传递下去，一直传递给/cflow/doTask 
+	4)如要在上述页面中的任一页面中让用户把当前工作委派给其他人，则需要在该页面中放置两个参数，一个是delegateflag,
+		一个是delegatee. delegateflag需要设值为1, delegatee就是被委托者的用户ID.
+		注意从该页面开始，这两个参数必须一直传递下去，直到交给/cflow/doTask
+		如果不需要设置委托，则只要不向/cflow/doTask提交delegateflag参数，或者将delegateflag的值设为0即可。 
+	5) 缺省情况下，进程的角色的承担者是根据进程启动时所选择的用户组中所定义地角色对应关系来装配的，
+		如果在上述页面中需要允许用户改动全部或者部分角色的装配值，则可以如下实现：
+		 a) 确定有几个角色需要允许用户修改，在form中放置 number_of_roles 参数 
+		 b) 在form中放置role_n, assign_n参数，其中n从0到number_of_roles-1; 
+		 c) role_n分别是需要改变的角色名，assign_n为需要为角色装配的用户ID 
+		 d) number_of_roles, role_n,assign_n的值一直传递，直到/cflow/doTask 
+		 可以参考ShowTask.jsp中的代码片段，在 Start of Role re-assignment 和 End of Role re-assignment之间。 在ShowTask.jsp，进程的全部角色都可以被当前用户重新装配担当者。 
+	6)如果模板中定义了参数，则cflow自动显示这些参数的输入域。除此之外，可以添加任意多个参数到流程中去。 
+		a)在configuration.xml中定义参数的起始下标和终止下标：
+			<attachment><lowIndex>100</lowIndex><highIndex>200</highIndex></attachment>
+		b) 使用隐藏输入域attname_n来定义参数名，使用输入域attvalue_n来为参数提供值，n从lowIndex开始（包含）到highIndex(不含)，
+			如 
+			请输入出差天数:
+				<input type="hidden" name="attname_100" value="tripDays">
+				<input type="text" name="attvalue_100" value="">
+			请选择仓位等级:
+				<input type="hidden" name="attname_101" value="Test2">
+					<select name="attvalue_101">
+						<option value="0">经济舱</option>
+						<option value="0">公务舱</option>
+						<option value="0">头等舱</option>
+					</select>
+		c)后续从进程取数据时，可以调用
+			CflowHelper.prcManager.getProcessAttachments(ProcessTypeprc)
+			或者 CflowHelper.prcManager.getProcessAttachments(String prcId);
+			其返回值均为一个HashMap，keys包含了所有的参数名，values对应的是各参数的值。 
+	7） 对于需要进行路由的活动，还必须提供一个参数option_1给/cflow/doTask, 它的取值决定了工作流的路由走向。 
+		可参考ShowTask.jsp中<!--  Start of Routine Option -->和<!--  End of Routine Option -->之间的代码 
+	8） 对不同的工作项，可以使用不同的替换页面。
+		比如，在MyTaskPage.jsp中判断workName,根据workName的不同分别forward到相应的处理页面。 
+		Worklist.jsp->MyTaskPage.jsp
+		if(taskName.equals("task1")) 
+			Forward-> taks1.jsp -> 1_2nd.servlet ->.... -> /cflow/doTask 
+		else if(taskName.equals("task2")) 
+			Forward->taks2.jsp -> 2_2nd.servlet -> .... -> /cflow/doTask 
+		.... 
+Q: 定制化过程中，如何进行用户、用户组的集成 
+A:
+
+	为维持较好的可维护性，对面向业务的用户数据、组数据，应另建立表存放，CFUSER中包含用户名和密码。
+	CFlow的用户组在抽象层面上用来表示一组用户作为一个团队共同来执行一个流程，组队时也定义了各个成员用户所担当的角色。
+	业务层面上如果也有组的概念，请另建立数据表存放，无论业务层面上怎样使用“组”，均不影响CFlow的组用来“动态组队”的实现。
+	
+Q: 如何进行数据库连接
+A: 
+	为了执行效率，不再建立新的数据库，而是将定制化所需要的数据表统一建立在CFlow的数据库中，
+	为了区别起见，业务表名统一以GSH三个字母开头。 在进行数据库操作时，可使用上面描述数据库连接池时所提供的代码框架来访问。
+	另外，可调用CflowHelper.examineDbConnection(int examineTimes)来检查数据库连接池是否正常。
+	
+Q: 启动工作流的API调用说明
+A： 调用ProcessManager.startWorkflow(DbAdmin dbadmin, String wftid, String wrkteam, String startBy);
+
+Q: 关于工作项的nodeid和sessid的说明
+A: 模板节点与进程工作项之间的关系是一对多的关系。进程运行到某个节点时，产生一个工作项，这个工作项的nodeid就是模板节点的id, 
+         同时，为这个工作项生成一个新的sessid。 当进程下一次运行到该节点时，又会产生一个新的工作项，这个新工作项的nodeid还是模板
+    中节点的id, 但sessid则是新生成的。所以。在一个进程运行过程中，唯一确定一个工作项的是sessid, 而不是nodeid;
+
+
+

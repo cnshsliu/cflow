@@ -1,0 +1,29 @@
+<process id="dfafe5b6ec064873bd1088540fa5187b" wftid="dfafe5b6ec064873bd1088540fa5187b" origin="231066c8eaa24dfd826686a41c229fda" roundid="867ea5cf64c74567918fa7ad757401ce" startat="2012-11-28T21:09:53.996+08:00" status="canceled" startby="peixin.baipx" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="v1" endat="2012-11-28T21:24:35.592+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="5CC4CFA1-6533-45D5-94AD-59F4A2A296DC" sessid="b3fa4d2d8d9d4ac0b6a9740739607695" roundid="867ea5cf64c74567918fa7ad757401ce" createdAt="2012-11-28T21:09:54.075+08:00" completedAt="2012-11-28T21:09:54.075+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="867ea5cf64c74567918fa7ad757401ce" sessid="f74478c8302e4ffdad62e3b8348a55ce" name="Leave Application" title="Please input leave days and reason." type="task" nodeid="F3518383-8E11-E6D2-A536-59F4CA5D114B" createdAt="2012-11-28T21:09:54.076+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="null" decision="" completedAt="2012-11-28T21:09:54.422+08:00" completedBy="peixin.baipx" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_finished"/>
+    <attachment type="int" label="Leave Days" attname="days" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="Leave Reason" attname="reason" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="peixin.baipx" timestamp="2012-11-28T21:09:54.237+08:00" option="">
+      <attachment usrid="peixin.baipx" attname="days" value="11" type="int" label="Leave Days"/>
+      <attachment usrid="peixin.baipx" attname="reason" value="go home" type="text" label="Leave Reason"/>
+    </log>
+  </work>
+  <work roundid="867ea5cf64c74567918fa7ad757401ce" sessid="d19c246d525a4adc954b6e02ce3bc507" name="Leave waiting for your approval" title="Please decide whether to approve leave or not" type="task" nodeid="A1878F04-2D3D-3D88-E3DA-59F5FBB94E2F" createdAt="2012-11-28T21:09:54.576+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="null" xmlns="">
+    <taskto type="person" whom="allen" status="task_running"/>
+    <attachment type="text" label="Your Comment" attname="approveComment" value="" usrid="SYSTEM"/>
+    <options>
+      <option>1.Approve it.</option>
+      <option>2.Reject it.</option>
+    </options>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

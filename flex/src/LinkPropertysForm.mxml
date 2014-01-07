@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#F7FDFD" defaultButton="{okBtn}" label="Link Properties" xmlns:ns1="*">
+<mx:Script>
+	<![CDATA[
+		import mx.managers.PopUpManager;
+		
+		[Bindable]
+		public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+		
+		public function propertyOk(event:MouseEvent):void{
+			if(designer.canvas.dataModel.editable){
+				if(designer.canvas.selLink != null){
+					designer.canvas.selLink.option = linkOption.text;
+					designer.canvas.selLink.setLabel();
+				}
+				PopUpManager.removePopUp(designer.linkPropView);
+				designer.canvas.updateCanvas();
+			}else{
+				if(designer.canvas.selLink != null){
+					designer.canvas.selLink.restoreOption();
+					designer.canvas.selLink.setLabel();
+				}
+				PopUpManager.removePopUp(designer.linkPropView);
+			}
+		}
+		
+		public function propertyCancel(event:MouseEvent):void{
+			if(designer.canvas.selLink != null){
+				designer.canvas.selLink.restoreOption();
+				designer.canvas.selLink.setLabel();
+			}
+			PopUpManager.removePopUp(designer.linkPropView);
+		}
+		public function setToDefault(event:Event):void{
+			designer.canvas.selLink.option = "DEFAULT";
+		}
+	]]>
+</mx:Script>
+<mx:VBox>
+		<mx:HBox>
+		<mx:TextInput id="linkOption" text="{designer.canvas.selLink.option}" editable="{designer.canvas.dataModel.editable}"/>
+		<mx:Button label="Default" id="defaultBtn" click="setToDefault(event)" visible="{designer.canvas.dataModel.editable}"/>
+		</mx:HBox>
+		<mx:HBox>
+			<mx:Button label="Ok" id="okBtn" click="propertyOk(event)"/>
+			<mx:Button label="Cancel" id="cancelBtn" click="propertyCancel(event)"  visible="{designer.canvas.dataModel.editable}"/>
+		</mx:HBox>
+	
+</mx:VBox>
+	
+</mx:Form>

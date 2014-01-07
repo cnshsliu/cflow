@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#F7FDFD" defaultButton="{okBtn}" label="Round Properties" xmlns:ns1="*">
+<mx:Script>
+	<![CDATA[
+		import mx.controls.Alert;
+		import mx.managers.PopUpManager;
+		
+		[Bindable]
+		public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+		
+		public function propertyOk(event:MouseEvent):void{
+			var theForm = designer.roundPropView.round_form;
+			if(designer.canvas.dataModel.editable && designer.canvas.selNode != null){
+					designer.canvas.selNode.repeatThresholdType = theForm.repeatThresholdType.selectedValue;
+					if(theForm.repeatThresholdType.selectedValue == "NOREPEAT"){
+						designer.canvas.selNode.repeatThreshold = "NOREPEAT";
+					}else if(theForm.repeatThresholdType.selectedValue == "DATE"){
+						designer.canvas.selNode.repeatThreshold = repeatUntilDate.text;
+					}
+					if(theForm.repeatThresholdType.selectedValue != "NOREPEAT"){
+						designer.canvas.selNode.repeatCron = cronBuilder.cronString;
+					}else{
+						designer.canvas.selNode.repeatCron = "";
+					}
+				}
+			PopUpManager.removePopUp(designer.roundPropView);
+			designer.canvas.updateCanvas();
+		}
+		public function propertyCancel(event:MouseEvent):void{
+			PopUpManager.removePopUp(designer.roundPropView);
+		}
+		public  function updateData():void{
+			var selNode = designer.canvas.selNode;
+			repeatThresholdType.selectedValue = selNode.repeatThresholdType;
+			//Place right viewStack first.
+			if(repeatThresholdType.selectedValue == "NOREPEAT"){
+				repeatUntilViewStack.selectedIndex = 0;
+			}else if(repeatThresholdType.selectedValue == "DATE"){
+				repeatUntilViewStack.selectedIndex = 1;
+				repeatUntilDate.text = selNode.repeatThreshold;
+			}
+			
+			
+			if(repeatThresholdType.selectedValue == "NOREPEAT")
+				return;
+			
+			cronBuilder.loadCronString(selNode.repeatCron);
+		}
+		
+		public function toggleRepeat(event:MouseEvent):void{
+			if(repeatThresholdType.selectedValue == "NOREPEAT"){
+				repeatUntilViewStack.selectedIndex = 0;
+			}else if(repeatThresholdType.selectedValue == "DATE"){
+				repeatUntilViewStack.selectedIndex = 1;
+			}
+		}
+		
+		public function setInfinitely(event:Event):void{
+			repeatUntilDate.text = "";
+		}
+
+	]]>
+</mx:Script>
+
+<mx:VBox width="100%" height="100%">
+		<mx:HBox width="100%">
+			<mx:RadioButtonGroup id="repeatThresholdType"/>
+			<mx:RadioButton value="NOREPEAT" label="No Repeat" groupName="repeatThresholdType" click="toggleRepeat(event)"/>
+			<mx:RadioButton value="DATE" label="Repeat" groupName="repeatThresholdType" click="toggleRepeat(event)"/>
+		</mx:HBox>
+		<mx:ViewStack id="repeatUntilViewStack"  width="100%" height="100%" creationPolicy="all">
+			<mx:HBox width="100%">
+				<mx:Label text=" " width="100%"></mx:Label>
+			</mx:HBox>
+			<mx:VBox width="100%" height="100%">
+				<mx:HBox width="100%" id="repeat_mode_date">
+					<mx:Label text="Repeat until "></mx:Label>
+					<mx:DateField id="repeatUntilDate" showToday="false"/>
+					<mx:Button label="Infinitely" click="setInfinitely(event)"/>
+				</mx:HBox>
+				<ns1:CronBuilder width="100%" height="100%" id="cronBuilder">
+				</ns1:CronBuilder>
+			</mx:VBox>
+		</mx:ViewStack>
+
+		<mx:HBox width="100%">
+			<mx:Button label="Ok" id="okBtn" click="propertyOk(event)"/>
+			<mx:Button label="Cancel" id="cancelBtn" click="propertyCancel(event)"  visible="{designer.canvas.dataModel.editable}"/>
+		</mx:HBox>
+</mx:VBox>
+	
+</mx:Form>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" defaultButton="{okBtn}" xmlns:ns1="*">
+<mx:Script>
+	<![CDATA[
+		import com.lkh.Attachment;
+		import com.lkh.RobotAction;
+		import mx.collections.ArrayCollection;
+		import mx.managers.PopUpManager;
+		import mx.controls.Alert;
+		
+		[Bindable]
+		public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+		
+		public var tab1Loaded:Boolean = false;
+		
+		public function resetLoad():void{
+			tab1Loaded = false;
+		}
+		public function propertyOk(event:MouseEvent):void{
+			if(designer.canvas.dataModel.editable){
+				if(designer.canvas.selNode != null){
+					recordData();
+				}
+				resetLoad();
+				PopUpManager.removePopUp(designer.notifyPropView);
+				designer.canvas.updateCanvas();
+			}else{
+				resetLoad();
+				//if(designer.canvas.selNode != null){
+				//designer.canvas.selNode.restoreAttachments();
+				//}
+				PopUpManager.removePopUp(designer.notifyPropView);
+			}
+			
+			
+			
+		}
+		public function propertyCancel(event:MouseEvent):void{
+			resetLoad();
+			//if(designer.canvas.selNode != null){
+			//designer.canvas.selNode.restoreAttachments();
+			//}
+			PopUpManager.removePopUp(designer.notifyPropView);
+		}
+		
+		public function recordData():void{
+			var rAction:RobotAction;
+			
+			//Set notify
+			if(notifyaction != null && notifyaction.actionType.selectedValue != null){
+					rAction = new RobotAction();
+					rAction.name=notifyaction.actionType.selectedValue.toString();
+					rAction.subject = notifyaction.subject.text;
+					rAction.message = notifyaction.message.text;
+					rAction.mailtoType = "role";
+					rAction.mailto = notifyaction.participate.roles.text;
+					rAction.smstoType = rAction.mailtoType;
+					rAction.smsto = rAction.mailto;
+					designer.canvas.selNode.notifyAction=rAction;	
+			}
+		}
+		
+		
+		
+		public function tabChange(event:Event, en:String="hello"):void{
+			tab1Update(event);
+			
+		}
+		
+	
+		public function tab1Update(event:Event):void{
+			var i:int=-1;
+  			var rAction:RobotAction;
+			 if(tab.selectedIndex == 0 && !tab1Loaded && designer.canvas.selNode != null){
+       				rAction = designer.canvas.selNode.notifyAction;
+       				if(rAction != null){
+	       				notifyaction.actionType.selectedValue = rAction.name;
+	       				notifyaction.subject.text = rAction.subject;
+	       				notifyaction.message.text = rAction.message;
+	       				notifyaction.participate.updateParticipate(rAction.mailtoType, rAction.mailto);
+       				}else{
+       					notifyaction.actionType.selectedValue = Node.ACTION_SENDMAIL;
+       					notifyaction.participate.reset();
+       					notifyaction.subject.text = "";
+       					notifyaction.message.text = "";
+       				}
+           			tab1Loaded = true;
+			}
+		}
+
+	]]>
+</mx:Script>
+	
+	<mx:TabNavigator id="tab" width="100%" height="100%" change="tabChange(event)"  updateComplete="tabChange(event)">
+			<ns1:NotifyAction id="notifyaction"  label="Notify"  borderStyle="solid" width="100%" height="100%"  updateComplete="tab1Update(event)" >
+			</ns1:NotifyAction>
+	</mx:TabNavigator>
+		
+	<mx:HBox width="100%">
+		<mx:Button label="Ok" id="okBtn" click="propertyOk(event)"/>
+		<mx:Button label="Cancel" id="cancelBtn" click="propertyCancel(event)"  visible="{designer.canvas.dataModel.editable}"/>
+	</mx:HBox>
+</mx:Form>

@@ -1,0 +1,13 @@
+在VIM72\vimrc_example后部添加：
+
+set encoding=utf-8
+language message en_US
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+" set the menu & the message to English
+set langmenu=en_US
+let $LANG = 'en_US'
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+
+

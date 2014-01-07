@@ -1,0 +1,23 @@
+$form_header
+<div class='title'><img src="http://static.aliyun.com/images/aliyun/logo.png" width="95" height="32" />数据英佳</div>
+<div id='result'></div>
+$form_content_header
+<hr>
+分析人: $process.startby
+<BR>月份: $value_month
+<BR>营销信息: $value_msg
+<BR>在等待$value_checkRound天后，已收集足够数据，分析结果如下：
+<hr>
+<BR>自动刷选结果，用户组一: $value_usersG1
+<BR>营销方式: $value_methodG1
+<BR>分析结果: $value_analysisResult1
+<hr>
+<BR>自动刷选结果，用户组二: $value_usersG2
+<BR>营销方式: $value_methodG2
+<BR>分析结果: $value_analysisResult2
+<hr>
+$html_options<BR>
+<hr>
+<font color=red>$LASTERROR</font>
+$form_footer
+$html_history

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32px"
+   height="32px"
+   id="svg3179"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   sodipodi:docbase="C:\dev\cflow\icons"
+   sodipodi:docname="arrow.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true">
+  <defs
+     id="defs3181">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3367">
+      <stop
+         style="stop-color:#0018e5;stop-opacity:1;"
+         offset="0"
+         id="stop3369" />
+      <stop
+         style="stop-color:#0018e5;stop-opacity:0;"
+         offset="1"
+         id="stop3371" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3322">
+      <stop
+         style="stop-color:#0018e5;stop-opacity:1"
+         offset="0"
+         id="stop3324" />
+      <stop
+         style="stop-color:#0018ff;stop-opacity:0;"
+         offset="1"
+         id="stop3326" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3136">
+      <stop
+         style="stop-color:#0000ff;stop-opacity:1;"
+         offset="0"
+         id="stop3138" />
+      <stop
+         style="stop-color:#0f00f2;stop-opacity:0;"
+         offset="1"
+         id="stop3140" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3136"
+       id="linearGradient3224"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.3617276,0,0,1.2752132,14.986051,-3.0593709)"
+       x1="17.235727"
+       y1="17.63604"
+       x2="2.2097087"
+       y2="2.3448548" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3322"
+       id="linearGradient3328"
+       x1="11.704079"
+       y1="13.138636"
+       x2="0.61799973"
+       y2="1.4251075"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3367"
+       id="linearGradient3373"
+       x1="20.022381"
+       y1="25.276566"
+       x2="26.846117"
+       y2="19.929087"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.78125"
+     inkscape:cx="16"
+     inkscape:cy="16"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="673"
+     inkscape:window-height="577"
+     inkscape:window-x="135"
+     inkscape:window-y="88" />
+  <metadata
+     id="metadata3184">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <path
+       style="fill:url(#linearGradient3373);fill-opacity:1.0;fill-rule:evenodd;stroke:url(#linearGradient3328);stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 3.546253,4.2482047 C 3.9554502,6.8658525 10.629493,23.483563 10.629493,23.483563 L 13.770027,18.84269 L 22.598511,28.479995 L 27.789087,25.762468 L 17.119736,15.82396 L 23.586321,13.033026 L 3.546253,4.2482047 z "
+       id="path3148"
+       sodipodi:nodetypes="cccccccc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2" />
+</svg>

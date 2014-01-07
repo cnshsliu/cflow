@@ -1,0 +1,37 @@
+<process id="2c3d60d46de143928eb07b7bd04d503d" wftid="2c3d60d46de143928eb07b7bd04d503d" origin="231066c8eaa24dfd826686a41c229fda" roundid="720a822fff7c4d0d867d1e73e6a04790" startat="2012-11-30T05:48:43.443+08:00" status="running" startby="peixin.baipx" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="v1" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="5CC4CFA1-6533-45D5-94AD-59F4A2A296DC" sessid="cfbddc5268c644beaa8e051bd97f3525" roundid="720a822fff7c4d0d867d1e73e6a04790" createdAt="2012-11-30T05:48:43.577+08:00" completedAt="2012-11-30T05:48:43.577+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="720a822fff7c4d0d867d1e73e6a04790" sessid="ad622f7e96a14def9652e9b561a7160c" name="Leave Application" title="Please input leave days and reason." type="task" nodeid="F3518383-8E11-E6D2-A536-59F4CA5D114B" createdAt="2012-11-30T05:48:43.579+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="null" decision="" completedAt="2012-11-30T05:48:43.816+08:00" completedBy="peixin.baipx" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_finished"/>
+    <attachment type="int" label="Leave Days" attname="days" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="Leave Reason" attname="reason" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="peixin.baipx" timestamp="2012-11-30T05:48:43.734+08:00" option="">
+      <attachment usrid="peixin.baipx" attname="days" value="11" type="int" label="Leave Days"/>
+      <attachment usrid="peixin.baipx" attname="reason" value="go home" type="text" label="Leave Reason"/>
+    </log>
+  </work>
+  <work roundid="720a822fff7c4d0d867d1e73e6a04790" sessid="1e845785089e420bbe5e945119437aa8" name="Leave waiting for your approval" title="Please decide whether to approve leave or not" type="task" nodeid="A1878F04-2D3D-3D88-E3DA-59F5FBB94E2F" createdAt="2012-11-30T05:48:43.899+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="null" decision="1.Approve it." completedAt="2012-11-30T05:48:44.078+08:00" completedBy="allen" xmlns="">
+    <taskto type="person" whom="allen" status="task_finished"/>
+    <attachment type="text" label="Your Comment" attname="approveComment" value="" usrid="SYSTEM"/>
+    <options>
+      <option>1.Approve it.</option>
+      <option>2.Reject it.</option>
+    </options>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="allen" timestamp="2012-11-30T05:48:44.000+08:00" option="1.Approve it.">
+      <attachment usrid="allen" attname="approveComment" value="allen-Okay" type="text" label="Your Comment"/>
+    </log>
+  </work>
+  <work roundid="720a822fff7c4d0d867d1e73e6a04790" sessid="762dfab8bff44f0ba299190676905f75" name="Your Leave was approved." title="Congratulation, your leave application has been approved." type="task" nodeid="7CE979C9-5530-79C0-768F-59F637566ECF" createdAt="2012-11-30T05:48:44.188+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="null" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_running"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

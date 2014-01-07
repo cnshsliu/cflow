@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="把长颈鹿放进冰箱里" owner="U3306" acl="private" lastModified="2010-12-22T22:53:51" created="2010-12-22T22:53:51" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="56441564-6754-0C9F-7A34-4522B66CA998" type="start" title="Start" name="Start" x="27" y="211">
+    <next targetID="9FB44082-BC0B-9BD0-C2F6-45230AAA61B1"/>
+  </node>
+  <node id="3877FBA8-CB9F-D7F2-0D2E-4522B66FF14B" type="end" title="End" name="End" x="748" y="211">
+    <next targetID="3877FBA8-CB9F-D7F2-0D2E-4522B66FF14B"/>
+  </node>
+  <node id="9FB44082-BC0B-9BD0-C2F6-45230AAA61B1" type="task" title="请打开冰箱门" name="打开冰箱门" x="183" y="205" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="2DA6D36D-7432-ACBB-0F5E-45230FFFDD90"/>
+  </node>
+  <node id="2DA6D36D-7432-ACBB-0F5E-45230FFFDD90" type="task" title="请把长颈鹿放进冰箱" name="把长颈鹿放进去" x="354" y="209" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="A650053C-6FB0-0469-E9BE-452315D360BA"/>
+  </node>
+  <node id="A650053C-6FB0-0469-E9BE-452315D360BA" type="task" title="请关上冰箱门" name="关上冰箱门" x="509" y="200" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="3877FBA8-CB9F-D7F2-0D2E-4522B66FF14B"/>
+  </node>
+</cf:workflow>

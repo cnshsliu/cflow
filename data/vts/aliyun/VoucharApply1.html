@@ -1,0 +1,80 @@
+$form_header
+<div class='title'><img src="http://static.aliyun.com/images/aliyun/logo.png" width="95" height="32" />日常活动代金券申请</div>
+<div id='result'></div>
+$form_content_header
+<table border=1 width="800px">
+<tr><td>Applicant</td><td>
+$process.startby
+</td></tr>
+<tr>
+  <td>项目名称</td>
+  <td>
+#if ($value_project)
+	$value_project
+#else
+	$input_project
+#end
+</td></tr>
+<tr>
+  <td>用途</td>
+  <td>
+#if ($value_purpose)
+	$value_purpose
+#else
+	$input.checkbox("purpose", "购买,续费,升级,转正,试用,补款,更换OS,预付款")
+#end
+</td></tr>
+<tr>
+  <td>所属应用</td><td>
+#if ($value_service)
+	$value_service
+#else
+	$input.checkbox("service", "VM,RDS,OSS,OTS,ODPS,ACE,云监控,云盾")
+#end
+</td></tr>
+<tr>
+  <td colspan="2"><table width="100%" border="1">
+    <tr>
+      <td>数量*#if($value_number) $value_number #else $input_number #end</td>
+      <td>金额*#if($value_figure) $value_figure #else $input_figure #end</td>
+      <td>到期时间*#if($value_due) $value_due #else $input_due #end</td>
+    </tr>
+    <tr>
+      <td>活动时间*#if($value_eventdate) $value_eventdate #else $input_eventdate #end</td>
+      <td>活动目标*#if($value_eventpurpose) $value_eventpurpose #else $input_eventpurpose #end</td>
+      <td>活动规则*#if($value_eventrule) $value_eventrule #else $input.text("eventrule")  #end</td>
+    </tr>
+    <tr>
+      <td colspan="3">附件*#if($value_atturl) $openurl_atturl #else $input.url("atturl") #end</td>
+      </tr>
+  </table></td></tr>
+	#if($value_1stapproveComment)
+		<tr><td>总监审批意见：</td><td>$value_1stapproveComment</td></tr>
+	#else
+		#if($work.name == "Voucher waiting for your approval")
+			<tr><td>总监审批意见：</td><td>
+					$input.text("1stapproveComment")
+			</td></tr>
+		#end
+	#end
+	#if($value_finalApproveComment)
+		<tr><td>业务总经理审批意见：</td><td>$value_finalApproveComment</td></tr>
+	#else
+		#if($work.name == "Voucher Final Approval")
+			<tr><td>业务总经理审批意见：</td><td>
+					$input.text("finalApproveComment")
+			</td></tr>
+		#end
+	#end
+</table>
+#if($work.name=="Please generate voucher number")
+代金券号码： $input_voucherNumber
+#end
+#if($work.name=="Voucher generated")
+代金券号码： $value_voucherNumber
+#end
+<hr>
+$html_options<BR>
+$form_footer
+$html_history
+

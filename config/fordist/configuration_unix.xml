@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cflow-config>
+	<host>hostnaem</host>
+	<mail>
+		<!-- 缺省邮件发送者 -->
+		<mailFrom>admin@gsh.xxx</mailFrom>
+		<!-- 邮件发送服务器 -->
+		<smtpHost>smtp.gsh.xxx</smtpHost>
+		<!-- SMTP验证用户名 -->
+		<smtpAuthUser>smtpuser</smtpAuthUser>
+		<!-- SMTP验证用户密码 -->
+		<smtpAuthPassword>smtppassword</smtpAuthPassword>
+	</mail>
+	<sms>
+	</sms>
+	<storage>
+		<wftVault>/home/liukehong/cflow/vault</wftVault>
+		<prcVault>/home/liukehong/cflow/process</prcVault>
+		<workVault>/home/liukehong/cflow/work</workVault>
+		<snapshotVault>/home/liukehong/cflow/snapshot</snapshotVault>
+	</storage>
+	<path>
+		<snapshot>http://www.lokoho.com/cflowsnapshot</snapshot>
+	</path>
+	<database>
+		<url>jdbc:mysql://localhost:3307/liukehong?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8</url>
+		<user>liukehong</user>
+		<password>psammead</password>
+	</database>
+	<quartz>
+		<propertyFile>/home/liukehong/cflow/my_quartz.properties</propertyFile>
+		<shutdownOnUnload>true</shutdownOnUnload>
+		<startSchedulerOnLoad>true</startSchedulerOnLoad>
+		<startDelaySeconds>10</startDelaySeconds>
+	</quartz>
+	<page>
+		<doTask>
+			<post>/cflow/Worklist.jsp</post>
+			<error>/cflow/doTaskErr.jsp</error>
+		</doTask>
+		<login>/cflow/Login.jsp</login>
+		<enterprise>
+			<doTask>
+				<post>/cflow/ent_Worklist.jsp</post>
+				<error>/cflow/ent_doTaskErr.jsp</error>
+			</doTask>
+			<login>/cflow/ent_Login.jsp</login>
+		</enterprise>
+	</page>
+	<message>
+		<composer>com.gsh.test.MyComposer</composer>
+	</message>
+	<mates>
+		<from>org</from>
+		<!-- org or team -->
+	</mates>
+	<timer>
+		<threshold>
+			<!-- 24小时以后到期为绿色 -->
+			<green>1440</green>
+			<!-- 5分钟后到期为黄色 -->
+			<yellow>5</yellow>
+		</threshold>
+	</timer>
+	<attachment>
+		<lowIndex>100</lowIndex>
+		<highIndex>200</highIndex>
+	</attachment>
+	<appConntext>mobile</appConntext>
+	<process>
+		<oec>
+			<optionOnError>DEFAULT</optionOnError>
+		</oec>
+		<cdc>
+			<finishOnError>true</finishOnError>
+		</cdc>
+	</process>
+	<worklist>
+		<autorefresh>true</autorefresh>
+		<useframe>true</useframe>
+	</worklist>
+	<calendar>
+		<dateFormat>yyyy-MM-dd HH:mm</dateFormat>
+		<defaultTimeZone>GMT+08:00</defaultTimeZone>
+	</calendar>
+	<default>
+		<roles>USER/DEFAULT_ROLE/My Manager/My Colleagues</roles>
+	</default>
+	
+</cflow-config>
+

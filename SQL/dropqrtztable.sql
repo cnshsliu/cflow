@@ -1,0 +1,1 @@
+ drop table qrtz_blob_triggers, qrtz_calendars, qrtz_cron_triggers, qrtz_fired_triggers, qrtz_job_details, qrtz_job_listeners, qrtz_locks, qrtz_paused_trigger_grps, qrtz_scheduler_state, qrtz_simple_triggers, qrtz_trigger_listeners, qrtz_triggers;

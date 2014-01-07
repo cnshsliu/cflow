@@ -1,0 +1,33 @@
+	var distance:int = Math.sqrt(Math.abs(endX-fromX)*Math.abs(endX-fromX) + 
+	    			Math.abs(endY-fromY)*Math.abs(endY-fromY));
+	    	if(endX>=fromX){
+	    		ang = Math.atan(-(endY-fromY)/(endX-fromX));
+	    		deltax = 4 * Math.cos(Math.PI/2-ang);
+	    		deltay = 4 * Math.sin(Math.PI/2-ang);
+		    	mx = endX - 20 * Math.cos(ang);
+		    	my = endY + 20 * Math.sin(ang);
+		    	vtx = endX - 8*Math.cos(ang);
+		    	vty = endY + 8*Math.sin(ang);
+		    	
+		    	p1x = mx - deltax; p1y = my - deltay; p2x = mx + deltax; p2y = my + deltay;
+		    }else{
+		    	ang = Math.atan((endY-fromY)/(endX-fromX));
+		    	deltax = 4 * Math.cos(Math.PI/2-ang);
+	    		deltay = 4 * Math.sin(Math.PI/2-ang);
+		    	mx = endX + 20 * Math.cos(ang);
+		    	my = endY + 20 * Math.sin(ang);
+		    	vtx = endX + 8*Math.cos(ang);
+		    	vty = endY + 8*Math.sin(ang);
+		    	
+		    	p1x = mx - deltax; p1y = my + deltay; p2x = mx + deltax; p2y = my - deltay;
+	    	}
+
+	    	graphics.beginFill(0x0000FF, 1);
+	    	graphics.moveTo(fromX, fromY);
+	    	graphics.lineTo(endX, endY);
+	    	graphics.moveTo(vtx, vty);
+	    	graphics.lineTo(p1x, p1y);
+	    	graphics.lineTo(p2x, p2y);
+	    	graphics.lineTo(vtx, vty);
+	    	graphics.endFill();
+

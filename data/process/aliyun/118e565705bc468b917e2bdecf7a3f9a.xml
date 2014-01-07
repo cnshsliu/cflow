@@ -1,0 +1,44 @@
+<process id="118e565705bc468b917e2bdecf7a3f9a" wftid="118e565705bc468b917e2bdecf7a3f9a" origin="8cbc25a397fa442d849a0d2d4a2f37fd" roundid="24ab3b2de3b14e3cac89b281aa7f0c6e" startat="2012-11-27T12:12:25.646+08:00" status="finished" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="kkkkkkkk" lastError="Routing option (onerror) not found, set to onerror" endat="2012-11-27T12:37:50.038+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="2F6D94A0-3B3A-6AF9-63D1-17BFA22CDD18" sessid="1dbbb5dbb8fd4a1ebde85277c4d2beff" roundid="24ab3b2de3b14e3cac89b281aa7f0c6e" createdAt="2012-11-27T12:12:27.921+08:00" completedAt="2012-11-27T12:12:27.921+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="24ab3b2de3b14e3cac89b281aa7f0c6e" sessid="669d27add2c24ff9b72667455260fc54" name="选择购买月份" title="请选择购买月份" type="task" nodeid="A5ECFB84-6135-58B4-C9C9-17BFADE759CE" createdAt="2012-11-27T12:12:27.940+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="demo_sj_month" decision="" completedAt="2012-11-27T12:12:34.212+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="int" label="月份" attname="month" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-27T12:12:34.153+08:00" option="">
+      <attachment usrid="aliyun" attname="month" value="2" type="int" label="月份"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="6D557A56-CCCB-13DB-8E4E-17C102707D85" sessid="dc01857419134989a95d0568a658ddf2" roundid="24ab3b2de3b14e3cac89b281aa7f0c6e" createdAt="2012-11-27T12:12:35.544+08:00" completedAt="2012-11-27T12:12:35.544+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T12:12:35.544+08:00" option="DEFAULT">
+      <attachment usrid="aliyun" attname="usersG2" value="���L,���M,���N" type="string" label="usersG2"/>
+      <attachment usrid="aliyun" attname="usersG1" value="���A,���B,���C" type="string" label="usersG1"/>
+    </log>
+  </work>
+  <work roundid="24ab3b2de3b14e3cac89b281aa7f0c6e" sessid="18267870f815425ab643a4e2c0a00fd8" name="选择营销方式" title="买家已筛选，请选择营销方式" type="task" nodeid="602AFDD7-1E3D-55BB-1E30-17C9C38BCEB2" createdAt="2012-11-27T12:12:35.548+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="demo_sj_method" decision="" completedAt="2012-11-27T12:37:26.755+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="text" label="组2买家营销方式" attname="methodG2" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="组1买家营销方式" attname="methodG1" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-27T12:37:26.698+08:00" option="">
+      <attachment usrid="aliyun" attname="methodG1" value="优惠券" type="text" label="组1买家营销方式"/>
+      <attachment usrid="aliyun" attname="methodG2" value="商品优惠" type="text" label="组2买家营销方式"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="E9C3D321-76A7-FB68-BD4F-17CCD1ACFC71" sessid="3471747e506240cf997c2ad16eb84b7d" roundid="24ab3b2de3b14e3cac89b281aa7f0c6e" createdAt="2012-11-27T12:37:50.033+08:00" completedAt="2012-11-27T12:37:50.033+08:00" status="finished" decision="onerror" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T12:37:50.034+08:00" option="onerror">
+      <attachment usrid="aliyun" attname="error" value="Parse script return value exception.JS:[check your Javascript code]" type="string" label="error"/>
+    </log>
+  </work>
+  <work title="End Point" type="end" nodeid="0014621F-90F7-FE2E-6663-17BFA230F0CC" sessid="96a5d04e389345c8861298b9f89f04f6" roundid="24ab3b2de3b14e3cac89b281aa7f0c6e" createdAt="2012-11-27T12:37:50.094+08:00" completedAt="2012-11-27T12:37:50.094+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="test1" owner="aliyun" acl="private" lastModified="2012-11-27T14:16:59" created="2012-11-27T14:16:59" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="C8E9A203-BDF2-D56B-72D8-1828F34DC087" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="D1B5AE3E-07F3-B93A-BEDF-182910349DFB"/>
+  </node>
+  <node id="4D70A182-B4C5-E799-4781-1828F3506FAF" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="4D70A182-B4C5-E799-4781-1828F3506FAF"/>
+  </node>
+  <node id="D1B5AE3E-07F3-B93A-BEDF-182910349DFB" type="task" title="Task" name="Task" x="154" y="227" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="url" label="urlkey" attname="urlkey" value=""/>
+    <attachment type="float" label="floatkey" attname="floatkey" value=""/>
+    <attachment type="text" label="textkey" attname="textkey" value=""/>
+    <attachment type="int" label="intkey" attname="intkey" value=""/>
+    <next targetID="938306A2-997C-8EE7-9182-1829E3D90A3A"/>
+  </node>
+  <node id="938306A2-997C-8EE7-9182-1829E3D90A3A" type="script" title="Script" name="Script" x="329" y="227">
+    <script>data.intkey = intkey + 1;data.textkey = textkey + "--tail";data.urlkey = urlkey + "--tail";data.floatkey=floatkey + 3.2;</script>
+    <next targetID="4D70A182-B4C5-E799-4781-1828F3506FAF"/>
+  </node>
+</cf:workflow>

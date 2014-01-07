@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="test Script" owner="luke.yuz.tsai" acl="private" lastModified="2010-11-01T17:02:04" created="2010-11-01T17:02:04" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="82CAB17A-64FA-FB09-8C8F-F3CB4F1190AB" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="27" y="204" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="EDC62086-EBEA-8A87-DDE4-FEA10DA9A374"/>
+  </node>
+  <node id="0D46148C-6770-29FD-D00C-F3CB4F16528B" type="end" title="End" name="End" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="748" y="204" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="0D46148C-6770-29FD-D00C-F3CB4F16528B"/>
+  </node>
+  <node id="D6AC1F5D-723A-6F48-A65C-F3CE3BA652B6" type="script" title="Script" name="Script" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="315" y="123" mpsm="">
+    <script>JAVA:com.lkh.cflow.test.MyLinkervar a = 10;if (days &gt; a)   return "long"; else  return "short";</script>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="long" targetID="244D5291-04FD-541D-611F-FEAC38686423"/>
+    <next option="short" targetID="99910165-2AEE-D6BB-FCDF-FEAC3AE93408"/>
+  </node>
+  <node id="EDC62086-EBEA-8A87-DDE4-FEA10DA9A374" type="task" title="Please complete this step 1 步骤一" name="Step1" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="122" y="78" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="请输入出差原因" attname="出差原因" value=""/>
+    <next targetID="137EE154-9C9B-523F-4320-FEA11A9E2D8C"/>
+  </node>
+  <node id="137EE154-9C9B-523F-4320-FEA11A9E2D8C" type="task" title="请完成步骤二" name="步骤二" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="172" y="145" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="int" label="出差天数" attname="days" value=""/>
+    <next targetID="D6AC1F5D-723A-6F48-A65C-F3CE3BA652B6"/>
+  </node>
+  <node id="244D5291-04FD-541D-611F-FEAC38686423" type="task" title="Long time travel" name="Long" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="452" y="77" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="0D46148C-6770-29FD-D00C-F3CB4F16528B"/>
+  </node>
+  <node id="99910165-2AEE-D6BB-FCDF-FEAC3AE93408" type="task" title="Short time travel" name="Short" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="452" y="184" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="0D46148C-6770-29FD-D00C-F3CB4F16528B"/>
+  </node>
+</cf:workflow>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" defaultButton="{okBtn}" xmlns:ns1="*" xmlns:ns2="com.lkh.*">
+<mx:Script>
+	<![CDATA[
+		import com.lkh.Attachment;
+		import com.lkh.RobotAction;
+		import mx.collections.ArrayCollection;
+		import mx.managers.PopUpManager;
+		import mx.controls.Alert;
+		
+		[Bindable]
+		public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+		
+		public var tab1Loaded:Boolean = false;
+		
+		public function resetLoad():void{
+			tab1Loaded = false;
+		}
+		
+
+		public function propertyOk(event:MouseEvent):void{
+			if(designer.canvas.selNode != null){
+				if(designer.canvas.selNode.confirmed == false)
+					designer.canvas.selNode.confirmed = true;
+			}
+			if(designer.canvas.dataModel.editable){
+				if(designer.canvas.selNode != null){
+					recordData();
+				}
+				resetLoad();
+				PopUpManager.removePopUp(designer.timerPropView);
+				designer.canvas.updateCanvas();
+			}else{
+				resetLoad();
+				if(designer.canvas.selNode != null){
+					designer.canvas.selNode.restoreTimer();
+				}
+				PopUpManager.removePopUp(designer.timerPropView);
+			}
+			
+			
+			
+		}
+		public function propertyCancel(event:MouseEvent):void{
+			resetLoad();
+			if(designer.canvas.selNode != null){
+				designer.canvas.selNode.restoreTimer();
+				if(designer.canvas.selNode.confirmed == false){
+					designer.canvas.deleteNode (designer.canvas.selNode);
+				}
+			}
+			PopUpManager.removePopUp(designer.timerPropView);
+		}
+		
+		public function recordData():void{
+			if(designer.canvas.selNode != null && designer.canvas.selNode.type==Node.NODE_TIMER){
+				designer.canvas.selNode.timerData.yy = tc.yy.value;
+				designer.canvas.selNode.timerData.mm = tc.mm.value;
+				designer.canvas.selNode.timerData.dd = tc.dd.value;
+				designer.canvas.selNode.timerData.hh = tc.hh.value;
+				designer.canvas.selNode.timerData.mi = tc.mi.value;
+			}
+		}
+		public function updateData():void{
+			if(designer.canvas.selNode != null && designer.canvas.selNode.type==Node.NODE_TIMER){
+				tc.yy.value = designer.canvas.selNode.timerData.yy;
+				tc.mm.value = designer.canvas.selNode.timerData.mm;
+				tc.dd.value = designer.canvas.selNode.timerData.dd;
+				tc.hh.value = designer.canvas.selNode.timerData.hh;
+				tc.mi.value = designer.canvas.selNode.timerData.mi;
+			}
+		}
+		
+	]]>
+</mx:Script>
+	
+<mx:VBox>
+	<mx:HBox>
+		<mx:Label text="Wait for"></mx:Label>
+	</mx:HBox>
+	<mx:HBox width="100%">
+		<ns2:TimerControl id="tc">
+		</ns2:TimerControl>
+	</mx:HBox>
+	<mx:HBox width="100%">
+		<mx:Button label="Ok" id="okBtn" click="propertyOk(event)"/>
+		<mx:Button label="Cancel" id="cancelBtn" click="propertyCancel(event)"  visible="{designer.canvas.dataModel.editable}"/>
+	</mx:HBox>
+</mx:VBox>
+</mx:Form>
+

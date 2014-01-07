@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="tobedelete" owner="LKH" acl="private" lastModified="2011-03-19T04:18:58" created="2011-03-19T04:18:58" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><node id="id_start" type="start" title="Start" name="Start" x="27" y="213">
+ <next targetID="id_apply_leaving"/></node><node id="id_end" type="end" title="End" name="End" x="738" y="213">
+ <next targetID="id_end"/></node><node id="id_apply_leaving" type="task" title="Apply Leaving" name="Apply Leaving"  acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="role" whom="starter"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_approve_leaving"/>
+ </node><node id="id_approve_leaving" type="task" title="Approve Leaving" name="Approve Leaving"  acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="role" whom="Approver"/>
+ <mpcdc/>
+ <oec/>
+ <next option="Approve" targetID="id_approved"/><next option="Approve" targetID="id_approved2"/><next option="Reject" targetID="id_rejected"/><next option="Reject" targetID="id_rejected2"/>
+ </node><node id="id_approved" type="task" title="Approved" name="Approved"  acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="RefertoNode" whom="id_apply_leaving"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_AND"/>
+ </node><node id="id_approved2" type="task" title="Approved2" name="Approved2"  acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="RefertoNode" whom="id_approve_leaving"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_AND"/>
+ </node><node id="id_AND" type="and" ><next targetID="id_end"/></node>
+ <node id="id_rejected" type="task" title="Rejected" name="Rejected"  acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="RefertoNode" whom="id_apply_leaving"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_OR"/>
+ </node><node id="id_rejected2" type="task" title="Rejected2" name="Rejected2"  acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+ <taskto type="RefertoNode" whom="id_approve_leaving"/>
+ <mpcdc/>
+ <oec/>
+ <next targetID="id_OR"/>
+ </node><node id="id_OR" type="or" ><next targetID="id_end"/></node>
+ </cf:workflow>

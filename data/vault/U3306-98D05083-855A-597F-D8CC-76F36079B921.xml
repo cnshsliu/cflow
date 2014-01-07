@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Timer Task" owner="U3306" acl="private" lastModified="2010-10-10T22:58:53" created="2010-10-10T22:58:53" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="8F6C07F4-D9E7-4D67-0993-76F360746E84" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" x="27" y="204" mpsm="null">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="17E6E0CB-8A80-CB07-B2AA-9683C3DB615B"/>
+  </node>
+  <node id="418A7BD9-A01D-C8F1-3526-76F36077B83B" type="end" title="End" name="End" acquirable="false" acqThreshold="1" x="748" y="204" mpsm="null">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="418A7BD9-A01D-C8F1-3526-76F36077B83B"/>
+  </node>
+  <node id="7BC50380-0EEB-F7C3-8A47-76F37187926C" type="timer" title="Timer" name="Timer" acquirable="false" acqThreshold="1" x="283" y="126" yy="0" mm="0" dd="0" hh="0" mi="1" mpsm="null">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="21AC6092-F908-CF0C-2F6F-76F38D3AC3AE"/>
+  </node>
+  <node id="21AC6092-F908-CF0C-2F6F-76F38D3AC3AE" type="task" title="this is a task after Task After Timer" name="Task After Timer" acquirable="false" acqThreshold="3" x="452" y="131" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="418A7BD9-A01D-C8F1-3526-76F36077B83B"/>
+  </node>
+  <node id="17E6E0CB-8A80-CB07-B2AA-9683C3DB615B" type="task" title="Task" name="Task" acquirable="true" acqThreshold="2" x="146" y="114" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="7BC50380-0EEB-F7C3-8A47-76F37187926C"/>
+  </node>
+</cf:workflow>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Round Test" owner="U3306" acl="private" lastModified="2012-08-02T22:06:28" created="2012-08-02T22:06:28" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="Approver"/>
+  <node id="AC225CF9-5D3D-18A9-C286-7801FB71AA88" type="start" title="Start" name="Start" x="27" y="204">
+    <next targetID="DAE3A321-6317-FF12-A27B-78052308B1FA"/>
+  </node>
+  <node id="2AAF110F-DED0-7DD3-90B5-7801FB75CC68" type="end" title="End" name="End" x="634" y="241">
+    <next targetID="2AAF110F-DED0-7DD3-90B5-7801FB75CC68"/>
+  </node>
+  <node id="DAE3A321-6317-FF12-A27B-78052308B1FA" type="task" title="Leave Application" name="Apply" x="207" y="175" acquirable="true" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="1">
+    <taskto type="role" whom="Approver"/>
+    <mpcdc>app cdc</mpcdc>
+    <oec>app oec</oec>
+    <attachment type="text" label="Leave Days" attname="days" value=""/>
+    <next targetID="1B71567F-8E05-5C15-875B-780C4FC84634"/>
+  </node>
+  <node id="F7D4BC53-CD77-4D7D-0148-780BED96E132" type="round" title="ROUND" name="ROUND" x="346" y="70" repeatthresholdtype="null" repeatthreshold="null" repeatcron="null">
+    <next targetID="DAE3A321-6317-FF12-A27B-78052308B1FA"/>
+  </node>
+  <node id="1B71567F-8E05-5C15-875B-780C4FC84634" type="task" title="Please approve" name="Approve" x="328" y="212" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="1">
+    <taskto type="RefertoNode" whom="DAE3A321-6317-FF12-A27B-78052308B1FA"/>
+    <mpcdc>approve cdc</mpcdc>
+    <oec>approve oec</oec>
+    <next option="REJECT" targetID="F7D4BC53-CD77-4D7D-0148-780BED96E132"/>
+    <next option="APPROVED" targetID="2AAF110F-DED0-7DD3-90B5-7801FB75CC68"/>
+  </node>
+</cf:workflow>

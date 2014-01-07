@@ -1,0 +1,225 @@
+<!--
+Copyright 2004 The Apache Software Foundation
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ -->
+<project name="CFlow" default="build">
+
+    <property environment="env"/>
+
+    <path id="CFlow.path">
+        <path refid="xmlbeans.path"/>
+        <fileset dir="lib" includes="*.jar"/>
+    </path>
+
+    <target name="init">
+        <property name="xmlbeans.home" value="${env.XMLBEANS_HOME}"/>
+		<property name="cflowdist" value="E:\dev\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\cflow"/>
+	<property name="checkstyle.home" value="${env.CHECKSTYLE_HOME}"/>
+        <echo message="xmlbeans.home: ${xmlbeans.home}"/>
+
+        <!-- check for xbean.jar from binary distribution -->
+        <available
+            property="xmlbeans.lib"
+            value="${xmlbeans.home}/lib"
+            file="${xmlbeans.home}/lib/xbean.jar" />
+
+        <!-- check for xbean.jar compiled from source -->
+        <available
+            property="xmlbeans.lib"
+            value="${xmlbeans.home}/build/lib"
+            file="${xmlbeans.home}/build/lib/xbean.jar" />
+
+        <fail message="Set XMLBEANS_HOME in your enviornment."
+            unless="xmlbeans.lib"/>
+
+        <echo message="xmlbeans.lib: ${xmlbeans.lib}"/>
+        <path id="xmlbeans.path">
+            <fileset dir="${xmlbeans.lib}" includes="*.jar"/>
+        </path>
+
+        <taskdef name="xmlbean"
+            classname="org.apache.xmlbeans.impl.tool.XMLBean"
+            classpathref="xmlbeans.path"/>
+    </target>
+
+    <!-- ========================== clean ==== -->
+
+    <target name="clean">
+    	<delete dir="temp/src/"/>
+		<delete file="temp/cf2-schemas.jar"/>
+    	<delete file="WebContent/WEB-INF/lib/cf2-schemas.jar"/>
+    </target>
+
+    <!-- ========================== build ==== -->
+
+    <!--target name="build" depends="init, clean, schemas.jar"-->
+	<target name="build" depends="init, ncopyClasses">
+    </target>
+    <target name="cleancflow">
+    	<delete dir="E:\dev\AWFMaster0\webapps\cflow"/>
+    	<delete dir="E:\dev\AWFMaster1\webapps\cflow"/>
+    	<delete dir="E:\dev\AWFMaster2\webapps\cflow"/>
+    	<delete dir="E:\dev\AWFMaster3\webapps\cflow"/>
+    	<delete dir="E:\dev\AWFServer1\webapps\cflow"/>
+    	<delete dir="E:\dev\AWFServer2\webapps\cflow"/>
+    </target>
+	<target name="copycflow" depends="init, copyCflow_files">
+    </target>
+	<target name="copyCflow_files">
+		<copy todir="E:\dev\AWFMaster0\webapps\cflow" overwrite="true">
+			<fileset dir="${cflowdist}" />
+		</copy>
+		<copy todir="E:\dev\AWFMaster1\webapps\cflow" overwrite="true">
+			<fileset dir="${cflowdist}" />
+		</copy>
+		<copy todir="E:\dev\AWFMaster2\webapps\cflow" overwrite="true">
+			<fileset dir="${cflowdist}" />
+		</copy>
+		<copy todir="E:\dev\AWFMaster3\webapps\cflow" overwrite="true">
+			<fileset dir="${cflowdist}" />
+		</copy>
+		<copy todir="E:\dev\AWFServer1\webapps\cflow" overwrite="true">
+			<fileset dir="${cflowdist}" />
+		</copy>
+		<copy todir="E:\dev\AWFServer2\webapps\cflow" overwrite="true">
+			<fileset dir="${cflowdist}" />
+		</copy>
+	</target>
+	<target name="copyClasses">
+		<copy todir="E:\dev\AWFMaster1\webapps\cflow\WEB-INF\classes\com\lkh" overwrite="true">
+			<fileset dir="${cflowdist}\WEB-INF\classes\com\lkh" />
+		</copy>
+		<copy todir="E:\dev\AWFMaster2\webapps\cflow\WEB-INF\classes\com\lkh" overwrite="true">
+			<fileset dir="${cflowdist}\WEB-INF\classes\com\lkh" />
+		</copy>
+		<copy todir="E:\dev\AWFMaster3\webapps\cflow\WEB-INF\classes\com\lkh" overwrite="true">
+			<fileset dir="${cflowdist}\WEB-INF\classes\com\lkh" />
+		</copy>
+		<copy todir="E:\dev\AWFMaster4\webapps\cflow\WEB-INF\classes\com\lkh" overwrite="true">
+			<fileset dir="${cflowdist}\WEB-INF\classes\com\lkh" />
+		</copy>
+		<copy todir="E:\dev\AWFServer1\webapps\cflow\WEB-INF\classes\com\lkh" overwrite="true">
+			<fileset dir="${cflowdist}\WEB-INF\classes\com\lkh" />
+		</copy>
+		<copy todir="E:\dev\AWFServer2\webapps\cflow\WEB-INF\classes\com\lkh" overwrite="true">
+			<fileset dir="${cflowdist}\WEB-INF\classes\com\lkh" />
+		</copy>
+	</target>
+    <target name="schemas.check">
+        <uptodate property="schemas.notRequired"
+            targetfile="temp/cf2-schemas.jar">
+            <srcfiles dir="schemas" includes="**/*.xsd"/>
+        </uptodate>
+    </target>
+
+    <target name="schemas.jar" depends="init,schemas.check"
+        unless="schemas.notRequired">
+        <mkdir dir="lib"/>
+
+        <xmlbean schema="schemas"
+            destfile="temp/cf2-schemas.jar"
+	    srcgendir="temp/src"
+            classpathref="xmlbeans.path"
+            debug="on"
+            />
+   		<copy file="temp/cf2-schemas.jar" tofile="WebContent/WEB-INF/lib/cf2-schemas.jar"/>
+    </target>
+    <target name="refresh">
+	    <delete file="users/U3306.xml"/>
+	    <copy file="users/U3306.old" tofile="users/U3306.xml"/>
+	    <delete>
+		    <fileset dir="process">
+		    </fileset>
+	    </delete>
+
+    </target>
+	
+    <target name="schema.classes" depends="init">
+	    <javac srcdir="temp/src"
+            destdir="classes"
+            classpathref="CFlow.path"
+            debug="on"
+            source="1.6"
+            />
+    </target>
+	
+    <target name="doc" depends="schemas.jar">
+	  <javadoc packagenames="com.lkh.cflow.*"
+		  sourcepath="temp/src"
+		   defaultexcludes="yes"
+		   destdir="docs/api"
+		   author="true"
+		   version="true"
+		   use="true"
+		   windowtitle="CFlow Schemas API">
+	    <doctitle><![CDATA[<h1>CFlow Shemas</h1>]]></doctitle>
+	    <bottom><![CDATA[<i>Copyright &#169; 2000 Dummy Corp. All Rights Reserved.</i>]]></bottom>
+	    <tag name="todo" scope="all" description="To do:"/>
+	    <link offline="true" href="http://java.sun.com/j2se/1.5.0/docs/api/" packagelistLoc="C:\tmp"/>
+	    <link href="http://developer.java.sun.com/developer/products/xml/docs/api/"/>
+	  </javadoc>
+	</target>
+
+
+    <!-- ========================== run ==== -->
+
+    <target name="run" depends="init, clean, build">
+        <echo message="============================== running XMLBeansDemo"/>
+        <java
+            classname="com.lkh.cflow.XmlBeansDemo"
+            classpathref="CFlow.path"
+            fork="true">
+	    <arg line="c:\\dev\\CFlow\\groups\\G1102.xml"/>
+        </java>
+    </target>
+
+    <!-- ========================== test ==== -->
+
+    <!--target name="test" depends="init,build">
+        <echo message="============================== testing CFlow"/>
+        <java
+            classname="org.apache.xmlbeans.samples.enumeration.CFlow"
+            classpathref="CFlow.path"
+            fork="true">
+            <arg line="xml/PurchaseOrder.xml"/>
+        </java>
+    </target-->
+	<target name="prepareGSHDist">
+		<copy todir="E:\dev\cflow\WebContent\WEB-INF" overwrite="true">
+			<fileset dir="E:\dev\cflow\config\fordist" includes="*.xml"/>
+		</copy>
+	</target>
+	<target name="gshdist">
+		<delete file="E:\dev\cflow\temp\cflow-gsh.jar"/>
+		<jar destfile="E:\dev\cflow\temp\cflow-doc.jar" basedir="E:\dev\cflow\doc"/>
+		<jar destfile="E:\dev\cflow\temp\cflow-vault.jar" basedir="C:\cflow" excludes="database/**"/>
+		<copy todir="E:\dev\cflow\temp\sql" overwrite="true">
+			<fileset dir="E:\dev\cflow\sql\" includes="cflow.sql"/>
+		</copy>
+		<jar destfile="E:\dev\cflow\temp\cflow-gsh.jar" basedir="E:\dev\cflow\temp">
+			<include name="cflow-doc.jar"/>
+			<include name="sql\cflow.sql"/>
+			<include name="DeveloperGuide.txt"/>
+			<include name="cflow.war"/>
+			<include name="liukehong.sql"/>
+			<include name="cflow-vault.jar"/>
+		</jar>
+	</target>
+	<target name="afterGSHDist">
+		<copy todir="E:\dev\cflow\WebContent\WEB-INF" overwrite="true">
+			<fileset dir="E:\dev\cflow\config" includes="*.xml"/>
+		</copy>
+	</target>
+
+</project>

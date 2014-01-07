@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="差旅申请" owner="U3306" acl="private" lastModified="2010-12-22T22:54:05" created="2010-12-22T22:54:05" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="19BD4CFD-B577-A0CD-DFB0-78B940D53AF0" type="start" title="Start" name="Start" x="27" y="204">
+    <next targetID="02C971E6-BB69-8320-295F-78BA548A900F"/>
+  </node>
+  <node id="9439CAF5-6FDD-A248-C9C2-78B940D518C5" type="end" title="End" name="End" x="652" y="340">
+    <next targetID="9439CAF5-6FDD-A248-C9C2-78B940D518C5"/>
+  </node>
+  <node id="02C971E6-BB69-8320-295F-78BA548A900F" type="task" title="Task" name="出差申请" x="119" y="206" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="出差理由" attname="出差理由" value=""/>
+    <next option="2.提交审批" targetID="5E926926-D6C8-76BC-F281-78BCD2A53A86"/>
+    <next option="1.暂存" targetID="49B64D32-7695-AD57-6325-7FDD346238CC"/>
+    <next option="3.放弃(d)" targetID="C1218C63-C17F-DB82-8D39-7FDD312D7AED"/>
+  </node>
+  <node id="5E926926-D6C8-76BC-F281-78BCD2A53A86" type="task" title="是否允许出差" name="是否允许出差" x="195" y="207" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="不允许" targetID="4492E67E-C721-9E1B-58DC-78C79DE02E1D"/>
+    <next option="允许" targetID="409309E9-9A7D-A5C8-1FFD-78C0217D6907"/>
+  </node>
+  <node id="409309E9-9A7D-A5C8-1FFD-78C0217D6907" type="task" title="预定产品操作说明" name="预定产品" x="206" y="122" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="7BDEDE14-F0AA-2EC0-CA76-78C093A3467E"/>
+  </node>
+  <node id="7BDEDE14-F0AA-2EC0-CA76-78C093A3467E" type="task" title="请确定预定产品是否完备的说明" name="请确定预定产品是否完备" x="271" y="121" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="留言" attname="留言" value=""/>
+    <next option="完备" targetID="C2682227-DA3E-AA76-AC82-78C18B388CC8"/>
+    <next option="不完备" targetID="C89EC96D-E0DC-056F-6ABD-78C3F50FFDE3"/>
+  </node>
+  <node id="C2682227-DA3E-AA76-AC82-78C18B388CC8" type="task" title="出差完成后，请点“完成”按钮" name="出差中" x="505" y="121" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="差旅留言" attname="差旅留言" value=""/>
+    <next option="本次出差已结束" targetID="814C0C19-2718-CF20-F0AF-78C2ACE4E788"/>
+    <next option="本次出差未结束" targetID="5448B9EE-BA0B-E540-33BB-78C62C7AF46F"/>
+    <next option="本次出差需要加订差旅" targetID="C89EC96D-E0DC-056F-6ABD-78C3F50FFDE3"/>
+  </node>
+  <node id="814C0C19-2718-CF20-F0AF-78C2ACE4E788" type="task" title="额外费用填写说明" name="出差结束，请填写额外费用" x="607" y="36" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="4492E67E-C721-9E1B-58DC-78C79DE02E1D"/>
+  </node>
+  <node id="C89EC96D-E0DC-056F-6ABD-78C3F50FFDE3" type="or" title="OR" name="OR" x="232" y="16">
+    <next targetID="409309E9-9A7D-A5C8-1FFD-78C0217D6907"/>
+  </node>
+  <node id="5448B9EE-BA0B-E540-33BB-78C62C7AF46F" type="or" title="OR" name="OR" x="481" y="34">
+    <next targetID="6FC9F98A-B4A3-2E1C-B42D-78C666231DF7"/>
+  </node>
+  <node id="6FC9F98A-B4A3-2E1C-B42D-78C666231DF7" type="or" title="OR" name="OR" x="532" y="25">
+    <next targetID="C2682227-DA3E-AA76-AC82-78C18B388CC8"/>
+  </node>
+  <node id="4492E67E-C721-9E1B-58DC-78C79DE02E1D" type="or" title="OR" name="OR" x="655" y="211">
+    <next targetID="9439CAF5-6FDD-A248-C9C2-78B940D518C5"/>
+  </node>
+  <node id="C1218C63-C17F-DB82-8D39-7FDD312D7AED" type="or" title="OR" name="OR" x="269" y="338">
+    <next targetID="9439CAF5-6FDD-A248-C9C2-78B940D518C5"/>
+  </node>
+  <node id="49B64D32-7695-AD57-6325-7FDD346238CC" type="or" title="OR" name="OR" x="151" y="50">
+    <next targetID="B85C293F-509A-7DD5-0720-7FDD36BBD063"/>
+  </node>
+  <node id="B85C293F-509A-7DD5-0720-7FDD36BBD063" type="or" title="OR" name="OR" x="37" y="86">
+    <next targetID="02C971E6-BB69-8320-295F-78BA548A900F"/>
+  </node>
+</cf:workflow>

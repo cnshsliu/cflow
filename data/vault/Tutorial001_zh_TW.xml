@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Tutorial001_zh_CN" owner="U3306" acl="private" lastModified="2010-11-15T02:29:32" created="2010-11-15T02:29:32" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="F06DB5D1-A7A2-6070-7C0E-319D252E0EDE" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="5" y="93" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="CA77637F-0CD4-7594-4B7E-319D98B81FA9"/>
+  </node>
+  <node id="CDC5D3E5-1603-3A3E-AFC3-319D2532299F" type="end" title="End" name="End" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="710" y="57" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="CDC5D3E5-1603-3A3E-AFC3-319D2532299F"/>
+  </node>
+  <node id="CA77637F-0CD4-7594-4B7E-319D98B81FA9" type="task" title="本教程將向您一步步展示面向個人使用者的CFLOW服務。在完成這個教程以後，你將瞭解什麼是CFlow服務以及怎樣使用它。使用Cflow的基本步驟包括： &#xD;&#x9;  [ul][li]定義流程範本；[/li]&#xD;       [li]定義工作團隊；[/li]&#xD;&#x9;  [li]啟動流程；[/li]&#xD;&#x9;  [li]查看工作列表並依其開展工作；[/li]&#xD;&#x9;  [li]監控流程運行狀態[/li]&#xD;&#x9;  [/ul] &#xD;&#xD;&#x9;  [h3]首先，Cflow是什麼。[/h3]&#xD;&#xD;&#x9;  [p]從概念上看，你可以把CFlow當做你的私人管家，他可使是你的工作或生活變得井井有條而且高效。私人管家將通知您和您周圍的人眼下要完成什麼工作，當這個工作完成以後，私人管家將自動判斷下一步應該是什麼，然後在合適的時間，將合適的工作，分配給合適的人。 [/p]&#xD;&#x9;  [p]從技術角度看，CFlow基本上是一個運行在雲中的雲流程服務，您可以多次地產生實體一個流程範本，來多次運行流程。Cflow自動判斷哪個任務該由什麼人來完成，將工作交給那個人或者那些人。在CFlow的協調下，一組人可以在高效協同的模式下達成既定工作目標。[/p]&#xD;&#x9;  [p]CFlow説明您以及您的組織提高工作協同效率，並且讓事情井井有條。[/p]&#xD;&#x9;  現在，如果您已經準備好了，請點 &quot;下一步&quot; 按鈕." name="歡迎使用Cflow" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="125" y="94" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.下一步" targetID="30FA5E94-ABDC-9F56-532B-31A24D7D4FDA"/>
+  </node>
+  <node id="30FA5E94-ABDC-9F56-532B-31A24D7D4FDA" type="task" title="本教程包含如下幾個部分：&#xD;[ul]&#xD;[li]1. 基本概念[/li]&#xD;[li]2. 流程範本設計器[/li]&#xD;[li]3. 建立您自己的範本[/li]&#xD;[li]5. 啟動流程[/li]&#xD;[li]6. 檢查工作列表[/li]&#xD;[li]8. 簡稱流程運行狀態[/li]&#xD;[/ul]&#xD;&#xD;" name="(T1):教程的組成" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="89" y="174" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="1.上一步" targetID="D4CF0961-BDAC-433C-1111-31A6BD7CEE1A"/>
+    <next option="2.下一步" targetID="2AE9553C-EFFC-DD20-415F-31A42A75673A"/>
+  </node>
+  <node id="2AE9553C-EFFC-DD20-415F-31A42A75673A" type="task" title="[p]Cflow有三個主要的組成:範本，工作組和流程。[/p]&#xD;[center][img]/cflow/tutorials/zh_CN/images/concept1.png[/img][/center]&#xD;[p]你可以使用運行在流覽器中的圖形介面的範本設計器來設計自己的流程範本。[/p][p]如果你的流程是多人參與的，你還需要定義工作團隊。在範本中，把工作任務分配給角色（或者一個具體的參與者）；在團隊中，指定角色與參與者的對應關係。 [/p][p]當啟動一個流程是，Cflow會將範本與團隊進行匹配，將角色映射到人。通過這種方法，Cflow知道該把一個具體的工作任務交給哪個或者哪些具體的人去完成。下一次使用同樣的範本來啟動流程，但所使用的團隊不同時，範本中同樣的工作任務的具體承擔者也會因為團隊的不同而不同。 [/p][p]這樣的規則保證了靈活性。也就是說，我們可以為不同的團隊提供相同的流程範本。 [/p][p]舉例來說，我們定義了一個請假流程範本，其中的批准者是部門經理這個角色，我們也定義了兩個團隊：部門A和部門B, 在部門A中，部門經理是小李；在部門B中，部門經理室小王。當部門A中的員工啟動請假流程時，批准請假這個活動會自動交給部門A的部門經理，也就是小李；而當部門B中的員工使用同樣的請假流程時，批准請假這個活動就會分配給小王，因為小王才是部門B的部門經理。[/p]&#xD;[p]如果您使用Cflow來處理私人事務，那麼您不必定義工作團隊，所有工作會自動提交給流程的啟動者，也就是您。[/p]&#xD;[center][img]/cflow/tutorials/zh_CN/images/concept2.png[/img][/center]" name="(T2):CFlow基本概念" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="102" y="263" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.下一步" targetID="3877D251-0625-0E34-3EE2-31A8623B2529"/>
+    <next option="1.上一步" targetID="1C024C2E-6E04-0373-7F4A-31AB266E9202"/>
+  </node>
+  <node id="D4CF0961-BDAC-433C-1111-31A6BD7CEE1A" type="or" title="OR" name="OR" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="110" y="143" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="CA77637F-0CD4-7594-4B7E-319D98B81FA9"/>
+  </node>
+  <node id="3877D251-0625-0E34-3EE2-31A8623B2529" type="task" title="範本設計器用來創建新的流程範本。 &#xD;&#xD;這裡有一個非常有趣，而又非常簡單的如何把長頸鹿放到冰箱裡去的流程。&#xD;[urb=/cflow/tutorials/zh_CN/putgiraffe/putgiraffe.html]請點這裡查看一個動畫演示[/urb]&#xD;" name="(T3):關於範本設計器" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="90" y="351" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.下一步" targetID="05920192-711C-AB3D-40C8-31AA460F31A2"/>
+    <next option="1.上一步" targetID="F20B46FF-ABF4-4EAE-BB68-31AB2E84BA02"/>
+  </node>
+  <node id="05920192-711C-AB3D-40C8-31AA460F31A2" type="task" title="[p]現在，請您自己來依照前面的演示來設計範本“把長頸鹿放進冰箱裡” ,點螢幕上方的“流程範本設計”開始。 [/p]&#xD;&#xD;&#xD;完成以後，請別忘了在你的工作列表中點“(T5)創建一個新範本”回到這個教程中來，然後點下一步按鈕繼續。" name="(T4):創建一個新範本" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="304" y="350" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="1.上一步" targetID="CA702E0B-07A8-3135-4F62-31ABB97A41C9"/>
+    <next option="2.下一步" targetID="1948C453-54A3-40B6-8A83-3BEE75270662"/>
+  </node>
+  <node id="1C024C2E-6E04-0373-7F4A-31AB266E9202" type="or" title="OR" name="OR" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="115" y="233" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="30FA5E94-ABDC-9F56-532B-31A24D7D4FDA"/>
+  </node>
+  <node id="F20B46FF-ABF4-4EAE-BB68-31AB2E84BA02" type="or" title="OR" name="OR" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="105" y="322" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="2AE9553C-EFFC-DD20-415F-31A42A75673A"/>
+  </node>
+  <node id="CA702E0B-07A8-3135-4F62-31ABB97A41C9" type="or" title="OR" name="OR" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="272" y="324" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="3877D251-0625-0E34-3EE2-31A8623B2529"/>
+  </node>
+  <node id="1948C453-54A3-40B6-8A83-3BEE75270662" type="task" title="[h3]恭喜![/h3]&#xD;[p]你剛剛完成了“把長頸鹿放進冰箱裡”的流程範本設計。[/p]&#xD;&#xD;[p][color=#CC0000]在離開教程以後，請記住在工作列表中點“(T5):啟動你的流程”回到這個教程中，以便繼續。[/color][/p]&#xD;&#xD;[ul]啟動這個新的進程僅需要簡單的三次點擊：&#xD;[li]點螢幕上方的 &quot;啟動流程&quot; [/li]&#xD;[li]&quot;選擇要啟動的流程&quot; 視窗將會顯示，在那裡，點您剛才創建的範本後面的“下一步”按鈕，進入第三頁。[/li]&#xD;[li]在第三頁中，根據需要，您可以重新命名流程實例。但“啟動”按鈕即可完成流程啟動。[/li]&#xD;[/ul]&#xD;&#xD;" name="(T5):啟動你的流程" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="494" y="349" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.下一步" targetID="B4B8F8CF-E22E-7497-95DA-410CD8A8F143"/>
+    <next option="1.上一步" targetID="206D1ACF-5488-D98D-E96D-3BF494D6676F"/>
+  </node>
+  <node id="C3C5D3CA-E53A-8DE2-8F59-3BF1596F36E3" type="task" title="[p]流程正在運行中，現在我們可以監控一下它的運行狀態。[/p]&#xD;&#xD;[p][color=#CC0000]請記住點工作列表中的“(T7)監控進程狀態”回到本教程中來，以便繼續[/color][/p]&#xD;&#xD;[p]要監控進程，請按下面說明操作：在工作列表中，點“將長頸鹿放進去”工作項下面的小字體流程連接。流程狀態將類似如下顯示：&#xD;[center][img]/cflow/tutorials/zh_CN/images/process_monitor1.png[/img][/center]&#xD;[li]左上角顯示流程的運行狀態為運行中[/li]&#xD;[li]開始節點和“打開門”節點被綠色圈起來，表示這兩個節點已經完成。[/li]&#xD;[li]&quot;把長頸鹿放進冰箱裡&quot; 外面是藍色的圓圈，表示這是當前工作任務。[/li]&#xD;[li]其它沒有被圈起來的節點表示尚未被分配。[/li]&#xD;&#xD;&#xD;&#xD;&#xD;" name="(T7):監控進程狀態" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="481" y="144" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.下一步" targetID="D442B30B-A767-68A5-E8BB-3BFE9CA4966E"/>
+    <next option="1.上一步" targetID="F9A7EBBB-D30E-B8CD-2379-3BF499064FA4"/>
+  </node>
+  <node id="206D1ACF-5488-D98D-E96D-3BF494D6676F" type="or" title="OR" name="OR" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="447" y="311" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="05920192-711C-AB3D-40C8-31AA460F31A2"/>
+  </node>
+  <node id="F9A7EBBB-D30E-B8CD-2379-3BF499064FA4" type="or" title="OR" name="OR" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="609" y="194" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="B4B8F8CF-E22E-7497-95DA-410CD8A8F143"/>
+  </node>
+  <node id="D442B30B-A767-68A5-E8BB-3BFE9CA4966E" type="task" title="[h3]恭喜![/h3]&#xD;[p]您已完成了快速入門教程。[/p]&#xD;&#xD;要查看更多的教程，以便瞭解CFlow更多、更高級的功能，請點螢幕上方的 &quot;幫助&quot; ，然後去到教程部分。&#xD;&#xD;點 &quot;完成&quot; 關閉這個教程。" name="(T8)結束快速人們教程" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="493" y="56" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.完成" targetID="CDC5D3E5-1603-3A3E-AFC3-319D2532299F"/>
+    <next option="1.上一步" targetID="422875CD-7CC5-1BC6-B246-4B940E7169A1"/>
+  </node>
+  <node id="B4B8F8CF-E22E-7497-95DA-410CD8A8F143" type="task" title="[h3]恭喜![/h3]&#xD;[p]您剛剛啟動了把長頸鹿放進冰箱裡的進程。[/p]&#xD;&#xD;[p][color=#CC0000]請記住在離開教程以後，在工作列表中點 &quot;(T6):檢查工作列表&quot; 回到本教程[/color][/p]&#xD;&#xD;&#xD;[p]您的工作清單顯示在螢幕左側，看到您所設計的流程中的第一個活動嗎？點它的連接，將實現那個活動的工作頁面，根據工作頁面中的指導說明，完成相應的工作，在你提交工作以後，工作清單將顯示下一步的工作任務。[/p]&#xD;" name="(T6):檢查工作列表" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="500" y="245" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="1.上一步" targetID="688C9663-2A2A-59D4-3DB0-410DB68EA245"/>
+    <next option="2.下一步" targetID="C3C5D3CA-E53A-8DE2-8F59-3BF1596F36E3"/>
+  </node>
+  <node id="688C9663-2A2A-59D4-3DB0-410DB68EA245" type="or" title="OR" name="OR" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="612" y="307" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="1948C453-54A3-40B6-8A83-3BEE75270662"/>
+  </node>
+  <node id="422875CD-7CC5-1BC6-B246-4B940E7169A1" type="or" title="OR" name="OR" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="613" y="114" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="C3C5D3CA-E53A-8DE2-8F59-3BF1596F36E3"/>
+  </node>
+</cf:workflow>

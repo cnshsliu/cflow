@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Demo_OR" owner="aliyun" acl="private" lastModified="2012-11-30T01:23:42" created="2012-11-30T01:23:42" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="319692DD-0F15-C4BD-4867-92D1796D7099" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="1B81D7F7-4DD1-F057-BFF6-92D1B55D66F1" joints=""/>
+    <next targetID="E7AF0F35-C86B-3129-D02C-92D1D6EB1BE6" joints=""/>
+  </node>
+  <node id="DFB96ABD-C244-D70F-97CC-92D1796F4474" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="DFB96ABD-C244-D70F-97CC-92D1796F4474"/>
+  </node>
+  <node id="1B81D7F7-4DD1-F057-BFF6-92D1B55D66F1" type="task" title="Task" name="Task 1" x="100" y="104" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="86B1902A-2A80-4FF4-926D-92D28E9848B8" joints="229:80;1267:168"/>
+  </node>
+  <node id="E7AF0F35-C86B-3129-D02C-92D1D6EB1BE6" type="task" title="Task" name="Task 2" x="171" y="284" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="86B1902A-2A80-4FF4-926D-92D28E9848B8" joints=""/>
+  </node>
+  <node id="B2B1C164-776F-97F4-011C-92D1EDEB76A6" type="task" title="Task" name="Task 3" x="481" y="214" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="DFB96ABD-C244-D70F-97CC-92D1796F4474" joints=""/>
+  </node>
+  <node id="86B1902A-2A80-4FF4-926D-92D28E9848B8" type="or" title="OR" name="OR" x="233" y="371">
+    <next targetID="B2B1C164-776F-97F4-011C-92D1EDEB76A6" joints=""/>
+  </node>
+</cf:workflow>

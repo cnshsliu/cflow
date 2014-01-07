@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="JavaTest" owner="U3306" acl="private" lastModified="2010-11-29T14:15:49" created="2010-11-29T14:15:49" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="5CC4CFA1-6533-45D5-94AD-59F4A2A296DC" type="start" title="Start" name="Start" x="26" y="92">
+    <next targetID="F3518383-8E11-E6D2-A536-59F4CA5D114B"/>
+  </node>
+  <node id="022434F3-87E5-21E2-4105-59F4A2A9FD68" type="end" title="End" name="End" x="750" y="231">
+    <next targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+  </node>
+  <node id="F3518383-8E11-E6D2-A536-59F4CA5D114B" type="task" title="请输入请假天数和请假原因" name="请假申请" x="116" y="109" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <attachment type="int" label="请假天数" attname="days" value=""/>
+    <attachment type="text" label="请假原因" attname="reason" value=""/>
+    <next targetID="27F2E181-3305-3955-F5F2-96446276DC7E"/>
+  </node>
+  <node id="7CE979C9-5530-79C0-768F-59F637566ECF" type="task" title="恭喜，你的请假申请已通过批准" name="请假已通过" x="461" y="231" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+  </node>
+  <node id="348CAF86-53E0-A373-6F51-59F657CCCF0E" type="task" title="你的请假申请被拒绝&#xD;" name="请假申请被拒" x="486" y="90" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+  </node>
+  <node id="27F2E181-3305-3955-F5F2-96446276DC7E" type="script" title="Script" name="Script" x="265" y="56">
+    <script>JAVA:com.lkh.cflow.test.MyLinker</script>
+    <next option="long" targetID="348CAF86-53E0-A373-6F51-59F657CCCF0E"/>
+    <next option="short" targetID="7CE979C9-5530-79C0-768F-59F637566ECF"/>
+  </node>
+</cf:workflow>

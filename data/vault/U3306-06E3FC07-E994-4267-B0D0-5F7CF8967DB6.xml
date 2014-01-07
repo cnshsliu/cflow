@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="请假申请" owner="U3306" acl="private" lastModified="2010-11-18T01:14:59" created="2010-11-18T01:14:59" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="My Manager"/>
+  <node id="5CC4CFA1-6533-45D5-94AD-59F4A2A296DC" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="26" y="92" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="F3518383-8E11-E6D2-A536-59F4CA5D114B"/>
+  </node>
+  <node id="022434F3-87E5-21E2-4105-59F4A2A9FD68" type="end" title="End" name="End" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="750" y="231" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+  </node>
+  <node id="F3518383-8E11-E6D2-A536-59F4CA5D114B" type="task" title="请输入请假天数和请假原因" name="请假申请" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="150" y="93" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="int" label="请假天数" attname="days" value=""/>
+    <attachment type="text" label="请假原因" attname="reason" value=""/>
+    <next targetID="A1878F04-2D3D-3D88-E3DA-59F5FBB94E2F"/>
+  </node>
+  <node id="A1878F04-2D3D-3D88-E3DA-59F5FBB94E2F" type="task" title="请审批下面的请假" name="等待请假审批" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="140" y="230" mpsm="1">
+    <taskto type="role" whom="My Manager"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="您的意见" attname="approveComment" value=""/>
+    <next option="1.同意" targetID="7CE979C9-5530-79C0-768F-59F637566ECF"/>
+    <next option="2.拒绝" targetID="348CAF86-53E0-A373-6F51-59F657CCCF0E"/>
+  </node>
+  <node id="7CE979C9-5530-79C0-768F-59F637566ECF" type="task" title="恭喜，你的请假申请已通过批准" name="请假已通过" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="461" y="231" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+  </node>
+  <node id="348CAF86-53E0-A373-6F51-59F657CCCF0E" type="task" title="你的请假申请被拒绝&#xD;[p]要重新申请吗?[/p]" name="请假申请被拒" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="486" y="90" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.放弃申请" targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+    <next option="1.重新申请" targetID="F3518383-8E11-E6D2-A536-59F4CA5D114B"/>
+  </node>
+</cf:workflow>

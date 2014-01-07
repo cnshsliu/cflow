@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="MWF_Tutorial" owner="aliyun" acl="private" lastModified="2012-12-06T01:27:33" created="2012-12-06T01:27:33" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="7B033BC2-31E2-F9E4-70BC-6C003D64A366" type="start" title="Start" name="Start" x="28" y="238">
+    <next option="null" targetID="761C6D15-75B6-2172-55D5-6C005CF1241F" joints=""/>
+  </node>
+  <node id="DE1EB032-8F73-59AE-488E-6C003D672429" type="end" title="End" name="End" x="708" y="238">
+    <next targetID="DE1EB032-8F73-59AE-488E-6C003D672429"/>
+  </node>
+  <node id="761C6D15-75B6-2172-55D5-6C005CF1241F" type="task" title="您正在访问的网站是云流程服务的开发者控制台。&#xD;[ul]在控制台上，开发者可以使用[/ul][li]流程模板设计器[/li] [li]流程运行监控器[/li] [li]进行流程参与人管理[/li] [li]进行HTML表单管理[/li] [li]测试流程[/li] &#xD;[p]以上功能中，除了图形界面外，所有功能均可以通过API来完成, 控制台只是给开发者提供了一个界面，以方便开发者进行以上流程数据管理工作[/p]&#xD;[p]在您第一次访问控制台时，云流程服务的教程自动为您启动，您现在所看到的就是该教程的第一个活动。您随时可以进入“模板设计器”菜单，在里面启动MWF_Tutorial这个流程，再次启动教程[/p]&#xD;[p]请按下面的按钮，进入下一步[/p]" name="欢迎使用云流程服务" x="50" y="122" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="29C574AE-A787-77DC-7142-6C0D5399A07C" joints="220:60"/>
+  </node>
+  <node id="29C574AE-A787-77DC-7142-6C0D5399A07C" type="task" title="云流程服务以“按需”的方式向开发者提供流程运行服务，开发者无须安装配置任何流程软件，即可以使用本流程云服务来在应用中集成流程功能。&#xD;&#xD;云流程服务向开发者暴露两个接口，一是开发者控制台，也就是您正在使用的这个网站； 二是开发API， 不管开发者习惯使用何种编程语言，都可以通过API使用流程云服务；&#xD;&#xD;[ul]使用云流程服务的一般步骤是：&#xD;[li]使用模板设计器设计流程模板[/li]&#xD;[li]在您的应用程序中，按照需要调用startWorkflow[/li]&#xD;[li]取用户的工作列表[/li]&#xD;[li]向用户显示工作列表及工作项[/li]&#xD;[li[用户完成工作后，调用doTask向流程云服务提交任务[/li]&#xD;[li]重复以上三项步骤直到流程运行结束[/li]&#xD;[/ul]&#xD;&#xD;流程云服务支持面向人的工作节点和面向机器的工作节点，面向机器的工作节点由流程引擎自动执行，无须人工参与。&#xD;" name="了解云流程服务" x="316" y="62" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="DE1EB032-8F73-59AE-488E-6C003D672429" joints=""/>
+  </node>
+</cf:workflow>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style_help.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/code.css">
+<title>无标题文档</title>
+</head>
+
+<body>
+<a href="../index.html">Home > <a href="help_and_tutorials.html">Help</a> > <a href="quickstart.html">Quickstart</a>
+<h1>Basic Conecpt</h1>
+<h2>Account</h2>
+<p>MWF users should have  MWF accounts, either they are programmers or who should be assigned workflow tasks.</p>
+<p>A programmer can import many accounts in batch mode. (For instance, if you are develop an application for Comapny A, you may not ask all employees in Company A to register MWF accounts manually by themselves, instead, you call MWF APIs to import their accounts, later, they can modify their passwords by themselves).</p>
+<h2>Organization</h2>
+<p>MWF use &quot;organization&quot; to seperate workflow participating boundary, a user and other users within same organization are &quot;peers&quot;, a user can add only peers to his/her working team. When assign work directly, only peers can be used.</p>
+<ul>
+  <li> MWF use organization (ORG) to manage tenant</li>
+  <li> A user can create and belong to one to many ORGs,</li>
+  <li> A user can see other users (peers) who belong to any ORG the user belongs  to. </li>
+  <li> A process started with a user (the starter) can dispatch tasks to starter’s  peers. <br />
+    <img src="images/organizaiton_user.jpg" alt="org and user relationship" width="311" height="245" /></li>
+</ul>
+<table width="300" border="1" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="295" valign="top"><p><strong>User</strong></p></td>
+    <td width="295" valign="top"><p><strong>Peers</strong></p></td>
+  </tr>
+  <tr>
+    <td width="295" valign="top"><p>A</p></td>
+    <td width="295" valign="top"><p>B, C, D</p></td>
+  </tr>
+  <tr>
+    <td width="295" valign="top"><p>B</p></td>
+    <td width="295" valign="top"><p>A, D</p></td>
+  </tr>
+  <tr>
+    <td width="295" valign="top"><p>C</p></td>
+    <td width="295" valign="top"><p>A</p></td>
+  </tr>
+  <tr>
+    <td width="295" valign="top"><p>D</p></td>
+    <td width="295" valign="top"><p>A, B</p></td>
+  </tr>
+</table>
+<h2>Workflow Template</h2>
+<p>A workflow template define the task nodes, participants and routines among these tasks.</p>
+<h2>Doer</h2>
+<p>A doer is a MWF user who will be assigned tasks. MWF dispatch tasks to doer's worklist. When doer complete a task, MWF drive processes to next task.</p>
+<h2>Role</h2>
+<p>In workflow template, a task can be assigned to user(s) or role(s).</p>
+<h2>Team</h2>
+<p>Although assign work to specific user(s) is okay, MWF suggests assign work(s) to role(s) instead because this is very flexible. A team defines maps between a role to user(s), when a workflow is started, MWF will get these maps and dispatch works to the role participatns.</p>
+<h2>Process</h2>
+<p>A process is a workflow instance. When start a workflow, a team should be provided to resolve role participation, if the working team is not provided, or a role defined in workflow template does not exist in the provided team, the participate for the task will be assigned to who start the workflow, the process starter.</p>
+<h2>The relationship among workflow role, team and process doers. </h2>
+<ol>
+  <ul>
+    <li>A workflow TASK can be assigned to one to many users, or one to many roles.</li>
+    <li>A team defines the mapping between role and user(s)</li>
+    <li>The role will be mapped to users at process runtime, by matching role to user(s) defined in team</li>
+  </ul>
+  <p><img src="images/done_by_roles.jpg" alt="done by roles" width="617" height="119" /></p>
+  <p>The above image shows a task will be done by roles &quot;Approver&quot; and &quot;Auditor&quot;.</p>
+  <p><img src="images/teama_members.jpg" alt="teama_members" width="428" height="287" /></p>
+  <p>and in TeamA, U3306 and U3307 take the role as Approver, U3308 takes the role of Auditor, then if a workflow is started with TeamA, then the task originally assigned to role Approver and Auditor will be actually assigned to U3306, U3307 and U3308.</p>
+  <p>&nbsp;</p>
+</ol>
+</body>
+</html>

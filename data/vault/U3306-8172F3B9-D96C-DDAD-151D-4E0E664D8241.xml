@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="testAnyEmail" owner="U3306" acl="private" lastModified="2011-02-23T00:03:35" created="2011-02-23T00:03:35" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="AB17D8DC-1742-880B-3646-4E0E6646DE35" type="start" title="Start" name="Start" x="27" y="213">
+    <next targetID="781B6EE8-E539-0994-C851-4E0E75539EA9"/>
+  </node>
+  <node id="2F92AD11-987E-F219-24DB-4E0E664B0C33" type="end" title="End" name="End" x="676" y="134">
+    <next targetID="2F92AD11-987E-F219-24DB-4E0E664B0C33"/>
+  </node>
+  <node id="781B6EE8-E539-0994-C851-4E0E75539EA9" type="task" title="Please do it." name="TaskToLiuzijin" x="309" y="128" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="person" whom="liuzijin@gmail.com"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="2F92AD11-987E-F219-24DB-4E0E664B0C33"/>
+  </node>
+</cf:workflow>

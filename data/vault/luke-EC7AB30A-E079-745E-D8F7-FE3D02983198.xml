@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="aaa" owner="luke" acl="private" lastModified="2009-06-20T23:25:48" created="2009-06-20T23:25:48" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="7F15A019-160B-1F31-B6F2-FE3D027AD1E1" type="start" title="Start" name="Start" x="27" y="204">
+    <next targetID="3CC317EA-F88C-30D7-11DD-FE3D2248E794"/>
+  </node>
+  <node id="F153CE65-0EB7-A56C-B59E-FE3D0284C604" type="end" title="End" name="End" x="748" y="204">
+    <next targetID="F153CE65-0EB7-A56C-B59E-FE3D0284C604"/>
+  </node>
+  <node id="3CC317EA-F88C-30D7-11DD-FE3D2248E794" type="task" title="Task" name="Task" x="321" y="167">
+    <taskto type="person" whom="luke"/>
+    <next targetID="F153CE65-0EB7-A56C-B59E-FE3D0284C604"/>
+  </node>
+</cf:workflow>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Repeat Test" owner="U3306" acl="private" lastModified="2010-12-08T21:48:11" created="2010-12-08T21:48:11" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="1D7057FA-4ED6-1AD5-97A1-0D45C9514BE3" type="start" title="Start" name="Start" x="27" y="204">
+    <next targetID="FF7B9F07-93C8-83A2-4994-6EE48256E7A2"/>
+  </node>
+  <node id="ADB19DFA-661C-85C6-718B-0D45C95695C5" type="end" title="End" name="End" x="1207" y="276">
+    <next targetID="ADB19DFA-661C-85C6-718B-0D45C95695C5"/>
+  </node>
+  <node id="A28C3C68-D95A-C60A-E978-0D45EDDA3356" type="task" title="Task" name="TaskCCCC" x="203" y="250" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="BB0ACEA2-67FA-267B-C588-6EE3FAD01506"/>
+  </node>
+  <node id="BB0ACEA2-67FA-267B-C588-6EE3FAD01506" type="task" title="Task" name="Task2" x="370" y="221" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="B66EBD6E-8E85-CB16-E86F-7185A44957E0"/>
+  </node>
+  <node id="FF7B9F07-93C8-83A2-4994-6EE48256E7A2" type="round" title="ROUND" name="ROUND" x="175" y="167" repeatthresholdtype="DATE" repeatthreshold="-undefined-undefined" repeatcron="0/5 * * * * ? *">
+    <next targetID="A28C3C68-D95A-C60A-E978-0D45EDDA3356"/>
+    <next option="FINISH" targetID="ADB19DFA-661C-85C6-718B-0D45C95695C5"/>
+  </node>
+  <node id="B66EBD6E-8E85-CB16-E86F-7185A44957E0" type="ground" title="GROUND" name="GROUND" x="574" y="271">
+    <next targetID="B66EBD6E-8E85-CB16-E86F-7185A44957E0"/>
+    <next targetID="B66EBD6E-8E85-CB16-E86F-7185A44957E0"/>
+  </node>
+</cf:workflow>

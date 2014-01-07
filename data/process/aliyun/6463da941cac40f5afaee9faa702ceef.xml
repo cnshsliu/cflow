@@ -1,0 +1,28 @@
+<process id="6463da941cac40f5afaee9faa702ceef" wftid="6463da941cac40f5afaee9faa702ceef" origin="ced045deab464fabab7d806b6137cc74" roundid="cbfb56679f414709a1a0a2aca50ffe8e" startat="2012-11-28T21:09:53.515+08:00" status="canceled" startby="peixin.baipx" teamid="" wftname="v1" lastError="Parse script return value exception.WS:[http://YOUR_WEB_SERVER/APP/Servlet]" endat="2012-11-28T21:24:39.652+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="7EBD6CB5-42D0-C653-4DE6-EAF5D9D869D1" sessid="19569dbfb64e4fdba000d5e0ea15738c" roundid="cbfb56679f414709a1a0a2aca50ffe8e" createdAt="2012-11-28T21:09:53.622+08:00" completedAt="2012-11-28T21:09:53.622+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="cbfb56679f414709a1a0a2aca50ffe8e" sessid="c9686143868c4e43ad8c1c408cb4ddc7" name="Leaving Application" title="This demo shows how to integrate with a WEB resource the WEB resource normally is a Servlet running on any web server.[br] This demo does not provide a default URL, you must use your own, see MWF tutorial hwo to write a Servlet to integrate with MWF" type="task" nodeid="12EDDD5E-4646-3A8A-7DC9-EAF60250705D" createdAt="2012-11-28T21:09:53.623+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="" completedAt="2012-11-28T21:09:53.895+08:00" completedBy="peixin.baipx" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_finished"/>
+    <attachment type="int" label="Leave Days" attname="days" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="Leave Reason" attname="reason" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="peixin.baipx" timestamp="2012-11-28T21:09:53.752+08:00" option="">
+      <attachment usrid="peixin.baipx" attname="days" value="20" type="int" label="Leave Days"/>
+      <attachment usrid="peixin.baipx" attname="reason" value="go home" type="text" label="Leave Reason"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="14D169BC-F935-982E-AD17-EAF96CB21650" sessid="76dad60524064fe9a2c8ec8d8a56725b" roundid="cbfb56679f414709a1a0a2aca50ffe8e" createdAt="2012-11-28T21:09:54.555+08:00" completedAt="2012-11-28T21:09:54.555+08:00" status="finished" decision="onerror" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="peixin.baipx" timestamp="2012-11-28T21:09:54.555+08:00" option="onerror">
+      <attachment usrid="peixin.baipx" attname="error" value="Parse script return value exception.WS:[http://YOUR_WEB_SERVER/APP/Servlet]" type="string" label="error"/>
+    </log>
+  </work>
+  <work roundid="cbfb56679f414709a1a0a2aca50ffe8e" sessid="c7b10143f76841519dfe4fa04dd765d4" name="Error" title="Task" type="task" nodeid="720C54BE-E2E0-15D5-692A-EB100B618B91" createdAt="2012-11-28T21:09:54.556+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="ERROR" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_running"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns=""/>
+</process>

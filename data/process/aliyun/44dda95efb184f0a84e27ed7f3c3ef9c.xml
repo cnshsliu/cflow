@@ -1,0 +1,13 @@
+<process id="44dda95efb184f0a84e27ed7f3c3ef9c" wftid="44dda95efb184f0a84e27ed7f3c3ef9c" origin="ced045deab464fabab7d806b6137cc74" roundid="e63d77e8d54e4ff0af2ce137ca2052ba" startat="2012-11-28T21:09:54.433+08:00" status="canceled" startby="peixin.baipx" teamid="" wftname="v1" endat="2012-11-28T21:24:25.666+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="7EBD6CB5-42D0-C653-4DE6-EAF5D9D869D1" sessid="73e26ae756154d928716dcd8deae4ae5" roundid="e63d77e8d54e4ff0af2ce137ca2052ba" createdAt="2012-11-28T21:09:54.673+08:00" completedAt="2012-11-28T21:09:54.673+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="e63d77e8d54e4ff0af2ce137ca2052ba" sessid="1f881c64585e40d7bfd64a78a8808e2b" name="Leaving Application" title="This demo shows how to integrate with a WEB resource the WEB resource normally is a Servlet running on any web server.[br] This demo does not provide a default URL, you must use your own, see MWF tutorial hwo to write a Servlet to integrate with MWF" type="task" nodeid="12EDDD5E-4646-3A8A-7DC9-EAF60250705D" createdAt="2012-11-28T21:09:54.676+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_running"/>
+    <attachment type="int" label="Leave Days" attname="days" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="Leave Reason" attname="reason" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns=""/>
+</process>

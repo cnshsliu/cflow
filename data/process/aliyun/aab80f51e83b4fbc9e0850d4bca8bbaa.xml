@@ -1,0 +1,29 @@
+<process id="aab80f51e83b4fbc9e0850d4bca8bbaa" wftid="aab80f51e83b4fbc9e0850d4bca8bbaa" origin="d9cd6d7b56964ff286491f735e2b3384" roundid="5ac52d024d7b444aa542a77e28f49854" startat="2012-12-06T01:24:58.919+08:00" status="finished" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="ddd" endat="2012-12-06T01:26:26.482+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="7B033BC2-31E2-F9E4-70BC-6C003D64A366" sessid="1c22a14b52da4a42a3399a3c5da7d604" roundid="5ac52d024d7b444aa542a77e28f49854" createdAt="2012-12-06T01:25:01.865+08:00" completedAt="2012-12-06T01:25:01.865+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="5ac52d024d7b444aa542a77e28f49854" sessid="cf7738e9c5a749428289749475e6eb30" name="欢迎使用云流程服务" title="您正在访问的网站是云流程服务的开发者控制台。 [ul]在控制台上，开发者可以使用[/ul][li]流程模板设计器[/li] [li]流程运行监控器[/li] [li]进行流程参与人管理[/li] [li]进行HTML表单管理[/li] [li]测试流程[/li]  [p]以上功能中，除了图形界面外，所有功能均可以通过API来完成, 控制台只是给开发者提供了一个界面，以方便开发者进行以上流程数据管理工作[/p] [p]在您第一次访问控制台时，云流程服务的教程自动为您启动，您现在所看到的就是该教程的第一个活动。您随时可以进入“模板设计器”菜单，在里面启动MWF_Tutorial这个流程，再次启动教程[/p] [p]请按下面的按钮，进入下一步[/p]" type="task" nodeid="761C6D15-75B6-2172-55D5-6C005CF1241F" createdAt="2012-12-06T01:25:01.886+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="null" completedAt="2012-12-06T01:26:01.187+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <options>
+      <option>null</option>
+    </options>
+    <mpcdc/>
+    <oec/>
+    <log usrid="aliyun" timestamp="2012-12-06T01:26:01.109+08:00" option="null"/>
+  </work>
+  <work roundid="5ac52d024d7b444aa542a77e28f49854" sessid="3124492ea50240cdbcdd2b9d0e96f49e" name="了解云流程服务" title="云流程服务以“按需”的方式向开发者提供流程运行服务，开发者无须安装配置任何流程软件，即可以使用本流程云服务来在应用中集成流程功能。  云流程服务向开发者暴露两个接口，一是开发者控制台，也就是您正在使用的这个网站； 二是开发API， 不管开发者习惯使用何种编程语言，都可以通过API使用流程云服务；  [ul]使用云流程服务的一般步骤是： [li]使用模板设计器设计流程模板[/li] [li]在您的应用程序中，按照需要调用startWorkflow[/li] [li]取用户的工作列表[/li] [li]向用户显示工作列表及工作项[/li] [li[用户完成工作后，调用doTask向流程云服务提交任务[/li] [li]重复以上三项步骤直到流程运行结束[/li] [/ul]  流程云服务支持面向人的工作节点和面向机器的工作节点，面向机器的工作节点由流程引擎自动执行，无须人工参与。 " type="task" nodeid="29C574AE-A787-77DC-7142-6C0D5399A07C" createdAt="2012-12-06T01:26:01.213+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="null" completedAt="2012-12-06T01:26:26.426+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <options>
+      <option>null</option>
+    </options>
+    <mpcdc/>
+    <oec/>
+    <log usrid="aliyun" timestamp="2012-12-06T01:26:26.347+08:00" option="null"/>
+  </work>
+  <work title="End Point" type="end" nodeid="DE1EB032-8F73-59AE-488E-6C003D672429" sessid="bb00cc3d22254b7d9ba6f1fb313889c7" roundid="5ac52d024d7b444aa542a77e28f49854" createdAt="2012-12-06T01:26:26.514+08:00" completedAt="2012-12-06T01:26:26.514+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

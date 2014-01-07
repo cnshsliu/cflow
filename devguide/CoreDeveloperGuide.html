@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+Q. 怎样从wft.xsd生成所需的java文件
+A.
+配置环境变量 XMLBEANS_PATH到E:\dev\xmlbeans-2.4.0
+在E:\dev\cflow下运行ant schema.jar
+自动调用xmlbeans工具从wft.xsd生成所需的Java源文件，自动编译后生成shcema.jar，放到
+DEV_CFLOW\WEBContent\WEB-INF\lib\schemas.jar
+在eclipse中检查Project->Options->Java Build Path->Libraries->Web App Libraries
+所以上述build完成后，需要在eclipse中Refresh一下Web App Libraries, 在这里是DEV_CFLOW\WEBContent\WEB-INF\lib\schemas.jar
+
+
+
+Attachment的处理
+新建WOrk时，为Work分配已过唯一识别号。
+这个识别号要隐藏在ShowTask网页中，并带到doTask中，依据这个唯一识别号来找Work.
+目前用的是依据NodeID来找，这种方法动态性不足。
+
+扩展node, 添加属性，多人同步完成方式
+	添加子对象，条件完成代码 和 option计算代码
+	
+扩展Work Schema, 添加
+	1。 同步设置 ： 单用户完成即完成， 全部用户完成才算完成；
+	2。 log: 下面可以放若干个log, 每个log有用户，时间戳，有参数集，选项值
+	3. 添加sessionid (sessid)
+扩展Work下面的taskto， 添加
+	1. status  
+	
+
+新建一个工作项时，
+	1。 为工作项分配唯一识别号
+	1.1根据Node的同步方式来设定工作的同步方式
+	2。并自动新建一个log, 该log的值如下：
+	用户  SYSTEM
+	时间戳 当前时间
+	参数集   将对应节点的参数的复制
+	选项值  DEFAULT   OR
+		2.1 参数定义直接按照老的处理方式放在WoRK一级。不用log来记录
+	3。 添加Taskto时，设status值为running
+取用户工作列表
+	按associate取运行中的进程，取运行中的活动，再看自身的taskto的状态是否为running
+	
+在显示ShowTask网页中，
+	1. 将Work识别号隐藏，并带入doTask Servlet中，doTask Servlet将该参数
+	进一步带给ProcessManager.doTask
+	2. 参数从当前work中取用户为SYSTEM的attachment
+
+
+在ProcessManager.doTask中:
+	1. 按识别号找到Work, 
+	2. 新建log, 该log的值如下：
+	用户  当前用户
+	时间戳 当前时间
+	参数集	从doTask Servlet传来的数据 以及 Extra Attachments数据
+	选项值 用户的选项值
+	3. 检查多用户同步设置。 
+		3.1 如单个用户完成即完成，则：
+			3.1.1 标记taskto为完成；
+			3.1.2该工作项状态为"已完成"；
+			3.1.3该工作的option为该用户所选择的option;
+		3.2 若全部用户完成才算完成，则
+			3.1.1 标记自身的taskto为完成；
+			3.1.2检查是否所有taskto均为完成；如果是，则该工作项状态设为”已完成“；
+			3.1.3.根据对应node中所设置的JS代码来计算最终option.
+		3.2若根据条件，则
+			3.1.1标记自身的taskto为完成；
+			3.1.2组织JS代码，evaluate, 如果为真，则表示已完成；
+			3.1.3根据对应node1所设置的JS代码来计算最终option.
+			（*）如条件为空，则返回true
+		（**）若option计算方法为空，则返回最后一个用户的option.
+		
+		
+schema中 进程和work都添加roundid.
+1. 检查AND， OR是否完成时，要在work上添加roundid作为查询条件。
+2。 要循环回去，必须添加一个循环点，这个循环点重置进程的roundid.
+3. 修改RIA支持round
+当使用OptionEvaluationCode时，如果JS代码出现错误，系统抛出异常，
+这时返回给进程的option值由配置项process.oec.optionOnError来决定，缺省为DEFAULT;
+
+当使用CompleteDecisionCode时，如果JS代码出现错误，系统抛出异常
+这时返回给进城的completeornot由配置项process.cdc.finishOnError来决定，缺省为false;
+AutoRefersh workspace
+Preferences > General > Workspace > Refresh automatically. 
+
+Rebuild XMLBeans
+Shift-Alt-X Q
+
+为了调试Flex, 必须安装调试版Flash插件，另外，将Flex编译输出目录设置为：
+E:\dev\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\cflow\ria
+Tomcat会改变临时目录名tmp1, 需要检查并做相应调整
+
+
+调试Flex，需要下列步骤：
+1. 下载安装 Flash 调试版本
+http://www.adobe.com/support/flashplayer/downloads.html
+2. 修改Flex Project设置 Flex Compiler 中的 Additional compiler arguments
+-debug=true -locale en_US -keep
+3. 设置Firefox禁止缓存：about:config network.http.use-cache false
+
+
+
+
+
+
+
+
+TODO:
+
+Copy Roles功能。
+
+检查子进程的attachment. 以及返回值是否放到log中。
+
+
+MonitorTaskInfo.jsp 改为从Log中取数据。
+
+
+CASE管理。 工作流叫技术，用来做什么？ 用来做Case Management. 
+http://en.wikipedia.org/wiki/Case_management
+提供通用模板（招聘、接待、等等)
+
+
+
+TODO: Timer一致性。
+CFTimerJob调用doTask可能出错，如果出错，数据库中的TIMER应删除，这样可能导致流程无法往下运行；进程停留在“RUNNING"状态；
+如何清理？思路是可以考虑这时的流程应该是没有与用户的关联关系，如果一个进程既无TIMER关联，也没有用户关联，则该进程应该自动停止？？
+
+website icon
+http://www.chami.com/tips/internet/110599i.html
+
+
+FireFox中无法使用流程编辑器
+
+关于Federation.
+1。 在团队管理中，一个团队中的成员只能是来自同一组织内部的成员，或者来自同一个联盟的多个组织的成员；
+2。关于WFT的可见度问题，如果组织的SHAREWFTS设为真，则getWftsIdsByUser可以取到组织级模板； 
+WFT所有者可以将一个模板分享给一个团队，则这个团队中的成员，不管他来自哪个组织，都可以看到
+和使用这个模板；
+3。 搜索团队以便加入该团队时，只搜索本组织内的人所建立的团队，或者同一联盟内的组织内的人所建立的团队。
+4。添加人员加入团队时，这些人员必须是同组织内的人或者同一联盟内的组织中的人。
+6。将一个组织添加到一个Federation, 需要提供这个组织的Federational Password, FEDPWD。
+5。 申请加入团队和添加团队成员都可以采用启动工作流的方式来进行。 
+6。 创建组织，创建FED，采用流程方式完成。
+
+
+
+启动一个进程
+/cflow/startWorkflow 提供参数：
+usrid: 用户名 ， 必须 
+wftid: 工作流模板编号， 在vault中相应的必须有 wftid.xml， 必须
+working_team: TEAM的编号，不需要，可以使用 "000" Team， 必须
+instance_name: 进程的名称， 必须
+
+bin\cleanup.bat
+清楚所有运行时与进程相关的数据，在调试时使用。
+
+/cflow/GetShowTaskUrl 提供参数
+usrid: 用户名， 必须
+pricid: 流程编号， 必须
+
+用户语言：
+URL?userLang= 优先。 然后是 Cookie中的设置， 最后是浏览器语言设置
+
+流程公用模板
+数据定义在数据库表cftemplate中。
+通过DBAdmin取得这些公用模板信息，在RemoteInterface中整理成JSONArray.
+然后在HTML中使用Mootools进行展示。
+一个公用模板的描述(字段WFTDESC)，如果是"standaloneHTML",则访问/cflow/publicTemplates/' + template.WFTID + '_desc_' + template.WFTLANG + '.html'
+这个文件内容，显示为公用模板描述。
+如果不是，则直接将WFTDESC作为描述内容显示。
+
+
+
+多国语言支持
+使用 Zaval JRC Editor来编辑。
+英文直接输入，法文、日文使用Google翻译。简体中文直接输入，繁体中文也是切换输入法直接输入(搜狗输入法:Ctrl-Shift-F);
+
+OC (Operation Console)下的内容
+repairDefaultRoles.jsp
+通过调用dbadmin.repairDefaultRoles方法来修复用户的缺省角色配置。
+当改动了configuration文件中的default.roles以后，使用该方法来向所有用户添加这些缺省角色。
+
+
+</body>
+</html>

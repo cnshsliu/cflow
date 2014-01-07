@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="OneStep" owner="U3306" acl="private" lastModified="2010-11-11T20:12:13" created="2010-11-11T20:12:13" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="1D7057FA-4ED6-1AD5-97A1-0D45C9514BE3" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="27" y="204" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="A28C3C68-D95A-C60A-E978-0D45EDDA3356"/>
+  </node>
+  <node id="ADB19DFA-661C-85C6-718B-0D45C95695C5" type="end" title="End" name="End" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="748" y="204" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="ADB19DFA-661C-85C6-718B-0D45C95695C5"/>
+  </node>
+  <node id="A28C3C68-D95A-C60A-E978-0D45EDDA3356" type="task" title="Task" name="TaskTaskTaskTaskTaskTaskTaskTask" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="203" y="225" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="ADB19DFA-661C-85C6-718B-0D45C95695C5"/>
+  </node>
+</cf:workflow>

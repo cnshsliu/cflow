@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Instant Tasks" owner="cnshsliu@gmail.com" acl="private" lastModified="2011-05-19T22:58:52" created="2011-05-19T22:58:52" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="tr_header" type="start" title="Start" name="Start" x="40" y="225">
+    <next targetID="tr_0"/>
+    <next targetID="tr_1"/>
+    <next targetID="tr_2"/>
+  </node>
+  <node id="tr_end" type="end" title="End" name="End" x="618" y="220">
+    <next targetID="tr_end"/>
+  </node>
+  <node id="tr_last_and" type="and" title="And" name="And" x="601" y="98">
+    <next targetID="tr_end"/>
+  </node>
+  <node id="tr_0" type="task" title="打电话给周颖" name="打电话给周颖" x="90" y="0" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="tr_4"/>
+  </node>
+  <node id="tr_4" type="task" title="打电话给老李" name="打电话给老李" x="140" y="0" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="tr_last_and"/>
+  </node>
+  <node id="tr_1" type="task" title="打电话给老婆" name="打电话给老婆" x="90" y="50" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="1dba1d26-45b7-48d8-a305-4c8c0a64dbc0"/>
+  </node>
+  <node id="tr_2" type="task" title="打电话给儿子" name="打电话给儿子" x="90" y="100" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="tr_3"/>
+  </node>
+  <node id="tr_3" type="task" title="打电话给自己" name="打电话给自己" x="140" y="100" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="tr_last_and"/>
+  </node>
+  <node id="1dba1d26-45b7-48d8-a305-4c8c0a64dbc0" type="and" title="AND" name="AND" x="340" y="75">
+    <next targetID="tr_last_and"/>
+  </node>
+</cf:workflow>

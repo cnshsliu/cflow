@@ -1,0 +1,31 @@
+<process id="93d5e599eb524cdfb8db263e55d705de" wftid="93d5e599eb524cdfb8db263e55d705de" origin="8b754b437524490ab6be26ec9322108f" roundid="c2a338856981442d8ed8e650ab84279c" startat="2012-12-06T01:26:48.252+08:00" status="finished" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="ddd" endat="2012-12-06T01:26:57.706+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="319692DD-0F15-C4BD-4867-92D1796D7099" sessid="d3b713d73300435692d18658ff5ebd46" roundid="c2a338856981442d8ed8e650ab84279c" createdAt="2012-12-06T01:26:48.305+08:00" completedAt="2012-12-06T01:26:48.305+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="c2a338856981442d8ed8e650ab84279c" sessid="f44dea926efd484098f134c6aaacf514" name="Task 1" title="Task" type="task" nodeid="1B81D7F7-4DD1-F057-BFF6-92D1B55D66F1" createdAt="2012-12-06T01:26:48.306+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="ignored" form="" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_running"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <work roundid="c2a338856981442d8ed8e650ab84279c" sessid="2472c896253f4dbdaeead415c501a286" name="Task 2" title="Task" type="task" nodeid="E7AF0F35-C86B-3129-D02C-92D1D6EB1BE6" createdAt="2012-12-06T01:26:48.363+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="" completedAt="2012-12-06T01:26:54.594+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-12-06T01:26:54.541+08:00" option=""/>
+  </work>
+  <work title="OR" type="or" nodeid="86B1902A-2A80-4FF4-926D-92D28E9848B8" sessid="3b4c4420caf546d280812ddbb86098b2" roundid="c2a338856981442d8ed8e650ab84279c" createdAt="2012-12-06T01:26:54.692+08:00" completedAt="2012-12-06T01:26:54.693+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="c2a338856981442d8ed8e650ab84279c" sessid="8dbe75bdf0f04e28bcce9f712e6b7d56" name="Task 3" title="Task" type="task" nodeid="B2B1C164-776F-97F4-011C-92D1EDEB76A6" createdAt="2012-12-06T01:26:54.694+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="" completedAt="2012-12-06T01:26:57.683+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-12-06T01:26:57.634+08:00" option=""/>
+  </work>
+  <work title="End Point" type="end" nodeid="DFB96ABD-C244-D70F-97CC-92D1796F4474" sessid="42f00e5ab67943549928132659be1e35" roundid="c2a338856981442d8ed8e650ab84279c" createdAt="2012-12-06T01:26:57.738+08:00" completedAt="2012-12-06T01:26:57.738+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

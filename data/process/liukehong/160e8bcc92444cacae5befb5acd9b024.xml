@@ -1,0 +1,32 @@
+<process id="160e8bcc92444cacae5befb5acd9b024" wftid="160e8bcc92444cacae5befb5acd9b024" origin="97f8c2a069ef47b6b0a50cdbe52d03ea" roundid="3cf0214828bd4b9d82f3d63cd59360b8" startat="2012-11-28T18:29:55.372+08:00" status="finished" startby="liukehong" teamid="" wftname="dddd" lastError="|(reason=ddd) value type (text) is unsupported, returned empty string" endat="2012-11-28T18:32:25.822+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="7EBD6CB5-42D0-C653-4DE6-EAF5D9D869D1" sessid="6cbb4951fd9a440d90a871f94d5465c9" roundid="3cf0214828bd4b9d82f3d63cd59360b8" createdAt="2012-11-28T18:29:57.389+08:00" completedAt="2012-11-28T18:29:57.390+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="3cf0214828bd4b9d82f3d63cd59360b8" sessid="aae269eda13f4c469160f4ff71bdf05a" name="Leaving Application" title="This demo shows how to integrate with a JAVA program, the JAVA class this workflow invoke must resides in MWF server's classpath. [br] The Java in this demo will route the process by leave days, go to LONG if days are more than 10.  or elase go to SHORT. (See variable definition in Attachments tab)" type="task" nodeid="12EDDD5E-4646-3A8A-7DC9-EAF60250705D" createdAt="2012-11-28T18:29:57.408+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="" completedAt="2012-11-28T18:32:21.051+08:00" completedBy="liukehong" xmlns="">
+    <taskto type="person" whom="liukehong" status="task_finished"/>
+    <attachment type="int" label="Leave Days" attname="days" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="Leave Reason" attname="reason" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="liukehong" timestamp="2012-11-28T18:32:20.952+08:00" option="">
+      <attachment usrid="liukehong" attname="days" value="5" type="int" label="Leave Days"/>
+      <attachment usrid="liukehong" attname="reason" value="ddd" type="text" label="Leave Reason"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="14D169BC-F935-982E-AD17-EAF96CB21650" sessid="a52d84c5b13348e79f6fb406e00dfd6b" roundid="3cf0214828bd4b9d82f3d63cd59360b8" createdAt="2012-11-28T18:32:22.037+08:00" completedAt="2012-11-28T18:32:22.038+08:00" status="finished" decision="short" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="liukehong" timestamp="2012-11-28T18:32:22.038+08:00" option="short">
+      <attachment usrid="liukehong" attname="myContextValue" value="myvalue" type="string" label="myContextValue"/>
+    </log>
+  </work>
+  <work roundid="3cf0214828bd4b9d82f3d63cd59360b8" sessid="866adf79f58f44f59f72e3731ce57d53" name="Short Leave" title="Your Leaving is short" type="task" nodeid="86D55C63-56EE-B2D0-988D-EAF9E950825F" createdAt="2012-11-28T18:32:22.043+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="" completedAt="2012-11-28T18:32:25.797+08:00" completedBy="liukehong" xmlns="">
+    <taskto type="person" whom="liukehong" status="task_finished"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="liukehong" timestamp="2012-11-28T18:32:25.724+08:00" option=""/>
+  </work>
+  <work title="End Point" type="end" nodeid="0108D032-64BC-52C4-EB08-EAF5D9DC36B9" sessid="2fc14161ef7b4cc0b50b202c10957f2b" roundid="3cf0214828bd4b9d82f3d63cd59360b8" createdAt="2012-11-28T18:32:25.840+08:00" completedAt="2012-11-28T18:32:25.840+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns=""/>
+</process>

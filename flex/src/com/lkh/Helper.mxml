@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+<mx:Script>
+	<![CDATA[
+	import mx.core.Application;
+
+		private function helpOK():void{
+			((Application.application) as CFlowWftDesigner).mainViewStack.selectedIndex = 0;
+		}
+		public function showHelp(wp:int, idx:int):void{
+			help.htmlText = "hello " + wp + " " + idx;
+		} 
+	]]>
+</mx:Script>
+<mx:VBox width="100%" height="100%">
+	<mx:TextArea id="help" x="0" y="0" width="100%" height="100%"/>
+	<mx:Button id='okbutton' click="helpOK()" label="Ok">
+	</mx:Button>
+</mx:VBox>
+</mx:Canvas>

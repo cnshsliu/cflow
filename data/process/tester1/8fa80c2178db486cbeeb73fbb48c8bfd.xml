@@ -1,0 +1,24 @@
+<process id="8fa80c2178db486cbeeb73fbb48c8bfd" parentProcessId="fb6b60e8cf9843d2be06d97ffb18b3f8" parentProcessNodeId="id_node_script" parentProcessSessId="d0f457f8fcc641118379a05fa9fcfbde" wftid="8fa80c2178db486cbeeb73fbb48c8bfd" origin="748aa8e2681d4731a1a7f2794d512520" roundid="60d775dcd26f4bd18db77d6ec4a966b8" startat="2012-11-28T19:14:32.884+08:00" status="finished" startby="T001" teamid="2b9e84a242f44eb095f86e8c0431ae45" wftname="testProcess_5_inst-tobedelete" lastError="Routing option (onerror) not found, set to onerror" endat="2012-11-28T19:14:33.234+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="id_start" sessid="890035192c60453f8961a2219bf17e38" roundid="60d775dcd26f4bd18db77d6ec4a966b8" createdAt="2012-11-28T19:14:32.939+08:00" completedAt="2012-11-28T19:14:32.939+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="60d775dcd26f4bd18db77d6ec4a966b8" sessid="28edf741f630441289fa443261938768" name="Task" title="Task" type="task" nodeid="id_1" createdAt="2012-11-28T19:14:32.940+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="DEFAULT" completedAt="2012-11-28T19:14:33.207+08:00" completedBy="T001" xmlns="">
+    <taskto type="person" whom="T001" status="task_finished"/>
+    <mpcdc/>
+    <oec/>
+    <log usrid="T001" timestamp="2012-11-28T19:14:33.151+08:00" option="DEFAULT"/>
+  </work>
+  <work title="Script" type="script" nodeid="id_script" sessid="d3e326d4ed4746dabc45557d0cdacb6c" roundid="60d775dcd26f4bd18db77d6ec4a966b8" createdAt="2012-11-28T19:14:33.234+08:00" completedAt="2012-11-28T19:14:33.234+08:00" status="finished" decision="onerror" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="T001" timestamp="2012-11-28T19:14:33.234+08:00" option="onerror">
+      <attachment usrid="T001" attname="error" value="Script was terminated" type="string" label="error"/>
+    </log>
+  </work>
+  <work title="End Point" type="end" nodeid="id_end" sessid="4d8db30cc62845639dfc699f76e70621" roundid="60d775dcd26f4bd18db77d6ec4a966b8" createdAt="2012-11-28T19:14:33.249+08:00" completedAt="2012-11-28T19:14:33.249+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="T002"/>
+    <role name="Auditor" value="T003"/>
+  </team>
+</process>

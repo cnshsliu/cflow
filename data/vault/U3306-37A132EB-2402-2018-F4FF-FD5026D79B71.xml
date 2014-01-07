@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="New Order" owner="U3306" acl="private" lastModified="2010-12-22T23:17:09" created="2010-12-22T23:17:09" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="5ECDDCED-E7CE-5DAA-E822-FD5026D7461F" type="start" title="Start" name="Start" x="27" y="204">
+    <next targetID="18AC02D4-FFB2-8178-800B-FD50326235DB"/>
+  </node>
+  <node id="ECF5D8BA-EF7B-B9EB-AFAC-FD5026D7E893" type="end" title="End" name="End" x="682" y="195">
+    <next targetID="ECF5D8BA-EF7B-B9EB-AFAC-FD5026D7E893"/>
+  </node>
+  <node id="18AC02D4-FFB2-8178-800B-FD50326235DB" type="task" title="Please create new order" name="Create Order" x="108" y="206" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="322C5BC1-FC33-8889-F3E0-FD58D8955A51"/>
+  </node>
+  <node id="322C5BC1-FC33-8889-F3E0-FD58D8955A51" type="task" title="Please review order" name="Review Order" x="236" y="150" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="D58F4B73-D030-00BB-C6B2-FD58DA7F1DCA"/>
+    <next targetID="A37709D0-EF69-CE8E-201D-FD596193525A"/>
+  </node>
+  <node id="D58F4B73-D030-00BB-C6B2-FD58DA7F1DCA" type="task" title="Please deliver order" name="Deliver Order" x="444" y="78" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" mpsm="null">
+    <taskto type="RefertoNode" whom="322C5BC1-FC33-8889-F3E0-FD58D8955A51">
+      <exceptme nodeid="18AC02D4-FFB2-8178-800B-FD50326235DB"/>
+      <exceptme nodeid="322C5BC1-FC33-8889-F3E0-FD58D8955A51"/>
+    </taskto>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="ECF5D8BA-EF7B-B9EB-AFAC-FD5026D7E893"/>
+  </node>
+  <node id="A37709D0-EF69-CE8E-201D-FD596193525A" type="notify" title="Notify" name="Notify" x="455" y="210">
+    <sendmail subject="">
+      <mailto type="role" whom="starter"/>
+      <message>null</message>
+    </sendmail>
+    <next targetID="ECF5D8BA-EF7B-B9EB-AFAC-FD5026D7E893"/>
+  </node>
+</cf:workflow>

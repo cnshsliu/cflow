@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:ns1="*">
+<mx:Script>
+		<![CDATA[
+			import com.lkh.Attachment;
+		import mx.controls.Alert;
+		import mx.events.DynamicEvent;
+			[Bindable]
+			public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+  		]]>
+</mx:Script>
+	<mx:VBox height="100%" width="100%">
+			<mx:HBox width="100%" borderStyle="solid" cornerRadius="5">
+				<mx:RadioButtonGroup id="actionType"/>
+				<mx:RadioButton label="None" value="{Node.ACTION_NONE}" groupName="actionType" selected="true"/>
+				<mx:RadioButton x="27" y="10" value="{Node.ACTION_SENDMAIL}" label="Email" groupName="actionType"/>
+				<mx:RadioButton x="27" y="36" value="{Node.ACTION_SENDSMS}" label="SMS" groupName="actionType"/>
+				<mx:Text text="Text"/>
+			</mx:HBox>
+			<mx:FormItem label="Recipients">
+				<ns1:Participate id="participate">
+				</ns1:Participate>
+			</mx:FormItem>
+			<mx:FormItem label="Subject" width="100%">
+				<mx:TextInput id="subject" width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Message" width="100%" height="100%">
+				<mx:TextArea id="message" height="100%" width="100%"/>
+			</mx:FormItem>
+	</mx:VBox>
+</mx:Canvas>

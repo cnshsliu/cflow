@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="PutGiraffeIntoRefrige" memo="How to put a giraffe into a refrigerator? easy, just 1-2-3" owner="U3306" acl="private" lastModified="2010-11-13T15:37:52" created="2010-11-13T15:37:52" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="1FCE5A77-E9E4-60D3-A4B7-43EF83CDD348" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="27" y="211" mpsm="">
+    <mpcdc/>
+    <oec/>
+    <next targetID="381E3DB7-2EF8-3959-F714-43F192EFA655"/>
+  </node>
+  <node id="EB39BE2D-6C3C-C244-9D6C-43EF83CEBFBF" type="end" title="End" name="End" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="748" y="211" mpsm="">
+    <mpcdc/>
+    <oec/>
+    <next targetID="EB39BE2D-6C3C-C244-9D6C-43EF83CEBFBF"/>
+  </node>
+  <node id="381E3DB7-2EF8-3959-F714-43F192EFA655" type="task" title="Open the door of refrigerator" name="Open the door" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="165" y="196" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="C40C0D1F-DE4A-E5E4-D96A-43F19B41AA5C"/>
+  </node>
+  <node id="C40C0D1F-DE4A-E5E4-D96A-43F19B41AA5C" type="task" title="Put the Giraffe into the refrigerator" name="Put Giraffe into refrigerator" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="307" y="199" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="FA58F3A1-2CEB-405D-D030-43F19E20E93C"/>
+  </node>
+  <node id="FA58F3A1-2CEB-405D-D030-43F19E20E93C" type="task" title="Close refrigerator door" name="Close the door" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="507" y="196" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="EB39BE2D-6C3C-C244-9D6C-43EF83CEBFBF"/>
+  </node>
+</cf:workflow>

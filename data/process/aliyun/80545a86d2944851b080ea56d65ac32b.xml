@@ -1,0 +1,34 @@
+<process id="80545a86d2944851b080ea56d65ac32b" wftid="80545a86d2944851b080ea56d65ac32b" origin="6ced6bfac8c74e3d821fb65cff435f73" roundid="38af27a913994e03b8b775d0557ee4da" startat="2012-11-27T22:09:00.626+08:00" status="finished" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="dd" lastError="Fetch result failed in 14D169BC-F935-982E-AD17-EAF96CB21650." endat="2012-11-27T23:07:29.753+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="7EBD6CB5-42D0-C653-4DE6-EAF5D9D869D1" sessid="7047d5bbe6b047e88092dfe413e83dec" roundid="38af27a913994e03b8b775d0557ee4da" createdAt="2012-11-27T22:09:00.712+08:00" completedAt="2012-11-27T22:09:00.712+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="38af27a913994e03b8b775d0557ee4da" sessid="259ca631131d47829851c0bd0f7ec0d7" name="Leaving Application" title="This demo shows how to [u]integrate with a JAVA program[/u], the JAVA class this workflow invoke must resides in MWF server's classpath.  The Java in this demo will route the process by leave days, go to [color=red] LONG [/color] if days are more than 10.  or elase go to [color=red]SHORT[/color]. (See variable definition in Attachments tab)" type="task" nodeid="12EDDD5E-4646-3A8A-7DC9-EAF60250705D" createdAt="2012-11-27T22:09:00.713+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="" decision="" completedAt="2012-11-27T22:09:08.622+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <attachment type="int" label="Leave Days" attname="days" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="Leave Reason" attname="reason" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-27T22:09:08.468+08:00" option="">
+      <attachment usrid="aliyun" attname="days" value="23" type="int" label="Leave Days"/>
+      <attachment usrid="aliyun" attname="reason" value="dddd" type="text" label="Leave Reason"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="14D169BC-F935-982E-AD17-EAF96CB21650" sessid="b87a8604c1db4239a2408cd038c96e25" roundid="38af27a913994e03b8b775d0557ee4da" createdAt="2012-11-27T22:09:18.684+08:00" completedAt="2012-11-27T22:09:18.684+08:00" status="finished" decision="onerror" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="aliyun" timestamp="2012-11-27T22:09:18.684+08:00" option="onerror">
+      <attachment usrid="aliyun" attname="error" value="Fetch result failed in 14D169BC-F935-982E-AD17-EAF96CB21650." type="string" label="error"/>
+    </log>
+  </work>
+  <work roundid="38af27a913994e03b8b775d0557ee4da" sessid="d2242fdbe7684733bfb17c506cacc97a" name="Error occured" title="Error occured" type="task" nodeid="FC90ACF3-09DC-61BC-FE63-EB0E85DF0F37" createdAt="2012-11-27T22:09:18.685+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="ERROR" decision="" completedAt="2012-11-27T23:07:29.719+08:00" completedBy="aliyun" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_finished"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="aliyun" timestamp="2012-11-27T23:07:29.665+08:00" option=""/>
+  </work>
+  <work title="End Point" type="end" nodeid="0108D032-64BC-52C4-EB08-EAF5D9DC36B9" sessid="de02ea1b17094940be166db85675c7d2" roundid="38af27a913994e03b8b775d0557ee4da" createdAt="2012-11-27T23:07:29.785+08:00" completedAt="2012-11-27T23:07:29.785+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="审核复核" owner="aliyun" acl="private" lastModified="2012-11-27T14:16:15" created="2012-11-27T14:16:15" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="Reviewer"/>
+  <node id="0F8564D7-79A1-9F85-7160-269296328233" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="874A06A7-ADEC-E2AC-B4B0-2692CE8161B9"/>
+  </node>
+  <node id="F106AD8E-BBFD-BA16-5A49-2692963353E8" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="F106AD8E-BBFD-BA16-5A49-2692963353E8"/>
+  </node>
+  <node id="874A06A7-ADEC-E2AC-B4B0-2692CE8161B9" type="task" title="Task" name="请审核单据" x="169" y="217" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="Reviewer"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="48592D11-2DDA-2F52-5CAF-26930B43F2CC"/>
+  </node>
+  <node id="48592D11-2DDA-2F52-5CAF-26930B43F2CC" type="task" title="请复核单据" name="请复核单据" x="315" y="218" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="Reviewer">
+      <exceptme nodeid="874A06A7-ADEC-E2AC-B4B0-2692CE8161B9"/>
+    </taskto>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="6C4D3791-437B-B341-9525-26936BC541C3"/>
+  </node>
+  <node id="6C4D3791-437B-B341-9525-26936BC541C3" type="task" title="请最终提交单据" name="请最终提交单据" x="529" y="200" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="RefertoNode" whom="874A06A7-ADEC-E2AC-B4B0-2692CE8161B9"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="F106AD8E-BBFD-BA16-5A49-2692963353E8"/>
+  </node>
+</cf:workflow>

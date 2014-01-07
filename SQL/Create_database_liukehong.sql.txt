@@ -1,0 +1,4 @@
+CREATE DATABASE liukehong;
+create user liukehong identified by 'DB_PASSWORD';
+GRANT ALL PRIVILEGES ON liukehong.* TO 'liukehong'@'localhost' IDENTIFIED BY 'DB_PASSWORD';
+flush privileges;

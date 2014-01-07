@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!-- templating/myComponents/MyTemplateComponent.mxml -->
+<mx:Button xmlns:mx="http://www.adobe.com/2006/mxml"  initialize="init();"  styleName="joint" width="12" height="12">
+    <mx:Metadata>
+        [Event(name="NodeClicked", type="flash.events.Event")]
+    </mx:Metadata>
+	<mx:Style>
+		.joint {
+			color: #FF0000;
+			roll-over-color: #FFFFBB;
+			selected-color: #9999FF;
+			disabled-color: #333333;
+			up-skin: Embed(	source="assets/jointh.png");
+			over-skin: Embed(source="assets/jointh.png");
+			down-skin: Embed(source="assets/jointl.png");
+			disabled-skin: Embed(source="assets/jointl.png");
+		}
+		.node{
+			background-color: #FF0000;
+		}
+	</mx:Style>
+
+    <mx:Script>
+        <![CDATA[
+            import mx.containers.HBox;
+            import mx.controls.Button;
+            import mx.controls.Label;
+            import mx.core.BitmapAsset;
+            import mx.core.Application;
+
+            [Bindable]
+            public var cx:int = 0;
+            [Bindable]
+            public var cy:int = 0;
+			public var linkFromNode:Node = null;
+			public var lastJoint:Joint = null;
+			public var link = null;
+
+            private function init():void {
+            	width=12;
+            	height=12;
+                addEventListener(MouseEvent.MOUSE_OVER, mouseOverJoint);
+                addEventListener(MouseEvent.MOUSE_OUT, mouseOutJoint);
+            }
+			
+			public function mouseOverJoint(event:MouseEvent):void{
+				Application.application.canvas.mouseOverJoint = this;
+			}
+			public function mouseOutJoint(event:MouseEvent):void{
+				Application.application.canvas.mouseOverJoint = null;
+			}
+			
+			public function resetPosition():void{
+				x = cx-6;
+				y = cy-6;
+			}
+            
+        ]]>
+    </mx:Script>
+</mx:Button>
+

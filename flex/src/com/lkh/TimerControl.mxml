@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+<mx:Script>
+		<![CDATA[
+			import com.lkh.Attachment;
+		import mx.controls.Alert;
+		import mx.events.DynamicEvent;
+			[Bindable]
+			public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+  		]]>
+</mx:Script>
+	<mx:VBox>
+		<mx:HBox width="100%">
+			<mx:NumericStepper minimum="0" maximum="10" id="yy"/>
+			<mx:Label text="Year"></mx:Label>
+			<mx:NumericStepper minimum="0" maximum="120" id="mm" />
+			<mx:Label text="Month"></mx:Label>
+			<mx:NumericStepper minimum="0" maximum="43800" id="dd"/>
+			<mx:Label text="Day"></mx:Label>
+		</mx:HBox>
+		<mx:HBox width="100%">
+			<mx:NumericStepper maximum="24" minimum="0" id="hh"/>
+			<mx:Label text="Hour"></mx:Label>
+			<mx:NumericStepper minimum="0" maximum="60" id="mi" stepSize="1"/>
+			<mx:Label text="Minute"></mx:Label>
+		</mx:HBox>
+	</mx:VBox>
+	    <mx:Script>
+        <![CDATA[
+        	public function isSet():Boolean{
+        		if(yy.value > 0 || mm.value > 0 || dd.value > 0 || hh.value > 0 || mi.value > 0){
+        			return true;
+        		}else{
+        			return false;
+        		}
+        	}
+        	public function getTimerData():TimerData{
+        		var ret:TimerData = new TimerData;
+        		ret.yy = yy.value;
+        		ret.mm = mm.value;
+        		ret.dd = dd.value;
+        		ret.hh = hh.value;
+        		ret.mi = mi.value;
+        		
+        		return ret;
+        	}
+                ]]>
+    </mx:Script>
+	
+</mx:Canvas>

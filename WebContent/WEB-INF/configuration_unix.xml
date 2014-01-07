@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cflow-config>
+	<host>42.121.32.76:8080</host>
+	<mail>
+		<mailFrom>cflowadmin@myworldflow.com</mailFrom>
+		<smtpHost>SMTP_SERVER</smtpHost>
+		<smtpAuthUser>SMTP_USER</smtpAuthUser>
+		<smtpAuthPassword>SMTP_PASSWORD</smtpAuthPassword>
+	</mail>
+	<sms>
+	</sms>
+	<storage>
+		<manager>
+			<!-- classname>com.lkh.cflow.storage.localfile.LocalfileStorageManager</classname -->
+			<classname>com.lkh.cflow.storage.oss.OssfileStorageManager</classname>
+		</manager>
+		<local>
+			<wft>/home/liukehong/cflow/vault</wft>
+			<ist>/home/liukehong/cflow/ist</ist>
+			<prc>/home/liukehong/cflow/process</prc>
+			<work>/home/liukehong/cflow/work</work>
+			<vt>/home/liukehong/cflow/vts</vt>
+			<model>/home/liukehong/cflow/model</model>
+		</local>
+		<oss>
+			<accessid>3mkbjle9tr4it3spn6wv06ki</accessid>
+			<accesskey>tC3bar7CuhEL97bIJ5g0jSScH5Y=</accesskey>
+			<endpoint>http://oss.aliyuncs.com/</endpoint>
+			<bucket>cflow</bucket>
+		</oss>
+	</storage>
+	<quartz>
+		<shutdownOnUnload>true</shutdownOnUnload>
+		<startSchedulerOnLoad>true</startSchedulerOnLoad>
+		<startDelaySeconds>10</startDelaySeconds>
+	</quartz>
+</cflow-config>
+

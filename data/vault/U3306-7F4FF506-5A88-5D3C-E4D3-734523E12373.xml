@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="formTest" owner="U3306" acl="private" lastModified="2011-02-25T14:09:22" created="2011-02-25T14:09:22" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="99DA2AFA-200C-1553-4325-734523DAE8E6" type="start" title="Start" name="Start" x="27" y="222">
+    <next targetID="40CAEE30-24DE-63EB-EBCE-73462F9FC2B2"/>
+  </node>
+  <node id="D344610C-0668-B73A-536B-734523DE6734" type="end" title="End" name="End" x="594" y="223">
+    <next targetID="D344610C-0668-B73A-536B-734523DE6734"/>
+  </node>
+  <node id="C0AF17F4-F744-CA44-94EF-73452B3531A6" type="task" title="Task" name="customForm" x="411" y="185" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="http://myfrom.com/myfrom1.html" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="D344610C-0668-B73A-536B-734523DE6734"/>
+  </node>
+  <node id="40CAEE30-24DE-63EB-EBCE-73462F9FC2B2" type="task" title="Task" name="defautForm" x="372" y="95" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="C0AF17F4-F744-CA44-94EF-73452B3531A6"/>
+  </node>
+</cf:workflow>

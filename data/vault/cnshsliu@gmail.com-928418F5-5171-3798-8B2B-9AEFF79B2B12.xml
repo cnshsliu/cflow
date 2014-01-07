@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Demo: AND" owner="cnshsliu@gmail.com" acl="private" lastModified="2011-05-19T23:02:11" created="2011-05-19T23:02:11" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="89E5599F-22B5-59A3-7EFC-9AEFF79FDBC1" type="start" title="Start" name="Start" x="27" y="213">
+    <next targetID="8E9EBB5D-AA66-F498-1B68-9AF02985EF6E"/>
+    <next targetID="9CE4A6C8-13B6-0515-ACC3-9AF2DC11CD60"/>
+  </node>
+  <node id="2148BDBC-D13E-37DD-B7CD-9AEFF7A4F926" type="end" title="End" name="End" x="708" y="213">
+    <next targetID="2148BDBC-D13E-37DD-B7CD-9AEFF7A4F926"/>
+  </node>
+  <node id="8E9EBB5D-AA66-F498-1B68-9AF02985EF6E" type="task" title="THere are 3 tasks in this workflow, this one is &quot;Task 1&quot;. [br]You have  to compelete both &quot;Task 1&quot; and &quot;Task 2&quot; to see &quot;Task 3&quot;. " name="Task 1 before AND" x="183" y="117" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="2F762474-8C82-627F-7E46-9AF34FED58C9"/>
+  </node>
+  <node id="9CE4A6C8-13B6-0515-ACC3-9AF2DC11CD60" type="task" title="THere are 3 tasks in this workflow, this one is &quot;Task 2&quot;. [br]You have  to compelete both &quot;Task 1&quot; and &quot;Task 2&quot; to see &quot;Task 3&quot;. " name="Task 2 before AND" x="189" y="272" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="2F762474-8C82-627F-7E46-9AF34FED58C9"/>
+  </node>
+  <node id="2F762474-8C82-627F-7E46-9AF34FED58C9" type="and" title="AND" name="AND" x="332" y="218">
+    <next targetID="54217295-3374-4632-1C34-9AF35B44B247"/>
+  </node>
+  <node id="54217295-3374-4632-1C34-9AF35B44B247" type="task" title="THere are 3 tasks in this workflow, this one is &quot;Task 3&quot;. [br]You have  to compelete both &quot;Task 1&quot; and &quot;Task 2&quot; to see &quot;Task 3&quot;. " name="Task 3 after AND" x="449" y="216" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="2148BDBC-D13E-37DD-B7CD-9AEFF7A4F926"/>
+  </node>
+</cf:workflow>

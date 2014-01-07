@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style_help.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/code.css">
+<title>无标题文档</title>
+</head>
+
+<body>
+<a href="../index.html">Home > <a href="help_and_tutorials.html">Help</a> > <a href="quickstart.html">Quickstart</a>
+<h1>Create Workflow Template  </h1>
+<p>To creat workflow template, you need to use WFT demo site.</p>
+<p>Click &quot;Template Library&quot; in WFT demo site menu, The workflow designer will be displayed.</p>
+<p><img src="images/designer.gif" alt="designer" width="585" height="320" /></p>
+<p>Toolbars:</p>
+<table width="100%" border="1">
+<tr><td width="4%" valign="top">Tool</td><td width="79%">Description</td>
+  <td width="17%">Properties</td>
+</tr>
+<tr>
+  <td valign="top"><img src='images/arrow_btn.png' /></td>
+  <td><p><strong>Toggle to SELECT mode.</strong></p>
+    <p>In this mode:</p>
+    <ol>
+      <li>Click on a node to select it</li>
+      <li>Select and hold a node to move it</li>
+      <li>Double click a node to show <a href="images">node properties</a></li>
+      <li>Select and hold a link then drag to change link ends.</li>
+      <li>Double click on a link to show<a href="link_properties.html"> link properties</a><br />
+      </li>
+    </ol>    </td>
+    <td>&nbsp;</td>
+</tr>
+  <tr>
+  <td valign="top"><img src='images/link_btn.png' /></td>
+  <td><p><strong>Toggle to LINK mode</strong></p>
+    <p><strong>In this mode</strong></p>
+    <ol>
+      <li>Click on one node (the preceding task)</li>
+      <li>Click on another node (the following task), </li>
+      <li>An arrow will be draw between these two nodes.</li>
+      </ol>
+   </td>    <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td valign="top"><img src='images/task_btn.png' /></td>
+  <td><p><strong>Create a new TASK node. </strong></p>
+  <p>A TASK node indicates a task which should be done by one or more person.</p>
+  <p><a href="node_properties.html#task"></a></p></td>
+  <td><a href="node_properties.html#task">see task properties</a></td>
+  </tr>
+  <tr>
+  <td valign="top"><img src='images/timer_btn.png' /></td>
+  <td><p><strong>Create a new TIMER node</strong></p>
+  <p>A TIMER node will pause until specified period expires, is used to hold process for a certain period.</p>
+  <p><a href="node_properties.html#timer"></a></p></td>
+  <td><a href="node_properties.html#timer">see timer properties</a></td>
+  </tr>
+  <tr>
+  <td valign="top"><img src='images/sub_btn.png' /></td>
+  <td><p><strong>Create a new Sub Process Node</strong></p>
+  <p>Embed a  process into current process.</p>
+  <p><a href="node_properties.html#sub"></a></p></td>
+  <td><a href="node_properties.html#sub">see sub process properties</a></td>
+  </tr>
+  <tr>
+  <td valign="top"><img src='images/script_btn.png' /></td>
+  <td><p><strong>Create a SCRIPT node</strong></p>
+  <p>A SCRIPT node contains codes to be run.</p>
+  <p><a href="node_properties.html#script"></a></p></td>
+  <td><a href="node_properties.html#script">see script properties</a></td>
+  </tr>
+  <tr>
+  <td valign="top"><img src='images/and_btn.png' /></td>
+  <td><p><strong>Create an AND node</strong></p>
+  <p>An AND node will be passed automatically when all its precedding tasks complete.</p>
+  <p><a href="node_properties.html#and"></a></p></td>
+  <td>&nbsp;</td>
+  </tr>
+    <tr>
+  <td valign="top"><img src='images/or_btn.png' /></td>
+  <td><p><strong>Create an OR node</strong></p>
+  <p>An OR node will be passed automatically when any one of its precedding tasks completes</p>
+  <p><a href="node_properties.html#or"></a></p></td>
+  <td>&nbsp;</td>
+  </tr>
+    <tr>
+  <td valign="top"><img src='images/round_btn.png' /></td>
+  <td><p><strong>Create an ROUND node.</strong></p>
+  <p>An ROUND node indicates a group of nodes can be run many times, and the contect values (for example, user input) will be kept for each round.</p></td>
+  <td><a href="node_properties.html#round">see round properties</a></td>
+  </tr>
+    <tr>
+  <td valign="top"><img src='images/ground_btn.png' /></td>
+  <td><p><strong>Create an GROUND node</strong></p>
+  <p>An GROUND node have no following nodes.</p></td>
+  <td>&nbsp;</td>
+  </tr>
+    <tr>
+  <td valign="top"><img src='images/delete_btn.png' /></td>
+  <td><p><strong>Toggle to DELETE mode</strong></p>
+  <p>Once in DELETE mode, click on a node or a link to delete it.</p></td>
+  <td>&nbsp;</td>
+  </tr>
+    <tr>
+  <td valign="top"><img src='images/new_btn.png' /></td>
+  <td><p><strong>Create a new template</strong></p>
+  <p>Start a new template, the current change will be dismissed.</p></td>
+  <td>&nbsp;</td>
+  </tr>
+    <tr>
+  <td valign="top"><img src='images/upload_btn.png' /></td>
+  <td><p><strong>Save the current template</strong></p>
+  <p>Save the current template</p></td>
+  <td>&nbsp;</td>
+  </tr>
+    <tr>
+  <td valign="top"><img src='images/maximize_btn.png' /></td>
+  <td><p><strong>Maximize button</strong></p>
+  <p>Maximize the workflow designer to the size of browser window.</p></td>
+  <td>&nbsp;</td>
+  </tr>
+</table>
+<h2>&nbsp;</h2>
+</body>
+</html>

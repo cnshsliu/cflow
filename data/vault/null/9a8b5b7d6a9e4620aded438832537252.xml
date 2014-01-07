@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="TestChild" owner="null" acl="private" lastModified="2012-11-08T22:40:31" created="2012-11-08T22:40:31" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="CAE54469-7239-94D7-AEC6-E076BE1B29BA" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="D1EA081B-09AB-7EA7-9669-E076D2EF0FF7"/>
+  </node>
+  <node id="AD33EEC0-8C85-63C0-4A71-E076BE1EC30C" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="AD33EEC0-8C85-63C0-4A71-E076BE1EC30C"/>
+  </node>
+  <node id="D1EA081B-09AB-7EA7-9669-E076D2EF0FF7" type="task" title="Task" name="Task" x="196" y="209" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="50DA0AFF-10CB-118E-0A9C-E076EACC90D3"/>
+  </node>
+  <node id="50DA0AFF-10CB-118E-0A9C-E076EACC90D3" type="script" title="Script" name="Script" x="340" y="163">
+    <script>return "{\"RETURN\":\"long\", \"RETURN_TO_PARENT\":\"good\"}";</script>
+    <next targetID="AD33EEC0-8C85-63C0-4A71-E076BE1EC30C"/>
+  </node>
+</cf:workflow>

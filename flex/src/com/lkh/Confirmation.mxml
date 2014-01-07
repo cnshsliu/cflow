@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="244" height="88" >
+<mx:Script>
+<![CDATA[
+		import mx.managers.PopUpManager;
+		
+		[Bindable]
+		public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+		
+		public var answer:Boolean = false;
+		
+		private function doDiscard():void{
+			answer = true;
+			PopUpManager.removePopUp(this);
+			designer.doNewWft();
+		}
+		private function doCancel():void{
+			answer = false;
+			PopUpManager.removePopUp(this);
+		}
+			]]>
+</mx:Script>
+	<mx:Label x="10" y="10" text="Content has been changed, discard it?"/>
+	<mx:Button x="22" y="52" label="Discard" id="btn_discard" click="doDiscard()"/>
+	<mx:Button x="128" y="52" label="Cancel" id="btn_cancel" click="doCancel()"/>
+	
+	
+</mx:Canvas>

@@ -1,0 +1,15 @@
+label.cb_off img, label.cb_on img, label.rb_off img, label.rb_on img {vertical-align:top;width:20px;height:20px;margin:0px 8px 1px 0px;position:relative;z-index:11;}
+.matrixRow label img, .matrixAltRow label img {margin:0;}
+.matrixRow div.qOption, .matrixAltRow div.qOption {width:24px;margin:auto;}
+label.rb_on img, .matrixAltRow div.ruled label.rb_on img {background: url(CSSIcon.ashx?c=FFFFFF) -20px 0px;}
+label.rb_off img, .matrixAltRow div.ruled label.rb_off img {background: url(CSSIcon.ashx?c=FFFFFF) 0px 0px;}
+label.cb_on img, .matrixAltRow div.ruled label.cb_on img {background: url(CSSIcon.ashx?c=FFFFFF) -60px 0px;}
+label.cb_off img, .matrixAltRow div.ruled label.cb_off img {background: url(CSSIcon.ashx?c=FFFFFF) -40px 0px;}
+div.ruled label.rb_on img, .matrixAltRow label.rb_on img {background: url(CSSIcon.ashx?c=FF9933) -20px 0px;}
+div.ruled label.rb_off img, .matrixAltRow label.rb_off img {background: url(CSSIcon.ashx?c=FF9933) 0px 0px;}
+div.ruled label.cb_on img, .matrixAltRow label.cb_on img {background: url(CSSIcon.ashx?c=FF9933) -60px 0px;}
+div.ruled label.cb_off img, .matrixAltRow label.cb_off img {background: url(CSSIcon.ashx?c=FF9933) -40px 0px;}
+
+
+
+<label for="input_217151446_10_2752065426_0" id="linput_217151446_10_2752065426_0" class="rb_off"><img src="/i/t.gif" alt=""><span class="qLabel">I only need chat</span></label>

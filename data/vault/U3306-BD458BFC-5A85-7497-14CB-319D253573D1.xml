@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="tutorial_en_US" owner="U3306" acl="private" lastModified="2010-12-09T20:07:39" created="2010-12-09T20:07:39" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="F06DB5D1-A7A2-6070-7C0E-319D252E0EDE" type="start" title="Start" name="Start" x="5" y="93">
+    <next targetID="CA77637F-0CD4-7594-4B7E-319D98B81FA9"/>
+  </node>
+  <node id="CDC5D3E5-1603-3A3E-AFC3-319D2532299F" type="end" title="End" name="End" x="1135" y="56">
+    <next targetID="CDC5D3E5-1603-3A3E-AFC3-319D2532299F"/>
+  </node>
+  <node id="CA77637F-0CD4-7594-4B7E-319D98B81FA9" type="task" title="This tutorial will guide you through CFlow for individual  step by step. After this tutorial, you will learn what is CFlow and how to use it. The basic steps to use CFlow include: &#xD;&#x9;  [ul][li]Define process templates;[/li]&#xD;       [li]Define working team;[/li]&#xD;&#x9;  [li]Start to run a process;[/li]&#xD;&#x9;  [li]Check your work list and perform the tasks accordingly;[/li]&#xD;&#x9;  [li]Monitor process running status;[/li]&#xD;&#x9;  [/ul] &#xD;&#xD;&#x9;  [h3]First, what is Cflow service.[/h3]&#xD;&#xD;&#x9;  [p]Conceptually, you can think Cflow is your personal steward,  it helps  to make your life (and work of course) more organized and effective. Your steward will tell people around you (and you of course) what should be done at this moment, and when this task is done, steward will determine what is next and who should do the next step and deliver the right task to the right people at the right time. [/p]&#xD;&#x9;  [p]Technically, Cflow is basically a online Process Management service running in the Cloud. You can start various processes many times by initiating process templates, CFlow will determine who need to complate what task, and deliver the task to the right people. Directed by CFlow service, a group of people achieve a particular target or finish a project collaboratively in a timely and effectively manner. [/p]&#xD;&#x9;  [p]CFlow help you or your orgnization to improve effeciency, and keep everything organized.[/p]&#xD;&#x9;  Now, when you are ready, please click the &quot;Next&quot; button." name="Welcome to Cflow" x="125" y="94" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.Next" targetID="30FA5E94-ABDC-9F56-532B-31A24D7D4FDA"/>
+  </node>
+  <node id="30FA5E94-ABDC-9F56-532B-31A24D7D4FDA" type="task" title="This tutorial consists of following steps:&#xD;[ul]&#xD;[li]1. Main Concepts of CFlow[/li]&#xD;[li]2. Cflow Designer[/li]&#xD;[li]3. Create a workflow template[/li]&#xD;[li]5. Start a process[/li]&#xD;[li]6. Check work list[/li]&#xD;[li]8. Check proces status[/li]&#xD;[/ul]&#xD;&#xD;" name="(T1):How this tutorial organized" x="89" y="174" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="1.Back" targetID="D4CF0961-BDAC-433C-1111-31A6BD7CEE1A"/>
+    <next option="2.Next" targetID="2AE9553C-EFFC-DD20-415F-31A42A75673A"/>
+  </node>
+  <node id="2AE9553C-EFFC-DD20-415F-31A42A75673A" type="task" title="[p]Cflow has three main components: Process Template, Working Team and Process.[/p]&#xD;[center][img]/cflow/tutorials/en_US/images/concept1.png[/img][/center]&#xD;[p]You can define your own process template using template design tool, which is a graphic interface tool running in your browser. [/p][p]If your process will involve more people, you should define a team for it. Within your template, you assign works to roles (or people), and within teams, you assign roles to people. [/p][p]When you start a process, Cflow combine the template and the team, then map the role in template to people in teams. This way, Cflow knows which particular people a task should be delivered to. Next time you run a process and combine it will anothe team, and in this team, roles are assigned to different people, then Cflow will automatically deliver tasks to people within this new team.  [/p][p]This design enable agility. Means that you just are able to design common process template to be used by various teams. [/p][p]For example, you design a template of &quot;Leaving Application&quot; in which the task of &quot;Approve&quot; should be done by &quot;Department Manager&quot; role, you also define two teams: &quot;Department A&quot; and &quot;Department B&quot;, in Department A, the &quot;Deparment Manager&quot; is John, in Department B, the &quot;Department Manager&quot; is Dave. Then, for people within Deparement A, they can start a Leaving Application process by combining &quot;Leaving Application&quot; template with team &quot;Department A&quot;, Cflow deliver Approve task to John. for people within Department B, they start Leaving Application process by combining &quot;Leaving Application&quot; template with team &quot;Department B&quot;, Cflow deliver Approve task to Dave.  [/p]&#xD;[p]If you use Cflow to deal with your personal stuff, you don't need to define teams, all tasks will be delivered to a default role &quot;starter&quot;, the people who start a process. that is you.[/p]&#xD;[center][img]/cflow/tutorials/en_US/images/concept2.png[/img][/center]" name="(T2):Main concept of Cflow" x="102" y="263" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.Next" targetID="3877D251-0625-0E34-3EE2-31A8623B2529"/>
+    <next option="1.Back" targetID="1C024C2E-6E04-0373-7F4A-31AB266E9202"/>
+  </node>
+  <node id="D4CF0961-BDAC-433C-1111-31A6BD7CEE1A" type="or" title="OR" name="OR" x="110" y="143">
+    <next targetID="CA77637F-0CD4-7594-4B7E-319D98B81FA9"/>
+  </node>
+  <node id="3877D251-0625-0E34-3EE2-31A8623B2529" type="task" title="Template Designer is used to create new process template. &#xD;&#xD;Here is a demo to create a simple process that is to put a giraffe into refrigerator.&#xD;[urb=/cflow/tutorials/en_US/putgiraffe/putgiraffe.html]Click here to view the animated demo[/urb]&#xD;" name="(T3):About Template Designer" x="90" y="351" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.Next" targetID="05920192-711C-AB3D-40C8-31AA460F31A2"/>
+    <next option="1.Back" targetID="F20B46FF-ABF4-4EAE-BB68-31AB2E84BA02"/>
+  </node>
+  <node id="05920192-711C-AB3D-40C8-31AA460F31A2" type="task" title="[p]Now, please design &quot;Put Giraffe into Refrigerator&quot; template by yourself.  [/p]&#xD;[p]For your convenience,  please  [urb=/cflow/tutorials/en_US/designer/designer.html]click here to open the detailed designer user guide[/urb][/p]&#xD;&#xD;When you finish it, remember to click &quot;(T4):Create the template now&quot; in your work list, then click &quot;Next&quot; to continue." name="(T4):Create the template now" x="304" y="350" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="1.Back" targetID="CA702E0B-07A8-3135-4F62-31ABB97A41C9"/>
+    <next option="2.Next" targetID="1948C453-54A3-40B6-8A83-3BEE75270662"/>
+  </node>
+  <node id="1C024C2E-6E04-0373-7F4A-31AB266E9202" type="or" title="OR" name="OR" x="115" y="233">
+    <next targetID="30FA5E94-ABDC-9F56-532B-31A24D7D4FDA"/>
+  </node>
+  <node id="F20B46FF-ABF4-4EAE-BB68-31AB2E84BA02" type="or" title="OR" name="OR" x="105" y="322">
+    <next targetID="2AE9553C-EFFC-DD20-415F-31A42A75673A"/>
+  </node>
+  <node id="CA702E0B-07A8-3135-4F62-31ABB97A41C9" type="or" title="OR" name="OR" x="272" y="324">
+    <next targetID="3877D251-0625-0E34-3EE2-31A8623B2529"/>
+  </node>
+  <node id="1948C453-54A3-40B6-8A83-3BEE75270662" type="task" title="[h3]Congratulation![/h3]&#xD;[p]You just designed the process of &quot;Put Giraffe into Refrigerator&quot;.[/p]&#xD;&#xD;[p][color=#CC0000]Before you continue, remember to come back to this tutorial by click &quot;(T5):Start your process&quot; in your worklist when you complete the following practice[/color][/p]&#xD;&#xD;[ul]To start a process with this new template,  threre are 3 clicks:&#xD;[li]Click &quot;Start Process&quot; link on top of the window[/li]&#xD;[li]&quot;Select a workflow to start&quot; window will be displayed, there, please click the &quot;Next&quot; button following template name you just created.[/li]&#xD;[li]On the third page, rename the process instance, click &quot;Start&quot; to start it[/li]&#xD;[/ul]&#xD;&#xD;" name="(T5):Start your process" x="494" y="349" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.Next" targetID="B4B8F8CF-E22E-7497-95DA-410CD8A8F143"/>
+    <next option="1.Back" targetID="206D1ACF-5488-D98D-E96D-3BF494D6676F"/>
+  </node>
+  <node id="C3C5D3CA-E53A-8DE2-8F59-3BF1596F36E3" type="task" title="[p]You are  now in the middle of process of putting giraffe into refrigerator[/p]&#xD;[p]Now, let's see what's happening by monitoring the process[/p]&#xD;&#xD;[p][color=#CC0000]Before you continue, remember to come back to this tutorial by click &quot;(T7):Check Process Status&quot; in your worklist when you complete the following practice[/color][/p]&#xD;&#xD;[p]To practice: click the process name that's under work item &quot;Put giraffe into refrigerator&quot; to open the process monitor.[/p]&#xD;&#xD;Process status will be displayed something like this:&#xD;[center][img]/cflow/tutorials/en_US/images/process_monitor1.png[/img][/center]&#xD;[li]top left corner, it says the process is &quot;running&quot;.[/li]&#xD;[li]the start and &quot;Open the door&quot; are circled in green, means they are already done.[/li]&#xD;[li]&quot;Put giraffe into refrigerator&quot; is circled in blue, means it is the current task[/li]&#xD;[li]Uncircled tasks are tasks that have not been delivered.[/li]&#xD;&#xD;&#xD;&#xD;&#xD;" name="(T7):Check Process Status" x="481" y="144" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.Next" targetID="D442B30B-A767-68A5-E8BB-3BFE9CA4966E"/>
+    <next option="1.Back" targetID="F9A7EBBB-D30E-B8CD-2379-3BF499064FA4"/>
+  </node>
+  <node id="206D1ACF-5488-D98D-E96D-3BF494D6676F" type="or" title="OR" name="OR" x="447" y="311">
+    <next targetID="05920192-711C-AB3D-40C8-31AA460F31A2"/>
+  </node>
+  <node id="F9A7EBBB-D30E-B8CD-2379-3BF499064FA4" type="or" title="OR" name="OR" x="609" y="194">
+    <next targetID="B4B8F8CF-E22E-7497-95DA-410CD8A8F143"/>
+  </node>
+  <node id="D442B30B-A767-68A5-E8BB-3BFE9CA4966E" type="task" title="[h3]Congratulation![/h3]&#xD;[p]You are finishing this quick start tutorial.[/p]&#xD;&#xD;To see more advanced tutorials, please click &quot;Help&quot; on top of the window, then go to the tutorials section.&#xD;&#xD;Click &quot;Done&quot; to close this tutorial." name="(T8)Finish Quick Start" x="493" y="56" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="2.Done" targetID="CDC5D3E5-1603-3A3E-AFC3-319D2532299F"/>
+    <next option="1.Back" targetID="422875CD-7CC5-1BC6-B246-4B940E7169A1"/>
+  </node>
+  <node id="B4B8F8CF-E22E-7497-95DA-410CD8A8F143" type="task" title="[h3]Congratulation![/h3]&#xD;[p]You just started a new process of &quot;Put  Giraffe into Refrigerator&quot;.[/p]&#xD;&#xD;[p][color=#CC0000]Before you continue, remember to come back to this tutorial by click &quot;(T6):Check Work List&quot; in your worklist when you complete the following practice[/color][/p]&#xD;&#xD;&#xD;[p]Your worklist are displayed on the left part of the screen.[/p]&#xD;[p]Do you notice there is a new task labeled &quot;Open the door&quot; (the first task name in your new created template)?  [/p]&#xD;[p]Click that task will show you it's working page. On the working page, you following the instructions, then do what it asks, Open the door, right? when you finish it (You don't necessarily have to open YOUR REFRIGERATOR door actually.), Click &quot;Done&quot; button. Your worklist will be updated to the next step.[/p]&#xD;" name="(T6):Check Work List" x="500" y="245" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next option="1.Back" targetID="688C9663-2A2A-59D4-3DB0-410DB68EA245"/>
+    <next option="2.Next" targetID="C3C5D3CA-E53A-8DE2-8F59-3BF1596F36E3"/>
+  </node>
+  <node id="688C9663-2A2A-59D4-3DB0-410DB68EA245" type="or" title="OR" name="OR" x="612" y="307">
+    <next targetID="1948C453-54A3-40B6-8A83-3BEE75270662"/>
+  </node>
+  <node id="422875CD-7CC5-1BC6-B246-4B940E7169A1" type="or" title="OR" name="OR" x="613" y="114">
+    <next targetID="C3C5D3CA-E53A-8DE2-8F59-3BF1596F36E3"/>
+  </node>
+</cf:workflow>

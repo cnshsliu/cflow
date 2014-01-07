@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Report Approval" owner="U3306" acl="private" lastModified="2010-05-17T05:35:50" created="2010-05-17T05:35:50" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="Submitter"/>
+  <role name="Reviwer"/>
+  <role name="Approver"/>
+  <role name="Observer"/>
+  <node id="8653256F-8CCA-63D6-629B-C77774A86BE3" type="start" title="Start" name="Start" x="27" y="204">
+    <next targetID="7DF4E5C3-5D3A-A18B-940A-C777844E9B37"/>
+  </node>
+  <node id="CC7615D4-CBD3-E795-8BC5-C77774B2D2FC" type="end" title="End" name="End" x="748" y="204">
+    <next targetID="CC7615D4-CBD3-E795-8BC5-C77774B2D2FC"/>
+  </node>
+  <node id="7DF4E5C3-5D3A-A18B-940A-C777844E9B37" type="task" title="Please submit report" name="Submit Report" x="142" y="107">
+    <taskto type="role" whom="Submitter"/>
+    <next targetID="93C33835-C22A-5044-81D9-C7778CB74B05"/>
+  </node>
+  <node id="93C33835-C22A-5044-81D9-C7778CB74B05" type="task" title="Please review report" name="Review" x="267" y="72">
+    <taskto type="role" whom="Reviwer"/>
+    <next targetID="119944F9-0753-D923-AE33-C7779322725E"/>
+  </node>
+  <node id="119944F9-0753-D923-AE33-C7779322725E" type="task" title="Please approve report" name="Approve" x="372" y="164">
+    <taskto type="role" whom="Approver"/>
+    <next option="Reject" targetID="F29CF4B5-4583-C2DC-03FC-C77ADA12C83F"/>
+    <next option="Approve" targetID="97288CCF-83DF-E942-87AA-C779BC771280"/>
+  </node>
+  <node id="97288CCF-83DF-E942-87AA-C779BC771280" type="task" title="Report has been approved" name="Notify" x="530" y="220">
+    <taskto type="role" whom="Observer"/>
+    <next targetID="CC7615D4-CBD3-E795-8BC5-C77774B2D2FC"/>
+  </node>
+  <node id="F29CF4B5-4583-C2DC-03FC-C77ADA12C83F" type="task" title="Please modify report" name="Modify" x="508" y="40">
+    <taskto type="role" whom="Submitter"/>
+    <next option="Resubmit" targetID="93C33835-C22A-5044-81D9-C7778CB74B05"/>
+    <next option="Cancel" targetID="CC7615D4-CBD3-E795-8BC5-C77774B2D2FC"/>
+  </node>
+</cf:workflow>

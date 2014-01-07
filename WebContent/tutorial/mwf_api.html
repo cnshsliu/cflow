@@ -1,0 +1,577 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style_help.css">
+<title>MWF: Restful API</title>
+</head>
+
+<body>
+		<a href="../index.html">
+        <img src="../images/logo3764.png" alt="My World Flow">
+		</a>
+		<p>
+ <a href="help_and_tutorials.html">Help</a>
+<h1>MWF Restful API</h1>
+<h2>Login and get access key</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/user</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("userid")</td><td>User id</td></tr>
+					<tr><td>@FormParam("passwd")</td><td>Password</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Create a user account</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/user/new</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("userid")</td><td>User id</td></tr>
+					<tr><td>@FormParam("username")</td><td>User name</td></tr>
+					<tr><td>@FormParam("passwd")</td><td>Password</td></tr>
+					<tr><td>@FormParam("email")</td><td>Email</td></tr>
+					<tr><td>@FormParam("tzid")</td><td>Timezone ID</td></tr>
+					<tr><td>@FormParam("lang")</td><td>Language</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete a user</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/user</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("userid")</td><td>User id to be deleted</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Get User Information</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/user</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return: JSON</td><td><table>
+					<tr><td>ID</td></tr>
+					<tr><td>NAME</td></tr>
+					<tr><td>EMAIL</td></tr>
+					<tr><td>ORGID</td></tr>
+					<tr><td>TZID</td></tr>
+					<tr><td>SUBID</td></tr>
+					<tr><td>PANELID</td></tr>
+					<tr><td>LANG</td></tr>
+					<tr><td>ICON</td></tr>
+					<tr><td>USEMODE</td></tr>
+					<tr><td>WIZARD</td></tr>
+					<tr><td>NICK</td></tr>
+					<tr><td>NOTIFYEMAIL</td></tr>
+					<tr><td>NOTIFYSMS</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Get people in the same organizations</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/user/friends</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return: JSON Array</td><td><table>
+					<tr><td>ID</td></tr>
+					<tr><td>NAME</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Are two users in the same organizations</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/user/together</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("usr1")</td><td>User id 1</td></tr>
+					<tr><td>@FormParam("usr2")</td><td>User id 2</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return</td><td><table>
+					<tr><td>TRUE</td><td>in the same organizatons</td></tr>
+					<tr><td>FALSE</td><td>not in the same organizatons</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete one task from one user to another</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/delegation</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("delegater")</td><td>Delegate from delegater</td></tr>
+					<tr><td>@FormParam("delegatee")</td><td>Delegate to delegatee</td></tr>
+					<tr><td>@FormParam("prcid")</td><td>Process ID</td></tr>
+					<tr><td>@FormParam("sessid")</td><td>sessid of the task to be delegated.</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Create a federation</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/fed</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("fedname")</td><td>Federation Name</td></tr>
+					<tr><td>@FormParam("fedpwd")</td><td>Federation Password</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Get federation information</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/fed</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("fedid")</td><td>Federation id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return: JSON</td><td><table>
+					<tr><td>ID</td><td>Federation ID</td></tr>
+					<tr><td>NAME</td><td>Federation Name</td></tr>
+					<tr><td>OWNER</td><td>Federation Owner ID</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete a federation</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/fed</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("fedid")</td><td>Federation id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Add an organizaiton into a federation</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/fed/org</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("fedid")</td><td>Federation ID</td></tr>
+					<tr><td>@FormParam("orgid")</td><td>Organization ID</td></tr>
+					<tr><td>@FormParam("fedpwd")</td><td>Federation Password</td></tr>
+					<tr><td>@FormParam("orgfedpwd")</td><td>Organzaiton's Federationlizing Password</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Get organzations in one federation</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/fed/orgs</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("fedid")</td><td>Federation id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td><table>
+					<tr><td>orgnazation id</td></tr>
+		</table></td></tr>
+	</table>
+<h2>Delete a member organzation from federation</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/fed/org</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("fedid")</td><td>Federation id</td></tr>
+					<tr><td>@QueryParam("orgid")</td><td>Organzation id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Get organization information</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/org</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("orgid")</td><td>Organization id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td><table>
+					<tr><td>ORGID</td></tr>
+					<tr><td>ORGNAME</td></tr>
+					<tr><td>OWNER</td></tr>
+		</table></td></tr>
+	</table>
+<h2>Get organizations created by user</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/org/all</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSONArray</td><td><table>
+					<tr><td>ORGID</td></tr>
+					<tr><td>ORGNAME</td></tr>
+					<tr><td>OWNER</td></tr>
+		</table></td></tr>
+	</table>
+<h2>Get users belong to one organization</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/org/users</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("orgid")</td><td>Organization id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSONArray</td><td><table>
+					<tr><td>ORGID</td></tr>
+					<tr><td>USERID</td></tr>
+		</table></td></tr>
+	</table>
+<h2>Create organization</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/org</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("orgname")</td><td>Organizaiton name</td></tr>
+					<tr><td>@FormParam("orgpwd")</td><td>Organizaiton password</td></tr>
+					<tr><td>@FormParam("fedpwd")</td><td>Federation password</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete an organization</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/org</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("orgid")</td><td>Organization id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete an user from an organization</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/org/users</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("orgid")</td><td>Organization id</td></tr>
+					<tr><td>@QueryParam("userid")</td><td>User id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Add a user to an organization</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/org/user</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("orgid")</td><td>Organization id</td></tr>
+					<tr><td>@FormParam("userid")</td><td>User id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Add multiple users to  an organization</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/org/users</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("orgid")</td><td>Organization id</td></tr>
+					<tr><td>@FormParam("userkvs")</td><td>KVs of Users</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td><table>
+					<tr><td>ORGID</td></tr>
+					<tr><td>ORGNAME</td></tr>
+					<tr><td>OWNER</td></tr>
+		</table></td></tr>
+	</table>
+<h2><a name="get_process_information" id="get_process_information"></a>Get process information</h2>
+  <table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/process</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("prcid")</td><td>Process id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td><table>
+					<tr><td>PRCID</td></tr>
+					<tr><td>PBO</td></tr>
+					<tr><td>ROUNDID</td></tr>
+					<tr><td>STARTBY</td></tr>
+					<tr><td>STATUS</td></tr>
+					<tr><td>WFTID</td></tr>
+					<tr><td>WFTINAME</td></tr>
+					<tr><td>CUSTOMIZER</td></tr>
+					<tr><td>TEAMID</td></tr>
+					<tr><td>PARENTPROCESSID</td></tr>
+					<tr><td>PARENTPROCESSNODEID</td></tr>
+					<tr><td>ROLES</td></tr>
+					<tr><td>WORKS</td></tr>
+					<tr><td>CTX</td></tr>
+		</table></td></tr>
+	</table>
+<h2><a name="get_process_variables" id="get_process_variables"></a>Get Process Variables</h2>
+  <table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/process/variables</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("prcid")</td><td>Process id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td>{"Variable_name":"Variable_value", ...}</td></tr>
+		</table></td></tr>
+	</table>
+<h2>Get Process Doc</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/process/doc</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("prcid")</td><td>Process id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2><a name="get_processes_by_status" id="get_processes_by_status"></a>Get processes by status</h2>
+  <table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/process/all</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("status")</td><td>Status: running|canceled|suspended|finished</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSONArray</td><td><table>
+					<tr><td>NAME</td></tr>
+					<tr><td>PRCID</td></tr>
+					<tr><td>STARTBY</td></tr>
+					<tr><td>WFTID</td></tr>
+					<tr><td>WORKFLOWID</td></tr>
+					<tr><td>STATUS</td></tr>
+		</table></td></tr>
+	</table>
+<h2><a name="start_a_workflow_process" id="start_a_workflow_process"></a>Start a workflow process</h2>
+  <table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/process</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("wftid")</td><td>Template id</td></tr>
+					<tr><td>@FormParam("startby")</td><td>started by user id</td></tr>
+					<tr><td>@FormParam("teamid")</td><td>Working team id</td></tr>
+					<tr><td>@FormParam("instancename")</td><td>Process instance name</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete an process</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/process</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("prcid")</td><td>Process id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Change the status of a process or a task</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/process</td></tr>
+		<tr><td>Method</td><td>PUT</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("prcid")</td><td>Process id</td></tr>
+					<tr><td>@QueryParam("nodeid")</td><td>Task Node id</td></tr>
+					<tr><td>@QueryParam("action")</td><td>suspendProcess|resumeprocess|cancelProcess|suspendWork|resumeWork</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td><table>
+					<tr><td>ORGID</td></tr>
+					<tr><td>ORGNAME</td></tr>
+					<tr><td>OWNER</td></tr>
+		</table></td></tr>
+	</table>
+<h2><a name="do_a_task" id="do_a_task"></a>Do a task</h2>
+  <table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/task</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("prcid")</td><td>Process id</td></tr>
+					<tr><td>@FormParam("nodeid")</td><td>Task's node id</td></tr>
+					<tr><td>@FormParam("sessid")</td><td>Task's sess id</td></tr>
+					<tr><td>@FormParam("option")</td><td>Choiced option value</td></tr>
+					<tr><td>@FormParam("attachments")</td><td>Attachments JSON values</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2><a name="get_task_information" id="get_task_information"></a>Get a task's information</h2>
+  <table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/task</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("tid")</td><td>Task id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td><table>
+					<tr><td>WII</td><td>NAME, PRCID, NODEID, SESSID, PRCNAME, LIGHT, DELEGATERID, USERID, WFTID, STARTBY, TID, TID_INT, WORKNAME, WORKTITLE, STATUS</td></tr>
+					<tr><td>WORK</td><td>NAME, TITLE, CREATEDAT, ALLOWDELEGATE, COMPELTEDAT, COMPLETEDBY</td></tr>
+					<tr><td>WFTNAME</td></tr>
+					<tr><td>INSTRUCTION</td></tr>
+					<tr><td>MATES</td></tr>
+					<tr><td>ACQS</td></tr>
+					<tr><td>ATTACHMENTS</td><td>[{LABEL, NAME, TYPE, VALUE},...]</tr>
+					<tr><td>OPTIONS</td><td>[{VALUE, ISDEFAULT, CLEANTEXT},...]</tr>
+					<tr><td>HISTORY</td><td>[{NAME, FINISHEDBY, FINISHEDAT, ATTACHMENTS, DECISION},...]</tr>
+		</table></td></tr>
+	</table>
+<h2>Get Team Information</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/team</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("teamid")</td><td>Team id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td>{ID, NAME, OWNER, MEMO, EMAIL}</td></tr>
+	</table>
+<h2>Get teams created by user</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/team/all</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSONArray</td><td>
+				[{ID, NAME, OWNER, MEMO, EMAIL}, ...]
+		</td></tr>
+	</table>
+<h2>Create a team</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/team</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("teamname")</td><td>Team name</td></tr>
+					<tr><td>@FormParam("memo")</td><td>Memo</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete an team</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/team</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("teamid")</td><td>Team id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Get team members</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/team/members</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("teamid")</td><td>Team id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Add team members</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/team/members</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("teamid")</td><td>Team id</td></tr>
+					<tr><td>@FormParam("memberships")</td><td>Memberships</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete an team member</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/team/member</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("teamid")</td><td>Team id</td></tr>
+					<tr><td>@QueryParam("memberid")</td><td>Member id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td><table>
+					<tr><td>ORGID</td></tr>
+					<tr><td>ORGNAME</td></tr>
+					<tr><td>OWNER</td></tr>
+		</table></td></tr>
+	</table>
+<h2>Get Template Document</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/wft</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("wftid")</td><td>Template id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Get an template example</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/wft/example</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("modelid")</td><td>Example model id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Upload a template document</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/wft</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@FormParam("usrid")</td><td>Owner's id</td></tr>
+					<tr><td>@FormParam("wftname")</td><td>Template name</td></tr>
+					<tr><td>@FormParam("wft")</td><td>Template String</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2>Delete a template</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/wft</td></tr>
+		<tr><td>Method</td><td>DELETE</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("wftid")</td><td>Template id</td></tr>
+				</table>
+		</td></tr>
+	</table>
+<h2><a name="get_all_templates" id="get_all_templates"></a>Get all templates</h2>
+  <table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/wft/all</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSONArray</td><td>
+				[{WFTID, WFTNAME}, ...]
+		</td></tr>
+	</table>
+<h2>Get all templates</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/wft/all</td></tr>
+		<tr><td>Method</td><td>POST</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@FormParam("acsk")</td><td>Access key</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSONArray</td><td>
+				[{WFTID, WFTNAME}, ...]
+		</td></tr>
+	</table>
+<h2>Get own templates</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/wft/own</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSONArray</td><td>
+				[{WFTID, WFTNAME}, ...]
+		</td></tr>
+	</table>
+<h2>Get workflow information</h2>
+	<table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/wft</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+					<tr><td>@QueryParam("wftid")</td><td>Template id</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSON</td><td>
+				{WFTID, WFTNAME}
+		</td></tr>
+	</table>
+<h2><a name="get_worklist" id="get_worklist"></a>Get worklist</h2>
+  <table><tr><td>Resource</td><td>http://www.myworldflow.com/rest/worklist</td></tr>
+		<tr><td>Method</td><td>GET</td></tr>
+		<tr><td>Params</td><td><table>
+					<tr><td>@QueryParam("acsk")</td><td>Access key</td></tr>
+				</table>
+		</td></tr>
+		<tr><td>Return JSONArray</td><td>
+				[{NAME, PRCID, NODEID, SESSID, PRCNAME, LIGHT, DELEGATERID, USERID, WFTID, STARTBY, TID, TID_INT, WORKNAME, WORKTITLE, STATUS}, ...]
+		</td></tr>
+	</table>
+</body>
+</html>

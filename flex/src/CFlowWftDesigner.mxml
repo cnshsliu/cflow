@@ -1,0 +1,2189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="100%" height="100%" 
+	horizontalAlign="center" backgroundColor="#DBDBDB" alpha="1.0"   
+	creationComplete="initApp()" horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	paddingTop = "0" paddingBottom="0" paddingLeft="0" paddingRight="0" 
+	xmlns:MyComps="com.lkh.*">
+<mx:Style>
+
+</mx:Style>
+<mx:Script>
+        <![CDATA[
+        	import com.lkh.Attachment;
+        	import com.lkh.DataModel;
+        	import com.lkh.Datahandler;
+        	import com.lkh.History;
+        	import com.lkh.Link;
+        	import com.lkh.NodeInfo;
+        	import com.lkh.RobotAction;
+        	
+        	import flash.external.*;
+        	import flash.geom.Rectangle;
+        	import flash.utils.getQualifiedClassName;
+        	
+        	import mx.collections.*;
+        	import mx.collections.ArrayCollection;
+        	import mx.controls.Alert;
+        	import mx.controls.Button;
+        	import mx.core.Application;
+        	import mx.events.ItemClickEvent;
+        	import mx.graphics.codec.*;
+        	import mx.managers.CursorManager;
+        	import mx.managers.PopUpManager;
+        	import mx.rpc.events.FaultEvent;
+        	import mx.rpc.events.InvokeEvent;
+        	import mx.rpc.events.ResultEvent;
+
+            [Bindable]
+            	public var wizardText:String = "On";
+			[Bindable]
+        		public var msg:String = "Welcome";
+        	[Bindable]
+		   		public var devid:String;
+			[Bindable]
+				public var token:String;
+		    [Bindable]
+		    	public var usrname:String;
+		    [Bindable]
+		    	public var usemode:int;
+		    
+		    [Bindable]
+		    	public var lang:String;
+		    public var nodeInfo:ArrayCollection;
+		    
+
+			public var action:String;
+		     
+		    /* 
+            [Bindable]
+            	public var myRoles:ArrayCollection;
+            [Bindable]
+            	public var myFriends:ArrayCollection;*/
+            [Bindable]
+            	public var allNodes:ArrayCollection;
+            /*[Bindable]
+            	public var myGroups:ArrayCollection;
+            [Bindable]
+            	public var myWfts:ArrayCollection;*/
+            [Bindable]
+            	public var allnodeids:ArrayCollection;
+
+		private var selTool:int= 0;
+            private var ofx:int = -1;
+            private var ofy:int = -1;
+            private var otx:int = -1;
+            private var oty:int = -1;
+            private var duration:Number = 500;
+			private var chkWindowTimer:Timer = null;
+			private var timer:Timer = null;
+			private var dblClkChkingTimer:Timer = null;
+			private var panTimer:Timer = null;
+			private var panTimerDuration:Number = 10;
+			private var panTop:Boolean = false;
+			private var panBottom:Boolean = false;
+			private var panLeft:Boolean = false;
+			private var panRight:Boolean = false;
+			private var panStep:int = 5;
+			private var panHStep:int = 5;
+			private var panVStep:int = 5;
+			private var panThreshold:int = 80;
+            public static var BTN_ARROW:int = 0;
+            public static var BTN_LINK:int=1;
+            public static var BTN_TASK:int=2;
+            public static var BTN_TIMER:int=3;
+            public static var BTN_SUB:int=4;
+            public static var BTN_SCRIPT:int=5;
+            public static var BTN_AND:int=6;
+            public static var BTN_OR:int=7;
+            public static var BTN_ROUND:int=8;
+            public static var BTN_GROUND:int=9;
+            public static var BTN_DELETE:int=10;
+            private var aEvent:MouseEvent;
+            public var taskPropView:TaskPropertyView = new TaskPropertyView();
+            public var linkPropView:LinkPropertyView = new LinkPropertyView();
+            public var scriptPropView:ScriptPropertyView = new ScriptPropertyView();
+            public var roundPropView:RoundPropertyView = new RoundPropertyView();
+            public var notifyPropView:NotifyPropertyView = new NotifyPropertyView();
+            public var timerPropView:TimerPropertyView = new TimerPropertyView();
+            public var subWftPropView:SubWftPropertyView = new SubWftPropertyView();
+            private var lastNode:Node = null;
+            private var service:HTTPService;
+            private var wftid:String = null;
+            private var _startBy:String = null;
+            private var _editMode:String = "template";
+            private var prcid:String = null;
+	    private var prc_status:String = "running";
+			private var prc_lastError:String="";
+            private var xmlstring:String = null;
+            private var dataHandler:Datahandler = new Datahandler();
+			private var maximized:Boolean = false;
+	    private var mode:String = "workflow";
+	    private var subAction:String = "null";
+	    private var wizard:Boolean=true;
+	    [Bindable]
+	    private var history:History = new History();
+		private var canvasInitWidth = 0;
+		private var canvasInitHeight = 0;
+		private var maxied = 0;
+
+				[Embed(source="assets/max_btn.png")] var icon_max:Class;
+			[Embed(source="assets/min_btn.png")] var icon_min:Class;
+
+				[Embed(source="assets/restore_btn.png")] var icon_restore:Class;
+			    [Embed(source="assets/restore_btn_seld.png")] var icon_restore_seld:Class;
+			    [Embed(source="assets/restore_btn_dis.png")] var icon_restore_dis:Class;
+		private var helpMsg:Object = {type:"Help Message"
+			,	"EMPTY":						" "
+			,	"index":						"Default template loaded, modify it as required. \nTo add new task, click the task button now."
+			,	"index_zh_CN":					"缺省模板已显示，请根据需求修改。\n要添加新工作任务，现在就请点TASK按钮"
+			,	"TOOLBAR_0":					"Click to toggle to SELECT mode."
+			,	"TOOLBAR_0_zh_CN":				"点此按钮切换为选择模式。"
+			,	"TOOLBAR_1":					"Click to toggle to LINK mode."
+			,	"TOOLBAR_1_zh_CN":				"点此按钮切换为连接模式，用于将工作任务按照先后顺序连接起来。"
+			,	"TOOLBAR_2":					"Click to place a new TASK node."
+			,	"TOOLBAR_2_zh_CN":				"点此按钮，以便新建工作任务节点。"
+			,	"TOOLBAR_3":					"Click to place a new WAIT node. Process will pause till the specified time expired."
+			,	"TOOLBAR_3_zh_CN":				"点此按钮，以便新建等待节点。\n流程运行到等待节点，将等待所指定的时间后再往下运行。"
+			,	"TOOLBAR_4":					"Click to place a new SUB-WORKFLOW node.\nProcess will run into sub workflow, and return when it finish."
+			,	"TOOLBAR_4_zh_CN":				"点此按钮，以便新建子流程节点。\n流程运行将进入子流程，并在子流程结束后返回上一级流程。"
+			,	"TOOLBAR_5":					"Click to place a new SCRIPT node, which is used to embed business logic or system integration by script coding."
+			,	"TOOLBAR_5_zh_CN":				"点此按钮，以便新建程序节点,\n用于嵌入程序代码，动态控制流程逻辑，或者与其它系统进行集成。"
+			,	"TOOLBAR_6":					"Click to place a AND node. \nProcess will not continue until all previous tasks are completed."
+			,	"TOOLBAR_6_zh_CN":				"点此按钮，以便新建\"逻辑与\"节点,\n直到该节点前的所有节点结束，流程才会往下运行。"
+			,	"TOOLBAR_7":					"Click to place a OR node. \nProcess will continue when any one previous task is completed."
+			,	"TOOLBAR_7_zh_CN":				"点此按钮，以便新建\"逻辑或\"节点,\n只要该节点前的任一工作完成，流程就会往下运行。"
+			,	"TOOLBAR_8":					"Click to place a ROUND node which is used to log differnet round separately.\nROUND is helpful when tasks need to be repeated."
+			,	"TOOLBAR_8_zh_CN":				"点此按钮，以便新建轮次节点，用于对不同轮次的工作分开处理。\n轮次节点用在若干工作需要重复处理时。"
+			,	"TOOLBAR_9":					"Click to place a GROUND node which means there is no following task afterwards."
+			,	"TOOLBAR_9_zh_CN":				"点此按钮，以便新建接地节点，表示该节点后没有后续节点。"
+			,	"TOOLBAR_10":					"Click to toggle to DELETE mode. \nYou may then delete task node or link lines."
+			,	"TOOLBAR_10_zh_CN":				"点此按钮切换为删除模式。\n用于删除工作节点或者节点之间的连接。"
+			,	"TOOLBAR_NEW":					"Click this button to design a new workflow template.\nCaution: unsaved template will be ignored."
+			,	"TOOLBAR_NEW_zh_CN":			"点此按钮，将新建一个工作流模板。\n注意：未保存的模板将被丢失。"
+			,	"TOOLBAR_SAVE":					"Click this button to save the template.\nThe template will be validated before saving."
+			,	"TOOLBAR_SAVE_zh_CN":			"点此按钮，将保存工作流模板。\n保存之前请确认名称，工作流模板的正确性将被自动检查。"
+			,	"BTN_ARROW":					"Single click to select. Double click to open proerty. Hold SHIFT key then move mouse to pan."
+			,	"BTN_ARROW_zh_CN":				"单击用于选择。双击用于打开属性窗口。\n如节点位置超出窗口范围，按住SHIFT键并移动鼠标可平移窗口,。"
+			,	"BTN_LINK":						"Click nodes one by one to link them up. Link direction indicates workflow path.\nClick on blank area to end linking."
+			,	"BTN_LINK_zh_CN":				"依次点击节点，将它们连接起来。连接的方向表示工作流程的路径。\n点击空白区域结束连接。"
+			,	"BTN_TASK":						"Now, move mose to the canvas, click anywhere to place a new task.\nThe new task's property dialog will be opened for you."
+			,	"BTN_TASK_zh_CN":				"现在，请移动鼠标到画布上，在任意位置点击，放置一个新的工作任务\n新工作任务的属性窗口将打开，供您指定工作任务的属性"
+			,	"BTN_TIMER":					"Click on canvas to place a \"waiting\" node."
+			,	"BTN_TIMER_zh_CN":				"点画布放置一个\"等待\"节点。"
+			,	"BTN_SUB":						"Click on canvas to place a sub process node."
+			,	"BTN_SUB_zh_CN":				"点画布放置一个子流程节点。"
+			,	"BTN_AND":						"Click on canvas to place a AND node."
+			,	"BTN_AND_zh_CN":				"点画布放置一个逻辑与节点。"
+			,	"BTN_OR":						"Click on canvas to place a OR node."
+			,	"BTN_OR_zh_CN":					"点画布放置一个逻辑或节点。"
+			,	"BTN_ROUND":					"Click on canvas to place a ROUND node."
+			,	"BTN_ROUND_zh_CN":				"点画布放置一个轮次节点。"
+			,	"BTN_GROUND":					"Click on canvas to place a GROUND node."
+			,	"BTN_GROUND_zh_CN":				"点画布放置一个接地节点。"
+			,	"BTN_DELETE":					"Click on node or link to be deleted. \nHold down SHIFT key to keep DELETE mode, to delete many."
+			,	"BTN_DELETE_zh_CN":				"点击需要删除的节点或者连接线。\n按住SHIFT键将保持删除模式，以便连续删除多个节点或连接。"
+			,	"NEW_TASK_PLACED":				"Continue clicking on canvas to place more tasks. \nTo link it, click LINK button, to remove it, click DELETE button."
+			,	"NEW_TASK_PLACED_zh_CN":		"继续在画布上点击已放置新的工作任务。\n如要将它与其它工作任务连接，请选择LINK按钮，如要删除它，请点DELETE按钮."
+			,	"NEW_TASK_CANCELED":			"Continue clicking on canvas to place more tasks. "
+			,	"NEW_TASK_CANCELED_zh_CN":		"继续在画布上点击已放置新的工作任务。"
+			,	"WIN_EXPANDED":					"Window is expanded, hold down SHIFT key and move mouse to pan."
+			,	"WIN_EXPANDED_zh_CN":			"窗口已自动扩展，按住SHIFT键并移动鼠标平移窗口。"
+			,	"LINKFROM":						"Link beginning node is selected, click ending node please."
+			,	"LINKFROM_zh_CN":				"连接起始节点已选择，请点选其后续节点。"
+			,	"LINKTO":						"Continue to click next node, or click on blank area to end linking."
+			,	"LINKTO_zh_CN":					"请继续点选后续节点。或者点空白区域结束连接。"
+			,	"CANCELPRC":					"Click to cancel the current work process."
+			,	"CANCELPRC_zh_CN":				"点击中止当前工作进程。"
+			,	"SUSPRC":						"Click to suspend/resume the current work process."
+			,	"SUSPRC_zh_CN":					"点击暂停或者继续当前工作进程。"
+			,	"SUSTASK":						"Click to suspend/resume the current work item."
+			,	"SUSTASK_zh_CN":				"点击暂停或者继续当前工作节点。"
+			,	"CHECKROLE":					"Click to check role participants."
+			,	"CHECKROLE_zh_CN":				"点击检查活动参与者。"
+			,	"MOVE_READY":					"Begin dragging..."
+			,	"MOVE_READY_zh_CN":				"开始拖动..."
+			,	"EDITPROC_LOADED":				"Process loaded, modify it as required. "
+			,	"EDITPROC_LOADED_zh_CN":		"进程已装载，可按需要修改。"
+			,	"ROP_LOADED":					"Process loaded, click node to see it's status. \nPassed nodes and path are shown in green."
+			,	"ROP_LOADED_zh_CN":				"流程已装载。点击节点查看其状态。\n已运行过的节点和路径以绿色显示。"
+			,	"PRC_LOADED":					"Process loaded. Click node to see it's status. \nPassed nodes and path are shown in green."
+			,	"PRC_LOADED_zh_CN":				"流程已装载。点击节点查看其状态。\n已运行过的节点和路径以绿色显示。"
+			,	"VIEWWFT_LOADED":				"Double click on node or link to see it's property."
+			,	"VIEWWFT_zh_CN":				"双击节点或连接以便查看其属性。"
+		};
+        			
+       public function getNodeInfo(thisNode:Node):ArrayCollection{
+       		var ret:ArrayCollection= new ArrayCollection();
+       		for(var i:int=0; i<canvas.dataModel.nodes.length; i++){
+       			var aNode:Node = canvas.dataModel.nodes.getItemAt(i) as Node;
+       			if(aNode.type == Node.NODE_TASK){
+       				ret.addItem(new NodeInfo(aNode.dlabel.text, aNode.nodeid, "false"));
+       			}
+       		}
+       		return ret;
+       }
+       
+       public function updateAllNodeIds():void{
+	       	allnodeids.removeAll();
+       		for(var i:int=0; i<canvas.dataModel.nodes.length; i++){
+       			var aNode:Node = canvas.dataModel.nodes.getItemAt(i) as Node;
+       			if(aNode.type == Node.NODE_TASK){
+       				allnodeids.addItem(new NodeInfo(aNode.dlabel.text, aNode.nodeid, "false"));
+       			}
+       		}
+       }
+            private function toolbarEventHandler(event:ItemClickEvent):void {
+            	selTool=event.index;
+            	switch(selTool){
+            		case BTN_LINK:
+            			canvas.cancelDragging();
+            			msg = "Click one node to begin, click next node to link them up.";
+            			loadHelp("BTN_LINK");
+            			break;
+            		case BTN_DELETE:
+            			msg = "Press SHIFT to delete many, click on emtpy area to cancel.";
+            			loadHelp("BTN_DELETE");
+            			break;
+            		case BTN_ARROW:
+            			msg = "Click and drag to move node, double click to edit properties.";
+            			loadHelp("BTN_ARROW");
+            			break;
+            		case BTN_TASK:
+            			msg = "Click on emtpy area to place a TASK node.";
+            			loadHelp("BTN_TASK");
+            			break;
+            		case BTN_SUB:
+            			msg = "Click on emtpy area to place a sub workflow.";
+            			loadHelp("BTN_SUB");
+            			break;
+            		case BTN_TIMER:
+            			msg = "Click on emtpy area to place a TIMER node.";
+            			loadHelp("BTN_TIMER");
+            			break;
+            		case BTN_SCRIPT:
+            			msg = "Click on empty area to place a SCRIPT node.";
+            			loadHelp("BTN_SCRIPT");
+            			break;
+            		case BTN_AND:
+            			msg = "Click on empty area to place a AND node.";
+            			loadHelp("BTN_AND");
+            			break;
+            		case BTN_OR:
+            			msg = "Click on empty area to palce a OR node.";
+            			loadHelp("BTN_OR");
+            			break;
+            		case BTN_ROUND:
+            			msg = "Click on empty area to palce a ROUND node.";
+            			loadHelp("BTN_ROUND");
+            			break;
+            		case BTN_GROUND:
+            			msg = "Click on empty area to palce a GROUND node.";
+            			loadHelp("BTN_GROUND");
+            			break;
+            		
+            	}
+				canvas.cancelAll();
+            }
+            
+
+
+            private function nodeSelectedEventHandler(event:Event):void {
+            	var theNode:Node = event.currentTarget as Node;
+            }
+            
+
+			private function doesLinkhasProperty(node:Node):Boolean{
+				if(node.type == Node.NODE_START || node.type == Node.NODE_AND || node.type == Node.NODE_OR)
+					return false;
+				else
+					return true;
+			}
+            private function doubleClickCanvasHandler(event:MouseEvent):void {
+           		var pt:Point = new Point(event.localX, event.localY);
+           		if(event.target != canvas){
+	           		pt = event.target.localToGlobal(pt);
+					pt = canvas.globalToContent(pt);
+           		}
+           		if(timer != null){
+           			timer.stop();
+           			timer = null;
+           		}
+           		if(canvas.selLink != null && doesLinkhasProperty(canvas.selLink.lfrom))
+           		{
+        			canvas.selLink.backupOption();
+        			PopUpManager.addPopUp(linkPropView, this, true);
+           			PopUpManager.centerPopUp(linkPropView);
+        			linkPropView.vs.selectedIndex = 0;
+        			loadHelp("PROP_LINK");
+           		}
+           		return;
+            }
+            
+	    //TODO: double Click on a sub template node.
+        private function doubleClickNodeHandler(event:MouseEvent):void {
+             	var i:int = 0;
+           		var pt:Point = new Point(event.localX, event.localY);
+           		if(event.target != canvas){
+	           		pt = event.target.localToGlobal(pt);
+					pt = canvas.globalToContent(pt);
+           		}
+           		if(dblClkChkingTimer != null){
+           			dblClkChkingTimer.stop();
+           			dblClkChkingTimer = null;
+           		}
+           		if(canvas.selNode != null 
+           			&& canvas.selNode.type != Node.NODE_START 
+           			&& canvas.selNode.type != Node.NODE_END 
+           			&& canvas.selNode.type != Node.NODE_AND 
+           			&& canvas.selNode.type != Node.NODE_OR 
+           		){
+           			//Alert.show("Node property Dialog");
+           			if(canvas.selNode.type == Node.NODE_TASK){
+	           			canvas.selNode.backupAttachments();
+	           			updateAllNodeIds();
+	           			PopUpManager.addPopUp(taskPropView, this, true);
+	           			PopUpManager.centerPopUp(taskPropView);
+	           			taskPropView.vs.selectedIndex = 0;
+	           			taskPropView.node_vs.setUseMode(usemode);
+						taskPropView.node_vs.setHelp("/cflow/help/taskpropform_" + lang + ".html");
+	           			if(canvas.selNode != lastNode){
+	           				taskPropView.node_vs.resetLoad();
+	           				lastNode = canvas.selNode;
+	           			}
+	           			loadHelp("PROP_TASK");
+	           		}else if(canvas.selNode.type == Node.NODE_TIMER){
+	           			canvas.selNode.backupTimer();
+	           			PopUpManager.addPopUp(timerPropView, this, true);
+	           			PopUpManager.centerPopUp(timerPropView);
+	           			timerPropView.vs.selectedIndex = 0;
+	           			timerPropView.timer_vs.updateData();
+	           			loadHelp("PROP_TIMER");
+	           		}else if(canvas.selNode.type == Node.NODE_SCRIPT){
+	           			canvas.selNode.backupScript();
+	           			PopUpManager.addPopUp(scriptPropView, this, true);
+	           			PopUpManager.centerPopUp(scriptPropView);
+	           			scriptPropView.vs.selectedIndex = 0;
+	           			loadHelp("PROP_SCRIPT");
+	           		}else if(canvas.selNode.type == Node.NODE_ROUND){
+	           			//canvas.selNode.backupScript();
+	           			PopUpManager.addPopUp(roundPropView, this, true);
+	           			PopUpManager.centerPopUp(roundPropView);
+	           			roundPropView.round_form.updateData();
+	           			loadHelp("PROP_ROUND");
+				}else if(canvas.selNode.type == Node.NODE_SUB){
+					canvas.selNode.backupSubWftUID();
+					PopUpManager.addPopUp(subWftPropView, this, true);
+	           			PopUpManager.centerPopUp(subWftPropView);
+					subWftPropView.vs.selectedIndex = 0;
+					loadHelp("PROP_SUB");
+				}
+           		}
+			if(!canvas.linking){
+				resetToolbar();
+			}
+           	return;
+       }
+            
+            public function updateGroup(event:Event):void{
+            	//pvs.node_vs.participate.theGroup.text = canvas.selNode.taskto;
+            }
+            
+            
+            public function singleClickHandler(event:MouseEvent):void {
+            	var pt:Point = new Point(event.localX, event.localY);
+           		if(event.target != canvas){
+	           		pt = event.target.localToGlobal(pt);
+					pt = canvas.globalToContent(pt);
+           		}
+           		if(isCanvas(event.target)){
+					canvas.selBtn = null;
+					canvas.selNode = null;
+					if(mode == "process" && suspendTaskButton != null)
+						suspendTaskButton.enabled = false;
+					canvas.updateCanvas();
+
+					switch(selTool){
+						case BTN_ARROW:
+							canvas.trytoSelectLink(pt);
+							if(canvas.selLink != null){
+								if(timer==null){
+									timer = new Timer(duration, 0);
+									timer.addEventListener(TimerEvent.TIMER, timerHandler);
+									timer.start();
+								}else{
+									doubleClickCanvasHandler(event);
+								}
+							}
+							break;
+						case BTN_LINK:
+							if(canvas.dataModel.editable){
+								//canvas.cancelLinking();
+								//resetToolbar();
+								if(timer == null){
+									if(canvas.linking && canvas.linkFrom != null){
+										var tempJoint:Joint = canvas.placeTempJoint(canvas.linkFrom,  pt);
+									}
+									timer = new Timer(duration, 0);
+									timer.addEventListener(TimerEvent.TIMER, timerHandler);
+									timer.start();
+								}else{
+									doubleClickCanvasHandler(event);
+								}
+
+							}
+							break;
+						case BTN_DELETE:
+							canvas.trytoSelectLinkTobeDeleted(pt);
+							if(canvas.tobeDeletedLink != null && canvas.dataModel.editable){
+								canvas.deleteLink(canvas.tobeDeletedLink);
+								if(!event.shiftKey)
+								{
+									resetToolbar();
+								}
+							}
+							break;
+						case BTN_TASK:
+							if(canvas.dataModel.editable){
+								canvas.selNode = canvas.placeNewNode(pt, "", "Task", Node.NODE_TASK);
+								canvas.selNode.confirmed = false;
+								canvas.selBtn = canvas.selNode.button;
+								updateAllNodeIds();
+			           			PopUpManager.addPopUp(taskPropView, this, true);
+			           			PopUpManager.centerPopUp(taskPropView);
+			           			taskPropView.vs.selectedIndex = 0;
+			           			taskPropView.node_vs.setUseMode(usemode);
+								taskPropView.node_vs.setHelp("/cflow/help/taskpropform_" + lang + ".html");
+			           			if(canvas.selNode != lastNode){
+			           				taskPropView.node_vs.resetLoad();
+			           				lastNode = canvas.selNode;
+			           			}
+			           			loadHelp("PROP_TASK");
+							}
+							break;
+						case BTN_SUB:
+							if(canvas.dataModel.editable){
+								canvas.selNode = canvas.placeNewNode(pt, "", "Sub", Node.NODE_SUB);
+								canvas.selNode.confirmed = false;
+								canvas.selBtn = canvas.selNode.button;
+								PopUpManager.addPopUp(subWftPropView, this, true);
+	           					PopUpManager.centerPopUp(subWftPropView);
+								subWftPropView.vs.selectedIndex = 0;
+								loadHelp("PROP_SUB");
+							}
+							break;
+						case BTN_TIMER:
+							if(canvas.dataModel.editable){
+								canvas.selNode = canvas.placeNewNode(pt, "", "Timer", Node.NODE_TIMER);
+								canvas.selNode.confirmed = false;
+								canvas.selBtn = canvas.selNode.button;
+								
+								PopUpManager.addPopUp(timerPropView, this, true);
+			           			PopUpManager.centerPopUp(timerPropView);
+			           			timerPropView.vs.selectedIndex = 0;
+			           			timerPropView.timer_vs.updateData();
+			           			loadHelp("PROP_TIMER");
+							}
+							break;
+						case BTN_SCRIPT:
+							if(canvas.dataModel.editable){
+								canvas.selNode = canvas.placeNewNode(pt, "", "Script", Node.NODE_SCRIPT);
+								canvas.selNode.confirmed = false;
+								canvas.selBtn = canvas.selNode.button;
+								
+								PopUpManager.addPopUp(scriptPropView, this, true);
+			           			PopUpManager.centerPopUp(scriptPropView);
+			           			scriptPropView.vs.selectedIndex = 0;
+			           			loadHelp("PROP_SCRIPT");
+							}
+							break;
+						case BTN_AND:
+							if(canvas.dataModel.editable){
+								canvas.selNode = canvas.placeNewNode(pt, "", "AND", Node.NODE_AND);
+								canvas.selNode.confirmed = true;
+								canvas.selBtn = canvas.selNode.button;
+							}
+							break;
+						case BTN_OR:
+							if(canvas.dataModel.editable){
+								canvas.selNode = canvas.placeNewNode(pt, "", "OR", Node.NODE_OR);
+								canvas.selNode.confirmed = true;
+								canvas.selBtn = canvas.selNode.button;
+							}
+							break;
+						case BTN_ROUND:
+							if(canvas.dataModel.editable){
+								canvas.selNode = canvas.placeNewNode(pt, "", "ROUND", Node.NODE_ROUND);
+								canvas.selNode.confirmed = true;
+								canvas.selBtn = canvas.selNode.button;
+							}
+							break;
+						case BTN_GROUND:
+							if(canvas.dataModel.editable){
+								canvas.selNode = canvas.placeNewNode(pt, "", "GROUND", Node.NODE_GROUND);
+								canvas.selNode.confirmed = true;
+								canvas.selBtn = canvas.selNode.button;
+							}
+							break;
+					}
+	            	return;
+				} else if(isNode(event.target)){
+					switch(selTool){
+						case BTN_ARROW:
+						case BTN_SUB:
+						case BTN_TASK:
+						case BTN_TIMER:
+							canvas.selBtn = event.target as Button;
+							canvas.selNode = canvas.selBtn.parent as Node;
+							canvas.updateCanvas();
+							if(mode == "process"){
+								if(canvas.selNode.task_status == "running" || 
+									canvas.selNode.task_status == "suspended")
+								{
+									suspendTaskButton.enabled = true;
+									} else{
+									suspendTaskButton.enabled = false;
+									}
+								if(
+								 (canvas.selNode.task_status == "finished" ||
+								  canvas.selNode.task_status == "running" ||
+								  canvas.selNode.task_status == "suspended")){
+									ExternalShowTaskInfo(prcid, canvas.selNode.nodeid);
+								  }
+							} else{
+								if(canvas.dataModel.editable){
+									loadHelp("NODE_SELED");
+								}
+							}
+							if(dblClkChkingTimer==null){
+								dblClkChkingTimer = new Timer(duration, 0);
+								dblClkChkingTimer.addEventListener(TimerEvent.TIMER, dblClkChkingTimerHandler);
+								dblClkChkingTimer.start();
+							}else{
+								doubleClickNodeHandler(event);
+							}
+							break;
+						case BTN_LINK:  //link
+							if(canvas.dataModel.editable){
+									if(canvas.linkFrom == null){
+										canvas.selBtn = event.target as Button;
+
+										canvas.selNode = canvas.selBtn.parent as Node;
+										canvas.updateCanvas();
+
+
+										var bNode:Node = canvas.selBtn.parent as Node;
+										if(bNode.type != Node.NODE_END){
+											canvas.fromBtn = event.target as Button;
+											canvas.linkFrom = canvas.fromBtn.parent as Node;
+											canvas.linking = true;
+											canvas.lastTempJoint = null;
+											loadHelp("LINKFROM");
+										}else{
+											canvas.fromBtn = null;
+											canvas.linkFrom = null;
+											canvas.linking = false;
+										}
+									}else{
+										if( ((event.target as Button).parent as Node).type == Node.NODE_START){
+											break;
+										}
+
+
+										canvas.selBtn = event.target as Button;
+
+										canvas.selNode = canvas.selBtn.parent as Node;
+										canvas.updateCanvas();
+
+										canvas.toBtn = event.target as Button;
+										canvas.linkTo = canvas.toBtn.parent as Node;
+										canvas.linking = false;
+										if(canvas.linkFrom != canvas.linkTo && canvas.linkTo.type != Node.NODE_START){
+											canvas.completeLinking();
+										}else{
+											canvas.cancelLinking();
+										}
+										
+										canvas.fromBtn = null;
+										canvas.linkFrom = null;
+										canvas.linking = false;
+									}
+							}
+							if(dblClkChkingTimer==null){
+								dblClkChkingTimer = new Timer(duration, 0);
+								dblClkChkingTimer.addEventListener(TimerEvent.TIMER, dblClkChkingTimerHandler);
+								dblClkChkingTimer.start();
+							}else{
+								doubleClickNodeHandler(event);
+							}
+							break;
+						case BTN_DELETE: //delete
+							if(canvas.dataModel.editable){
+									var tmpNode:Node = event.target.parent as Node;
+									if(tmpNode.type == Node.NODE_START ||
+										tmpNode.type == Node.NODE_END)
+									{
+										msg = "START/END remains.";
+									}else{
+										if(tmpNode.task_status ==null){
+												canvas.deleteNode (tmpNode);
+												resetCanvasSize();
+												if(!event.shiftKey){
+													resetToolbar();
+												}
+										}
+									}
+							}
+							break;
+					}
+				}else if(isJoint(event.target)){
+					if(selTool == BTN_DELETE){
+						var i:int = ((Joint)(event.target)).link.joints.getItemIndex(((Joint)(event.target)));
+						if(i>=0){
+							((Joint)(event.target)).link.joints.removeItemAt(i);
+							canvas.removeChild(((Joint)(event.target)));
+						}
+					}
+				}
+			}
+            
+            public function timerHandler(event:TimerEvent):void {
+           	 	timer.stop();
+           	 	timer = null;
+        	}
+
+            public function panTimerHandler(event:TimerEvent):void {
+				var newXPos = 0;
+				var newYPos = 0;
+				if(panRight){
+					newXPos = pan.horizontalScrollPosition + panHStep;
+					if(newXPos > canvas.width)
+					{
+						newXPos = canvas.width;
+					}
+					pan.horizontalScrollPosition = newXPos;
+				}
+				if(panLeft){
+					newXPos = pan.horizontalScrollPosition - panHStep;
+					if(newXPos < 0)
+					{
+						newXPos = 0;
+					}
+					pan.horizontalScrollPosition = newXPos;
+				}
+				if(panTop){
+					newYPos = pan.verticalScrollPosition - panVStep;
+					if(newYPos < 0)
+					{
+						newYPos = 0;
+					}
+					pan.verticalScrollPosition = newYPos;
+				}
+				if(panBottom){
+					newYPos = pan.verticalScrollPosition + panVStep;
+					if(newYPos > canvas.height)
+					{
+						newYPos = canvas.height;
+					}
+					pan.verticalScrollPosition = newYPos;
+				}
+        	}
+
+ 			public function dblClkChkingTimerHandler(event:TimerEvent):void {
+           	 	dblClkChkingTimer.stop();
+           	 	dblClkChkingTimer = null;
+        	}
+            
+			private function getSpriteType(target:Object):String{
+				return flash.utils.getQualifiedClassName(target);
+			}
+			private function isNode(target:Object):Boolean{
+				
+				return (getSpriteType(target).indexOf("Button")>=0);
+			}
+			private function isCanvas(target:Object):Boolean{
+				return (getSpriteType(target).indexOf("MyCanvas")>=0);
+			}
+			private function isJoint(target:Object):Boolean{
+				return (getSpriteType(target).indexOf("Joint")>=0);
+			}
+			
+		private function canvasEventHandler(event:MouseEvent):void {
+			var pt:Point = new Point(event.localX, event.localY);
+			if(event.target != canvas){ //点在Node上
+				pt = event.target.localToGlobal(pt);
+				pt = canvas.globalToContent(pt);
+			}
+			var spriteType:String = flash.utils.getQualifiedClassName(event.target);
+
+			if(event.type == MouseEvent.MOUSE_DOWN){
+				if(isNode(event.target))
+				{
+					canvas.selBtn = event.target as Button;
+					canvas.selNode = canvas.selBtn.parent as Node;
+					canvas.updateCanvas();
+					loadHelp("MOVE_READY");
+					canvas.dragging=true;
+				}else if(isJoint(event.target)){
+					canvas.selJoint = event.target as Joint;
+					canvas.jointDragging = true;
+				} else if(isCanvas(event.target) ) {
+					if(!canvas.isLinkMoving()){
+						var link:Link = canvas.trytoStartLinkMove(canvas.trytoSelectLink(pt));
+						if(link != null)
+							msg = "Moving link";
+					}else{
+						canvas.cancelLinkMove();
+						canvas.updateCanvas();
+					}
+				}
+			}
+			
+			if(event.type == MouseEvent.MOUSE_UP){
+				if(canvas.dragging){
+					canvas.finishDragging();
+					resetCanvasSize();
+				}else if(canvas.jointDragging){
+					canvas.finishJointDragging();
+					resetCanvasSize();
+				}else if(canvas.isLinkMoving()){
+					if(canvas.linkToMove != null && canvas.mouseOverNode != null){
+						if(canvas.mouseOverNode.type != Node.NODE_START){
+							canvas.deleteLink(canvas.linkToMove);
+							canvas.linkToMove.lto = canvas.mouseOverNode;
+							canvas.toBtn = canvas.linkToMove.lto.button;
+							canvas.completeLinking();
+							canvas.touched = true;
+						}
+						
+					}
+					canvas.cancelLinkMove();
+					canvas.updateCanvas();
+				}
+			}
+			if(event.type == MouseEvent.MOUSE_MOVE){
+				canvas.moving=true;
+				var panning:Boolean = false;
+				if(event.shiftKey){
+					if(pt.x - pan.horizontalScrollPosition >= pan.width - panThreshold)
+					{
+						panRight = true;
+						panLeft = false;
+						panHStep = panStep / ((pan.width-(pt.x - pan.horizontalScrollPosition))/panThreshold);
+						if(pt.y - pan.verticalScrollPosition <= panThreshold) {
+							panTop = true;
+							panBottom = false;
+							panVStep = panStep / ((pt.y - pan.verticalScrollPosition)/panThreshold);
+						}
+						else if(pt.y - pan.verticalScrollPosition >= pan.height - panThreshold){
+							panBottom = true;
+							panTop = false;
+							panVStep = panStep / ((pan.height - (pt.y - pan.verticalScrollPosition))/panThreshold);
+						}
+						panning = true;
+					}else if(pt.x - pan.horizontalScrollPosition <= panThreshold){
+						panLeft = true;
+						panRight = false;
+						panHStep = panStep / ((pt.x-pan.horizontalScrollPosition)/panThreshold);
+						if(pt.y - pan.verticalScrollPosition <= panThreshold) {
+							panTop = true;
+							panBottom = false;
+							panVStep = panStep / ((pt.y - pan.verticalScrollPosition)/panThreshold);
+						}
+						else if(pt.y - pan.verticalScrollPosition >= pan.height - panThreshold) {
+							panBottom = true;
+							panTop = false;
+							panVStep = panStep / ((pan.height - (pt.y - pan.verticalScrollPosition))/panThreshold);
+						}
+						panning = true;
+					}else if(pt.y - pan.verticalScrollPosition <= panThreshold){
+						panTop = true;
+						panBottom = false;
+						panning = true;
+						panVStep = panStep / ((pt.y - pan.verticalScrollPosition)/panThreshold);
+					}else if(pt.y - pan.verticalScrollPosition >= pan.height - panThreshold){
+						panBottom = true;
+						panTop = false;
+						panning = true;
+						panVStep = panStep / ((pan.height - (pt.y - pan.verticalScrollPosition))/panThreshold);
+					}else{
+						panning = false;
+					}
+				}else{
+					panning = false;
+				}
+				if(panning){
+					if(panTimer == null)
+					{
+						panTimer = new Timer(panTimerDuration, 0);
+						panTimer.addEventListener(TimerEvent.TIMER, panTimerHandler);
+						panTimer.start();
+					}
+				}else{
+					if(panTimer != null){
+						panTimer.stop();
+						panTimer = null;
+					}
+					panTop = false; 
+					panBottom = false;
+					panLeft = false;
+					panRight = false;
+				}
+				
+				if(canvas.jointDragging && canvas.selJoint != null){
+					if(canvas.dataModel.editable){
+						canvas.selJoint.cx = pt.x;
+						canvas.selJoint.cy = pt.y;
+						canvas.selJoint.resetPosition();
+						canvas.touched = true;
+						autoExpandCanvas(new Point(canvas.selJoint.x, canvas.selJoint.y));
+					}
+				}
+				if(canvas.dragging && canvas.selNode !=null && dblClkChkingTimer==null){
+					if(canvas.dataModel.editable){
+						canvas.selNode.x = pt.x-canvas.selNode.width/2;
+						canvas.selNode.y = pt.y-canvas.selNode.height/2;
+						canvas.touched = true;
+						autoExpandCanvas(new Point(canvas.selNode.x, canvas.selNode.y));
+					}
+					return;
+				}else if(canvas.linking){
+					if(canvas.dataModel.editable){
+						if(canvas.linkFrom == null){
+							canvas.linking = false;
+							return;
+						}
+						canvas.drawLinkToPoint (canvas.linkFrom, pt.x, pt.y);
+					}
+					return;
+				}else if(canvas.isLinkMoving()){
+					if(canvas.dataModel.editable){
+						if(canvas.linkToMove == null){
+							canvas.cancelLinkMove();
+							return;
+						}
+						canvas.drawLinkToPoint(canvas.linkToMove.lfrom, pt.x, pt.y);
+					}
+					return;
+				}else{
+					var overLink:Link = canvas.trytoSelectLink(pt, true);
+				}
+			}else{
+					canvas.moving=false;
+			}
+
+			
+					
+			if(event.type == MouseEvent.CLICK){
+				singleClickHandler(event);
+			}
+		}
+
+		private function autoExpandCanvas(ref:Point){
+				if(ref.x > canvas.width-panThreshold){
+					canvas.width +=  2* panThreshold;
+					pan.horizontalScrollPosition = canvas.width - panThreshold;
+				}
+				if(ref.y > canvas.height - panThreshold){
+					canvas.height += 2* panThreshold;
+					pan.verticalScrollPosition = canvas.height - panThreshold;
+				}
+		}
+            
+
+	private function resetToolbar():void{
+		selTool = BTN_ARROW;
+		wftToolbar.selectedIndex = 0;
+	}
+		private function toggleMode(theMode:String):void{
+			mode = theMode;
+			if(mode == "workflow"){
+				_startBy=null;
+				toolbarViewStack.visible = true;
+				toolbarViewStack.selectedIndex = 0;
+			}else if(mode == "editProc"){
+				toolbarViewStack.visible = true;
+				toolbarViewStack.selectedIndex = 0;
+				resetToolbar();
+				newWftButton.enabled = false;
+				uploadButton.enabled = false;
+				wftName.editable = false;
+				//backwardButton.enabled = false;
+				//forwardButton.enabled = false;
+			}else{ //process
+				if(subAction == "readOnlyProcess")
+					toolbarViewStack.visible = false;
+				else
+					toolbarViewStack.visible = true;
+				toolbarViewStack.selectedIndex = 1;
+				canvas.dataModel.editable = false;
+				
+			}
+		}
+
+       		private function toggleButtonsDisabled(flag:Boolean):void{
+				resetToolbar();
+       			if(flag){
+       				wftToolbar.enabled = false;
+       				uploadButton.enabled = false;
+       				wftName.editable = false;
+       			}else{
+       				wftToolbar.enabled = true;
+       				uploadButton.enabled = true;
+       				wftName.editable = true;
+       			}
+       		}
+       		
+
+		public function doNewWft():void{
+			toggleButtonsDisabled(false);
+			canvas.dataModel.wftname = wftName.text;
+				wftid = dataHandler.newIid(devid);
+			//If the current canvas contains a sub wft
+			//wftName.text = wftName.text + "_sub"; 
+				wftName.editable = true;
+				//myRoles = new ArrayCollection(  	[ {name:"starter"} ]  );
+			canvas.setDataModel(history.newDataModel());
+				canvas.reset();
+				var pt:Point = new Point(40, 250);
+				canvas.startNode = canvas.placeNewNode(pt, "Start", "Start", Node.NODE_START);
+				pt = new Point(720, 250);
+				canvas.endNode = canvas.placeNewNode(pt, "End", "End", Node.NODE_END);
+				resetCanvasSize();
+			canvas.touched = false;
+		}
+
+
+		public function newWft(event:Event):void{
+			canvas.cancelAll();
+
+			doNewWft();
+			/*
+			if(canvas.touched){
+				var confirm:com.lkh.Confirmation = new com.lkh.Confirmation();
+				PopUpManager.addPopUp(confirm, this, true);
+						PopUpManager.centerPopUp(confirm);
+			}else{
+				doNewWft();
+			}
+			*/
+		}
+
+		public function myLoadWft(token:String, theWftid:String):void {
+				canvas.cancelAll();
+				if(canvas.dataModel.editable){
+					canvas.dataModel.wftname = wftName.text;
+				}
+				toggleMode("workflow");
+				downloadWftForRead(token, theWftid);
+				wftid = theWftid;
+				loadHelp("VIEWWFT");
+		}
+		public function myEditWft(token:String, theWftid:String):void{
+			_editMode = "template";
+			canvas.cancelAll();
+			if(canvas.dataModel.editable){
+				canvas.dataModel.wftname = wftName.text;
+			}
+			toggleMode("workflow");
+			downloadWftForEdit(token, theWftid);
+			wftid = theWftid;
+		}
+		
+		public function myViewProc(token:String, thePrcid:String, startBy:String, theWorkflowId:String):void{
+				canvas.cancelAll();
+				toggleMode("process");
+				//TODO: set not readonly, allow user to change the workflow template while process is running
+				//TODO: To implement it, save the changed workflow to server. and change the workflow id of process respectively.
+				//toggleButtonsDisabled(false);
+				prcid = thePrcid;
+				_startBy = startBy;
+				downloadWorkflowForRead(token, startBy, theWorkflowId);
+				flash.utils.setTimeout(downloadPrc, 500, token, thePrcid);
+				loadHelp("ROP_LOADED");
+				//wftid = theWftid;
+		}
+
+		public function myEditProc(token:String, thePrcid:String, startBy:String, theWorkflowId:String):void{
+				_editMode = "process";
+				canvas.cancelAll();
+				toggleMode("editProc");
+				prcid = thePrcid;
+				_startBy = startBy;
+				downloadWorkflowForEdit(token, startBy, theWorkflowId);
+				flash.utils.setTimeout(downloadPrc, 500, token, thePrcid);
+				loadHelp("EDITPROC_LOADED");
+				//wftid = theWftid;
+		}
+					
+		private function downloadWftForRead(token:String, theWftid:String):String{
+			var data:Object = new Object();
+			data.wftid = theWftid;
+			data.token = token;
+			XdownloadWftForReadService.send(data);
+			return "";
+		}
+		private function downloadWorkflowForRead(token:String, startBy:String, theWorkflowId:String):String{
+			var data:Object = new Object();
+			data.token = token;
+			data.startBy = startBy;
+			data.workflowid = theWorkflowId;
+			XdownloadWorkflowForReadService.send(data);
+			return "";
+		}
+		private function downloadWorkflowForEdit(token:String, startBy:String, theWorkflowId:String):String{
+			var data:Object = new Object();
+			data.token = token;
+			data.startBy = startBy;
+			data.workflowid = theWorkflowId;
+			XdownloadWorkflowForEditService.send(data);
+			return "";
+		}
+		private function downloadWftForEdit(token:String, theWftid:String):String{
+			var data:Object = new Object();
+			data.token = token;
+			data.wftid = theWftid;
+			XdownloadWftForEditService.send(data);
+			return "";
+		}
+		
+		private function downloadPrc(token:String, thePrcid:String):String{
+			var data:Object = new Object();
+			data.token = token;
+			data.prcid = thePrcid;
+			XdownloadPrcService.send(data);
+			return "";
+		}
+		
+		private function stringToXML(wft:String):XML{
+			var ret:XML = <html/>
+			return ret;
+		}
+		
+/*
+		private function updateTeams(event:ResultEvent):void
+		{
+			myGroups = new ArrayCollection();
+			try{
+				if(event.result.groups!=null && event.result.groups.group != null){
+					if(flash.utils.getQualifiedClassName(event.result.groups.group) == "mx.collections::ArrayCollection"){
+						myGroups = event.result.groups.group;
+					}else{
+						myGroups.addItem(event.result.groups.group);
+					}
+				}
+			}catch(e:Error){
+				trace("<Error>: " + e.message);
+			}finally{
+				CursorManager.removeBusyCursor();
+			}
+		}
+		
+		private function updateMyFriends(event:ResultEvent):void
+		{
+			myFriends = new ArrayCollection();
+			try{
+				if(event.result.friends!=null && event.result.friends.friend != null){
+					if(flash.utils.getQualifiedClassName(event.result.friends.friend) == "mx.collections::ArrayCollection"){
+						myFriends = event.result.friends.friend;
+					}else{
+						myFriends.addItem(event.result.friends.friend);
+					}
+				}
+			}catch(e:Error){
+				trace("<Error>: " + e.message);
+			}finally{
+				CursorManager.removeBusyCursor();
+			}
+		}
+		private function updateRoles(event:ResultEvent):void
+		{
+			myRoles = new ArrayCollection();
+			try{
+				if(event.result.roles!=null && event.result.roles.role != null){
+					if(flash.utils.getQualifiedClassName(event.result.roles.role) == "mx.collections::ArrayCollection"){
+						myRoles = event.result.roles.role;
+					}else{
+						myRoles.addItem(event.result.roles.role);
+					}
+				}
+			}catch(e:Error){
+				trace("<Error>: " + e.message);
+			}finally{
+				CursorManager.removeBusyCursor();
+			}
+		}
+		
+		
+
+		private function updateWfts(event:ResultEvent):void
+		{
+			myWfts = new ArrayCollection();
+			try{
+				if(event.result.wfts!=null && event.result.wfts.wft != null){
+					if(flash.utils.getQualifiedClassName(event.result.wfts.wft) == "mx.collections::ArrayCollection"){
+						myWfts = event.result.wfts.wft;
+					}else{
+						myWfts.addItem(event.result.wfts.wft);
+					}
+				}
+			}catch(e:Error){
+				trace("<Error>: " + e.message);
+			}finally{
+					CursorManager.removeBusyCursor();
+			}
+		}*/
+
+		private function mgInvokeHandler(event:InvokeEvent):void
+		{
+			CursorManager.setBusyCursor();
+		}
+
+		private function mgFaultHandler(event:FaultEvent):void
+		{
+			Alert.show (event.fault.message);    
+			CursorManager.removeBusyCursor();
+		}
+
+	    //downloadWft result
+        public function downloadWftServiceResult(event:ResultEvent, forEdit:Boolean):void {
+		    CursorManager.removeBusyCursor();
+			var xnodes:ArrayCollection = new ArrayCollection();
+			try{
+				if(flash.utils.getQualifiedClassName(event.result.workflow.node) 
+					== "mx.collections::ArrayCollection"){
+						xnodes = event.result.workflow.node;
+					}else{
+						xnodes.addItem(event.result.workflow.node);
+					}
+				var xroles:ArrayCollection = new ArrayCollection();
+				if(flash.utils.getQualifiedClassName(event.result.workflow.role) 
+					== "mx.collections::ArrayCollection"){
+						xroles = event.result.workflow.role;
+					}else{
+						xroles.addItem(event.result.workflow.role);
+					}
+			}catch(err:Error){
+				Alert.show(err.message + "\nDownload Failed.", "Error occured.");
+			}
+			PopUpManager.removePopUp(taskPropView);
+			PopUpManager.removePopUp(linkPropView);
+			PopUpManager.removePopUp(notifyPropView);
+			PopUpManager.removePopUp(timerPropView);
+			PopUpManager.removePopUp(scriptPropView);
+			PopUpManager.removePopUp(roundPropView);
+			PopUpManager.removePopUp(subWftPropView);
+
+
+			canvas.setDataModel(history.newDataModel());
+			canvas.dataModel.wftname = event.result.workflow.name;
+
+        	canvas.reset();
+        	toggleButtonsDisabled(!forEdit);
+			dataHandler.populateGui(canvas, xnodes, xroles);
+
+			canvas.dataModel.editable = forEdit;
+			canvas.touched = false;
+			initCanvasSize();
+			canvas.setProcStatus(event.result.workflow.memo);
+	} // downloadWft end
+		
+		public function downloadWftServiceFault(event:FaultEvent):void {
+		    CursorManager.removeBusyCursor();
+		    wftid = null;
+		    //newWft(event);
+		    Alert.show("Download failed, you may need to re-login");
+		}
+		
+		 //downloadWorkflow result
+        public function downloadWorkflowServiceResult(event:ResultEvent, forEdit:Boolean):void {
+		    CursorManager.removeBusyCursor();
+			var xnodes:ArrayCollection = new ArrayCollection();
+			if(flash.utils.getQualifiedClassName(event.result.workflow.node) 
+				== "mx.collections::ArrayCollection"){
+					xnodes = event.result.workflow.node;
+				}else{
+					xnodes.addItem(event.result.workflow.node);
+				}
+			var xroles:ArrayCollection = new ArrayCollection();
+			if(flash.utils.getQualifiedClassName(event.result.workflow.role) 
+				== "mx.collections::ArrayCollection"){
+					xroles = event.result.workflow.role;
+				}else{
+					xroles.addItem(event.result.workflow.role);
+				}
+			PopUpManager.removePopUp(taskPropView);
+			PopUpManager.removePopUp(linkPropView);
+			PopUpManager.removePopUp(notifyPropView);
+			PopUpManager.removePopUp(timerPropView);
+			PopUpManager.removePopUp(scriptPropView);
+			PopUpManager.removePopUp(roundPropView);
+			PopUpManager.removePopUp(subWftPropView);
+
+
+			canvas.setDataModel(history.newDataModel());
+			canvas.dataModel.wftname = event.result.workflow.name;
+
+        	canvas.reset();
+        	toggleButtonsDisabled(!forEdit);
+			dataHandler.populateGui(canvas, xnodes, xroles);
+
+			canvas.dataModel.editable = forEdit;
+			canvas.touched = false;
+			initCanvasSize();
+	} // downloadWorkflow end
+		
+		public function downloadWorkflowServiceFault(event:FaultEvent):void {
+		    CursorManager.removeBusyCursor();
+		    wftid = null;
+		    //newWft(event);
+		    //Alert.show(event.fault.message);
+			Alert.show("Download failed, you may need to re-login");
+		}
+		
+       	public function downloadPrcServiceResult(event:ResultEvent):void {
+		    CursorManager.removeBusyCursor();
+		    //var xWorks:ArrayCollection = event.result.process.work;
+		    prc_status = event.result.process.status;
+			prc_lastError = event.result.process.lastError;
+		    if(event.result.process.status=="running"){
+		    		cancelProcButton.enabled = true;
+			}else{
+				cancelProcButton.enabled = false;
+			}
+			if(event.result.process.status == "running" || event.result.process.status == "suspended"){
+				suspendProcButton.enabled = true;
+			}else{
+				suspendProcButton.enabled = false;
+			}
+
+			suspendTaskButton.enabled = false;
+			
+			dataHandler.inbedProcessData(canvas, event);
+			canvas.setProcStatus(prc_status);
+			if(com.lkh.StringUtil.trim(prc_lastError) != "")
+				canvas.showError("Last error:" + prc_lastError);
+			canvas.updateCanvas();
+			initCanvasSize();
+		}
+		
+		public function downloadPrcServiceFault(event:FaultEvent):void {
+		    CursorManager.removeBusyCursor();
+		    prcid = null;
+			//Alert.show(event.fault.message);
+			Alert.show("Download failed, you may need to re-login");
+		}
+
+
+		public function saveWftServiceResult(event:ResultEvent):void {
+		   	var ret:String = event.result.body;
+		   
+			trace(ret);
+			CursorManager.removeBusyCursor();
+			
+			if(ret.indexOf("SUCCESSED")>=0){
+				//The workflow template id was send back from server.
+				//wftid = ret.substr(10);
+				ExternalRefreshWft();
+				msg = "Save successed.";
+			}
+			else {
+				msg = "Save workflow failed.";
+			}
+		}
+
+		public function saveWftServiceFault(event:FaultEvent):void {
+			//Alert.show(event.fault.message);
+			Alert.show("Save failed, you may need to re-login");
+		    CursorManager.removeBusyCursor();
+		}
+		
+
+		public function saveWorkflowServiceResult(event:ResultEvent):void {
+		    var ret:String = event.result.result;
+			trace(ret);
+			CursorManager.removeBusyCursor();
+			
+			if(ret.indexOf("SUCCESSED")>=0){
+				msg = "Save successed.";
+			}
+			else {
+				msg = "Save workflow failed.";
+			}
+		}
+
+		public function saveWorkflowServiceFault(event:FaultEvent):void {
+			//Alert.show(event.fault.message);
+			Alert.show("Save failed, you may need to re-login");
+		    CursorManager.removeBusyCursor();
+		}
+
+		public function ExternalRefreshWft():void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "RefreshWft";
+			   s = ExternalInterface.call(wrapperFunction, (new Date()).time);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+		
+		public function ExternalShowTaskInfo(prcid:String, nodeid:String):void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "ShowTaskInfo";
+			   s = ExternalInterface.call(wrapperFunction, prcid, nodeid);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+		
+			
+			
+		public function toggleSize():void{
+			
+			var s;
+			if(maxied==0){
+				var wrapperFunction:String = "toggleSize";
+				s = ExternalInterface.call(wrapperFunction, 1);
+				pan.width = s.width;
+				pan.height = s.height-60;
+				canvas.width = pan.width;
+				canvas.height = pan.height;
+				if(canvas.width < canvas.maxx + 14) canvas.width = canvas.maxx + 14;
+				if(canvas.height < canvas.maxy + 14) canvas.height = canvas.maxy + 14;
+				maxied = 1;
+				resizeButton.setStyle("upIcon", icon_min);
+				resizeButton.setStyle("overIcon", icon_min);
+				resizeButton.setStyle("downIcon", icon_min);
+			}else{
+				var wrapperFunction:String = "toggleSize";
+				s = ExternalInterface.call(wrapperFunction, 0);
+				pan.width = 800;
+				pan.height = 480;
+				canvas.width = pan.width;
+				canvas.height = pan.height;
+				if(canvas.width < canvas.maxx + 14) canvas.width = canvas.maxx + 14;
+				if(canvas.height < canvas.maxy + 14) canvas.height = canvas.maxy + 14;
+				maxied = 0;
+				resizeButton.setStyle("upIcon", icon_max);
+				resizeButton.setStyle("overIcon", icon_max);
+				resizeButton.setStyle("downIcon", icon_max);
+			}
+			
+		}
+		public function toggleWizard(event:MouseEvent):void{
+ 			var s:String;
+			if (ExternalInterface.available) {
+				var par:String;
+				if(wizard==true){
+					wizard = false;
+					wizardText = "Off";
+					par = "false";
+				}else{
+					wizard = true;
+					wizardText = "On ";
+					par = "true";
+				}
+			   var wrapperFunction:String = "toggleWizard";
+			   s = ExternalInterface.call(wrapperFunction, par);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s);
+ 		}
+ 		
+		public function loadHelp(helpId:String):void{
+			if(helpMsg[helpId + "_" + lang] != null){
+				msg = helpMsg[helpId + "_" + lang];
+			}else if(helpMsg[helpId] != null){
+				msg = helpMsg[helpId];
+			}else{
+				msg = helpId;
+			}
+		}
+		
+		public function cancelProc(event:Event):void{
+			cancelProcButton.enabled = false;
+			suspendProcButton.enabled = false;
+			suspendTaskButton.enabled = false;
+			prc_status = "canceled";
+			canvas.setProcStatus("Canceled");
+			ExternalCancelProc(prcid);
+		}
+		public function ExternalCancelProc(prcid:String):void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "CancelProc";
+			   s = ExternalInterface.call(wrapperFunction, prcid);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+		public function suspendProc(event:Event):void{
+			cancelProcButton.enabled = true;
+			suspendProcButton.enabled = true;
+			suspendTaskButton.enabled = false;
+			if(prc_status == "running"){
+				prc_status = "suspended";
+				canvas.setProcStatus("Suspended");
+				ExternalSuspendProc(prcid);
+			}else if(prc_status == "suspended"){
+				prc_status = "running";
+				canvas.setProcStatus("Running");
+				ExternalResumeProc(prcid);
+			}
+
+		}
+		public function ExternalSuspendProc(prcid:String):void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "SuspendProc";
+			   s = ExternalInterface.call(wrapperFunction, prcid);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+		public function ExternalResumeProc(prcid:String):void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "ResumeProc";
+			   s = ExternalInterface.call(wrapperFunction, prcid);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+		
+		public function ExternalMaximizeDesignerWindow():void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "MaximizeDesignerWindow";
+			   s = ExternalInterface.call(wrapperFunction);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+		
+		public function ExternalRestoreDesignerWindow():void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "RestoreDesignerWindow";
+			   s = ExternalInterface.call(wrapperFunction, "restore");
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+		
+		
+		public function suspendTask(event:Event):void{
+			cancelProcButton.enabled = true;
+			suspendProcButton.enabled = true;
+			suspendProcButton.enabled = true;
+			if(canvas.selNode.task_status == "running"){
+				canvas.selNode.task_status = "suspended";
+				canvas.updateCanvas();
+				ExternalSuspendTask(prcid, canvas.selNode.nodeid);
+			}else if(canvas.selNode.task_status == "suspended"){
+				canvas.selNode.task_status = "running";
+				canvas.updateCanvas();
+				ExternalResumeTask(prcid, canvas.selNode.nodeid);
+			}
+
+		}
+		public function ExternalSuspendTask(prcid:String, nodeid:String):void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "SuspendTask";
+			   s = ExternalInterface.call(wrapperFunction, prcid, nodeid);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+		public function checkrole(event:Event):void{
+			ExternalCheckRole(prcid, canvas.selNode.nodeid);
+		}
+		public function ExternalCheckRole(prcid:String, nodeid:String):void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "CheckRole";
+			   s = ExternalInterface.call(wrapperFunction, prcid, nodeid);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+		}
+		public function ExternalResumeTask(prcid:String, nodeid:String):void{
+			var s:String;
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "ResumeTask";
+			   s = ExternalInterface.call(wrapperFunction, prcid, nodeid);
+			} else {
+			   s = "Wrapper not available";
+			}
+			trace(s); 
+			
+		}
+
+ 		private function assert(e:Boolean, mess:String=null):void {
+          if(!e) {
+            if(mess) trace(mess);
+            trace(new Error().getStackTrace());
+          }     
+        }
+                 
+
+ 		
+        public function uploadWft(event:MouseEvent):Boolean{
+			canvas.cancelAll();
+			if(!canvas.validateWft()){
+				return false;
+			}
+			
+			if(wftName.text == ""){
+				msg = "Please input workflow name";
+				return false;
+			}
+
+
+			msg = "Saving...";
+			if(event.shiftKey){
+				wftid = dataHandler.newIid(devid);
+			}
+			
+			
+			var data:Object = new Object();
+
+			if(_editMode == "process"){
+				data.prcid = prcid;
+				data.devid = devid;
+				data.token = token;
+				data.wft = dataHandler.getWftXML(canvas).toXMLString();
+				data.wftname = wftName.text;
+				XsaveWorkflowService.send(data);
+				canvas.touched = false;
+			}else if(_editMode == "template"){
+				data.devid = devid;
+				data.token = token;
+				data.wft = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + dataHandler.getWftXML(canvas).toXMLString();
+				data.wftname = wftName.text;
+				assert(wftid != null);
+				data.wftid = wftid; 
+				
+				XsaveWftService.send(data);
+				canvas.touched = false;
+            	//XgetWftsService.send();
+            	
+            	//生成缩略图。
+				/*
+            	var bitmapData:BitmapData = new BitmapData(1*canvas.width, 1*canvas.height,true,0x00000000);  
+				bitmapData.draw(canvas ,new Matrix(1,0,0,1),null,null,null,true);  
+				var bitmap:Bitmap = new Bitmap(bitmapData);  
+				//var png:PNGEncoder = new PNGEncoder();  
+				//var ba:ByteArray = png.encode(bitmapData);
+				var jpg:JPEGEncoder = new JPEGEncoder();
+				var ba:ByteArray = jpg.encode(bitmapData); 
+				
+				var dat:ByteArray = new ByteArray();
+				dat.writeUTFBytes(wftid);
+				for(var i:int=0; i<100; i++){
+					if(wftid.length + i < 100){
+						dat.writeByte(61);
+					}else
+						break;
+				}
+				dat.writeBytes(ba);
+				
+				var url:String = "/cflow/SaveSnapShot.jsp";
+
+				var request:URLRequest = new URLRequest(url);
+				request.contentType = "application/octet-stream";
+				request.data = dat;
+				request.method = URLRequestMethod.POST;
+				var loader:URLLoader = new URLLoader();
+				loader.dataFormat=URLLoaderDataFormat.BINARY;
+				try {
+				    loader.load(request);
+				} catch (error:ArgumentError) {
+				    trace("An ArgumentError has occurred.");
+				} catch (error:SecurityError) {
+				    trace("A SecurityError has occurred.");
+				}
+				*/
+			}
+
+
+			return true;
+		}
+		
+		
+		private function setButtonIconStyle(ttb:ToggleButtonBar):void{
+				[Embed(source="assets/arrow_btn.png")]
+				var icon_arrow:Class;
+			    [Embed(source="assets/arrow_btn_seld.png")]
+				var icon_arrow_seld:Class;
+			    [Embed(source="assets/arrow_btn_dis.png")]
+				var icon_arrow_dis:Class;
+
+				[Embed(source="assets/link_btn.png")]
+				var icon_link:Class;
+			    [Embed(source="assets/link_btn_seld.png")]
+				var icon_link_seld:Class;
+			    [Embed(source="assets/link_btn_dis.png")]
+				var icon_link_dis:Class;
+
+				[Embed(source="assets/task_btn.png")]
+				var icon_task:Class;
+			    [Embed(source="assets/task_btn_seld.png")]
+				var icon_task_seld:Class;
+			    [Embed(source="assets/task_btn_dis.png")]
+				var icon_task_dis:Class;
+
+
+				[Embed(source="assets/timer_btn.png")]
+				var icon_timer:Class;
+			    [Embed(source="assets/timer_btn_seld.png")]
+				var icon_timer_seld:Class;
+			    [Embed(source="assets/timer_btn_dis.png")]
+				var icon_timer_dis:Class;
+
+				[Embed(source="assets/sub_btn.png")]
+				var icon_sub:Class;
+			    [Embed(source="assets/sub_btn_seld.png")]
+				var icon_sub_seld:Class;
+			    [Embed(source="assets/sub_btn_dis.png")]
+				var icon_sub_dis:Class;
+
+				[Embed(source="assets/script_btn.png")]
+				var icon_script:Class;
+			    [Embed(source="assets/script_btn_seld.png")]
+				var icon_script_seld:Class;
+			    [Embed(source="assets/script_btn_dis.png")]
+				var icon_script_dis:Class;
+
+				[Embed(source="assets/and_btn.png")]
+				var icon_and:Class;
+			    [Embed(source="assets/and_btn_seld.png")]
+				var icon_and_seld:Class;
+			    [Embed(source="assets/and_btn_dis.png")]
+				var icon_and_dis:Class;
+
+				[Embed(source="assets/or_btn.png")]
+				var icon_or:Class;
+			    [Embed(source="assets/or_btn_seld.png")]
+				var icon_or_seld:Class;
+			    [Embed(source="assets/or_btn_dis.png")]
+				var icon_or_dis:Class;
+				
+				[Embed(source="assets/round_btn.png")]
+				var icon_round:Class;
+			    [Embed(source="assets/round_btn_seld.png")]
+				var icon_round_seld:Class;
+			    [Embed(source="assets/round_btn_dis.png")]
+				var icon_round_dis:Class;
+				
+				[Embed(source="assets/ground_btn.png")]
+				var icon_ground:Class;
+			    [Embed(source="assets/ground_btn_seld.png")]
+				var icon_ground_seld:Class;
+			    [Embed(source="assets/ground_btn_dis.png")]
+				var icon_ground_dis:Class;
+				
+				[Embed(source="assets/delete_btn.png")]
+				var icon_delete:Class;
+			    [Embed(source="assets/delete_btn_seld.png")]
+				var icon_delete_seld:Class;
+			    [Embed(source="assets/delete_btn_dis.png")]
+				var icon_delete_dis:Class;
+
+
+				
+				var upIcons:Array = new Array(11);
+				var downIcons:Array = new Array(11);
+				var disIcons:Array = new Array(11);
+				upIcons[0] = icon_arrow;
+				upIcons[1] = icon_link;
+				upIcons[2] = icon_task;
+				upIcons[3] = icon_timer;
+				upIcons[4] = icon_sub;
+				upIcons[5] = icon_script;
+				upIcons[6] = icon_and;
+				upIcons[7] = icon_or;
+				upIcons[8] = icon_round;
+				upIcons[9] = icon_ground;
+				upIcons[10] = icon_delete;
+				
+				downIcons[0] = icon_arrow_seld;
+				downIcons[1] = icon_link_seld;
+				downIcons[2] = icon_task_seld;
+				downIcons[3] = icon_timer_seld;
+				downIcons[4] = icon_sub_seld;
+				downIcons[5] = icon_script_seld;
+				downIcons[6] = icon_and_seld;
+				downIcons[7] = icon_or_seld;
+				downIcons[8] = icon_round_seld;
+				downIcons[9] = icon_ground_seld;
+				downIcons[10] = icon_delete_seld;
+
+				disIcons[0] = icon_arrow_dis;
+				disIcons[1] = icon_link_dis;
+				disIcons[2] = icon_task_dis;
+				disIcons[3] = icon_timer_dis;
+				disIcons[4] = icon_sub_dis;
+				disIcons[5] = icon_script_dis;
+				disIcons[6] = icon_and_dis;
+				disIcons[7] = icon_or_dis;
+				disIcons[8] = icon_round_dis;
+				disIcons[9] = icon_ground_dis;
+				disIcons[10] = icon_delete_dis;
+
+			    ttb.validateNow();
+				for(var i:int = 0;i<ttb.dataProvider.length;i++){
+				   var item:Object = ttb.getChildAt(i);
+				   item.setStyle("upIcon",upIcons[i]);
+				   item.setStyle("overIcon",downIcons[i]);
+				   item.setStyle("downIcon",downIcons[i]);
+				   item.setStyle("selectedUpIcon",downIcons[i]);
+				   item.setStyle("selectedOverIcon",downIcons[i]);
+				   item.setStyle("selectedDownIcon",downIcons[i]);
+				   item.setStyle("disabledIcon",disIcons[i]);
+				}
+        }
+
+		/*
+		public function toggleMaximize():void{
+			if(!maximized){
+				ExternalMaximizeDesignerWindow();
+				resizeButton.setStyle("upIcon", icon_restore);
+				resizeButton.setStyle("overIcon", icon_restore_seld);
+				resizeButton.setStyle("downIcon", icon_restore_seld);
+				resizeButton.setStyle("selectedUpIcon", icon_restore_seld);
+				resizeButton.setStyle("selectedOverIcon", icon_restore_seld);
+				resizeButton.setStyle("selectedDownIcon", icon_restore_seld);
+				resizeButton.setStyle("disabledIcon", icon_restore_dis);
+			}else{
+				ExternalRestoreDesignerWindow();
+				resizeButton.setStyle("upIcon", icon_maximize);
+				resizeButton.setStyle("overIcon", icon_maximize_seld);
+				resizeButton.setStyle("downIcon", icon_maximize_seld);
+				resizeButton.setStyle("selectedUpIcon", icon_maximize_seld);
+				resizeButton.setStyle("selectedOverIcon", icon_maximize_seld);
+				resizeButton.setStyle("selectedDownIcon", icon_maximize_seld);
+				resizeButton.setStyle("disabledIcon", icon_maximize_dis);
+			}
+			pan.width = Application.application.width;
+			pan.height = Application.application.height - menuButton.height - statusLabel.height;
+			msg =  "Width1: " + application.measuredWidth + " Height: " + application.height + " pw:" + pan.width + "ph: " + pan.height;
+			maximized = !maximized;
+		}
+		*/
+
+	    public function forwardHistory():void{
+	    	canvas.cancelAll();
+	    	if(canvas.dataModel.editable){
+				canvas.dataModel.wftname = wftName.text;
+			}
+	    	var dm:DataModel = history.forward();
+			if(dm!=null){
+				canvas.setDataModel(dm);
+				canvas.reset(); //Reset must be placed after dataModel was set and before placeChildNodes
+				//Because reset will remove all children, incldue link label and node buttons.
+				canvas.placeChildNodes();
+				canvas.touched = false;
+				resetToolbar();
+				toggleButtonsDisabled(!canvas.dataModel.editable);
+			}
+	    }
+	    public function backwardHistory():void{
+	    	canvas.cancelAll();
+	    	if(canvas.dataModel.editable){
+				canvas.dataModel.wftname = wftName.text;
+			}
+	    	var dm:DataModel = history.backward();
+			if(dm != null){
+				canvas.setDataModel(dm);
+				canvas.reset();
+				canvas.placeChildNodes();
+				canvas.touched = false;
+				resetToolbar();
+				toggleButtonsDisabled(!canvas.dataModel.editable);
+			}
+	    }
+
+		public function initCanvasSize():void{
+			var maxX:int = 0;
+			var maxY:int = 0;
+			var newWidth = 0;
+			var newHeight = 0;
+			newWidth = canvas.width;
+			newHeight = canvas.height;
+       		for(var i:int=0; i<canvas.dataModel.nodes.length; i++){
+       			var aNode:Node = canvas.dataModel.nodes.getItemAt(i) as Node;
+				if(aNode.x > maxX) maxX = aNode.x;
+				if(aNode.y > maxY) maxY = aNode.y;
+			}
+			for(var i:int=0; i<canvas.dataModel.links.length; i++){
+				var aLink:Link = canvas.dataModel.links.getItemAt(i) as Link;
+				for(var j:int =0; j<aLink.joints.length; j++){
+					var joint:Joint = aLink.joints.getItemAt(j) as Joint;
+					if(joint.cx+6 > maxX) maxX = joint.cx + 6;
+					if(joint.cy+6 > maxY) maxY = joint.cy + 6;
+				}
+			}
+			if(maxX + panThreshold > canvas.width)
+			{
+				newWidth = maxX + panThreshold;
+			}
+			if(maxY + panThreshold > canvas.height)
+			{
+				newHeight = maxY + panThreshold;
+			}
+			canvas.width = newWidth;
+			canvas.height = newHeight;
+			pan.horizontalScrollPosition = 0;
+			pan.verticalScrollPosition = 0;
+
+		}
+
+		public function resetCanvasSize():void{
+			var maxX:int = 0;
+			var maxY:int = 0;
+			var newWidth = 0;
+			var newHeight = 0;
+			var showWarning = false;
+			var canvasWidth_old = canvas.width;
+			var canvasHeight_old = canvas.height;
+			newWidth = canvasInitWidth;
+			newHeight = canvasInitHeight;
+       		for(var i:int=0; i<canvas.dataModel.nodes.length; i++){
+       			var aNode:Node = canvas.dataModel.nodes.getItemAt(i) as Node;
+				if(aNode.x > maxX) maxX = aNode.x;
+				if(aNode.y > maxY) maxY = aNode.y;
+			}
+			for(var i:int=0; i<canvas.dataModel.links.length; i++){
+				var aLink:Link = canvas.dataModel.links.getItemAt(i) as Link;
+				for(var j:int =0; j<aLink.joints.length; j++){
+					var joint:Joint = aLink.joints.getItemAt(j) as Joint;
+					if(joint.cx+6 > maxX) maxX = joint.cx + 6;
+					if(joint.cy+6 > maxY) maxY = joint.cy + 6;
+				}
+			}
+			if(maxX + panThreshold > canvasInitWidth)
+			{
+				newWidth = maxX + panThreshold;
+				showWarning = true;
+			}
+			if(maxY + panThreshold > canvasInitHeight)
+			{
+				newHeight = maxY + panThreshold;
+				showWarning = true;
+			}
+			if(showWarning){
+				loadHelp("WIN_EXPANDED");
+			}
+			
+			if(canvasWidth_old < newWidth)
+				canvas.width = newWidth;
+			if(canvasHeight_old < newHeight)
+				canvas.height = newHeight;
+			//pan.horizontalScrollPosition = canvas.width;
+			//pan.verticalScrollPosition = canvas.height;
+
+		}
+
+        public function initApp():void {
+			devid = this.parameters.devid;
+			token = this.parameters.token;
+			usrname = this.parameters.usrname;
+			mode = this.parameters.mode;
+			subAction = this.parameters.subAction;
+			usemode = this.parameters.usemode;
+			lang = this.parameters.lang;
+			//sid = this.parameters.sid;
+			if(this.parameters.wizard=="true"){
+				wizard = true;
+				wizardText = "On ";
+			}else{
+				wizard = false;
+				wizardText = "Off";
+			}
+			if(usemode != 1 && usemode != 2)
+				usemode = 1;
+			wftToolbar.addEventListener(ItemClickEvent.ITEM_CLICK, toolbarEventHandler);
+			canvas.setDataModel(history.newDataModel());
+			canvas.addEventListener(MouseEvent.CLICK, canvasEventHandler);
+			canvas.addEventListener(MouseEvent.DOUBLE_CLICK, canvasEventHandler);
+			canvas.addEventListener(MouseEvent.MOUSE_DOWN, canvasEventHandler);
+			canvas.addEventListener(MouseEvent.MOUSE_UP, canvasEventHandler);
+			canvas.addEventListener(MouseEvent.MOUSE_MOVE, canvasEventHandler);
+			canvas.blendMode = BlendMode.LAYER;
+			allnodeids = new ArrayCollection();
+			
+			
+			if(mode == "workflow"){
+				//Create START and END node automatically
+				var pt:Point = new Point(40, 250);
+				canvas.startNode = canvas.placeNewNode(pt, "Start", "Start", Node.NODE_START);
+				pt = new Point(720, 250);
+				canvas.endNode = canvas.placeNewNode(pt, "End", "End", Node.NODE_END);
+				//pt = new Point(canvas.width/2, canvas.height/2);
+				//canvas.placeNewNode(pt, "", "Task", Node.NODE_TASK);
+				wftid = dataHandler.newIid(devid);
+				var devIdbackup = devid;
+				
+				devid = devIdbackup;
+			}
+			
+			msg = "Welcome " + usrname + "(" + devid + ")";
+			
+			canvas.justInitialized = true;
+			//myRoles = new ArrayCollection(  	[ {name:"starter"} ]  );
+					//TODO: Iniit role array by getting roles from template.
+			//canvas.drawGhostLinkBetweenNodes(startNode, endNode, false);
+			
+			
+			
+			/*try{
+				var data1:Object = new Object();	data1.action = "XgetUserTeams";		data1.sid = sid;
+				XgetTeamsService.send(data1);
+				var data2:Object = new Object();	data2.action = "XgetUserWfts";		data2.sid = sid;
+				XgetWftsService.send(data2);
+				var data3:Object = new Object();	data3.action = "XgetUserRoles";		data3.sid = sid;
+				XgetRolesService.send(data3);
+				var data4:Object = new Object();	data4.action = "XgetMyFriends";		data4.sid = sid;
+				XgetMyFriendsService.send(data4);
+			}catch(err:Error){
+				Alert.show(err.message + "\nPlease refresh page.", "Error occured.");
+			}*/
+			
+			ExternalInterface.addCallback("ExtLoadWft",myLoadWft);
+			ExternalInterface.addCallback("ExtEditWft",myEditWft);
+			ExternalInterface.addCallback("ExtViewProc",myViewProc);
+			ExternalInterface.addCallback("ExtEditProc",myEditProc);
+            	
+			setButtonIconStyle(wftToolbar);
+	
+			toggleMode(mode);
+			canvas.touched = false;
+
+			canvasInitWidth = canvas.width;
+			canvasInitHeight = canvas.height;
+			if(mode == "workflow"){
+				loadHelp("index");
+			}else if(mode == "editProc"){
+				loadHelp("EDITPROC_LOADED");
+			}else{
+				if(subAction == "readOnlyProcess")
+				{
+					loadHelp("ROP_LOADED");
+				}else{
+					loadHelp("PRC_LOADED");
+				}
+			}
+
+			if (ExternalInterface.available) {
+			   var wrapperFunction:String = "OnDesignerReady";
+			   try{
+			  	 ExternalInterface.call(wrapperFunction, "DesignerIsReady");
+			   }catch(err:Error){
+			   }
+			}
+   		}
+	private function testIt(event:MouseEvent):void
+	{
+		var ser:int; 
+		
+		if (event.target is Button)
+		{
+			ser = wftToolbar.getChildIndex(DisplayObject(event.target));
+		   loadHelp("TOOLBAR_" + ser);
+		}
+	}
+			
+			private function sendData(token:String, theWftid:String):void
+			{
+				var data:Object = new Object();
+				data.wftid = theWftid;
+				data.token = token;
+				var service:HTTPService = new HTTPService();
+				service.url = "/cflow/XdownloadWft";
+				service.method = "POST";
+				service.addEventListener(ResultEvent.RESULT, resultHandler);
+				service.resultFormat = "text";
+				service.send(data);
+			}
+			private function resultHandler(event:ResultEvent):void
+			{
+				Alert.show(event.result.toString());
+			}
+            
+]]>
+    </mx:Script>
+    <mx:HTTPService id="XsaveWftService" 
+    	url="/cflow/XSaveWft"
+    	invoke="mgInvokeHandler(event);"
+        result="saveWftServiceResult(event);"
+        fault="saveWftServiceFault(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService> 
+    <mx:HTTPService id="XsaveWorkflowService" 
+    	url="/cflow/XSaveWorkflow"
+    	invoke="mgInvokeHandler(event);"
+        result="saveWorkflowServiceResult(event);"
+        fault="saveWorkflowServiceFault(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService> 
+    <mx:HTTPService id="XdownloadWftForReadService" 
+    	url="/cflow/XdownloadWft"
+		useProxy="false"
+    	method="POST"
+        result="downloadWftServiceResult(event, false);"
+        fault="downloadWftServiceFault(event);" 
+    	>
+    </mx:HTTPService> 
+    <mx:HTTPService id="XdownloadWftForEditService" 
+    	url="/cflow/XdownloadWft"
+    	invoke="mgInvokeHandler(event);"
+        result="downloadWftServiceResult(event, true);"
+        fault="downloadWftServiceFault(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService> 
+    <mx:HTTPService id="XdownloadWorkflowForReadService" 
+    	url="/cflow/XdownloadWorkflow"
+    	invoke="mgInvokeHandler(event);"
+        result="downloadWorkflowServiceResult(event, false);"
+        fault="downloadWorkflowServiceFault(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService> 
+    <mx:HTTPService id="XdownloadWorkflowForEditService" 
+    	url="/cflow/XdownloadWorkflow"
+    	invoke="mgInvokeHandler(event);"
+        result="downloadWorkflowServiceResult(event, true);"
+        fault="downloadWorkflowServiceFault(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService> 
+    <mx:HTTPService id="XdownloadPrcService" 
+    	url="/cflow/XdownloadPrc"
+    	invoke="mgInvokeHandler(event);"
+        result="downloadPrcServiceResult(event);"
+        fault="downloadPrcServiceFault(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService> 
+   <!--mx:HTTPService id="XgetTeamsService" 
+    	url="/cflow/RemoteInterface"
+    	invoke="mgInvokeHandler(event);"
+        result="updateTeams(event);"
+        fault="mgFaultHandler(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService>
+   <mx:HTTPService id="XgetRolesService" 
+    	url="/cflow/RemoteInterface"
+    	invoke="mgInvokeHandler(event);"
+        result="updateRoles(event);"
+        fault="mgFaultHandler(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService>
+    <mx:HTTPService id="XgetMyFriendsService"
+    	url="/cflow/RemoteInterface"
+    	invoke = "mgInvokeHandler(event);"
+    	result="updateMyFriends(event);"
+    	fault="mgFaultHandler(event);"
+    	method="post"
+    >
+    </mx:HTTPService>   
+    <mx:HTTPService id="XgetWftsService" 
+    	url="/cflow/RemoteInterface"
+    	invoke="mgInvokeHandler(event);"
+        result="updateWfts(event);"
+        fault="mgFaultHandler(event);" 
+    	method="post"
+    	>
+    </mx:HTTPService-->
+    
+
+<mx:VBox id="vContainer" width="100%" height="100%">
+<mx:HBox id="menuButton" width="100%" height="30">
+	<mx:ViewStack id="toolbarViewStack"  width="100%"  creationPolicy="all">
+		<mx:HBox id="workflowToolbar" visible = "true" paddingTop="0" paddingLeft="0" paddingRight="0" paddingBottom="0">
+				<mx:ToggleButtonBar	id="wftToolbar"	buttonHeight="24" buttonWidth="24"
+						horizontalGap="3" toggleOnClick="false" selectedIndex="0" mouseOver="testIt(event)">
+						<mx:dataProvider>
+							<mx:Object toolTip="Arrow"  width="24" height="24"
+								icon="@Embed(source='assets/arrow_btn.png')"/>
+							<mx:Object toolTip="Link"   width="24" height="24"
+								icon="@Embed(source='assets/link_btn.png')"/>
+							<mx:Object toolTip="Place a task"  width="24" height="24"
+								icon="@Embed(source='assets/task_btn.png')"/>  
+							<!--mx:Object toolTip="Place a notification"  width="24" height="24"
+								icon="@Embed(source='assets/notify_btn.png')"/-->  
+							<mx:Object toolTip="Place a timer"  width="24" height="24"
+								icon="@Embed(source='assets/timer_btn.png')"/>  
+							<mx:Object toolTip="Place a sub-workflow"   width="24" height="24"
+								icon="@Embed(source='assets/sub_btn.png')"/>
+							<mx:Object toolTip="Place a script node"   width="24" height="24"
+								icon="@Embed(source='assets/script_btn.png')"/>
+							<mx:Object toolTip="Place a logical AND node"   width="24" height="24"
+								icon="@Embed(source='assets/and_btn.png')"/>
+							<mx:Object toolTip="Place a logical OR node"   width="24" height="24"
+								icon="@Embed(source='assets/or_btn.png')"/>
+							<mx:Object toolTip="Place a repeat node"   width="24" height="24"
+								icon="@Embed(source='assets/round_btn.png')"/>
+							<mx:Object toolTip="Place a ground node"   width="24" height="24"
+								icon="@Embed(source='assets/ground_btn.png')"/>
+							<mx:Object toolTip="Click to delete node"   width="24" height="24"
+								icon="@Embed(source='assets/delete_btn.png')"/>
+						</mx:dataProvider>
+					</mx:ToggleButtonBar>
+					<mx:Spacer/>
+					<mx:Spacer/>
+					<mx:Button id="newWftButton" upIcon="@Embed(source='assets/new_btn.png')" overIcon="@Embed(source='assets/new_btn_seld.png')" downIcon="@Embed(source='assets/new_btn_seld.png')" disabledIcon="@Embed(source='assets/new_btn_dis.png')" click="newWft(event)"   height="24" width="24" mouseOver="loadHelp('TOOLBAR_NEW')"/>
+					<mx:Spacer/>
+					<mx:Button id="uploadButton" upIcon="@Embed(source='assets/upload_btn.png')" overIcon="@Embed(source='assets/upload_btn_seld.png')"  downIcon="@Embed(source='assets/upload_btn_seld.png')" disabledIcon="@Embed(source='assets/upload_btn_dis.png')" click="uploadWft(event)"   height="24" width="24" mouseOver="loadHelp('TOOLBAR_SAVE')"/>
+					<mx:Spacer/>
+					<mx:Label text="Wofklow Name: " fontSize="18" fontWeight="normal"/><mx:TextInput id="wftName" text="{canvas.dataModel.wftname}" fontSize="16" width="100%"/>
+					<mx:Spacer/>
+					<!--mx:Button id="wizardButton" upIcon="@Embed(source='assets/wizard_btn.png')" overIcon="@Embed(source='assets/wizard_btn_seld.png')"  downIcon="@Embed(source='assets/wizard_btn_seld.png')" disabledIcon="@Embed(source='assets/wizard_btn_dis.png')" click="toggleWizard(event)"   height="24" width="24"/>
+					<mx:Label id="wizardLabel" width="30" text="{wizardText}" fontWeight="bold"/ -->
+					<!--mx:Button id="backwardButton" upIcon="@Embed(source='assets/backward_btn.png')" overIcon="@Embed(source='assets/backward_btn_seld.png')" downIcon="@Embed(source='assets/backward_btn_seld.png')" click="backwardHistory()"   height="24" width="24" visible ="{history.backwardable}"/>
+					<mx:Button id="forwardButton" upIcon="@Embed(source='assets/forward_btn.png')" overIcon="@Embed(source='assets/forward_btn_seld.png')" downIcon="@Embed(source='assets/forward_btn_seld.png')" click="forwardHistory()"   height="24" width="24" visible="{history.forwardable}"/ -->
+		</mx:HBox>
+		<mx:HBox id="prcToolbar" visible = "true" >
+			<mx:Button id="cancelProcButton" icon="@Embed(source='assets/cancelprc_btn.png')" click="cancelProc(event)"   height="24" width="24" mouseOver="loadHelp('CANCELPRC')"/>
+			<mx:Button id="suspendProcButton" icon="@Embed(source='assets/susprc_btn.png')" click="suspendProc(event)"   height="24" width="24" mouseOver="loadHelp('SUSPRC')"/>
+			<mx:Button id="suspendTaskButton" icon="@Embed(source='assets/sustask_btn.png')" click="suspendTask(event)"   height="24" width="24" mouseOver="loadHelp('SUSTASK')"/>
+			<mx:Button id="checkRoleButton" icon="@Embed(source='assets/info_btn.png')" click="checkrole(event)"   height="24" width="24" mouseOver="loadHelp('CHECKROLE')"/>
+		</mx:HBox>
+	</mx:ViewStack>
+	<mx:HBox width="40">
+		<mx:Button id="resizeButton"  upIcon="@Embed(source='assets/max_btn.png')" overIcon="@Embed(source='assets/max_btn.png')" downIcon="@Embed(source='assets/max_btn.png')" click="toggleSize()" height="24" width="24"/>
+	</mx:HBox>
+</mx:HBox>
+	<mx:HBox id="pan" width="800" height="480" verticalScrollPolicy="auto" horizontalScrollPolicy="auto">
+		<MyComps:MyCanvas id="canvas" width="100%" height="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off"/>
+	</mx:HBox>
+
+<mx:Text id="statusLabel" width="100%" height="100%" htmlText="{msg}" fontSize="16"/>
+</mx:VBox>
+</mx:Application>

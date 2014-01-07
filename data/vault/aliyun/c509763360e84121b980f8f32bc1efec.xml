@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="数据英佳" owner="aliyun" acl="private" lastModified="2012-11-27T14:17:12" created="2012-11-27T14:17:12" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="2F6D94A0-3B3A-6AF9-63D1-17BFA22CDD18" type="start" title="Start" name="Start" x="40" y="27">
+    <next targetID="A5ECFB84-6135-58B4-C9C9-17BFADE759CE"/>
+  </node>
+  <node id="0014621F-90F7-FE2E-6663-17BFA230F0CC" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="0014621F-90F7-FE2E-6663-17BFA230F0CC"/>
+  </node>
+  <node id="A5ECFB84-6135-58B4-C9C9-17BFADE759CE" type="task" title="请选择购买月份" name="选择购买月份" x="14" y="131" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="demo_sj_month" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="int" label="月份" attname="month" value=""/>
+    <next targetID="6D557A56-CCCB-13DB-8E4E-17C102707D85"/>
+  </node>
+  <node id="6D557A56-CCCB-13DB-8E4E-17C102707D85" type="script" title="Script" name="筛选买家" x="26" y="236">
+    <script>if(month == 1){data.usersG1="买家1,买家2,买家3";data.usersG2="买家8,买家9,买家10";}else{data.usersG1="买家A,买家B,买家C";data.usersG2="买家L,买家M,买家N";}data.RETURN="DEFAULT";</script>
+    <next targetID="602AFDD7-1E3D-55BB-1E30-17C9C38BCEB2"/>
+  </node>
+  <node id="602AFDD7-1E3D-55BB-1E30-17C9C38BCEB2" type="task" title="买家已筛选，请选择营销方式" name="选择营销方式" x="109" y="235" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="demo_sj_method" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="组2买家营销方式" attname="methodG2" value=""/>
+    <attachment type="text" label="组1买家营销方式" attname="methodG1" value=""/>
+    <next targetID="E9C3D321-76A7-FB68-BD4F-17CCD1ACFC71"/>
+  </node>
+  <node id="E9C3D321-76A7-FB68-BD4F-17CCD1ACFC71" type="script" title="Script" name="发送主动营销" x="224" y="235">
+    <script>data.msg="主动营销已按所选方案自动执行:";data.msg +="&lt;BR&gt;向"+ usersG1 + "发送" + methodG1;data.msg += "&lt;BR&gt;向" + usersG2+ "发送" + methodG2;data.RETURN="DEFAULT";data.checkRound=0;</script>
+    <next targetID="F42214E0-DA65-CD92-1369-17D03DE2C982"/>
+  </node>
+  <node id="F42214E0-DA65-CD92-1369-17D03DE2C982" type="script" title="Script" name="检查营销结果" x="347" y="227">
+    <script>if(checkRound&lt;3){data.checkRound = checkRound + 1;data.RETURN="loop";}else{data.RETURN="done";}</script>
+    <next option="loop" targetID="45E3F3DF-0DE8-54B9-5C50-17D20A2835BA"/>
+    <next option="done" targetID="3FB2F864-43E4-28EB-7426-17D447D5BB05"/>
+  </node>
+  <node id="45E3F3DF-0DE8-54B9-5C50-17D20A2835BA" type="or" title="OR" name="OR" x="428" y="152">
+    <next targetID="A9EE72CB-99D7-E7B5-935E-17D9DD33A612"/>
+  </node>
+  <node id="7DDD0926-3CD0-0545-946F-17D233523791" type="task" title="请查看分析结果" name="分析结果" x="599" y="224" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="demo_sj_result" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="0014621F-90F7-FE2E-6663-17BFA230F0CC"/>
+  </node>
+  <node id="3FB2F864-43E4-28EB-7426-17D447D5BB05" type="script" title="Script" name="自动分析" x="505" y="227">
+    <script>data.analysisResult1=" 特征：网购达人----订单：华东省份";data.analysisResult2=" 特征：网购新兵----订单：中部省份";data.RETURN="DEFAULT";</script>
+    <next targetID="7DDD0926-3CD0-0545-946F-17D233523791"/>
+  </node>
+  <node id="A9EE72CB-99D7-E7B5-935E-17D9DD33A612" type="or" title="OR" name="OR" x="312" y="153">
+    <next targetID="F42214E0-DA65-CD92-1369-17D03DE2C982"/>
+  </node>
+</cf:workflow>

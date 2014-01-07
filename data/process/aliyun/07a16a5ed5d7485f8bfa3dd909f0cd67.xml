@@ -1,0 +1,26 @@
+<process id="07a16a5ed5d7485f8bfa3dd909f0cd67" wftid="07a16a5ed5d7485f8bfa3dd909f0cd67" roundid="93a0b6174db54758bec9072c26d5f410" startat="2012-11-25T01:40:50.117+08:00" status="finished" startby="peixin.baipx" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="ddddd" lastError="Routing option (onerror) not found, set to onerror" endat="2012-11-25T01:42:27.314+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="2F6D94A0-3B3A-6AF9-63D1-17BFA22CDD18" sessid="a37887420046405387d13d0e29958760" roundid="93a0b6174db54758bec9072c26d5f410" createdAt="2012-11-25T01:41:02.032+08:00" completedAt="2012-11-25T01:41:02.032+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="93a0b6174db54758bec9072c26d5f410" sessid="dabe7df9ea63469b89d6a85d7ded96ae" name="选择购买月份" title="请选择购买月份" type="task" nodeid="A5ECFB84-6135-58B4-C9C9-17BFADE759CE" createdAt="2012-11-25T01:41:02.051+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="finished" form="demo_sj_month" decision="" completedAt="2012-11-25T01:42:26.588+08:00" completedBy="peixin.baipx" xmlns="">
+    <taskto type="person" whom="peixin.baipx" status="task_finished"/>
+    <attachment type="int" label="月份" attname="month" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <log usrid="peixin.baipx" timestamp="2012-11-25T01:42:26.532+08:00" option="">
+      <attachment usrid="peixin.baipx" attname="month" value="2" type="int" label="月份"/>
+    </log>
+  </work>
+  <work title="Script" type="script" nodeid="6D557A56-CCCB-13DB-8E4E-17C102707D85" sessid="452184060c154cf498ee512dc6612b66" roundid="93a0b6174db54758bec9072c26d5f410" createdAt="2012-11-25T01:42:27.311+08:00" completedAt="2012-11-25T01:42:27.311+08:00" status="finished" decision="onerror" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+    <log usrid="peixin.baipx" timestamp="2012-11-25T01:42:27.311+08:00" option="onerror">
+      <attachment usrid="peixin.baipx" attname="error" value="Parse script return value exception.JS:[check your Javascript code]" type="string" label="error"/>
+    </log>
+  </work>
+  <work title="End Point" type="end" nodeid="0014621F-90F7-FE2E-6663-17BFA230F0CC" sessid="37cf9be79c19449fabfe043a1a4906c9" roundid="93a0b6174db54758bec9072c26d5f410" createdAt="2012-11-25T01:42:27.343+08:00" completedAt="2012-11-25T01:42:27.343+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

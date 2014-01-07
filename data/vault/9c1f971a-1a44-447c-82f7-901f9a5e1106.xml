@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="index" owner="FB.844009296" acl="private" lastModified="2011-04-05T12:58:21" created="2011-04-05T12:58:21" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<node id="tr_header" type="start" title="Start" name="Start" x="40" y="225">
+	<next targetID="tr_0"/>
+</node>
+<node id="tr_end" type="end" title="End" name="End" x="760" y="225">	<next targetID="tr_end"/></node>
+<node id="tr_last_and" type="and" title="And" name="And" x="760" y="100">	<next targetID="tr_end"/></node>
+<node id="tr_0" type="task" title="This is your thing to do" name="This is your thing to do" x="90" y="40" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1"><taskto type="role" whom="starter"/><mpcdc/><oec/>
+	<next targetID="tr_last_and"/>
+</node>
+</cf:workflow>

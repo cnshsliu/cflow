@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   inkscape:export-filename="E:\dev\Lokoho\res\drawable-ldpi\icon.png"
+   inkscape:export-xdpi="25.377121"
+   inkscape:export-ydpi="25.377121"
+   sodipodi:docname="lokohoIcon.svg">
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3860"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3856"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3852"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3848"
+       is_visible="true" />
+    <linearGradient
+       id="linearGradient3765">
+      <stop
+         style="stop-color:#fff6ff;stop-opacity:1;"
+         offset="0"
+         id="stop3767" />
+      <stop
+         style="stop-color:#fffff4;stop-opacity:0;"
+         offset="1"
+         id="stop3769" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3755">
+      <stop
+         style="stop-color:#80d9f4;stop-opacity:1;"
+         offset="0"
+         id="stop3757" />
+      <stop
+         style="stop-color:#80d9f4;stop-opacity:0;"
+         offset="1"
+         id="stop3759" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3755"
+       id="radialGradient3761"
+       cx="298.54227"
+       cy="455.27765"
+       fx="298.54227"
+       fy="455.27765"
+       r="73.957062"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.4786679,3.5018677,-3.4676138,2.4544392,1137.2822,-1707.6293)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3765"
+       id="radialGradient3771"
+       cx="198.1235"
+       cy="581.2962"
+       fx="198.1235"
+       fy="581.2962"
+       r="44.102837"
+       gradientTransform="matrix(-0.61440415,0.65371014,-0.81154986,-0.76275323,791.60224,896.70681)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3755-7"
+       id="radialGradient3761-1"
+       cx="298.54227"
+       cy="455.27765"
+       fx="298.54227"
+       fy="455.27765"
+       r="73.957062"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.4786679,3.5018677,-3.4676138,2.4544392,1137.2822,-1707.6293)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3755-7">
+      <stop
+         style="stop-color:#80d9f4;stop-opacity:1;"
+         offset="0"
+         id="stop3757-4" />
+      <stop
+         style="stop-color:#80d9f4;stop-opacity:0;"
+         offset="1"
+         id="stop3759-0" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.12329405"
+     inkscape:cx="1906.2018"
+     inkscape:cy="-24.064953"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="738"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="arc"
+       style="fill:url(#radialGradient3761);fill-opacity:1;stroke:#0000c3;stroke-width:0;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path2985"
+       sodipodi:cx="330.43201"
+       sodipodi:cy="493.95242"
+       sodipodi:rx="73.957062"
+       sodipodi:ry="73.957062"
+       d="m 404.38907,493.95242 a 73.957062,73.957062 0 1 1 -0.014,-1.43748"
+       sodipodi:start="0"
+       sodipodi:end="6.2637474"
+       sodipodi:open="true"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       sodipodi:type="arc"
+       style="fill:url(#radialGradient3771);fill-opacity:1;fill-rule:nonzero;stroke:#0000c3;stroke-width:0;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3763"
+       sodipodi:cx="198.80202"
+       sodipodi:cy="584.87213"
+       sodipodi:rx="44.102837"
+       sodipodi:ry="25.104691"
+       d="m 242.90485,584.87213 a 44.102837,25.104691 0 1 1 -0.008,-0.48795"
+       sodipodi:start="0"
+       sodipodi:end="6.2637474"
+       sodipodi:open="true"
+       transform="translate(135.70104,-141.12907)"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       transform="matrix(0.21100915,0,0,0.20642201,172.50218,450.34123)"
+       sodipodi:type="arc"
+       style="fill:#e53578;fill-opacity:0.37566139;stroke:#0000c3;stroke-width:0;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path2985-9"
+       sodipodi:cx="330.43201"
+       sodipodi:cy="493.95242"
+       sodipodi:rx="73.957062"
+       sodipodi:ry="73.957062"
+       d="m 404.38907,493.95242 a 73.957062,73.957062 0 1 1 -0.014,-1.43748"
+       sodipodi:start="0"
+       sodipodi:end="6.2637474"
+       sodipodi:open="true"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       transform="matrix(0.21100915,0,0,0.20642201,224.74707,390.63277)"
+       sodipodi:type="arc"
+       style="fill:#e53578;fill-opacity:0.37566139;stroke:#0000c3;stroke-width:0;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path2985-9-4"
+       sodipodi:cx="330.43201"
+       sodipodi:cy="493.95242"
+       sodipodi:rx="73.957062"
+       sodipodi:ry="73.957062"
+       d="m 404.38907,493.95242 a 73.957062,73.957062 0 1 1 -0.014,-1.43748"
+       sodipodi:start="0"
+       sodipodi:end="6.2637474"
+       sodipodi:open="true"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       transform="matrix(0.21100915,0,0,0.20642201,272.24243,444.91318)"
+       sodipodi:type="arc"
+       style="fill:#e53578;fill-opacity:0.37566139;stroke:#0000c3;stroke-width:0;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path2985-9-8"
+       sodipodi:cx="330.43201"
+       sodipodi:cy="493.95242"
+       sodipodi:rx="73.957062"
+       sodipodi:ry="73.957062"
+       d="m 404.38907,493.95242 a 73.957062,73.957062 0 1 1 -0.014,-1.43748"
+       sodipodi:start="0"
+       sodipodi:end="6.2637474"
+       sodipodi:open="true"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       transform="matrix(0.21100915,0,0,0.20642201,329.23687,315.31869)"
+       sodipodi:type="arc"
+       style="fill:#e53578;fill-opacity:0.37566139;stroke:#0000c3;stroke-width:0;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path2985-9-82"
+       sodipodi:cx="330.43201"
+       sodipodi:cy="493.95242"
+       sodipodi:rx="73.957062"
+       sodipodi:ry="73.957062"
+       d="m 404.38907,493.95242 a 73.957062,73.957062 0 1 1 -0.014,-1.43748"
+       sodipodi:start="0"
+       sodipodi:end="6.2637474"
+       sodipodi:open="true"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       transform="matrix(0.21100915,0,0,0.20642201,319.73779,416.41596)"
+       sodipodi:type="arc"
+       style="fill:#e53578;fill-opacity:0.37566139;stroke:#0000c3;stroke-width:0;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path2985-9-45"
+       sodipodi:cx="330.43201"
+       sodipodi:cy="493.95242"
+       sodipodi:rx="73.957062"
+       sodipodi:ry="73.957062"
+       d="m 404.38907,493.95242 a 73.957062,73.957062 0 1 1 -0.014,-1.43748"
+       sodipodi:start="0"
+       sodipodi:end="6.2637474"
+       sodipodi:open="true"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 285.65068,503.4515 -29.85423,40.71031 72.60005,6.10655"
+       id="path3846"
+       inkscape:path-effect="#path-effect3848"
+       inkscape:original-d="m 285.65068,503.4515 c 0,0 0,0 -29.85423,40.71031 l 72.60005,6.10655"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 356.21521,538.73377 21.71217,-13.5701"
+       id="path3850"
+       inkscape:path-effect="#path-effect3852"
+       inkscape:original-d="m 356.21521,538.73377 21.71217,-13.5701"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 396.24702,504.80851 1.35701,-73.95706"
+       id="path3854"
+       inkscape:path-effect="#path-effect3856"
+       inkscape:original-d="m 396.24702,504.80851 1.35701,-73.95706"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 306.00583,481.73934 90.24119,-49.53088"
+       id="path3858"
+       inkscape:path-effect="#path-effect3860"
+       inkscape:original-d="m 306.00583,481.73934 90.24119,-49.53088"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="15.322036"
+       inkscape:export-ydpi="15.322036"
+       inkscape:export-filename="E:\dev\cflow\icons\favicon.ico.png" />
+  </g>
+</svg>

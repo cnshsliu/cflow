@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="测试直接使用用户邮件地址" owner="U3306" acl="private" lastModified="2011-03-01T23:35:37" created="2011-03-01T23:35:37" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="BE5C54A8-9EEC-0635-985A-6775494BA43C" type="start" title="Start" name="Start" x="27" y="213">
+    <next targetID="A9D78C83-0BF9-9B4D-CE76-677563262D7B"/>
+  </node>
+  <node id="BC435D41-7116-31C8-C5E8-67754950182B" type="end" title="End" name="End" x="708" y="213">
+    <next targetID="BC435D41-7116-31C8-C5E8-67754950182B"/>
+  </node>
+  <node id="A9D78C83-0BF9-9B4D-CE76-677563262D7B" type="task" title="Task" name="Task" x="77" y="79" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="2">
+    <taskto type="person" whom="cnshsliu@gmail.com"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="8319794D-71CD-93C9-4439-6BBFDC78ADB5"/>
+  </node>
+  <node id="8319794D-71CD-93C9-4439-6BBFDC78ADB5" type="task" title="别人以完成工作" name="别人以完成工作" x="393" y="147" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="BC435D41-7116-31C8-C5E8-67754950182B"/>
+  </node>
+</cf:workflow>

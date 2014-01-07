@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="initializeData(event)">
+<mx:Script>
+        <![CDATA[   
+
+            import mx.events.ItemClickEvent;
+            import mx.rpc.events.FaultEvent;
+            import mx.managers.CursorManager;
+            import mx.rpc.events.InvokeEvent;
+            import mx.controls.Alert;
+            import mx.rpc.events.FaultEvent;
+            import mx.rpc.events.ResultEvent;
+            import mx.collections.ArrayCollection;
+
+			[Bindable]
+			public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+			
+         
+            
+       		
+			private function initializeData(event:Event):void {
+              
+           }
+			//role.text = roles.selectedItem.name;
+          	public function reset():void{
+          		//roles.selectedIndex = 0;
+          	}
+          	public function updateParticipate(ttType:String, tt:String):void{
+				var i:int =0;
+				//Set default value if ttType is null.
+				/*
+				if(ttType == Node.TASKTO_TYPE_ROLE){
+	   				var idx:int = -1;
+					for(i = 0; i<designer.myRoles.length; i++){
+						var obj:Object = designer.myRoles.getItemAt(i);
+						if(obj.name == tt){
+							idx = i;
+							break;
+						}
+					}
+					if(idx >=0 ){
+						roles.selectedIndex = idx;
+					}
+				}*/
+			}
+
+        ]]>
+    </mx:Script>
+ 
+    <mx:ArrayCollection id="myRoles">
+        <mx:source>
+            <mx:Object label="Actor" data = "starter"/>
+        </mx:source>
+    </mx:ArrayCollection> 
+    
+    <mx:VBox width="100%" height="100%" >
+    	<mx:HBox>
+    		<mx:Label text="by Role">
+    			
+    		</mx:Label>
+    		<mx:TextInput id="roles" x="20" y="40" ></mx:TextInput>
+    	</mx:HBox>
+    </mx:VBox>
+</mx:Canvas>

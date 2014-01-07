@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="800" height="500" xmlns:ns1="*" xmlns:ns2="com.lkh.*" horizontalAlign="center" verticalAlign="middle">
+
+<mx:ViewStack id="vs"  width="80%" height="80%">
+	<ns1:SubWftPropertyForm id='node_vs' label="SubWftProperty" width="100%" height="100%" backgroundColor="#F7FDFD" borderStyle="none">
+	</ns1:SubWftPropertyForm>
+</mx:ViewStack>
+	
+</mx:VBox>

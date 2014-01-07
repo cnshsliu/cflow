@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Voucher Application" owner="aliyun" acl="private" lastModified="2012-11-27T14:17:21" created="2012-11-27T14:17:21" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="1stApprover"/>
+  <role name="finalApprover"/>
+  <role name="opLead"/>
+  <node id="5CC4CFA1-6533-45D5-94AD-59F4A2A296DC" type="start" title="Start" name="Start" x="30" y="68">
+    <next targetID="F3518383-8E11-E6D2-A536-59F4CA5D114B"/>
+  </node>
+  <node id="022434F3-87E5-21E2-4105-59F4A2A9FD68" type="end" title="End" name="End" x="653" y="184">
+    <next targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+  </node>
+  <node id="F3518383-8E11-E6D2-A536-59F4CA5D114B" type="task" title="Please input voucher details" name="Voucher Application" x="76" y="67" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="VoucharApply1" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="项目名称" attname="project" value=""/>
+    <attachment type="text" label="用途" attname="purpose" value=""/>
+    <attachment type="int" label="数量" attname="number" value=""/>
+    <attachment type="text" label="到期时间" attname="due" value=""/>
+    <attachment type="text" label="活动目标" attname="eventpurpose" value=""/>
+    <attachment type="text" label="活动规则" attname="eventrule" value=""/>
+    <attachment type="url" label="附件地址" attname="atturl" value=""/>
+    <attachment type="text" label="备注" attname="memo" value=""/>
+    <attachment type="text" label="活动时间" attname="eventdate" value=""/>
+    <attachment type="int" label="金额" attname="figure" value=""/>
+    <attachment type="text" label="所属应用" attname="service" value=""/>
+    <next targetID="A1878F04-2D3D-3D88-E3DA-59F5FBB94E2F"/>
+  </node>
+  <node id="A1878F04-2D3D-3D88-E3DA-59F5FBB94E2F" type="task" title="Please decide whether to approve or not" name="Voucher waiting for your approval" x="39" y="128" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="VoucharApply1" mpsm="1">
+    <taskto type="role" whom="1stApprover"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="Your Comment" attname="1stapproveComment" value=""/>
+    <next option="Reject" targetID="348CAF86-53E0-A373-6F51-59F657CCCF0E"/>
+    <next option="Approve" targetID="40BFA565-C336-48A6-CEFF-1C5ED593E03F"/>
+  </node>
+  <node id="348CAF86-53E0-A373-6F51-59F657CCCF0E" type="task" title="Your voucher has been rejected.&#xD;" name="Voucher was rejected" x="343" y="122" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="null" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+  </node>
+  <node id="5ECC611F-09A7-DFF3-C78D-F87E2417832A" type="task" title="Voucher (value >= 50000) waiting for your final approval" name="Voucher Final Approval" x="199" y="203" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="VoucharApply1" mpsm="1">
+    <taskto type="role" whom="finalApprover"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="Your Comment" attname="finalApproveComment" value=""/>
+    <next option="Reject" targetID="348CAF86-53E0-A373-6F51-59F657CCCF0E"/>
+    <next option="Approve" targetID="6262360D-FC8D-A9EC-5A20-1C610BE6569E"/>
+  </node>
+  <node id="81F3304B-946E-C05B-48B7-F881466EC603" type="task" title="Please generate voucher number, and input these numbers" name="Please generate voucher number" x="386" y="304" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="VoucharApply1" mpsm="1">
+    <taskto type="role" whom="opLead"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="voucherNumbers" attname="voucherNumber" value=""/>
+    <next targetID="13396B62-1365-BBB3-099C-F8821813A5CB"/>
+  </node>
+  <node id="13396B62-1365-BBB3-099C-F8821813A5CB" type="task" title="Your voucher was generated. you may deliver it to your customer now" name="Voucher generated" x="528" y="241" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="VoucharApply1" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="022434F3-87E5-21E2-4105-59F4A2A9FD68"/>
+  </node>
+  <node id="40BFA565-C336-48A6-CEFF-1C5ED593E03F" type="script" title="Script" name=">5w" x="112" y="273">
+    <script>if(number*figure&gt;=50000)data.RETURN="mt50000";elsedata.RETURN="lt50000";</script>
+    <next option="mt50000" targetID="5ECC611F-09A7-DFF3-C78D-F87E2417832A"/>
+    <next option="lt50000" targetID="6262360D-FC8D-A9EC-5A20-1C610BE6569E"/>
+  </node>
+  <node id="6262360D-FC8D-A9EC-5A20-1C610BE6569E" type="or" title="OR" name="OR" x="298" y="340">
+    <next targetID="81F3304B-946E-C05B-48B7-F881466EC603"/>
+  </node>
+</cf:workflow>

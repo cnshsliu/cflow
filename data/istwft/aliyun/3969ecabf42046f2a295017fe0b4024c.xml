@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Demo_JAVASCRIPT" owner="aliyun" acl="private" lastModified="2012-11-27T11:09:44" created="2012-11-27T11:09:44" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="7EBD6CB5-42D0-C653-4DE6-EAF5D9D869D1" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="12EDDD5E-4646-3A8A-7DC9-EAF60250705D"/>
+  </node>
+  <node id="0108D032-64BC-52C4-EB08-EAF5D9DC36B9" type="end" title="End" name="End" x="455" y="220">
+    <next targetID="0108D032-64BC-52C4-EB08-EAF5D9DC36B9"/>
+  </node>
+  <node id="12EDDD5E-4646-3A8A-7DC9-EAF60250705D" type="task" title="This demo shows how to [u]integrate with a JAVA program[/u], the JAVA class this workflow invoke must resides in MWF server's classpath. &#xD;The Java in this demo will route the process by leave days, go to [color=red] LONG [/color] if days are more than 10.  or elase go to [color=red]SHORT[/color]. (See variable definition in Attachments tab)" name="Leaving Application" x="84" y="227" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="int" label="Leave Days" attname="days" value=""/>
+    <attachment type="text" label="Leave Reason" attname="reason" value=""/>
+    <next targetID="14D169BC-F935-982E-AD17-EAF96CB21650"/>
+  </node>
+  <node id="14D169BC-F935-982E-AD17-EAF96CB21650" type="script" title="Script" name="Script" x="247" y="220">
+    <script>if(days&gt;10)     data.RETURN="long"; else    data.RETURN="short";data.myContextValue="myvalue";</script>
+    <next option="long" targetID="A2D19FEC-953A-BAE7-A270-EAF99089E7D8"/>
+    <next option="short" targetID="86D55C63-56EE-B2D0-988D-EAF9E950825F"/>
+    <next option="onerror" targetID="FC90ACF3-09DC-61BC-FE63-EB0E85DF0F37"/>
+  </node>
+  <node id="A2D19FEC-953A-BAE7-A270-EAF99089E7D8" type="task" title="Your leaving is long" name="Long Leave" x="314" y="149" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter">
+      <exceptme nodeid="12EDDD5E-4646-3A8A-7DC9-EAF60250705D"/>
+    </taskto>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="0108D032-64BC-52C4-EB08-EAF5D9DC36B9"/>
+  </node>
+  <node id="86D55C63-56EE-B2D0-988D-EAF9E950825F" type="task" title="Your Leaving is short" name="Short Leave" x="316" y="271" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter">
+      <exceptme nodeid="12EDDD5E-4646-3A8A-7DC9-EAF60250705D"/>
+    </taskto>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="0108D032-64BC-52C4-EB08-EAF5D9DC36B9"/>
+  </node>
+  <node id="FC90ACF3-09DC-61BC-FE63-EB0E85DF0F37" type="task" title="Error occured" name="Error occured" x="317" y="368" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="ERROR" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="0108D032-64BC-52C4-EB08-EAF5D9DC36B9"/>
+  </node>
+</cf:workflow>

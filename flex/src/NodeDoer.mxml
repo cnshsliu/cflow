@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="*" >
+<mx:Script>
+		<![CDATA[
+			import com.lkh.NameTag;
+			import com.lkh.Attachment;
+		import mx.controls.Alert;
+		import mx.events.DynamicEvent;
+		import com.lkh.NodeInfo;
+			[Bindable]
+			public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+			[Bindable]
+			public var myFriends:ArrayCollection = new ArrayCollection();
+			
+			var currentOptionIndex = -1;
+			
+			
+			public function updateRefers(referedNodeId:String):void{
+				var i:int =0;
+	   			var idx:int = -1;
+				for(i = 0; i<designer.allnodeids.length; i++){
+					var obj:NodeInfo = designer.allnodeids.getItemAt(i) as NodeInfo;
+					if(obj.nodeid == referedNodeId){
+						idx = i;
+						break;
+					}
+				}
+				if(idx >=0 ){
+					allnodeids.selectedIndex = idx;
+				}
+			}
+			/*
+			public function setRoleList(ttType:String, tt:String):void{
+				var i:int =0;
+				//Set default value if ttType is null.
+				if(ttType == Node.TASKTO_TYPE_ROLE){
+	   				var idx:int = -1;
+					for(i = 0; i<designer.myRoles.length; i++){
+						var obj:Object = designer.myRoles.getItemAt(i);
+						if(obj.name == tt){
+							idx = i;
+							break;
+						}
+					}
+					if(idx >=0 ){
+						roles.selectedIndex = idx;
+					}
+				}
+			}*/
+			
+			var pattern:RegExp       = /([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}/;
+			function isEmail (s:String):Boolean {
+   				return pattern.test(s);
+			}
+			
+/*			function tasktoTypeChanged(evt:Event):void{
+				if(tasktotype.selectedValue == Node.TASKTO_TYPE_PERSON){
+					tasktoVS.selectedIndex = 0;
+				}else if(tasktotype.selectedValue == Node.TASKTO_TYPE_ROLE){
+					friendList.visible = false;
+					user.text = "";
+					tagContainer.removeAllChildren();
+					tasktoVS.selectedIndex = 1;
+				}
+			}*/
+			
+			public static function startsWith( string:String, pattern:String):Boolean
+			{
+				string  = string.toLowerCase();
+				pattern = pattern.toLowerCase();
+				
+				return pattern == string.substr( 0, pattern.length );
+			}
+			/*
+			function moveToLowerOption()
+			{
+				if(friendList.dataProvider == null)
+					return;
+				if(friendList.visible == false)
+					return;
+				currentOptionIndex ++;
+				if(currentOptionIndex > ArrayCollection(friendList.dataProvider).length-1)
+					currentOptionIndex = 0;
+				friendList.selectedIndex = currentOptionIndex;
+				friendList.scrollToIndex(friendList.selectedIndex);
+			}
+			function moveToHigherOption()
+			{
+				if(friendList.dataProvider == null)
+					return;
+				if(friendList.visible == false)
+					return;
+				currentOptionIndex --;
+				if(currentOptionIndex < 0)
+					currentOptionIndex = ArrayCollection(friendList.dataProvider).length-1;
+				friendList.selectedIndex = currentOptionIndex;	
+				friendList.scrollToIndex(friendList.selectedIndex);
+			}
+			function showNameTagsFromIdList(idList:String){
+				var ids:Array = idList.split(",");
+				tagContainer.removeAllChildren();
+				for(var i:int=0; i<ids.length; i++){
+					var aName = getFriendName(ids[i]);
+					if(aName == null)
+						continue;
+					var aTag = new NameTag(ids[i], aName);
+					tagContainer.addChild(aTag);
+					aTag.addEventListener(MouseEvent.CLICK, removeTag);
+				}
+			}
+			
+			function getFriendName(id:String){
+				for(var i=0;i<designer.myFriends.length; i++){
+					var obj:Object = designer.myFriends.getItemAt(i);
+					var theId:String = obj.id;
+					if(theId == id){
+						return obj.name;
+					}
+				}
+				return null;
+			}
+			
+			
+			
+			
+			function removeTag(evt:MouseEvent){
+				var theNameTag:NameTag = NameTag(evt.currentTarget);
+				tagContainer.removeChild(theNameTag);
+			}
+			function tagAlreadyExist(id:String){
+				var childrenCount = tagContainer.getChildren().length;
+				for(var i=0; i<childrenCount; i++){
+					var aTag:NameTag = NameTag(tagContainer.getChildAt(i));
+					if(aTag.tag_id == id){
+						return true;
+					}
+				}
+				return false;
+			}
+			
+			function confirmOption(){
+				if(currentOptionIndex < 0)
+					currentOptionIndex = 0;
+				if(currentOptionIndex >  ArrayCollection(friendList.dataProvider).length-1)
+					return;
+				var obj:Object = ArrayCollection(friendList.dataProvider).getItemAt(currentOptionIndex);
+				if(tagAlreadyExist(obj.id)) return;
+				
+				var aTag = new NameTag(obj.id, obj.name);
+				tagContainer.addChild(aTag);
+				aTag.addEventListener(MouseEvent.CLICK, removeTag);
+			}
+			function listKeyUp(evt:KeyboardEvent):void{
+				if(evt.keyCode == 13 && friendList.selectedIndex >= 0){
+					currentOptionIndex = friendList.selectedIndex;
+					confirmOption();
+				}
+			}
+			function listDbleClick(evt:MouseEvent):void{
+				if(friendList.selectedIndex >= 0){
+					currentOptionIndex = friendList.selectedIndex;
+					confirmOption();
+				}
+			}
+			function userInputKeyUp(evt:KeyboardEvent):void{
+				if(evt.keyCode == 13){
+					confirmOption();
+					evt.stopImmediatePropagation();
+					evt.stopPropagation();
+					return;
+				}else if(evt.keyCode == 37 || evt.keyCode == 38){
+					moveToHigherOption();
+					return;
+				}else if(evt.keyCode == 39 || evt.keyCode == 40){
+					moveToLowerOption();
+					return;
+				}
+				
+					
+				if(friendList.dataProvider == null){
+					friendList.dataProvider = new ArrayCollection();
+				}
+				ArrayCollection(friendList.dataProvider).removeAll();
+				for(var i=0;i<designer.myFriends.length; i++){
+					var obj:Object = designer.myFriends.getItemAt(i);
+					if(startsWith(obj.name, user.text)){
+						ArrayCollection(friendList.dataProvider).addItem(obj);
+					}
+				}
+				if(ArrayCollection(friendList.dataProvider).length < 1){
+					friendList.visible = false;
+				}else{
+					friendList.visible = true;
+				}
+				if(ArrayCollection(friendList.dataProvider).length>5)
+					friendList.rowCount = 5;
+				else
+					friendList.rowCount = ArrayCollection(friendList.dataProvider).length;
+			}
+			*/
+
+  		]]>
+</mx:Script>
+	<mx:ArrayCollection id="myRoles">
+        <mx:source>
+            <mx:Object label="Actor" data = "starter"/>
+        </mx:source>
+    </mx:ArrayCollection> 
+<mx:VBox >
+		<mx:RadioButtonGroup id="tasktotype"/>
+		<mx:RadioButtonGroup id="roleChangeType"/>
+	
+		<mx:Label text="Who should do this work" fontWeight="bold"></mx:Label>
+		<mx:HBox width="100%">
+    		<mx:RadioButton value="person" label="by User" groupName="tasktotype" selected="true"/>
+			<mx:RadioButton value="role" label="by Role" groupName="tasktotype" />
+    	</mx:HBox>
+		<mx:TextInput id="taskto"  width="90%"/>
+    	<!--mx:ViewStack id="tasktoVS"  selectedIndex="0" creationPolicy="all" width="90%">
+    		<mx:VBox width="100%" id="tasktoPersonVBox">
+    			<mx:HBox width="90%" id="tagContainer" cachePolicy="off">	</mx:HBox>
+				<mx:TextInput id="user"  width="100%" keyUp="userInputKeyUp(event)"/>
+				<mx:List id="friendList" width="100%" labelField = "name" keyUp="listKeyUp(event)" doubleClick="listDbleClick(event)" doubleClickEnabled="true">
+				</mx:List>
+    		</mx:VBox>
+    		<mx:HBox width="100%" id="tasktoRoleHBox">
+	    		<mx:ComboBox id="roles" x="20" y="40" dataProvider="{designer.myRoles}"  labelField="name"/>
+    		</mx:HBox>
+    	</mx:ViewStack -->
+	    
+    	<!--mx:CheckBox id="showAdvancedOption" label="Show advanced options" visible="{designer.usemode==2}"/ -->
+
+		<mx:HBox>
+			
+		<mx:VBox id="advancedPart1">
+			<mx:Label text="or, people who did the following task will do this one.">
+			</mx:Label>
+			<mx:HBox>
+				<mx:RadioButton value="RefertoNode" label="" groupName="tasktotype"/>
+				<mx:ComboBox id="allnodeids" dataProvider="{designer.allnodeids}" ></mx:ComboBox>
+			</mx:HBox>
+			<mx:Label text="But, people who did the following task(s) will NOT do this one.">
+			
+			</mx:Label>
+			<ns1:NodePicker id="nodepicker">
+			
+			</ns1:NodePicker>
+		</mx:VBox>
+		<mx:VBox width="100%" id="advancedPart2" >
+			<mx:HBox>
+				<mx:CheckBox id="acquirable" selected="{designer.canvas.selNode.acquirable}" change="onChange(event);" label="Acquirable">
+					<mx:Script>
+						<![CDATA[
+							private function onChange(evt:Event):void {
+								designer.canvas.selNode.acquirable = acquirable.selected;
+							}
+							
+						]]>
+					</mx:Script>
+				</mx:CheckBox>
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Acquire Threshold">
+				</mx:Label>
+				<mx:TextInput id="acqThreshold" text="1" change="setThreshold(event);" width="78.181816" height="21.969696">
+					<mx:Script>
+						<![CDATA[
+							private function setThreshold(evt:Event):void {
+								var tmpInt:int = int(acqThreshold.text);
+								if(tmpInt < 1) 
+									acqThreshold.text = "1";
+								designer.canvas.selNode.acqThreshold = int(acqThreshold.text);
+							}
+							
+						]]>
+					</mx:Script>
+				</mx:TextInput>
+				</mx:HBox>
+				<mx:CheckBox label="Allow user to change role participate" id="allowRoleChange"/>
+				<mx:RadioButton visible="{allowRoleChange.selected}" value="all" label="Change all" groupName="roleChangeType" selected="true"/>
+				<mx:RadioButton visible="{allowRoleChange.selected}" value="string" label="Change following:" groupName="roleChangeType" selected="false"/>
+				<mx:TextInput id="roleToChange" visible="{allowRoleChange.selected}" width="100%"/>
+		</mx:VBox>	
+		</mx:HBox>
+	</mx:VBox>
+	
+</mx:Canvas>

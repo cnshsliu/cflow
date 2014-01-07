@@ -1,0 +1,43 @@
+$form_header
+<div class='title'>Company ABC Leave Application Form</div>
+<div id='result'></div>
+$form_content_header
+<table border=1 width="800px">
+<tr><td>Applicant</td><td>
+$process.startby
+</td></tr>
+<tr><td>Leave days</td><td>
+#if ($value_days)
+	$value_days
+#else
+	$input_days
+#end
+</td></tr>
+<tr><td>Leave Reason</td><td>
+#if ($value_reason)
+	$value_reason
+#else
+	$input_reason
+#end
+</td></tr>
+<tr><td>代金券类型</td><td>
+#if ($value_att_djqlx)
+	$value_att_djqlx
+#else
+	<input type='radio' name='att_djqlx' value='一次性'>一次性 <input type='radio' name='att_djqlx' value='长期性'>长期性
+#end
+</td></tr>
+#if($value_approveComment)
+<tr><td>经理批示</td><td>
+$value_approveComment</td></tr>
+#end
+#if($work.name == "Leave waiting for your approval")
+<tr><td>Your Comments</td><td>
+$input_approveComment
+</td></tr>
+#end
+</table>
+<hr>
+$html_options<BR>
+$form_footer
+$html_history

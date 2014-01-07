@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style_help.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/code.css">
+<title>My World Flow: Programming with MWF JAVA SDK</title>
+</head>
+
+<body>
+<a href="../index.html">Home > <a href="help_and_tutorials.html">Help</a> > <a href="quickstart.html">Quickstart</a>
+<h1>Programming with MWF Java SDK</h1>
+<ol>
+  <li>Get access session key.</li>
+  <li>Start a workflow process.</li>
+  <li>Check work list.</li>
+  <li>Do task.</li>
+</ol>
+<p>See more in <a href="sdk.html">MWF SDK</a></p>
+<h2>Get access session key</h2>
+<textarea name="textarea" rows=10 cols = 80>
+private static String hostname = &quot;www.mywordflow.com&quot;
+String accessKey = null;
+private static MWFClient client = MWFClient.newClient(hostname);
+//Please replace USER_ID and USER_PASSWD with yours
+accessKey = client.login("USER_ID", "USER_PASSWD"); 
+</textarea>
+<h2>Start a workflow process</h2>
+<textarea name="textarea" rows=20 cols = 80>
+//Create a team
+//Please replace TEAM_ID and TEAM_MEMO with yours
+String teamid = client.createTeam(accessKey, "TEAM_ID", "TEAM_MEMO");
+
+//Get number of running processes
+JSONArray runningProcs = client.getProcessesByStatus(accessKey, "running");
+int running_processes_number = runningProcs.size();
+
+//Start workflow
+//Please replace MY_USER_ID with yours
+String prcid = client.startWorkflow(accessKey, "MY_USER_ID", wftid, teamid, "test_process2");
+
+// Get number of running processes again
+runningProcs = client.getProcessesByStatus(accessKey, "running");
+int new_running_processes_number = runningProcs.size();
+
+//new_running_processes_number = running_processes_number + 1;
+
+</textarea>
+<h2>Check work list</h2>
+<textarea name="textarea" rows=10 cols = 80>
+JSONArray worklist = client.getWorklist(U3307_accessKey);
+JSONObject workitem = client.getWorkitem(worklist, prcid, "id_1");
+
+        </textarea>
+<h2>Do a task</h2>
+<textarea name="textarea" rows=10 cols = 80>
+		client.doTask(accessKey, (String) workitem.get("PRCID"), (String) workitem.get("NODEID"), (String) workitem.get("SESSID"), null, null);
+        </textarea>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<process id="4129a610d45e4deea3efe6fcfa679fe4" wftid="4129a610d45e4deea3efe6fcfa679fe4" origin="8cbc25a397fa442d849a0d2d4a2f37fd" roundid="8f5795e39d704497bc888bc4075338f9" startat="2012-11-27T13:38:24.474+08:00" status="canceled" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="dsaf" endat="2012-11-27T14:03:33.978+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="2F6D94A0-3B3A-6AF9-63D1-17BFA22CDD18" sessid="89f5cab9eb294a4a92eb41951ac63085" roundid="8f5795e39d704497bc888bc4075338f9" createdAt="2012-11-27T13:38:24.667+08:00" completedAt="2012-11-27T13:38:24.667+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="8f5795e39d704497bc888bc4075338f9" sessid="680696c768f04427816e674ea8d0bb22" name="选择购买月份" title="请选择购买月份" type="task" nodeid="A5ECFB84-6135-58B4-C9C9-17BFADE759CE" createdAt="2012-11-27T13:38:24.684+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="demo_sj_month" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_running"/>
+    <attachment type="int" label="月份" attname="month" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

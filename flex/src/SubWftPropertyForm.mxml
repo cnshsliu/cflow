@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#F7FDFD" defaultButton="{okBtn}" label="Link Properties" xmlns:ns1="*">
+<mx:Script>
+	<![CDATA[
+		import mx.managers.PopUpManager;
+		
+		[Bindable]
+		public var designer:CFlowWftDesigner = mx.core.Application.application  as CFlowWftDesigner;
+		
+		public function propertyOk(event:MouseEvent):void{
+			if(designer.canvas.selNode != null){
+				if(designer.canvas.selNode.confirmed == false)
+					designer.canvas.selNode.confirmed = true;
+			}
+			if(designer.canvas.dataModel.editable){
+				if(designer.canvas.selNode != null){
+					designer.canvas.selNode.subWftUID = subwftuid.text;
+					//designer.canvas.selNode.subWftWG = wgs.selectedItem.grpid;
+				}
+				PopUpManager.removePopUp(designer.subWftPropView);
+				designer.canvas.selNode.title = subwftuid.text;
+				designer.canvas.updateCanvas();
+			}else{
+				if(designer.canvas.selNode != null){
+					designer.canvas.selNode.restoreSubWftUID();
+				}
+				PopUpManager.removePopUp(designer.subWftPropView);
+			}
+		}
+		
+		public function propertyCancel(event:MouseEvent):void{
+			if(designer.canvas.selNode != null){
+				designer.canvas.selNode.restoreSubWftUID();
+				if(designer.canvas.selNode.confirmed == false){
+					designer.canvas.deleteNode (designer.canvas.selNode);
+				}
+			}
+			PopUpManager.removePopUp(designer.subWftPropView);
+		}
+		
+		/*private function wftFocused(event:Event):void{
+				subwftuid.text = wfts.selectedItem.wftid;
+			}
+			private function wftChanged(event:Event):void{
+				subwftuid.text = wfts.selectedItem.wftid;
+			}*/
+			private function ViewWft():void{
+				designer.myLoadWft(designer.token, designer.canvas.selNode.subWftUID);
+				
+			}
+			private function EditWft():void{
+				designer.myEditWft(designer.token, designer.canvas.selNode.subWftUID);
+			}
+
+	]]>
+</mx:Script>
+<mx:VBox>
+	<mx:Label text="Workflow Tempalte ID, please make sure it exists."/>
+		<mx:HBox>
+			<mx:TextInput id="subwftuid" text="{designer.canvas.selNode.subWftUID}" editable="true" width="343"/>
+			<!--mx:Button label="View" click="ViewWft()"/>
+			<mx:Button label="Edit" click="EditWft()" visible="{designer.canvas.dataModel.editable}"/ -->
+		</mx:HBox>
+		<!--mx:HBox>
+			<mx:Label text="Your workflows"></mx:Label>
+			<mx:ComboBox id="wfts" dataProvider="{designer.myWfts}" labelField="wftname" click="wftFocused(event)" change="wftChanged(event)" ></mx:ComboBox>
+		</mx:HBox -->
+		<!--mx:HBox width="100%">
+				<mx:Label text="Work Group: "/>
+				<mx:ComboBox  id="wgs" dataProvider="{designer.myGroups}" labelField="name"></mx:ComboBox>
+		</mx:HBox-->
+		<mx:HBox>
+			<mx:Button label="Ok" id="okBtn" click="propertyOk(event)"/>
+			<mx:Button label="Cancel" id="cancelBtn" click="propertyCancel(event)"  visible="{designer.canvas.dataModel.editable}"/>
+		</mx:HBox>
+		
+	
+</mx:VBox>
+	
+</mx:Form>

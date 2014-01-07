@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="testChangeRole" owner="U3306" acl="private" lastModified="2010-11-01T17:08:49" created="2010-11-01T17:08:49" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="Approver"/>
+  <role name="Reviewer"/>
+  <node id="280649C6-6474-A90E-DA35-D23F2A04D0A4" type="start" title="Start" name="Start" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="27" y="204" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="A18A5444-A5A4-2AE7-A92D-D23F3A1E75FD"/>
+  </node>
+  <node id="107367A0-E065-9D79-239E-D23F2A0A845D" type="end" title="End" name="End" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="748" y="204" mpsm="">
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="107367A0-E065-9D79-239E-D23F2A0A845D"/>
+  </node>
+  <node id="A18A5444-A5A4-2AE7-A92D-D23F3A1E75FD" type="task" title="Task1 no change" name="no change role" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" x="92" y="206" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="1A8F37BA-F9FE-D4D4-5053-DF2D33BCE3D1"/>
+  </node>
+  <node id="1A8F37BA-F9FE-D4D4-5053-DF2D33BCE3D1" type="task" title="Change all roles' participates" name="Change all" acquirable="false" acqThreshold="1" allowRoleChange="true" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="105" y="116" mpsm="">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="1D6C97DD-A089-6285-A7BA-06ADE94C9EC1"/>
+    <next targetID="F336A3E7-A3FB-183E-07EF-DF31B36DD53C"/>
+  </node>
+  <node id="4FF44976-8353-2C0F-0DD2-DF2DB364AE5D" type="task" title="Change approver and reviewer" name="Change 3rd approver and reviewer" acquirable="false" acqThreshold="1" allowRoleChange="true" allowDelegate="false" allowAdhoc="false" roleToChange="Approver, Reviewer" x="426" y="119" mpsm="">
+    <taskto type="role" whom="Approver"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="EB3CC125-426B-57DF-1643-DF3053ECDC3B"/>
+  </node>
+  <node id="765A2612-4D48-27D9-BAD0-DF304949EFC8" type="task" title="3rd Approve" name="3rd Approve" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="489" y="243" mpsm="">
+    <taskto type="role" whom="Approver"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="107367A0-E065-9D79-239E-D23F2A0A845D"/>
+  </node>
+  <node id="EB3CC125-426B-57DF-1643-DF3053ECDC3B" type="task" title="Review" name="3rd Review" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="367" y="238" mpsm="">
+    <taskto type="role" whom="Reviewer"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="765A2612-4D48-27D9-BAD0-DF304949EFC8"/>
+  </node>
+  <node id="F336A3E7-A3FB-183E-07EF-DF31B36DD53C" type="task" title="1st approve and assign 2nd approver" name="1st approve and assign 2nd approver" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" x="143" y="136" mpsm="">
+    <taskto type="role" whom="Approver"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="6431D4FF-1946-1341-328B-06AE8BFFF30A"/>
+  </node>
+  <node id="1D6C97DD-A089-6285-A7BA-06ADE94C9EC1" type="task" title="Task" name="1 Reviw" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="180" y="22" mpsm="">
+    <taskto type="role" whom="Reviewer"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="6431D4FF-1946-1341-328B-06AE8BFFF30A"/>
+  </node>
+  <node id="6431D4FF-1946-1341-328B-06AE8BFFF30A" type="and" title="AND" name="AND" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="all" x="286" y="80" mpsm="">
+    <mpcdc/>
+    <oec/>
+    <next targetID="F17C6D91-0E71-4F89-6198-06AEAB4C8B4C"/>
+  </node>
+  <node id="F17C6D91-0E71-4F89-6198-06AEAB4C8B4C" type="task" title="Task" name="2nd Approve" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="true" allowAdhoc="true" roleToChange="Reviewer" x="370" y="40" mpsm="">
+    <taskto type="role" whom="Approver"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="4FF44976-8353-2C0F-0DD2-DF2DB364AE5D"/>
+  </node>
+</cf:workflow>

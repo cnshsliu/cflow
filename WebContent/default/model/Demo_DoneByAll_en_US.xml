@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Demo_DoneByAll" memo="Demonstrate a task requires all it's undertakers must do it. (Double click on DoneByAll task to look at its properties." owner="tester1" acl="private" lastModified="2012-11-10T23:10:15" created="2012-11-10T23:10:15" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="Approver"/>
+  <node id="C18F90B7-8FA9-AD83-C0D8-EAD6804B3F48" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="BBD4A418-66CE-E2CA-0E37-EAD7FA87E900"/>
+  </node>
+  <node id="8EADD8E5-2A9F-8801-641B-EAD6804FEA64" type="end" title="End" name="End" x="376" y="221">
+    <next targetID="8EADD8E5-2A9F-8801-641B-EAD6804FEA64"/>
+  </node>
+  <node id="BBD4A418-66CE-E2CA-0E37-EAD7FA87E900" type="task" title="This task should be done by Approver role, if Approval maps to more than one people,  this task is done only when all people of this role complete this task. (see template's  setting of Done Decision). [br]To try it, please start the workflow with a team contains a Approver role which maps to more than one people." name="DoneByAll" x="109" y="221" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="2">
+    <taskto type="role" whom="Approver"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="579A2CF4-ECB2-A8AB-84D1-EAD8625C11DD"/>
+  </node>
+  <node id="579A2CF4-ECB2-A8AB-84D1-EAD8625C11DD" type="task" title="Task after approval" name="Approved" x="230" y="217" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="8EADD8E5-2A9F-8801-641B-EAD6804FEA64"/>
+  </node>
+</cf:workflow>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="Workflow Template" owner="U3306" acl="private" lastModified="2011-03-19T12:33:13" created="2011-03-19T12:33:13" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="2A82E3BA-2B7A-C85F-5EA1-CC6253898C16" type="start" title="Start" name="Start" x="27" y="213">
+    <next targetID="C215BC99-3C71-E32B-D20C-CC625C101845"/>
+  </node>
+  <node id="FF17D0D9-D754-8C61-2B19-CC62538BF84B" type="end" title="End" name="End" x="525" y="211">
+    <next targetID="FF17D0D9-D754-8C61-2B19-CC62538BF84B"/>
+  </node>
+  <node id="C215BC99-3C71-E32B-D20C-CC625C101845" type="task" title="Task 1 instruction" name="Task 1" x="201" y="212" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="EDE9BB02-CDA4-5AF0-9F6E-CC629341B8F5"/>
+  </node>
+  <node id="EDE9BB02-CDA4-5AF0-9F6E-CC629341B8F5" type="task" title="Task 2 Instruction" name="Task 2" x="350" y="212" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="FF17D0D9-D754-8C61-2B19-CC62538BF84B"/>
+  </node>
+</cf:workflow>

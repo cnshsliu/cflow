@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="test_round" owner="aliyun" acl="private" lastModified="2012-11-29T11:37:05" created="2012-11-29T11:37:05" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node id="22B1B747-726B-5ED4-17F2-4A3A8624C423" type="start" title="Start" name="Start" x="28" y="228">
+    <next targetID="AF1A12A2-CB0A-683A-DFC2-4A3A8F5D6BFF"/>
+  </node>
+  <node id="C792023A-3123-DC3E-2B1A-4A3A86276F1E" type="end" title="End" name="End" x="708" y="228">
+    <next targetID="C792023A-3123-DC3E-2B1A-4A3A86276F1E"/>
+  </node>
+  <node id="AF1A12A2-CB0A-683A-DFC2-4A3A8F5D6BFF" type="task" title="Task1" name="Task1" x="182" y="226" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="all" form="" mpsm="1">
+    <taskto type="role" whom="starter"/>
+    <mpcdc/>
+    <oec/>
+    <attachment type="text" label="person" attname="person" value=""/>
+    <next option="Continue" targetID="B0AF301C-E79D-D0E0-43C1-4A3AEBB00D88"/>
+    <next option="Finish" targetID="C792023A-3123-DC3E-2B1A-4A3A86276F1E"/>
+  </node>
+  <node id="B0AF301C-E79D-D0E0-43C1-4A3AEBB00D88" type="round" title="ROUND" name="ROUND" x="350" y="135" repeatthresholdtype="NOREPEAT">
+    <next targetID="6C3297C8-DC51-EAA7-9DA9-4A3B155DC041"/>
+  </node>
+  <node id="6C3297C8-DC51-EAA7-9DA9-4A3B155DC041" type="or" title="OR" name="OR" x="228" y="59">
+    <next targetID="EC76EFC8-E82C-4C6A-818D-4A3C48E5A654"/>
+  </node>
+  <node id="EC76EFC8-E82C-4C6A-818D-4A3C48E5A654" type="script" title="Script" name="put value" x="112" y="113">
+    <script>data.count=32;</script>
+    <next targetID="AF1A12A2-CB0A-683A-DFC2-4A3A8F5D6BFF"/>
+  </node>
+</cf:workflow>

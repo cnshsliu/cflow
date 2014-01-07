@@ -1,0 +1,15 @@
+<process id="e6d9572b60c54d1595d3ceeb526062d6" wftid="e6d9572b60c54d1595d3ceeb526062d6" roundid="ab626e219c994d12b2946cc64e3cc059" startat="2012-11-27T08:40:19.585+08:00" status="canceled" startby="aliyun" teamid="4a4013013e0d4628b32567dacf3dc2dc" wftname="2" endat="2012-11-27T14:03:21.544+08:00" xmlns="http://lkh.com/cflow">
+  <work title="Start Point" type="start" nodeid="7EBD6CB5-42D0-C653-4DE6-EAF5D9D869D1" sessid="183c3223ba4a4edc8a3f97bc4c67f894" roundid="ab626e219c994d12b2946cc64e3cc059" createdAt="2012-11-27T08:40:20.946+08:00" completedAt="2012-11-27T08:40:20.946+08:00" status="finished" decision="DEFAULT" xmlns="">
+    <taskto type="person" whom="SYSTEM" status="task_finished"/>
+  </work>
+  <work roundid="ab626e219c994d12b2946cc64e3cc059" sessid="2faf9c1c77994d7b936707b0bee45582" name="Leaving Application" title="This demo shows how to [u]integrate with a JAVA program[/u], the JAVA class this workflow invoke must resides in MWF server's classpath.  The Java in this demo will route the process by leave days, go to [color=red] LONG [/color] if days are more than 10.  or elase go to [color=red]SHORT[/color]. (See variable definition in Attachments tab)" type="task" nodeid="12EDDD5E-4646-3A8A-7DC9-EAF60250705D" createdAt="2012-11-27T08:40:20.981+08:00" mpsm="1" acquirable="false" acqThreshold="1" allowDelegate="false" allowAdhoc="false" status="running" form="" xmlns="">
+    <taskto type="person" whom="aliyun" status="task_running"/>
+    <attachment type="int" label="Leave Days" attname="days" value="" usrid="SYSTEM"/>
+    <attachment type="text" label="Leave Reason" attname="reason" value="" usrid="SYSTEM"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+  </work>
+  <team xmlns="">
+    <role name="Approver" value="allen"/>
+  </team>
+</process>

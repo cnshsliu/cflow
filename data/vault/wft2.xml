@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cf:workflow xsi:schemaLocation="http://lkh.com/cflow ../schemas/wft.xsd" name="wft1" owner="U3306" acl="private" lastModified="2012-08-04T16:24:23" created="2012-08-04T16:24:23" xmlns:cf="http://lkh.com/cflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <role name="approver"/>
+  <node id="node_0" type="start" title="Create new leave application" name="new application" x="1" y="200">
+    <next targetID="node_100"/>
+  </node>
+  <node id="node_100" type="task" title="Create new leave application" name="new application" x="115" y="178" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="1">
+    <taskto type="person" whom=""/>
+    <mpcdc/>
+    <oec/>
+    <attachment type="text" label="Leave reason" attname="reason" value=""/>
+    <attachment type="int" label="Leave days" attname="days" value=""/>
+    <next targetID="node_2"/>
+  </node>
+  <node id="node_2" type="task" title="Approve" name="Approve" x="218" y="204" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="null">
+    <taskto type="role" whom="approver"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <attachment type="text" label="Your Comments" attname="comments1" value=""/>
+    <attachment type="url" label="URL to share" attname="url1" value=""/>
+    <next option="Approve" targetID="node_3"/>
+    <next option="Reject" targetID="node_4"/>
+  </node>
+  <node id="node_3" type="notify" title="null" name="sendmail abcdefghijklmnopqrst" x="206" y="89">
+    <sendsms subject="Your application has been approved">
+      <smsto type="role" whom="starter"/>
+      <message>Your application has been approved.</message>
+    </sendsms>
+    <next targetID="node_5"/>
+    <next targetID="node_10"/>
+  </node>
+  <node id="node_4" type="notify" title="null" name="sendmail" x="230" y="300">
+    <sendmail subject="Your application has been rejected">
+      <mailto type="role" whom="starter"/>
+      <message>Sorry, your application has been rejected.</message>
+    </sendmail>
+    <next targetID="node_6"/>
+  </node>
+  <node id="node_5" type="task" title="Your application has been approved" name="notify approved" x="342" y="199" acquirable="false" acqThreshold="1" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="1">
+    <taskto type="person" whom=""/>
+    <mpcdc/>
+    <oec/>
+    <next targetID="2533D9D5-A49A-A881-9AC2-EDD9659387A8"/>
+  </node>
+  <node id="node_6" type="task" title="Your application has been rejected" name="notify rejected" x="364" y="306" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="end"/>
+  </node>
+  <node id="node_7" type="and" title="testAnd" name="" x="606" y="153">
+    <next targetID="end"/>
+  </node>
+  <node id="node_10" type="task" title="This is a dummy task" name="dummy" x="395" y="55" acquirable="false" acqThreshold="0" allowRoleChange="false" allowDelegate="false" allowAdhoc="false" roleToChange="null" form="null" mpsm="null">
+    <taskto type="role" whom="starter"/>
+    <mpcdc>null</mpcdc>
+    <oec>null</oec>
+    <next targetID="node_7"/>
+  </node>
+  <node id="end" type="end" title="null" name="End" x="576" y="196">
+    <next targetID="end"/>
+  </node>
+  <node id="2533D9D5-A49A-A881-9AC2-EDD9659387A8" type="script" title="" name="Script" x="468" y="172">
+    <script>return "OK";</script>
+    <next option="OK" targetID="node_7"/>
+  </node>
+</cf:workflow>

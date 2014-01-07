@@ -1,0 +1,8 @@
+Install JAVA JDK 1.6
+Install 5.1
+
+$mysql -u root 
+mysql> CREATE DATABASE liukehong;
+mysql> create user liukehong identified by 'DB_PASSWORD';
+GRANT ALL PRIVILEGES ON liukehong.* TO 'liukehong'@'localhost' IDENTIFIED BY 'DB_PASSWORD';
+flush privileges;
