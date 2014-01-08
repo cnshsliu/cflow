@@ -1,7 +1,0 @@
-2010-09-28	Steve Liu <liukehong@gmail.com>
-	* GeneralManager.java	Removed.
-	* MessageManager.java	Customized message composer support was added.
-	* DbAdmin.java			Concurrent database accesses are synchronized.
-
-2010-10-22 Steve Liu <liukehong@gmail.com>
-	* NodeDoer.xml	Add tasktotype = person support.
