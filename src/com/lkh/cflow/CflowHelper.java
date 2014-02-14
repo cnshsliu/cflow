@@ -1237,11 +1237,11 @@ public class CflowHelper {
 		return ret;
 	}
 
-	public static Developer getDevByToken(String token, String ip) {
+	public static Developer getDevByToken(String token) {
 		Developer dev = null;
 		DbAdmin dbadmin = DbAdminPool.get();
 		try {
-			dev = dbadmin.getDevByToken(token, ip);
+			dev = dbadmin.getDevByToken(token);
 			return dev;
 		} catch (SQLException ex) {
 			ex.printStackTrace();

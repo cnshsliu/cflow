@@ -44,6 +44,7 @@ public class DoLogin extends HttpServlet {
 		response.setHeader("Pragma", "No-cache");
 		response.setHeader("Cache-Control", "no-cache");
 		response.setDateHeader("Expires", 0);
+		String ip = request.getRemoteAddr();
 
 		String id = request.getParameter("id");
 		String acsk = request.getParameter("acsk");
@@ -60,8 +61,7 @@ public class DoLogin extends HttpServlet {
 					response.sendRedirect("login.jsp");
 					return;
 				} else {
-
-					String token = TokenAdmin.newToken(dev.id, request.getRemoteAddr());
+					String token = TokenAdmin.newToken(dev.id);
 					target = target + "?token=" + token;
 					response.sendRedirect(target);
 					return;

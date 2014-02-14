@@ -51,7 +51,7 @@ public class IdentityUploader extends HttpServlet {
 			DbAdmin dbadmin = DbAdminPool.get();
 			dbadmin.keepConnection(true);
 			try {
-				String dev = TokenAdmin.getDevByToken(token, request.getRemoteAddr());
+				String dev = TokenAdmin.getDevByToken(token);
 				if (dev == null) {
 					request.setAttribute("upload.message", "Session failed");
 				} else {

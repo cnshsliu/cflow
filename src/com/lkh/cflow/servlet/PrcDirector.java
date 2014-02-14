@@ -52,7 +52,7 @@ public class PrcDirector extends HttpServlet {
 		dbadmin.keepConnection(true);
 		String token = request.getParameter("token");
 		try {
-			String dev = TokenAdmin.getDevByToken(token, request.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(token);
 			if (dev == null) {
 				request.setAttribute("director.message", "Session failed");
 			} else {

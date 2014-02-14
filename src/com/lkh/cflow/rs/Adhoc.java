@@ -47,7 +47,7 @@ public class Adhoc {
 		DbAdmin dbadmin = DbAdminPool.get();
 		boolean kc = dbadmin.keepConnection(true);
 		try {
-			String devId = TokenAdmin.getDevByToken(tokenString, servletRequest.getRemoteAddr());
+			String devId = TokenAdmin.getDevByToken(tokenString);
 			if (devId == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {

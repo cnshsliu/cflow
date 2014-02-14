@@ -22,7 +22,7 @@ public class TokenAdmin {
 			memCpool = JdbcConnectionPool.create("jdbc:h2:mem:cflow;MODE=MySQL", "cflow", "cflow1234");
 		}
 		Connection conn = memCpool.getConnection();
-		String sql = "CREATE TABLE IF NOT EXISTS cflow_token (DEV varchar(24) NOT NULL, TOKEN varchar(40), IP varchar(16), CRTAT long not null, PRIMARY KEY (TOKEN)) ";
+		String sql = "CREATE TABLE IF NOT EXISTS cflow_token (DEV varchar(24) NOT NULL, TOKEN varchar(40),  CRTAT long not null, PRIMARY KEY (TOKEN)) ";
 		java.sql.Statement stat = conn.createStatement();
 		stat.execute(sql);
 		sql = "select count(*) from cflow_token";
@@ -65,19 +65,18 @@ public class TokenAdmin {
 		}).start();
 	}
 
-	public static String newToken(String dev, String ip) throws SQLException {
+	public static String newToken(String dev) throws SQLException {
 		String newToken = null;
 		Connection conn = null;
 		try {
 			conn = memCpool.getConnection();
 			newToken = UUID.randomUUID().toString().replaceAll("-", "");
 			long crtAt = System.currentTimeMillis();
-			String memSql = "INSERT INTO cflow_token (DEV, TOKEN, IP, CRTAT) values (?, ?,?, ?)";
+			String memSql = "INSERT INTO cflow_token (DEV, TOKEN, CRTAT) values (?, ?, ?)";
 			PreparedStatement psMem = conn.prepareStatement(memSql);
 			psMem.setString(1, dev);
 			psMem.setString(2, newToken);
-			psMem.setString(3, ip);
-			psMem.setLong(4, crtAt);
+			psMem.setLong(3, crtAt);
 			psMem.execute();
 			psMem.close();
 			conn.close();
@@ -93,17 +92,16 @@ public class TokenAdmin {
 		return newToken;
 	}
 
-	public static String copyToken(String tokenTobeCopied, String dev, String ip) throws SQLException {
+	public static String copyToken(String tokenTobeCopied, String dev) throws SQLException {
 		Connection conn = null;
 		try {
 			conn = memCpool.getConnection();
 			long crtAt = System.currentTimeMillis();
-			String memSql = "INSERT INTO cflow_token (DEV, TOKEN, IP, CRTAT) values (?, ?, ?,?)";
+			String memSql = "INSERT INTO cflow_token (DEV, TOKEN, CRTAT) values (?, ?, ?)";
 			PreparedStatement psMem = conn.prepareStatement(memSql);
 			psMem.setString(1, dev);
 			psMem.setString(2, tokenTobeCopied);
-			psMem.setString(3, ip);
-			psMem.setLong(4, crtAt);
+			psMem.setLong(3, crtAt);
 			psMem.execute();
 			psMem.close();
 			conn.close();
@@ -119,17 +117,16 @@ public class TokenAdmin {
 		return tokenTobeCopied;
 	}
 
-	public static String getDevByToken(String token, String ip) throws SQLException {
+	public static String getDevByToken(String token) throws SQLException {
 		String dev = null;
 		Connection conn = null;
 		try {
 			conn = memCpool.getConnection();
-			String sql = "SELECT DEV FROM cflow_token WHERE TOKEN=? AND IP=? AND CRTAT > (? - ?) ";
-			PreparedStatement ps = conn.prepareCall(sql);
+			String sql = "SELECT DEV FROM cflow_token WHERE TOKEN=? AND CRTAT > (? - ?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, token);
-			ps.setString(2, ip);
-			ps.setLong(3, System.currentTimeMillis());
-			ps.setLong(4, TOKEN_AVAILABILITY);
+			ps.setLong(2, System.currentTimeMillis());
+			ps.setLong(3, TOKEN_AVAILABILITY);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				dev = rs.getString("DEV");
@@ -147,16 +144,15 @@ public class TokenAdmin {
 		return dev;
 	}
 
-	public static void refreshToken(String token, String ip) {
+	public static void refreshToken(String token) {
 		Connection conn = null;
 		PreparedStatement updatePs = null;
 		try {
 			conn = memCpool.getConnection();
-			String updateSql = "UPDATE cflow_token SET CRTAT = ? WHERE TOKEN=? AND IP=?";
+			String updateSql = "UPDATE cflow_token SET CRTAT = ? WHERE TOKEN=?";
 			updatePs = conn.prepareStatement(updateSql);
 			updatePs.setLong(1, System.currentTimeMillis());
 			updatePs.setString(2, token);
-			updatePs.setString(3, ip);
 			updatePs.execute();
 			updatePs.close();
 		} catch (Exception ex) {

@@ -51,7 +51,7 @@ public class Dev {
 				return Response.status(401).entity("FAILED").build();
 			} else {
 
-				String token = TokenAdmin.newToken(dev.id, rqs.getRemoteAddr());
+				String token = TokenAdmin.newToken(dev.id);
 				return Response.status(200).entity(token).build();
 			}
 		} catch (Exception e) {
@@ -87,7 +87,7 @@ public class Dev {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			Developer dev = dbadmin.getDevByToken(token, rqs.getRemoteAddr());
+			Developer dev = dbadmin.getDevByToken(token);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {

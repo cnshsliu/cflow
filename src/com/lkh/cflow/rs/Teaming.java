@@ -25,9 +25,9 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 
 import com.lkh.cflow.Ctool;
-import com.lkh.cflow.TokenAdmin;
 import com.lkh.cflow.Membership;
 import com.lkh.cflow.Team;
+import com.lkh.cflow.TokenAdmin;
 import com.lkh.cflow.db.DbAdmin;
 import com.lkh.cflow.db.DbAdminPool;
 
@@ -52,7 +52,7 @@ public class Teaming {
 
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {
@@ -85,7 +85,7 @@ public class Teaming {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {
@@ -116,7 +116,7 @@ public class Teaming {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {
@@ -152,7 +152,7 @@ public class Teaming {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {
@@ -178,7 +178,7 @@ public class Teaming {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {
@@ -201,7 +201,7 @@ public class Teaming {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {
@@ -235,7 +235,7 @@ public class Teaming {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {
@@ -270,7 +270,7 @@ public class Teaming {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {
@@ -297,7 +297,7 @@ public class Teaming {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {

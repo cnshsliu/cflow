@@ -58,7 +58,7 @@ public class doTask extends HttpServlet {
 			DbAdmin dbadmin = DbAdminPool.get();
 			dbadmin.keepConnection(true);
 			try {
-				String dev = TokenAdmin.getDevByToken(tokenString, request.getRemoteAddr());
+				String dev = TokenAdmin.getDevByToken(tokenString);
 				if (dev == null) {
 					request.setAttribute("doTask.message", "Session failed");
 				}

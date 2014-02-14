@@ -26,7 +26,6 @@ import com.lkh.cflow.CflowHelper;
 import com.lkh.cflow.Ctool;
 import com.lkh.cflow.DelegationEntry;
 import com.lkh.cflow.Developer;
-import com.lkh.cflow.TokenAdmin;
 import com.lkh.cflow.Membership;
 import com.lkh.cflow.Org;
 import com.lkh.cflow.PrcInfo;
@@ -34,6 +33,7 @@ import com.lkh.cflow.Role;
 import com.lkh.cflow.Taskto;
 import com.lkh.cflow.Team;
 import com.lkh.cflow.TimeControlInfo;
+import com.lkh.cflow.TokenAdmin;
 import com.lkh.cflow.User;
 import com.lkh.cflow.WftInfo;
 import com.lkh.cflow.Work;
@@ -447,22 +447,11 @@ public class DbAdmin {
 		return dev;
 	}
 
-	public String newToken(Developer dev, String ip) {
-		String ret = null;
-		try {
-			ret = TokenAdmin.newToken(dev.id, ip);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return ret;
-	}
-
-	public Developer getDevByToken(String tokenString, String ip) throws SQLException {
+	public Developer getDevByToken(String tokenString) throws SQLException {
 		if (tokenString.equals("c1i2pp3o4a")) {
 			return getDevById("aliyun");
 		}
-		String devId = TokenAdmin.getDevByToken(tokenString, ip);
+		String devId = TokenAdmin.getDevByToken(tokenString);
 		return getDevById(devId);
 	}
 
@@ -3073,15 +3062,13 @@ public class DbAdmin {
 		return ret;
 	}
 
-
-
 	public void repaireDevDefaultUser() throws Exception {
 		String sql = "SELECT * FROM cf_dev WHERE ID NOT IN (SELECT A.IDENTITY FROM cf_user A, cf_dev B WHERE A.DEV =B.ID GROUP BY A.IDENTITY)";
 		Statement stat = conn.createStatement();
 		ResultSet rs = stat.executeQuery(sql);
 		while (rs.next()) {
 			String id = rs.getString("ID");
-			createUser(id, id, rs.getString("NAME"), rs.getString("EMAIL"),  rs.getString("LANG"), CflowHelper.NOTIFY_EMAIL);
+			createUser(id, id, rs.getString("NAME"), rs.getString("EMAIL"), rs.getString("LANG"), CflowHelper.NOTIFY_EMAIL);
 		}
 
 	}

@@ -34,7 +34,7 @@ public class Workitem {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, rqs.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				return Response.status(401).entity("Session failed").build();
 			} else {

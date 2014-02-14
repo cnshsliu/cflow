@@ -38,7 +38,7 @@ public class VTContentUploader extends HttpServlet {
 			tokenString = (String) request.getParameter("token");
 			vtname = (String) request.getParameter("vtname");
 			vtcontent = (String) request.getParameter("vtcontent");
-			String dev = TokenAdmin.getDevByToken(tokenString, request.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				ret = "Session failed.";
 			} else {

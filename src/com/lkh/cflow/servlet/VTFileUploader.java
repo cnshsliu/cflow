@@ -53,7 +53,7 @@ public class VTFileUploader extends HttpServlet {
 			DbAdmin dbadmin = DbAdminPool.get();
 			dbadmin.keepConnection(true);
 			try {
-				String dev = TokenAdmin.getDevByToken(tokenString, request.getRemoteAddr());
+				String dev = TokenAdmin.getDevByToken(tokenString);
 				if (dev == null) {
 					request.setAttribute("upload.message", "Session failed");
 				} else {

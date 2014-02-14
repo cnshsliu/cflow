@@ -49,7 +49,7 @@ public class XdownloadWorkflow extends HttpServlet {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			String dev = TokenAdmin.getDevByToken(tokenString, request.getRemoteAddr());
+			String dev = TokenAdmin.getDevByToken(tokenString);
 			if (dev == null) {
 				logger.error("Failed to get Developer");
 				return;

@@ -50,7 +50,7 @@ public class AcqAdmin extends HttpServlet {
 		DbAdmin dbadmin = DbAdminPool.get();
 		dbadmin.keepConnection(true);
 		try {
-			Developer dev = dbadmin.getDevByToken(token, request.getRemoteAddr());
+			Developer dev = dbadmin.getDevByToken(token);
 			if (dev == null) {
 				request.setAttribute("upload.message", "Session failed");
 			} else {
