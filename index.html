@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Mirrored from www.rethinkdb.com/ by HTTrack Website Copier/3.x [XR&CO'2013], Mon, 17 Feb 2014 11:27:29 GMT -->
+<head>
+        <title>An open-source distributed database built with love - RethinkDB</title>
+        <link rel="stylesheet" media="screen" href="assets/css/styles.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Copse|Droid+Serif:400,700,400italic,700italic|Inconsolata:400,700|Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
+        <link type="application/atom+xml" rel="alternate" href="blog/feed/index.html"/>
+        <meta property="twitter:account_id" content="52351557" />
+        <script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
+        <script type="text/javascript" src="assets/js/underscore-min.js"></script>
+        <script type="text/javascript" src="assets/js/waypoints.js"></script>
+        <script type="text/javascript" src="assets/js/waypoints-sticky.js"></script>
+        <script type="text/javascript" src="assets/js/site.js"></script>
+        
+            
+        
+        <script type="text/javascript" src="assets/js/jquery.cookie.min.js"></script>
+        <script type="text/javascript" src="assets/js/docs-switcher.js"></script>
+    </head>
+    <body>
+        <div id="sticky-wrap">
+            
+                <div id="header">
+    <div class="container">
+        <div class="row">
+            <div class="span5">
+                <h1 class="logo">RethinkDB</h1>
+                <p class="tagline">
+                    An open-source distributed database built with love.
+                </p>
+                <p class="tagline2">Enjoy an
+                <em>intuitive</em> query language,
+                automatically <em>parallelized</em> queries,
+                and <em>simple</em> administration.</p>
+                <p class="tagline3"> Table joins and batteries included.</p>
+                <div class="action_items">
+                    <p class="download"><a href="docs/install/index.html">Install</a></p>
+                    <p class="release">v1.11.3<span> (Breakfast at Tiffany's)</span></p>
+                    <p class="release">(<em><a href="https://github.com/rethinkdb/rethinkdb/releases">release notes</a></em>)</p>
+                </div>
+            </div>
+            <div class="span6 offset1">
+                <h4>Set up a cluster:</h4>
+<div class="highlight"><pre><code class="bash">joe@alchemist~<span class="nv">$ </span>rethinkdb
+joe@clockwerk~<span class="nv">$ </span>rethinkdb -j alchemist:29015
+</code></pre></div>
+                <h4>Query JSON documents in Python, Ruby, or Node.js:</h4>
+<div class="highlight"><pre><code class="python"><span class="n">r</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;users&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Slava&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">29</span> <span class="p">})</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">r</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;users&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">doc</span><span class="p">:</span> <span class="n">doc</span><span class="p">[</span><span class="s">&#39;age&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">29</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+                <h4>Shard and replicate:</h4>
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rethinkdb admin -j alchemist:29015
+alchemist:29015&gt; split shard users m
+alchemist:29015&gt; <span class="nb">set </span>replicas users 2
+</code></pre></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-static-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav">
+                <li class="active"><a href="index.html">home</a></li>
+                <li ><a href="faq/index.html">faq</a></li>
+                <li ><a href="docs/index.html">docs</a></li>
+                <li ><a href="api/index.html">api</a></li>
+                <li ><a href="community/index.html">community</a></li>
+                <li ><a href="blog/index.html">blog</a></li>
+                <li ><a href="people/index.html">people</a></li>
+                <li ><a href="jobs/index.html">jobs</a></li>
+            </ul>
+            <div class="social-buttons">
+                <a class="social-button twitter" href="http://twitter.com/rethinkdb">Follow on Twitter</a>
+                <a class="social-button github" href="http://github.com/rethinkdb/rethinkdb">Follow on GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dataexplorer dataexplorer_floating"></div>
+<div id="main-container">
+    <div id="content" class="container">
+        <div id="newness-warning">
+    RethinkDB is a new system and is likely to have quirks. Help make it
+    better by <a href="community/index.html">asking a question</a> or 
+    <a href="https://github.com/rethinkdb/rethinkdb/issues?state=open">submitting a bug report</a>.
+</div>
+
+        <div class="section">
+            <h1 class='title'>RethinkDB overview</h1>
+            <p>
+                RethinkDB is built to store JSON documents, and scale
+                to multiple machines with very little effort. It has a
+                pleasant query language that supports really useful
+                queries like table joins and group by, and is easy to
+                setup and learn.
+            </p>
+            <hr />
+            <div class="content-sidebar">
+                <div class="infobox infobox-info">
+                    <p><strong>Get a free RethinkDB T-shirt</strong></p>
+                    <p>Tell us how you're using RethinkDB, we're trading <a href="community/shirts-for-stories/index.html">shirts for stories</a>.</p>
+                </div>
+                <div class="screencast-thumbnail">
+                    <a class="screencast" href="videos/what-is-rethinkdb/index.html"></a>
+                    <a class="watch-screencast" href="videos/what-is-rethinkdb/index.html">See the highlights of RethinkDB</a>
+                </div>
+            </div>
+            <div class="features">
+                <p class="feature-title">Simple programming model:</p>
+                <ul>
+                    <li class="feature">JSON data model and immediate consistency.</li>
+                    <li class="feature">Distributed joins, subqueries, aggregation, atomic updates.</li>
+                    <li class="feature">Secondary, compound, and arbitrarily computed <a href="docs/secondary-indexes/index.html">indexes</a>.</li>
+                    <li class="feature">Hadoop-style map/reduce.</li>
+                </ul>
+                <p class="feature-title">Easy administration:</p>
+                <ul>
+                    <li class="feature">Friendly web and command-line administration tools.</li>
+                    <li class="feature">Takes care of machine failures and network interrupts.</li>
+                    <li class="feature">Multi-datacenter replication and failover.</li>
+                </ul>
+                <p class="feature-title">Horizontal scalability:</p>
+                <ul>
+                    <li class="feature">Sharding and replication to multiple nodes.</li>
+                    <li class="feature">Queries are automatically parallelized and distributed.</li>
+                    <li class="feature">Lock-free operation via MVCC concurrency.</li>
+                </ul>
+                <p class="feature-title">RethinkDB compared to other databases:</p>
+                <ul>
+                    <li class="feature">Read the <a href="faq/index.html">FAQ</a> for information on architectural tradeoffs.</li>
+                    <li class="feature">Find out how <a href="docs/comparison-tables/index.html">RethinkDB compares to MongoDB</a>.</li>
+                    <li class="feature">See our take on <a href="docs/rethinkdb-vs-mongodb/index.html">what makes RethinkDB different</a>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h1 class='title'>Thirty-second quickstart with RethinkDB</h1>
+            
+            <div class='infobox '><p><strong>Before you start:</strong> make sure you've <a href="install/index.html">installed RethinkDB</a> &mdash; it should only take a minute!</p>
+</div>
+
+<h1>Start the server</h1>
+
+<p>First, start the RethinkDB server like this:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$ rethinkdb
+info: Creating directory &#39;rethinkdb_data&#39;
+info: Listening for intracluster connections on port 29015
+info: Listening for client driver connections on port 28015
+info: Listening for administrative HTTP connections on port 8080
+info: Server ready
+</code></pre></div>
+<p>Point your browser to <code>localhost:8080</code> &ndash; you&#39;ll see an administrative UI
+where you can control the cluster (which so far consists of one machine), and
+play with the query language.</p>
+
+<h1>Run some queries</h1>
+
+<p>Click on the <em>Data Explorer</em> tab in the browser. You can manipulate
+data using JavaScript straight from your browser. By default,
+RethinkDB creates a database named <code>test</code>. Let&#39;s create a table:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">r</span><span class="p">.</span><span class="nx">db</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">).</span><span class="nx">tableCreate</span><span class="p">(</span><span class="s1">&#39;tv_shows&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Use the &quot;Run&quot; button or Shift+Enter to run the query. Now, let&#39;s insert some JSON documents into the table:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">r</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="s1">&#39;tv_shows&#39;</span><span class="p">).</span><span class="nx">insert</span><span class="p">([{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Star Trek TNG&#39;</span><span class="p">,</span> <span class="nx">episodes</span><span class="o">:</span> <span class="mi">178</span> <span class="p">},</span>
+                            <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Battlestar Galactica&#39;</span><span class="p">,</span> <span class="nx">episodes</span><span class="o">:</span> <span class="mi">75</span> <span class="p">}])</span>
+</code></pre></div>
+<p>We&#39;ve just inserted two rows into the <code>tv_shows</code> table. Let&#39;s verify the
+number of rows inserted:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">r</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="s1">&#39;tv_shows&#39;</span><span class="p">).</span><span class="nx">count</span><span class="p">()</span>
+</code></pre></div>
+<p>Finally, let&#39;s do a slightly more sophisticated query. Let&#39;s find all
+shows with more than 100 episodes.</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">r</span><span class="p">.</span><span class="nx">table</span><span class="p">(</span><span class="s1">&#39;tv_shows&#39;</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">row</span><span class="p">(</span><span class="s1">&#39;episodes&#39;</span><span class="p">).</span><span class="nx">gt</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</code></pre></div>
+<p>As a result, we of course get the best science fiction show in
+existence.</p>
+
+<h1>Next steps</h1>
+
+<p>Congrats, you&#39;re on your way to database bliss! Now move on to the
+<a href="docs/guide/javascript/index.html">ten-minute guide</a> and learn how to use the
+client drivers, get more in-depth information on basic commands, and
+start writing real applications with RethinkDB.</p>
+ 
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $thumbnails = $('.screencast-thumbnail a');
+        $thumbnails.hover( function() {
+            $thumbnails.addClass('hovered');
+        }, function() {
+            $thumbnails.removeClass('hovered');
+        });
+    });
+</script>
+
+            
+        </div>
+        
+            <div id="footer">
+                <div class="container">
+                    <ul>
+                        <li class="google"><a href="http://groups.google.com/group/rethinkdb">discuss</a> on Google Groups</li>
+                        <li class="irc"><a href="irc://chat.freenode.net/#rethinkdb">#rethinkdb</a> on freenode</li>
+                        <li class="github"><a href="https://github.com/rethinkdb/rethinkdb/issues">issue tracker</a> on GitHub</li>
+                        <li class="twitter"><a href="http://twitter.com/rethinkdb">@rethinkdb</a> on Twitter</li>
+                    </ul>
+                    <p><a href="#" class="lambda">&lambda;</a></p>
+                </div>
+            </div>
+        
+        <script type="text/javascript">
+            var _gauges = _gauges || [];
+            (function() {
+             var t   = document.createElement('script');
+             t.type  = 'text/javascript';
+             t.async = true;
+             t.id    = 'gauges-tracker';
+             t.setAttribute('data-site-id', '509d21aff5a1f5572a000010');
+             t.src = '../secure.gaug.es/track.js';
+             var s = document.getElementsByTagName('script')[0];
+             s.parentNode.insertBefore(t, s);
+             })();
+         </script> 
+         <script type="text/javascript">
+
+             var _gaq = _gaq || [];
+             _gaq.push(['_setAccount', 'UA-9922584-1']);
+             _gaq.push(['_trackPageview']);
+
+             (function() {
+              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+        </script>
+    </body>
+
+<!-- Mirrored from www.rethinkdb.com/ by HTTrack Website Copier/3.x [XR&CO'2013], Mon, 17 Feb 2014 11:27:43 GMT -->
+</html>
