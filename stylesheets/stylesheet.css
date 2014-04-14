@@ -369,3 +369,87 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+
+
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  *zoom: 1;
+}
+.container:before,
+.container:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.container:after {
+  clear: both;
+}
+.container-fluid {
+  padding-right: 20px;
+  padding-left: 20px;
+  *zoom: 1;
+}
+.container-fluid:before,
+.container-fluid:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.container-fluid:after {
+  clear: both;
+}
+
+
+
+
+/*
+    ----------------------------
+    Footer styles
+    ----------------------------
+*/
+#footer {
+
+  background: url('../images/header_bg_tile.png') #012533;
+  color: #f2efe3;
+  font-size: 15px;
+  font-family: 'Droid Serif', serif;
+  padding-top: 40px;
+}
+#footer ul {
+  float: left;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+#footer ul li {
+  display: inline-block;
+  margin-right: 27px;
+  padding-left: 30px;
+}
+#footer ul li a {
+  color: #2d829e;
+}
+#footer ul li.google {
+  background: left bottom no-repeat url('../images/icons/google.png');
+  padding-left: 25px;
+}
+#footer ul li.irc {
+  background: left center no-repeat url('../images/icons/irc.png');
+}
+#footer ul li.github {
+  background: left center no-repeat url('../images/icons/github.png');
+}
+#footer ul li.twitter {
+  background: left center no-repeat url('../images/icons/twitter.png');
+}
+#footer p .lambda {
+  text-align: right;
+  font-size: xx-small;
+  position: absolute;
+  right: 5px;
+  bottom: 9px;
+  color: #f2efe3;
+}
