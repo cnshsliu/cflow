@@ -27,31 +27,36 @@
     <div class="container">
         <div class="row">
             <div class="span5">
-                <h1 class="logo">RethinkDB</h1>
+                <h1 class="logo">cFlow</h1>
                 <p class="tagline">
-                    An open-source distributed database built with love.
+                    An open-source distributed Workflow engine as a Service built with love.
                 </p>
                 <p class="tagline2">Enjoy an
-                <em>intuitive</em> query language,
-                automatically <em>parallelized</em> queries,
-                and <em>simple</em> administration.</p>
-                <p class="tagline3"> Table joins and batteries included.</p>
+                <em>powerful </em> workflow engine, with <em>intuitive</em> workflow designer and monitor, as well as a full set of APIs to <em>integrate</em> workflow support <em>easily</em> into your any applications.                </p>
                 <div class="action_items">
-                    <p class="download"><a href="docs/install/index.html">Install</a></p>
-                    <p class="release">v1.11.3<span> (Breakfast at Tiffany's)</span></p>
-                    <p class="release">(<em><a href="https://github.com/rethinkdb/rethinkdb/releases">release notes</a></em>)</p>
+                  <p class="download"><a href="https://github.com/cnshsliu/cflow">DOWNLOAD SOURCE</a></p>
+                    <p class="release"><a
+href="https://github.com/cnshsliu/cflow/zipball/master">Download .zip</a></p>
+                    
+                     <p class="release"><a
+href="https://github.com/cnshsliu/cflow/tarball/master" >Download .tar.gz</a></p>
+<p class="release"><a
+href="https://github.com/cnshsliu/cflow">View on Github</a></p>
+                    
+                    
+                    
                 </div>
             </div>
             <div class="span6 offset1">
-                <h4>Set up a cluster:</h4>
+                <h4>Start a workflow:</h4>
 <div class="highlight"><pre><code class="bash">joe@alchemist~<span class="nv">$ </span>rethinkdb
 joe@clockwerk~<span class="nv">$ </span>rethinkdb -j alchemist:29015
 </code></pre></div>
-                <h4>Query JSON documents in Python, Ruby, or Node.js:</h4>
+                <h4>Get worklist:</h4>
 <div class="highlight"><pre><code class="python"><span class="n">r</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;users&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Slava&#39;</span><span class="p">,</span> <span class="s">&#39;age&#39;</span><span class="p">:</span> <span class="mi">29</span> <span class="p">})</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="n">r</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="s">&#39;users&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">doc</span><span class="p">:</span> <span class="n">doc</span><span class="p">[</span><span class="s">&#39;age&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">29</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
-                <h4>Shard and replicate:</h4>
+                <h4>Complete a task:</h4>
 <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rethinkdb admin -j alchemist:29015
 alchemist:29015&gt; split shard users m
 alchemist:29015&gt; <span class="nb">set </span>replicas users 2
@@ -85,15 +90,25 @@ alchemist:29015&gt; <span class="nb">set </span>replicas users 2
 <div id="main-container">
     <div id="content" class="container">
         <div id="newness-warning">
-    RethinkDB is a new system and is likely to have quirks. Help make it
+    cFlow is a new system and is likely to have quirks. Help make it
     better by <a href="community/index.html">asking a question</a> or 
-    <a href="https://github.com/rethinkdb/rethinkdb/issues?state=open">submitting a bug report</a>.
+    <a href="https://github.com/cnshsliu/cflow/issues?state=open">submitting a bug report</a>.
 </div>
 
         <div class="section">
-            <h1 class='title'>RethinkDB overview</h1>
+            <h1 class='title'>cFlow overview</h1>
             <p>
-                RethinkDB is built to store JSON documents, and scale
+                Cflow is a workflow or BPM (Business Process Management) suite for enterprise use which contains: 
+
+cFlow improves business operations by connecting people, processes, and information systems into easily managed applications. Download the most widely adopted BPM solution in the world. A workflow engine that drives process automation and work distribution 
+
+A set of OpenAPI and SDK for developer to develop process-oriented applications 
+
+A workflow designer for designing workflow template with GUI 
+
+A process monitor to check process running status 
+
+A developer console to control and config workflow contextRethinkDB is built to store JSON documents, and scale
                 to multiple machines with very little effort. It has a
                 pleasant query language that supports really useful
                 queries like table joins and group by, and is easy to
