@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cflow-config>
-	<host>42.121.32.76:8080</host>
+	<host>127.0.0.1:8080</host>
 	<mail>
 		<mailFrom>cflowadmin@myworldflow.com</mailFrom>
 		<smtpHost>SMTP_SERVER</smtpHost>
@@ -11,8 +11,8 @@
 	</sms>
 	<storage>
 		<manager>
-			<!-- classname>com.lkh.cflow.storage.localfile.LocalfileStorageManager</classname -->
-			<classname>com.lkh.cflow.storage.oss.OssfileStorageManager</classname>
+			<classname>com.lkh.cflow.storage.localfile.LocalfileStorageManager</classname>
+			<!-- classname>com.lkh.cflow.storage.oss.OssfileStorageManager</classname  -->
 		</manager>
 		<local>
 			<wft>/home/liukehong/cflow/vault</wft>

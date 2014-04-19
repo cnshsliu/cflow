@@ -55,12 +55,19 @@ public class QuartzInitializerListener implements ServletContextListener {
 			String configPath = path + "WEB-INF";
 			String cflowConfigFilePath;
 			String quartzConfigFilePath = null;
-			if (File.separator.equals("/")) {
-				cflowConfigFilePath = configPath + "/configuration_unix.xml";
-				quartzConfigFilePath = configPath + "/cflow_quartz.properties";
-			} else {
+			if(org.apache.commons.lang.SystemUtils.IS_OS_WINDOWS){
 				cflowConfigFilePath = configPath + "\\configuration_win.xml";
 				quartzConfigFilePath = configPath + "\\cflow_quartz.properties";
+			}else if(org.apache.commons.lang.SystemUtils.IS_OS_MAC_OSX){
+				cflowConfigFilePath = configPath + "/configuration_mac_osx.xml";
+				quartzConfigFilePath = configPath + "/cflow_quartz.properties";
+			}else if(org.apache.commons.lang.SystemUtils.IS_OS_LINUX ||
+					org.apache.commons.lang.SystemUtils.IS_OS_UNIX){
+				cflowConfigFilePath = configPath + "/configuration_unix.xml";
+				quartzConfigFilePath = configPath + "/cflow_quartz.properties";
+			}else{
+				logger.error(org.apache.commons.lang.SystemUtils.OS_NAME + " is not supported!");
+				throw new Exception(org.apache.commons.lang.SystemUtils.OS_NAME + " is not supported!");
 			}
 
 			try {
