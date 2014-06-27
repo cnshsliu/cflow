@@ -18,8 +18,10 @@ public class TokenAdmin {
 	public static void initialize(boolean useTCP) throws SQLException {
 		if (useTCP) {
 			memCpool = JdbcConnectionPool.create("jdbc:h2:tcp://localhost:8092/mem:cflow;MODE=MySQL", "cflow", "cflow1234");
+			logger.info("Token connection pool eastablished in TCP mode.");
 		} else {
 			memCpool = JdbcConnectionPool.create("jdbc:h2:mem:cflow;MODE=MySQL", "cflow", "cflow1234");
+			logger.info("Token connection pool eastablished in memory mode.");
 		}
 		Connection conn = memCpool.getConnection();
 		String sql = "CREATE TABLE IF NOT EXISTS cflow_token (DEV varchar(24) NOT NULL, TOKEN varchar(40),  CRTAT long not null, PRIMARY KEY (TOKEN)) ";
@@ -141,6 +143,7 @@ public class TokenAdmin {
 				}
 			}
 		}
+		logger.debug("Token: " + token + ", user: " + dev);
 		return dev;
 	}
 

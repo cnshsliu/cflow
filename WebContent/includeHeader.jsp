@@ -9,11 +9,19 @@
 </head> <body>
 <div style="top:0;left:0; width:100%; 	background-color: #99FFCC; ">
 <div style="padding-left:200px; background:url(images/logo3764.png) no-repeat 0 50%">
-		<a href="/cflow/"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Home</div></a>
-		<a href="/cflow/wft.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Template Designer</div></a>
-		<a href="/cflow/prc.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Process Monitor</div></a>
-		<a href="/cflow/team.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Identity</div></a>
-		<a href="/cflow/vt.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Form</div></a>
-		<a href="/cflow/testbed.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Testbed</div></a>
+		<table class='topMenuTable'>
+		<tr>
+		<td>
+			<a href="/cflow/Navigate?to=index.jsp&token=<%=token%>">Home</a></td>
+		<td>
+			<a href="/cflow/Navigate?to=wft.jsp&token=<%=token%>">Design<BR> Workflow</a></td>
+		<td>
+			<a href="/cflow/Navigate?to=prc.jsp&token=<%=token%>">Process<br>Monitor</a></td>
+		<td>
+			<a href="/cflow/Navigate?to=ctx.jsp&token=<%=token%>">Business<br>Context</a></td>
+		<td>
+			<a href="/cflow/Navigate?to=api.jsp&token=<%=token%>">API & Demo</a></td>
+		</tr>
+		</table>
 </div></div>
 <div style="position:relative; top:20; left:0; width=100%;">

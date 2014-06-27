@@ -27,4 +27,5 @@ public class SessionListener implements HttpSessionListener {
         logger.debug("Session Destroyed: " + event.getSession().getId() + "at " + new java.util.Date());  
         logger.debug("Total Sessions: " + CflowHelper.sessionCount);  
     }  
+     
 }

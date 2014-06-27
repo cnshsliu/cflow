@@ -1,4 +1,4 @@
-.title{font-size: 24pt;}
+.title{font-size: 18pt;}
 .dotborder {border-color: #91D100;  border-style: dotted; border-width:1px; }
 table.topbar{
 	width:100%;
@@ -62,7 +62,7 @@ body {
 	padding: 0 0 0 0;
 	margin: 0;
 	color: #333;
-	font-family: Tahoma, Geneva, sans-serif;
+	font-family: 	sans-serif;
 }
 
 #name{font-size:18pt;}
@@ -96,7 +96,6 @@ body {
 .devConsole{
 	font-size: 28px;
 	color:#3E4F90;
-	font-family: Georgia, "Times New Roman", Times, serif;
 }
 .desc{
 	font-size: 20px;
@@ -116,12 +115,16 @@ body {
 width: 960px;
 margin: 0 auto;
 overflow: hidden;
+//background-color: red;
 }
 .top10{
 	padding-top:10px;
 }
 .top20{
 	padding-top:20px;
+}
+
+.a2button{
 }
 .nav{
 width: 100%;
@@ -166,7 +169,6 @@ float: left;
 margin: 0;
 padding: 0 12px;
 color: #57697A;
-font-family: "TradeGothicNextW01-Regu";
 }
 .text_area {
 height: 190px;
@@ -269,12 +271,26 @@ table.comparision td.fgood2{
 .border1 {
 border: 1px solid #D5D5D5;
 }
-.topmenu{
-	display: inline-block;
-    zoom: 1;
-    *display: inline;
-    font-size:16px;
+
+table.topMenuTable{
+	border:0; margin:0; border-collapse:collapse; 
+}
+table.topMenuTable td {
     padding-left:15px;
-    height:18px;
-    font-family: Verdana, Helvetica;
+    padding-bottom:0px;
+}
+table.topMenuTable td:hover {
+	background-color: #EFEFEF;
+	text-decoration: underline;
+}
+table.topMenuTable td a {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 16px;
+    text-decoration:none; color: #366; 
+}
+a{
+	text-decoration:none; color:#33C;
+}
+a:hover{
+	text-decoration:underline;
 }
