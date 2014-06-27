@@ -5,28 +5,15 @@
 <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Workflow Engine as a Service</title>
 <LINK href="/cflow/rsstyle.css" rel="stylesheet" type="text/css">
-<script src="javascript/mootools.js" language="javascript"></script>
+<script src="javascript/mootools.js" ></script>
 </head> <body>
-<CENTER>
-     <table style="width:800px; align=center" ID="top_menu">
-        <tr>
-		<td valign="top" align="left"><a href='/cflow/index.html'><img src="images/logo3764.png" alt="My World Flow" border="0"></a>
-		</td>
-		<td class="menu">
-			<a href="/cflow/wft.jsp?token=<%=token%>">
-				<img src='images/menu1.png' border=0 onMouseOver="this.src='images/menu1_s.png'" onMouseOut="this.src='images/menu1.png'"></a>
-			<a href="/cflow/prc.jsp?token=<%=token%>">
-				<img src='images/menu2.png' border=0 onMouseOver="this.src='images/menu2_s.png'" onMouseOut="this.src='images/menu2.png'"></a>
-			<a href="/cflow/team.jsp?token=<%=token%>">
-				<img src='images/menu3.png' border=0 onMouseOver="this.src='images/menu3_s.png'" onMouseOut="this.src='images/menu3.png'"></a>
-			<a href="/cflow/vt.jsp?token=<%=token%>">
-				<img src='images/menu4.png' border=0 onMouseOver="this.src='images/menu4_s.png'" onMouseOut="this.src='images/menu4.png'"></a>
-			<a href="/cflow/testbed.jsp?token=<%=token%>">
-				<img src='images/menu5.png' border=0 onMouseOver="this.src='images/menu5_s.png'" onMouseOut="this.src='images/menu5.png'"></a>
-		</td>
-    <td align="right">
-		<div id="devConsole">Developer Console</div>
-    </td>
-        </tr>
-    </table>
-</CENTER>
+<div style="top:0;left:0; width:100%; 	background-color: #99FFCC; ">
+<div style="padding-left:200px; background:url(images/logo3764.png) no-repeat 0 50%">
+		<a href="/cflow/"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Home</div></a>
+		<a href="/cflow/wft.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Template Designer</div></a>
+		<a href="/cflow/prc.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Process Monitor</div></a>
+		<a href="/cflow/team.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Identity</div></a>
+		<a href="/cflow/vt.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Form</div></a>
+		<a href="/cflow/testbed.jsp?token=<%=token%>"><div class="topmenu" onMouseOver="this.style.background='red'" onMouseOut="this.style.background=''">Testbed</div></a>
+</div></div>
+<div style="position:relative; top:20; left:0; width=100%;">

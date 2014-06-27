@@ -18,7 +18,7 @@
 			<wft>/home/liukehong/cflow/vault</wft>
 			<ist>/home/liukehong/cflow/ist</ist>
 			<prc>/home/liukehong/cflow/process</prc>
-			<work>/home/liukehong/cflow/work</work>
+			<istwft>/home/liukehong/cflow/istwft</istwft>
 			<vt>/home/liukehong/cflow/vts</vt>
 			<model>/home/liukehong/cflow/model</model>
 		</local>

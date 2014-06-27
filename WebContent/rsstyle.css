@@ -68,11 +68,10 @@ body {
 #name{font-size:18pt;}
 .maindiv_100p{
 	width:100%;
-	background-color: #99FFCC;
 	min-height: 500px;
 }
 .maindiv_800c{
-	width:800px;
+	width:100%;
 	margin-left:auto;
 	margin-right:auto;
 	margin:auto;
@@ -270,4 +269,12 @@ table.comparision td.fgood2{
 .border1 {
 border: 1px solid #D5D5D5;
 }
-
+.topmenu{
+	display: inline-block;
+    zoom: 1;
+    *display: inline;
+    font-size:16px;
+    padding-left:15px;
+    height:18px;
+    font-family: Verdana, Helvetica;
+}

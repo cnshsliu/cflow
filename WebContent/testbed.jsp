@@ -4,10 +4,9 @@ String wftId = request.getParameter("wftid");
 String mode="workflow";
 %>
 <%@ include file="includeHeader.jsp"%>
-<div class="maindiv_100p"><div class="maindiv_800c tbpadding">
 <div class='title'>Testbed (Start workflow and check worklist)</div>
 <div id='result'></div>
-<div id='wfts' class='dotborder'>
+<div id='wfts' >
 <form>
 <table>
 <tr><td><BR><a href='/cflow/wft.jsp?token=<%=token %>'>Try to start a workflow</a><BR><BR><BR></td></tr>
@@ -42,7 +41,6 @@ try{
 </td></tr></table>
 </form>
 </div>
-</div></div>
 <%@ include file="includeFooter.jsp"%>
 </body></html>
 
