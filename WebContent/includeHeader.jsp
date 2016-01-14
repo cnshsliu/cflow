@@ -8,7 +8,7 @@
 <script src="javascript/mootools.js" ></script>
 </head> <body>
 <div style="top:0;left:0; width:100%; 	background-color: #99FFCC; ">
-<div style="padding-left:200px; background:url(images/logo3764.png) no-repeat 0 50%">
+<div style="padding-left:200px; background:url(images/werunflow.png) no-repeat 0 50%">
 		<table class='topMenuTable'>
 		<tr>
 		<td>

@@ -3,8 +3,8 @@
 <%String token = request.getParameter("token"); if(token==null || token.equalsIgnoreCase("null")) token=null;%>
 <html> <head>
 	<title>Workflow Engine as a Service</title>
-<meta content="Workflow, BPM, PaaS Service, Cloud Service, Process Management, Business Process, MyWorldFlow" name="keywords">
-<meta content="MyWordflow is a PaaS (Platform as a Service) cloud service, provides Workflow Engine as a Service to developers, MyWorldFlow can be used in BPM" name="description">
+<meta content="Workflow, BPM, Business Process as a Service, BPaaS, Cloud Service, Process Management, Business Process, WeRunFlow" name="keywords">
+<meta content="WeRunFlow is a BPaaS cloud service (Business Process as a Service), provides Workflow Engine as a Service to developers" name="description">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<LINK href="/cflow/rsstyle.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
 	<div class="row">
 		<table class="topbar clearLink">
 			<tr><td>
-			<a href="/cflow" border="0"><img src="images/logo3764.png" alt="My World Flow Alpha" border="0"></a>
+			<a href="/cflow" border="0"><img src="images/werunflow2.png" alt="My World Flow Alpha" border="0"></a>
 			</td><td class="onright">
 			<a href="reg.jsp">Sign up</a> | <a href="login.jsp">Sign in </a>
 		</td></tr></table>
@@ -42,12 +42,16 @@
 		<table><tr><td>
 			<a  class="a2button" style="width:194px; height:120px; display:table-cell; vertical-align:middle;"  href="/cflow/Navigate?to=/cflow/wft.jsp&token=<%=token%>">Design workflow</a>
 		</td><td>
+			<a  class="a2button" style="width:194px; height:120px; display:table-cell; vertical-align:middle;"   href="/cflow/Navigate?to=/cflow/run.jsp&token=<%=token%>">Run process</a>
+		</td><td>
 			<a  class="a2button" style="width:194px; height:120px; display:table-cell; vertical-align:middle;"   href="/cflow/Navigate?to=/cflow/prc.jsp&token=<%=token%>">Monitor process</a>
 		</td></tr>
 		<tr><td>
 			<a  class="a2button"  style="width:194px; height:120px; display:table-cell; vertical-align:middle;" href="/cflow/Navigate?to=/cflow/ctx.jsp&token=<%=token%>">Configure your business context</a>
 		</td><td>
-			<a  class="a2button" style="width:194px; height:120px; display:table-cell; vertical-align:middle;" href="/cflow/Navigate?to=/cflow/api.jsp&token=<%=token%>">API and Demos</a>
+			<a  class="a2button" style="width:194px; height:120px; display:table-cell; vertical-align:middle;" href="/cflow/Navigate?to=/cflow/api.jsp&token=<%=token%>">Open API</a>
+		</td><td>
+			<a  class="a2button" style="width:194px; height:120px; display:table-cell; vertical-align:middle;" href="/cflow/Navigate?to=/cflow/demo.jsp&token=<%=token%>">Demo & Tutorials</a>
 		</td></tr>
 		</table>
 		</center>
@@ -63,7 +67,7 @@
    
 	<div class="row">
 <div id="footer"><center><BR><BR>
-      Copyright &#169; 2012 The MyWorldFlow.</center>
+      Copyright &#169; 2014 We-Run-Flow.</center>
     </div> 
 </div>
 
