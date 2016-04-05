@@ -15,12 +15,12 @@
 			<!-- classname>com.lkh.cflow.storage.oss.OssfileStorageManager</classname  -->
 		</manager>
 		<local>
-			<wft>/home/liukehong/cflow/vault</wft>
-			<ist>/home/liukehong/cflow/ist</ist>
-			<prc>/home/liukehong/cflow/process</prc>
-			<istwft>/home/liukehong/cflow/istwft</istwft>
-			<vt>/home/liukehong/cflow/vts</vt>
-			<model>/home/liukehong/cflow/model</model>
+			<wft>/home/lucas/cflow/vault</wft>
+			<ist>/home/lucas/cflow/ist</ist>
+			<prc>/home/lucas/cflow/process</prc>
+			<istwft>/home/lucas/cflow/istwft</istwft>
+			<vt>/home/lucas/cflow/vts</vt>
+			<model>/home/lucas/cflow/model</model>
 		</local>
 		<oss>
 			<accessid>3mkbjle9tr4it3spn6wv06ki</accessid>
